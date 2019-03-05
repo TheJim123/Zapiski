@@ -4,12 +4,14 @@
 \usepackage[slovene]{babel}
 \usepackage{lmodern}
 \usepackage{amsmath}
+\usepackage{leftidx}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{amsthm}
 \usepackage{mathrsfs}
+\usepackage{mathtools}
 \usepackage{url}
 \usepackage{subfigure}
 \usepackage{multirow}
@@ -21,6 +23,7 @@
 \usepackage{siunitx}
 
 \newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
 
 \newcounter{defcount}
 \newcounter{opombe}
@@ -42,9 +45,13 @@
 \newcommand{\N}{\mth{N}}
 \newcommand{\No}{\mth{N}_0}
 \newcommand{\C}{\mth{C}}
-\newcommand{\H}{\mth{H}}
+\newcommand{\Qu}{\mth{Q}_u}
 \newcommand{\pojem}[1]{\emph{#1}}
 \newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
 
 \title{Diskretna matematika 1 Episode II: Attack of the binomials}
 \date{19.2.2019}
@@ -152,9 +159,7 @@ Analogno zapišemo formulo za poljuben produkt:
 \]
 \item \underline{Računovodsko pravilo}:
 Naj bo $A\in \mth{C}^{m \times n}$. Tedaj velja:
-\[
-\sum^m_{i = 1}{\underbrace{\sum^n_{j = 1}{a_{ij}}}_{vrstična vsota}} = \sum^n_{j = 1}{\underbrace{\sum^m_{i = 1}{a_{ij}}}_{stolpčna vsota}}
-\]
+\[ \sum^m_{i = 1}{\underbrace{\sum^n_{j = 1}{a_{ij}}}_{vrstična vsota}} = \sum^n_{j = 1}{\underbrace{\sum^m_{i = 1}{a_{ij}}}_{stolpčna vsota}} \]
 Povedano še z besedami: Kadar seštevamo vrednosti polj v neki tabeli, je vseeno, če najprej seštejemo po vrstah in nato seštejemo vsote vrst, ali pa najprej seštejemo po stolpcih in nato seštejemo vsote stolpcev.
 \end{enumerate}
 
@@ -231,7 +236,7 @@ Posledično je število permutacij množice $A$ (torej število bijekcij $A \rig
 \end{definicija}
 
 \begin{definicija}
-Naj bosta $k, n \in \mth{N}_0$. Število razdelitev množice z $n$ elementi na $k$ blokov imenujemo \pojem{Sterlingovo število druge vrste} in ga označimo s $S(n, k)$.
+Naj bosta $k, n \in \mth{N}_0$. Število razdelitev množice z $n$ elementi na $k$ blokov imenujemo \pojem{Stirlingovo število druge vrste} in ga označimo s $S(n, k)$.
 \end{definicija}
 
 \begin{zgled}
@@ -267,12 +272,12 @@ Torej če je $n \geq k$ je število surjekcij enako $S(n, k) \cdot k!$.
 Če je $n < k$ potem med $A$ in $B$ ne obstaja nobena surjekcija.
 \end{proof}
 
-\begin{trditev}
+\begin{izr}
 Za $n, k \geq 1$ velja:
 \[
 S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k)
 \]
-\end{trditev}
+\end{izr}
 
 \begin{proof}
 Naj bo $\abs{A} = n$ in naj bo $a \in A$ izbrana točka.
@@ -284,11 +289,11 @@ Ločimo $2$ primera:
 
 \item Razdelitve, v katerih je izbrani $a$ sam v svojem bloku:
 
-Dobljena slika množice $A$ je torej množica, ki ima en element manj in hkrati tudi en blok manj. Njeno Sterlingovo število je torej $S(n - 1, k - 1)$. Opazimo tudi (baje), da je v tem primeru $f$ bijekcija, saj $A\setminus \{a\}$ >>dodamo še en blok, ki vsebuje $a$, pa je vredu.<<
+Dobljena slika množice $A$ je torej množica, ki ima en element manj in hkrati tudi en blok manj. Njeno Stirlingovo število je torej $S(n - 1, k - 1)$. Opazimo tudi (baje), da je v tem primeru $f$ bijekcija, saj $A\setminus \{a\}$ >>dodamo še en blok, ki vsebuje $a$, pa je vredu.<<
 
 \item Razdelitve, v katerih izbrani $a$ ni sam v svojem bloku:
 
-V tem primeru se zmanjša samo moč množice $A$ (število blokov ostane enako), torej je Sterlingovo število enako $S(n - 1, k)$.
+V tem primeru se zmanjša samo moč množice $A$ (število blokov ostane enako), torej je Stirlingovo število enako $S(n - 1, k)$.
 Ker imamo $k$ blokov imamo $k$ možnosti, kam vtakniti ta $a$. Torej je takih razdelitev $k \cdot S(n - 1, k)$.
  
 \end{enumerate}
@@ -328,5 +333,91 @@ Opazimo sledeče:
 
 Za $i, j > 0$ velja, da je $a_{ij} = a_{(i - 1)(j - 1)} + j * a_{(i-1)j}$
 
-To pa sovpada s prej dokazano trditvijo.
+To pa sovpada s prej dokazano trditvijo (v bistvu je tabela bila izpolnjena s pomoćjo prej izračunanih začetnih pogojev in dokazane formule).
+
+\begin{izr}
+Za $n \geq 0$ je $B_{n + 1} = \sum_{k = 0}^{n}{\binom{n}{k} B_k}$
+\end{izr}
+
+\begin{proof}
+Naj bo $A$ množica moči $n + 1$ in $P$ množica vseh particij $A$. Naj bo $a\in A$ izbrani element. Velja: \[ B_{n + 1} = \abs{P} \]
+
+Za $k = 1, 2, \ldots, n$ naj bo $P_k = \{ R \in P \mid \abs{R[a]} = n - k + 1 \}$, pri čemer je $R[a]$ blok particije $R$, ki vsebuje $a$. Torej je izven $R[a]$ natanko $k$ elementov.
+
+~
+
+Konstrukcija razdelitve $R$ iz $P_k$: \begin{itemize}
+	\item Izberemo $k$ elementov iz $A\setminus\{a\}$ na $\binom{n}{k}$ načinov. Ta izbor poimenujemo kot množico $C$; $\abs{C} = k \land C \subseteq A\setminus\{a\}$
+	\item Izberemo poljubno razdelitev $C$ na $B_k$ načinov.
+	\item obe vrednosti zmnožimo po pravilu produkta
+	\item Ker velja $P_i \cap P_j = \emptyset ; i \neq j$, vse produkte seštejemo po pravilu vsote (sledi iz dejstva, da je $B_{n + 1} = \abs{P} = \abs{\bigcap_{k = 0}^{n}{P_k}}$).
+\end{itemize}
+
+Torej je $B_{n + 1} = \sum_{k = 0}^{n}{\abs{P_k}} = \sum_{k = 0}^{n}{\binom{n}{k} B_k}$
+
+\end{proof}
+
+\begin{zgled}
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{c | ccccc | c}
+			$n$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \midrule
+			$B_n$ & $1$ & $1$ & $2$ & $5$ & $15$ & ??? 
+		\end{tabular}
+	\end{table}
+Izračunajmo $B_{5}$:
+\begin{alignat*}{1}
+B_5 & = \sum_{k = 0}^4{\binom{4}{k} B_k} ~= \\
+& = 1 * B_0 + 4 * B_1 + 6 * B_2 + 4 * B_3 + 1 * B_4 ~= \\
+& = 1 * 1 + 4 * 1 + 6 * 2 + 4 * 5 + 1 * 15 ~= \\
+& = 52
+\end{alignat*}
+\end{zgled}
+
+\newpage
+
+\subsection{Algebraičen pomen Stirlingovih števil:}
+
+\begin{trditev}
+	Za vse $n \in \No$ in vse $x \in \C$ je $x^n = \sum_{k = 0}^{n}{S(n, k) \padex{x}{k}}$.
+\end{trditev}
+
+\begin{proof}
+	Trditev lahko dokažemo bodisi z indukcijo po $n$ (prepuščeno bralcu za vajo) bodisi kombinatorično. Tukaj bomo trditev dokazali kombinatorično.
+	
+	~
+	
+	Naj bo $x\in\No$ in naj bota $A$ in $X$ množici, pri čimer velja $\abs{A} = n$ in $\abs{X} = x$.
+	
+	~
+	
+	Potem velja:
+	\[ x^n = \abs{X^A} = \abs{\{\map{f}{A}{X}\}} = \abs{\bigcup_{B \subseteq X} \{ \map{f}{A}{X} \mid \pra{f}{A}{B}\}} = \abs{\bigcup_{B \subseteq X} \{ \map{\bar{f}}{A}{B} \mid \pra{f}{A}{B}\}}\]
+	
+	~
+	
+	Z naslednjim korakom >>združimo<< tiste $B$, ki imajo enako število elementov.
+	
+	\begin{align*}
+	 \abs{\bigcup_{B \subseteq X} \{ \map{\bar{f}}{A}{B} \mid \pra{f}{A}{B}\}} & = \abs{\bigcup_{k = 0}^{n}~\Bigg( \bigcup_{B \subseteq X \land \abs{B} = k} \{ \map{\bar{f}}{A}{B} \mid \bar{f}\text{~je surjekcija}\}\Bigg)} \\
+	 & = \sum_{k = 0}^{n}\Bigg(\sum_{B \subseteq X \land \abs{B} = k} \abs{\{ \map{\bar{f}}{A}{B} \mid \bar{f}\text{~je surjekcija}\}} \Bigg) \\
+	 & = \sum_{k = 0}^{n}\Bigg(\sum_{B \subseteq X \land \abs{B} = k} S(n, k) * k! \Bigg) \\
+	 & = \sum_{k = 0}^{n} \binom{x}{k}S(n, k) * k! = \sum_{k = 0}^{n} S(n, k) * \padex{x}{k}
+	\end{align*}
+	
+	~
+	
+	Dokaz bi lahko tudi argumentirali na sledeči način:
+	
+	~
+	
+	Naj bosta $x^n = p(x) \in\C[x]$ in $\sum_{k = 0}^{n} S(n, k) * \padex{x}{k} = q(x) \in\C[x]$ kompleksna polinoma. Velja:
+	\begin{align*}
+	p(x) = q(x) \text{za vsak} x \in \No & \Rightarrow p(x) - q(x) = 0 \text{~za vsak~} x\in\No \\
+	& \Rightarrow p - q \in \C[x] \text{~ima neskončno mnogo ničel~} \\
+	& \Rightarrow p - q \equiv 0 \Rightarrow p(x) = q(x) \text{~za vsak~} x\in\C
+	\end{align*}
+	
+\end{proof}
+	 
 \end{document}
