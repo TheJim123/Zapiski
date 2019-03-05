@@ -1,0 +1,423 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Qu}{\mth{Q}_u}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Diskretna matematika 1 Episode II: Attack of the binomials}
+\date{19.2.2019}
+\author{Nek študent FMF}
+%===============================================================================
+\begin{document}
+\maketitle
+\newpage
+
+\begin{abstract}
+\noindent Ta kreacija, ki jo trenutno berete, dragi bralec, je skupek prepisanih zapiskov študijskega predmeta Diskretna matematika 1 s perspektive nekega študenta 2. letnika matematike na FMF.
+Uporaba tega dokumenta za kakršnikoli namene je na lastno odgovornost.
+\end{abstract}
+
+\newpage
+
+\section{Uvod}
+Vprašajmo se najprej, kaj sploh pomeni pridevnik >>diskreten<<. Ta beseda ima v slovenščini dva pomena, ki sta v angleščini ločeni besedi: \textit{discreet} - obziren in \textit{discrete} - jasno ločen oz. razločljiv. Za naše potrebe je (cca. očitno, dokaz prepuščen bralcu) relevanten drugi pomen. Diskretna matematika se torej ukvarja s (včasih tudi števnimi) končnimi strukturami, ki so ločljive (ne tega citirat, razen če želite v indeksu zbrati tri $6$-ke in priklicati hudiča). Zanimivost: Obe besedi izhajata iz latinskega glagola \textit{discernere}, iz katerega še najbolj očitno izhaja angleški glagol >>\textit{to discern}<<, ki ima med drugimi tudi pomen >>razločiti<<.
+
+\begin{opomba}
+Preden začnemo, si oglejmo še kak praktičen primer diskretnosti:
+
+Množica $A$ v topološkem prostoru $X$ je diskretna, če $\forall x\in A ~\exists \mathcal{O}_x$ okolica $x$ tako, da je $x$ edina točka iz A v $\mathcal{O}_x$.
+\end{opomba}
+Poglejmo si še kakšen zgled
+\begin{zgled}
+X = \mth{R}, A = \mth{Z} 
+\end{zgled}
+
+\subsection{Področja diskretne matematike:}
+\begin{itemize}
+
+\item Kombinatorika,
+\item Teorija grafov,
+\item Matematična logika,
+\item Teorija množic (osnove),
+\item Računalniška matematika,
+\item Teorija kodiranja,
+\item itd.
+
+\end{itemize}
+\subsection{Vsebina predmeta diskretna matematika 1:}
+\begin{enumerate}
+
+\item Kombinatorika
+\begin{itemize}
+
+\item Osnove preštevanja
+\item Načelo vključitev in izključitev
+\item Rekurzivne enačbe in rodovne vrste
+
+\end{itemize}
+\item Teorija grafov
+\begin{itemize}
+
+\item Osnovno o grafih
+\item Drevesa in cikli
+\item Ravninski grafi
+\item Barvanje grafov
+\item Povezanost grafov
+
+\end{itemize}
+\end{enumerate}
+
+\subsection{Literatura:}
+\begin{itemize}
+
+
+\item Primož Potočnik: Zapiski predavanj iz Diskretne Matematike 1, dostopno na povezavi: \url{https://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}
+
+\item M. Juvan in P. Potočnik: Teorija grafov in kombinatorika: Primeri in rešene naloge
+\end{itemize}
+
+\section{Osnove Preštevanja}
+\begin{enumerate}
+
+\item \underline{Oznake}:
+\begin{itemize}
+
+\item $\mth{N}_0 = \{0, 1, 2, \ldots \} = \omega$
+\item $\mth{N} = \{1, 2, 3, \ldots \}$
+\item $\abs{A} =$ št. elementov oz. moč množice A (gledamo predvsem končne množice) 
+
+\end{itemize}
+
+\item \underline{Načelo Enakosti}:
+\[
+\abs{A} = \abs{B} \iff \exists f : A \rightarrow B \text{, ki je bijektivna}
+\]
+\item \underline{Načelo vsote}:
+\[
+A \cap B = \emptyset \Rightarrow \abs{A \cup B} = \abs{A} + \abs{B}
+\]
+Induktivno velja:
+\[
+A_i \cap A_j = \emptyset; ~i\neq j \Rightarrow \abs{\bigcup^n_{i = 1}{A_i}} = \sum^n_{i = 1}{\abs{A_i}}
+\]
+\item \underline{Načelo produkta}:
+\[
+\abs{A\times B} = \abs{A} \cdot \abs{B}
+\]
+Analogno zapišemo formulo za poljuben produkt:
+\[
+\abs{\prod^n_{i = 1}{A_i}} = \prod^n_{i = 1}{\abs{A_i}}
+\]
+\item \underline{Računovodsko pravilo}:
+Naj bo $A\in \mth{C}^{m \times n}$. Tedaj velja:
+\[ \sum^m_{i = 1}{\underbrace{\sum^n_{j = 1}{a_{ij}}}_{vrstična vsota}} = \sum^n_{j = 1}{\underbrace{\sum^m_{i = 1}{a_{ij}}}_{stolpčna vsota}} \]
+Povedano še z besedami: Kadar seštevamo vrednosti polj v neki tabeli, je vseeno, če najprej seštejemo po vrstah in nato seštejemo vsote vrst, ali pa najprej seštejemo po stolpcih in nato seštejemo vsote stolpcev.
+\end{enumerate}
+
+\begin{definicija}
+Naj bo $x \in \mth{C}$ in $n\in \mth{N}_0$.
+\begin{enumerate}
+
+\item $x^n = \underbrace{x\cdot x\cdot\ldots x}_{n} = \prod^{n}_{i = 0}{x}$ je \pojem{$n$-ta potenca} števila $x$.
+\item $x^{\underline{n}} = \underbrace{x\cdot (x - 1)\cdot\ldots (x - (n - 1))}_{n} = \prod^{n - 1}_{i = 0}{(x - i)}$ je \pojem{$n$-ta padajoča potenca} števila $x$.
+\item $x^{\bar{n}} = \underbrace{x\cdot (x + 1)\cdot\ldots (x + (n - 1))}_{n} = \prod^{n - 1}_{i = 0}{(x + i)}$ je \pojem{$n$-ta rastoča potenca} števila $x$.
+
+\end{enumerate}
+
+\end{definicija}
+
+Hitro opazimo, da velja:
+\[
+x^{\underline{n}} = (x - (n - 1))^{\bar{n}} \text{~in~} x^{\bar{n}} = (x + (n - 1))^{\underline{n}}
+\]
+Posledično velja:
+\[
+1^{\bar{n}} = 1 \cdot 2 \cdot \ldots \cdot n = n! = n^{\underline{n}}
+\]
+
+\begin{opomba}
+Vrednost praznega produkta je $1$. Npr.:
+\[
+x^0 = x^{\underline{0}} = x^{\bar{0}} = 0! = 1
+\]
+V analizi izraz $0^0$ ni definiran, v diskretni matematiki pa ga enačimo z $1$.
+\end{opomba}
+
+\begin{definicija}
+
+Naj bo $x \in \mth{C}$ in $k \in \mth{Z}$.
+\[
+\binom{x}{k} = \begin{cases}
+ \frac{x^{\underline{k}}}{k!};& k \geq 0 \\
+ 0;& k < 0
+\end{cases}
+\text{~,se imenuje binomski koeficient.}
+\]
+\end{definicija}
+Naslednje trditve ne bomo dokazali (dokaz prepuščen bralcu za vajo).
+\begin{trditev}
+Naj bo $\abs{A} = n$ in $\abs{B} = k$.
+\begin{enumerate}
+
+\item Število vseh podmnožic množice $A$ je $2^n$.
+\item Število podmnožic moči $k$ množice A je $\binom{n}{k}$.
+\item Število vseh preslikav $A \rightarrow B$ je $k^n$.
+\item število injektivnih preslikav $A \rightarrow B$ je $k^{\underline{n}}$.
+\item število bijektivnih preslikav $A \rightarrow B$ je $\begin{cases}
+n!; & k = n \\
+0 ; & k \neq n
+\end{cases}$.
+Posledično je število permutacij množice $A$ (torej število bijekcij $A \rightarrow A$) enako $n!$
+\end{enumerate}
+\end{trditev}
+
+\subsection{Razdelitve množice:}
+
+\begin{definicija}
+\pojem{Razdelitev/particija} množice $A$ je družina množic $\{ B_1, B_2,  \ldots, B_k\}$ za katero velja:
+
+\begin{enumerate}
+
+\item $\forall i \in \{1, 2, \ldots, k\}: B_i \neq \emptyset$,
+\item $\forall i, j \in \{1, 2, \ldots, k\}: (i \neq j \Rightarrow B_i \cap B_j = \emptyset)$,
+\item $\bigcup^k_{i = 1}{B_i} = A$
+
+\end{enumerate}
+Če imamo podano razdelitev množice, lahko z njeno pomočjo definiramo tako ekvivalenčno relacijo, da porojeni ekvivalenčni razredi sovpadajo s particijo. Takšna ekvivalenčna relacija se (v splošnem) glasi: $a \sim b \iff \exists i \in \{1, 2, \ldots, k \}; a, b \in B_i$
+\end{definicija}
+
+\begin{definicija}
+Naj bosta $k, n \in \mth{N}_0$. Število razdelitev množice z $n$ elementi na $k$ blokov imenujemo \pojem{Stirlingovo število druge vrste} in ga označimo s $S(n, k)$.
+\end{definicija}
+
+\begin{zgled}
+$n = 4, k = 2; S(4, 2) = ?$
+\[
+A = \{ a, b, c, d \}; \abs{A} = 4 \text{(ta pogoj zagotovi, da so si a, b, c in d medseboj različni)}
+\]
+Poglejmo si vse razdelitve množice $A$ na $2$ bloka:
+\begin{tabular}{cccc}
+$a, bcd$ & $b, acd$ & $c, abd$ & $d, abc$ \\
+$ab, cd$ & $ac, bd$ & $ad, bc$ & \ 
+\end{tabular}
+
+Skupaj je to 7 različnih možnosti. Torej $S(4, 2) = 7$.
+
+V splošnem tudi velja: $S(n, 2) = 2^{n - 1} - 1; n \geq 1$
+\end{zgled}
+
+\begin{trditev}
+Število surjekcij $A \rightarrow B; \abs{A} = n \land \abs{B} = k$ je enako $S(n, k) \cdot k!$ za $n \geq k$ in $0$ sicer.
+\end{trditev}
+
+\begin{proof}
+Opazimo: praslike elementov množice $B$ tvorijo particijo  v $A$, kjer velja $x \sim y \iff f(x) = f(y)$
+
+\begin{enumerate}
+
+\item Najprej $A$ razdelimo na k nepraznih blokov na S(n, k) načinov
+\item Za vsak blok izberemo slike v $B$ na $k!$ načinov
+
+\end{enumerate}
+Torej če je $n \geq k$ je število surjekcij enako $S(n, k) \cdot k!$.
+Če je $n < k$ potem med $A$ in $B$ ne obstaja nobena surjekcija.
+\end{proof}
+
+\begin{izr}
+Za $n, k \geq 1$ velja:
+\[
+S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k)
+\]
+\end{izr}
+
+\begin{proof}
+Naj bo $\abs{A} = n$ in naj bo $a \in A$ izbrana točka.
+Naj bo $f: A \rightarrow A\setminus \{a\}$.
+
+Ločimo $2$ primera:
+
+\begin{enumerate}
+
+\item Razdelitve, v katerih je izbrani $a$ sam v svojem bloku:
+
+Dobljena slika množice $A$ je torej množica, ki ima en element manj in hkrati tudi en blok manj. Njeno Stirlingovo število je torej $S(n - 1, k - 1)$. Opazimo tudi (baje), da je v tem primeru $f$ bijekcija, saj $A\setminus \{a\}$ >>dodamo še en blok, ki vsebuje $a$, pa je vredu.<<
+
+\item Razdelitve, v katerih izbrani $a$ ni sam v svojem bloku:
+
+V tem primeru se zmanjša samo moč množice $A$ (število blokov ostane enako), torej je Stirlingovo število enako $S(n - 1, k)$.
+Ker imamo $k$ blokov imamo $k$ možnosti, kam vtakniti ta $a$. Torej je takih razdelitev $k \cdot S(n - 1, k)$.
+ 
+\end{enumerate}
+Opciji $1$ in $2$ sta (očitno) disjunktni. Po načelu vsote je torej $S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k)$
+\end{proof}
+Zdaj, ko smo dokazali prejšnjo rekurzivno zvezo, moramo za njo izračunati začetne pogoje:
+\begin{itemize}
+
+\item $S(0,0) = 1$
+\item $S(n,0) = 0 \text{~,če je} n > 1 $
+\item $S(n, n) = 1$
+\item $S(n, 1) = 1; n \geq 1$
+\item $S(n, k) = 0 \text{~,če je} n < k$
+
+\end{itemize}
+
+\begin{definicija}
+Število vseh razdelitev množice z $n$ elementi imenujemo \pojem{Bellovo število} in ga označimo z $B_n$
+\end{definicija}
+Tabelirajmo $S(n, k)$:
+\begin{table}[!h]
+\centering
+\begin{tabular}{l | cccccc | c}
+$n \diagdown^k$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $B_n$ \\ \midrule
+0 & $1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $1$ \\
+1 & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ & $1$ \\
+2 & $0$ & $1$ & $1$ & $0$ & $0$ & $0$ & $2$ \\
+3 & $0$ & $1$ & $3$ & $1$ & $0$ & $0$ & $5$ \\
+4 & $0$ & $1$ & $7$ & $6$ & $1$ & $0$ & $15$ \\
+5 & $0$ & $1$ & $15$ & $25$ & $10$ & $1$ & $52$ \\
+\end{tabular}
+\end{table}
+
+Naj bodo $a_{ij}$ elementi zgornje tabele (brez zadnjega stolpca), kjer indeks $i$ predstavlja zaporedno število vrste k kateri pripada $a_{ij}$, šteto od zgoraj navzdol, in $j$ predstavlja zaporedno število stolpca v katerem je $a_{ij}$, šteto od leve proti desni. 
+
+Opazimo sledeče:
+
+Za $i, j > 0$ velja, da je $a_{ij} = a_{(i - 1)(j - 1)} + j * a_{(i-1)j}$
+
+To pa sovpada s prej dokazano trditvijo (v bistvu je tabela bila izpolnjena s pomoćjo prej izračunanih začetnih pogojev in dokazane formule).
+
+\begin{izr}
+Za $n \geq 0$ je $B_{n + 1} = \sum_{k = 0}^{n}{\binom{n}{k} B_k}$
+\end{izr}
+
+\begin{proof}
+Naj bo $A$ množica moči $n + 1$ in $P$ množica vseh particij $A$. Naj bo $a\in A$ izbrani element. Velja: \[ B_{n + 1} = \abs{P} \]
+
+Za $k = 1, 2, \ldots, n$ naj bo $P_k = \{ R \in P \mid \abs{R[a]} = n - k + 1 \}$, pri čemer je $R[a]$ blok particije $R$, ki vsebuje $a$. Torej je izven $R[a]$ natanko $k$ elementov.
+
+~
+
+Konstrukcija razdelitve $R$ iz $P_k$: \begin{itemize}
+	\item Izberemo $k$ elementov iz $A\setminus\{a\}$ na $\binom{n}{k}$ načinov. Ta izbor poimenujemo kot množico $C$; $\abs{C} = k \land C \subseteq A\setminus\{a\}$
+	\item Izberemo poljubno razdelitev $C$ na $B_k$ načinov.
+	\item obe vrednosti zmnožimo po pravilu produkta
+	\item Ker velja $P_i \cap P_j = \emptyset ; i \neq j$, vse produkte seštejemo po pravilu vsote (sledi iz dejstva, da je $B_{n + 1} = \abs{P} = \abs{\bigcap_{k = 0}^{n}{P_k}}$).
+\end{itemize}
+
+Torej je $B_{n + 1} = \sum_{k = 0}^{n}{\abs{P_k}} = \sum_{k = 0}^{n}{\binom{n}{k} B_k}$
+
+\end{proof}
+
+\begin{zgled}
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{c | ccccc | c}
+			$n$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \midrule
+			$B_n$ & $1$ & $1$ & $2$ & $5$ & $15$ & ??? 
+		\end{tabular}
+	\end{table}
+Izračunajmo $B_{5}$:
+\begin{alignat*}{1}
+B_5 & = \sum_{k = 0}^4{\binom{4}{k} B_k} ~= \\
+& = 1 * B_0 + 4 * B_1 + 6 * B_2 + 4 * B_3 + 1 * B_4 ~= \\
+& = 1 * 1 + 4 * 1 + 6 * 2 + 4 * 5 + 1 * 15 ~= \\
+& = 52
+\end{alignat*}
+\end{zgled}
+
+\newpage
+
+\subsection{Algebraičen pomen Stirlingovih števil:}
+
+\begin{trditev}
+	Za vse $n \in \No$ in vse $x \in \C$ je $x^n = \sum_{k = 0}^{n}{S(n, k) \padex{x}{k}}$.
+\end{trditev}
+
+\begin{proof}
+	Trditev lahko dokažemo bodisi z indukcijo po $n$ (prepuščeno bralcu za vajo) bodisi kombinatorično. Tukaj bomo trditev dokazali kombinatorično.
+	
+	~
+	
+	Naj bo $x\in\No$ in naj bota $A$ in $X$ množici, pri čimer velja $\abs{A} = n$ in $\abs{X} = x$.
+	
+	~
+	
+	Potem velja:
+	\[ x^n = \abs{X^A} = \abs{\{\map{f}{A}{X}\}} = \abs{\bigcup_{B \subseteq X} \{ \map{f}{A}{X} \mid \pra{f}{A}{B}\}} = \abs{\bigcup_{B \subseteq X} \{ \map{\bar{f}}{A}{B} \mid \pra{f}{A}{B}\}}\]
+	
+	~
+	
+	Z naslednjim korakom >>združimo<< tiste $B$, ki imajo enako število elementov.
+	
+	\begin{align*}
+	 \abs{\bigcup_{B \subseteq X} \{ \map{\bar{f}}{A}{B} \mid \pra{f}{A}{B}\}} & = \abs{\bigcup_{k = 0}^{n}~\Bigg( \bigcup_{B \subseteq X \land \abs{B} = k} \{ \map{\bar{f}}{A}{B} \mid \bar{f}\text{~je surjekcija}\}\Bigg)} \\
+	 & = \sum_{k = 0}^{n}\Bigg(\sum_{B \subseteq X \land \abs{B} = k} \abs{\{ \map{\bar{f}}{A}{B} \mid \bar{f}\text{~je surjekcija}\}} \Bigg) \\
+	 & = \sum_{k = 0}^{n}\Bigg(\sum_{B \subseteq X \land \abs{B} = k} S(n, k) * k! \Bigg) \\
+	 & = \sum_{k = 0}^{n} \binom{x}{k}S(n, k) * k! = \sum_{k = 0}^{n} S(n, k) * \padex{x}{k}
+	\end{align*}
+	
+	~
+	
+	Dokaz bi lahko tudi argumentirali na sledeči način:
+	
+	~
+	
+	Naj bosta $x^n = p(x) \in\C[x]$ in $\sum_{k = 0}^{n} S(n, k) * \padex{x}{k} = q(x) \in\C[x]$ kompleksna polinoma. Velja:
+	\begin{align*}
+	p(x) = q(x) \text{za vsak} x \in \No & \Rightarrow p(x) - q(x) = 0 \text{~za vsak~} x\in\No \\
+	& \Rightarrow p - q \in \C[x] \text{~ima neskončno mnogo ničel~} \\
+	& \Rightarrow p - q \equiv 0 \Rightarrow p(x) = q(x) \text{~za vsak~} x\in\C
+	\end{align*}
+	
+\end{proof}
+	 
+\end{document}
