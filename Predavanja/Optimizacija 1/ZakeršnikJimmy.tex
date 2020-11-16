@@ -1,0 +1,178 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumitem}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Qu}{\mth{Q}_u}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Optimizacija 1, 1. domača naloga}
+\date{16.11.2020}
+\author{Jimmy Zakeršnik}
+%===============================================================================
+\begin{document}
+\maketitle
+\newpage
+
+\section{Prva naloga}
+\subsection{Navodila:}
+Dan je linearni program v standardni obliki. Za natanko eno spremenljivko, naj bo to $x_1$, izpustimo pogoj nenegativnosti. Dobljeni linearni program prevedemo v standardno obliko na običajen način, in sicer uvedemo dve novi spremenljivki in $x_1$ zamenjamo z njuno razliko. Z drugimi besedami: namesto $x_1$ pišemo $\dot{x}_1 - \ddot{x}_1$ ter predpostavimo $\dot{x}_1, \ddot{x}_1 \geq 0$.
+\begin{enumerate}[label=(\alph*)]
+	\item Kako izgleda začetni slovar za novi LP? Kaj je baza pri gornjem slovarju? Kaj pa bazna rešitev?
+	\item Od tu naprej predpostavimo, da je bazna rešitev začetnega slovarja iz točke $(a)$ dopustna.  Ali lahko v prvem koraku metode simpleksov vedno izberemo eno od $\dot{x}_1, \ddot{x}_1$ za vstopajočo spremenljivko? (Kdaj ja, kdaj ne).
+	\item Pokažite, da v nobenem koraku metode simpleksov $\dot{x}_1$ ~in~ $\ddot{x}_1$ nista hkrati v bazi.
+	\item Pokažite, da z metodo simpleksov nikoli ne dobimo rešitve, kjer je $\dot{x}_1 > 0$ ~in~ $\ddot{x}_1 > 0$. \newline Namig: glej prejšnjo točko.
+\end{enumerate}
+\subsection{Rešitev:}
+\begin{enumerate}[label=(\alph*)]
+	\item 
+		Naj bo $\Pi$ naš linearen program v standardni obliki, kjer je \[A =  \begin{bmatrix}
+			a_{11} & \cdots & a_{1n} \\
+			\vdots & \ddots & \vdots \\
+			a_{m1} & \cdots & a_{mn}
+		\end{bmatrix} \in \R^{m \times n} \] pripadajoča matrika ter $b \in \R^{m}$ in $c \in \R^{n}$ vektorja, ki pripadata $\Pi$. Naš linearen program se potem glasi: \[ \max{c^{\top}x}; ~\text{pri pogojih}~ A \cdot \begin{bmatrix}
+			\dot{x_1} - \ddot{x_1} \\
+			\vdots \\
+			x_n
+	\end{bmatrix} \leq b ~\text{in}~ \dot{x_1}, \ddot{x_1}, x_2, \ldots, x_n \geq 0 \]
+Uvedemo dopolnilne spremenljivke $x_{n+1}, \ldots, x_{n+m}$ in zapišemo začetni slovar:
+\begin{align*}
+	x_{n+1} &= b_1 + a_{11}\ddot{x_1} - a_{11}\dot{x_1} - a_{12}x_2 - \cdots - a_{1n}x_n \\
+	x_{n+2} &= b_2 + a_{21}\ddot{x_1} - a_{21}\dot{x_1} - a_{22}x_2 - \cdots - a_{2n}x_n \\
+	& \vdots\\
+	x_{n+m} &= b_m + a_{m1}\ddot{x_1} - a_{m1}\dot{x_1} - a_{m2}x_2 - \cdots - a_{mn}x_n\\
+	\hline
+	z &= c_1\dot{x_1} - c_1\ddot{x_1} + c_2x_2 + \ldots + c_nx_n
+\end{align*}
+Bazo sestavljajo bazne spremenljivke $x_{n+1}, \ldots, x_{n+m}$, bazna rešitev pa je: $\dot{x_1} = \ddot{x_1} = x_2 = \ldots = x_n = 0$~in~$x_{n+j} = b_j$ za $\forall j \in \{1, 2, \ldots, m\}$
+\item Sedaj predpostavimo, da je zgornja bazna rešitev dopustna. Zanima nas, kdaj lahko v prvem koraku metode simpleksov za vstop v bazo izberemo $\dot{x_1}$ ali $\ddot{x_1}$. V splošnem velja, da lahko v bazo vstopi vsaka nebazna spremenljivka, ki ima v funkcionalu (v našem primeru je to $z$) pozitivni koeficient. Za $\dot{x_1}$ in $\ddot{x_1}$ je tukaj relevanten koeficient $c_1$. Če je $c_1 = 0$ v bazo ne more vstopiti niti $\dot{x_1}$ niti $\ddot{x_1}$. Če je $c_1 > 0$, lahko vstopi $\dot{x_1}$, ne pa $\ddot{x_1}$, saj ima slednji potem negativen koeficient $-c_1$. Spremenljivka $\ddot{x_1}$ lahko vstopi bazo ko je $c_1 < 0$, saj je potem $-c_1$ pozitivno število (a takrat $\dot{x_1}$ ne more vstopiti v bazo ker ima negativen koeficient $c_1$).
+
+\item Primer (b) nam že namiguje, da v bazi hkrati ne moreta biti tako $\dot{x_1}$ kot $\ddot{x_1}$. Vseeno si poglejmo kaj se zgodi, ko v bazo vstopi $\dot{x_1}$ in izstopi neka spremenljivka $x_{n+j}$. Novi slovar nato izgleda takole:
+\begin{align*}
+	\dot{x_1} &= \frac{b_j}{a_{j1}} + \ddot{x_1} -\frac{a_{j2}}{a_{j1}}x_2 - \cdots - \frac{a_{jn}}{a_{j1}}x_n - \frac{1}{a_{j1}}x_{n+j} \\
+	x_{n+2} &= b_2 - \frac{a_{21}b_j}{a_{j1}} + \frac{a_{21}a_{j2}}{a_{j1}}x_2 + \cdots + \frac{a_{21}a_{jn}}{a_{j1}}x_n +\frac{a_{21}}{a_{j1}}x_{n+j} - a_{22}x_2 - \cdots - a_{2n}x_n \\
+	&= b_2 - \frac{a_{21}b_{j}}{a_{j1}} + (\frac{a_{21}a_{j2}}{a_{j1}} - a_{22})x_2 + \cdots + (\frac{a_{21}a_{jn}}{a_{j1}} - a_{2n})x_n + \frac{a_{21}}{a_{j1}}x_{n+j} \\
+	& \vdots \\
+	x_{n+m} &= b_m - \frac{a_{m1}b_{j}}{a_{j1}} + (\frac{a_{m1}a_{j2}}{a_{j1}} - a_{m2})x_2 + \cdots + (\frac{a_{m1}a_{jn}}{a_{j1}} - a_{2n})x_n + \frac{a_{m1}}{a_{j1}}x_{n+j} \\
+	\hline
+	z &= \frac{c_{1}b_j}{a_{j1}} + (c_2 - \frac{c_{1}a_{j2}}{a_{j1}})x_2 + \cdots + (c_n - \frac{c_{1}a_{jn}}{a_{j1}})x_n - \frac{c_1}{a_{j1}}x_{n+j}
+\end{align*}
+
+Zapomnimo si tukaj sledeče:
+\begin{align*}
+	\dot{x_1} - \ddot{x_1} &= \ddot{x_1} + \frac{1}{a_{j1}}(b_j - a_{j2}x_2 - \cdots - a_{jn}x_n - x_{n+j}) - \ddot{x_1} \\
+	 &= \frac{1}{a_{j1}}(b_j - a_{j2}x_2 - \cdots - a_{jn}x_n - x_{n+j})
+\end{align*}
+Opazimo, da spremenljivka $\ddot{x_1}$ več ne nastopa v nobeni enačbi razen v tisti, ki določa $\dot{x_1}$. Posebej opazimo, da ne nastopa v funkcionalu, torej ta spremenljivka več ne more vstopiti v bazo. Ker ne nastopa v nobeni drugi enačbi, tudi ob vstopu kake druge spremenljivke v bazo, spremenljivke $\ddot{x_1}$ več ne dobimo, razen če iz baze izstopi $\dot{x_1}$. Hiter račun nam tudi pokaže, kaj bi se zgodilo, če namesto $\dot{x_1}$ v bazo vstopi $\ddot{x_1}$:
+\begin{align}
+	a_{j1}\dot{x_1} &+ a_{j1}\ddot{x_1} + a_{j2}x_2 + \cdots + a_{jn}x_n + x_{n+j} = b_j \\
+	a_{j1}\dot{x_1} &+ a_{j2}x_2 + \cdots + a_{jn}x_n + x_{n+j} - b_j = a_{j1}\ddot{x_1} \\
+	\dot{x_1} &+ \frac{1}{a_{j1}}(a_{j2}x_2 + \cdots + a_{jn}x_n + x_{n+j} - b_j) = \ddot{x_1} \\
+	\nonumber \text{in nato velja:} & \\
+	\dot{x_1} &- \ddot{x_1} = - \frac{1}{a_{j1}}(a_{j2}x_2 + \cdots + a_{jn}x_n + x_{n+j} - b_j) \\
+	= &\frac{1}{a_{j1}}(b_j - a_{j2}x_2 - \cdots - a_{jn}x_n - x_{n+j}) 
+\end{align}
+Pri vstopu $\ddot{x_1}$ torej razlike $\dot{x_1} - \ddot{x_1}$ ostane enaka in zato se enačbe novega slovarja bistveno ne spremenijo - še več, enake so si (z izjemo prve enačbe, v kateri imamo izražen $\dot{x_1}$ oziroma $\ddot{x_1}$)!. Tako podoben sklep velja tudi za primer, ko v bazo vstopi $\ddot{x_1}$: Če vstopi $\ddot{x_1}$, $\dot{x_1}$ ne more vstopiti v bazo dokler $\ddot{x_1}$ ne izstopi.
+\item Ker $\dot{x_1}$ in $\ddot{x_1}$ nikoli nista skupaj v bazi, mora vsaj eden izmed njuju biti nebazna spremenljivka. Pri določanju rešitve, vse nebazne spremenljivke natavimo na $0$. Potem sta bodisi obe nebazni in potem enaki $0$, bodisi je pa tista, ki je nebazna, enaka $0$, tista ki je v bazi, pa ima neko nenegativno vrednost. Drugače povedano, ne more se zgoditi, da bi istočasno bili $\ddot{x_1}$ in $\dot{x_1}$ obe pozitivni.
+\end{enumerate}
+\section{Druga Naloga}
+\subsection{Navodila:}
+Dan je linearni program $\Pi$:
+Iščemo $\max c^{\top}x$ pri pogojih~$A_{1}x\leq b_1, \newline A_{2}x\leq b_2, x\geq0$. Naj bo~$\dot{x}$~optimalna rešitev linearnega programa $\Pi$. Pokažite, da obstajata vektorja~$c_1, c_2$, da velja~$c=c_1+c_2$~in je~$\dot{x}$~optimalna rešitev linearnih programov~$\Pi_1~\text{in}~\Pi_2$, podanih kot:
+$\Pi_1$: iščemo~$\max{c^{\top}_{1}x}$~pri pogojih~$A_{1}x\leq b_1, x\geq0$~in~$\Pi_2$: iščemo~$\max{c^{\top}_{2}x}$~pri pogojih~$A_{2}x\leq b_2, x\geq0$.
+Nasvet: Pomagajte si z dualnostjo.
+\subsection{Rešitev:}
+Dokaz bomo začeli tako, da bomo sestavili prvotna pogoja v enega: Iščemo $\max c^{\top}x$~pri pogoju~$\begin{bmatrix}
+	A_1 \\
+	A_2
+\end{bmatrix}x\leq \begin{bmatrix}
+b_1 \\
+b_2
+\end{bmatrix}$~in $x\geq 0$. Da bo zapis lepši, označimo~$A := \begin{bmatrix}
+A_1 \\
+A_2
+\end{bmatrix}$~ in $b := \begin{bmatrix}
+b_1 \\
+b_2
+\end{bmatrix}$. Sedaj bomo formulirali dual $\dot{\Pi}$ s predpisom:
+Iščemo $\max{b^{\top}y}$ pri pogojih $A^{\top}y\geq c$ in $y\geq0$. \newline Zavedamo se, da je $A^{\top} = \begin{bmatrix}
+	A^{\top}_{1} & A^{\top}_{2}
+\end{bmatrix}$ in definiramo $c_1 := \min A^{\top}y$~in~$c_2 := c - c_1$. Potem je $A^{\top}y \geq c = c_1 + c_2$. Iz definicij~$c_1$~in~$c_2$ sledi $A^{\top}y \geq c_1$~in~$A^{\top}y \geq c_2$. Očitno $c_1$ in $c_2$ zadoščata enako imenovanima spremenljivkama iz navodil.
+Definiramo sedaj LP $\Pi_1$ in $\Pi_2$ kot v navodilih in njuna duala $\acute{\Pi_1}$~in~$\acute{\Pi_2}$ in se fokusiramo na prvi program in njegov dual, saj je dokaz za drugega (in njegov dual) analogen. Označimo še: $y = \begin{bmatrix}
+	y_1 \\
+	y_2
+\end{bmatrix}$. $\acute{\Pi_1}$~je podan s predpisom: Iščemo $\max b^{\top}_{1}y_1$~pri pogojih~ $A^{\top}_{1}y_1 \geq c_1$~in~$y_1 \geq 0$~in podobno velja za $\acute{\Pi_2}$. Po predpostavki, je $\dot{x}$ optimalna rešitev za $\Pi$, torej je vsaj dopustna rešitev za $\Pi_1$. Naj bo $\acute{y_1}$ optimalna rešitev duala $\acute{\Pi_1}$ (vemo, da obstaja, saj je $\dot{y}$ optimalna rešitev duala $\acute{\Pi}$ in ima potem $\acute{\Pi_1}$ dopustno rešitev in potem tudi optimalno). Naj bo $\acute{x}$ optimalna rešitev za $\Pi_1$. Potem je $c^{\top}_{1}\dot{x} \leq c^{\top}_{1}\acute{x} = b^{\top}_{1}\acute{y} \geq b^{\top}_{1}\dot{y}$ oziroma $c^{\top}_{1}\dot{x} = b^{\top}_{1}\dot{y}$ (krepka in šibka dualnost). Potem sta $\dot{x}$ in $\dot{y}$ optimalni rešitvi za $\Pi_1$ in $\acute{\Pi_1}$. Enako pokažemo za $\Pi_2$ in $\acute{\Pi_2}$. \qed
+
+\section{Tretja Naloga}
+\subsection{Navodila:}
+Tovarna elektronskih naprav mora v naslednjih štirih tednih izdelati 20000 radijskih sprejemnikov. Za en radio dobijo naslednja plačila: 
+prvi teden: 20€, drugi teden: 18€, tretji teden: 16€, četrti teden: 14€. Vsak delavec lahko sestavi 50 sprejemnikov na teden, tovarna pa ima samo 40 delavcev. Lahko pa najamejo študente. Ker ne znajo sestavljati radiov, jih morajo delavci tega naučiti. Vsak delavec (mentor) lahko izuči do 3 študente na teden, vendar v tem času nedela v proizvodnji. V naslednjih tednih lahko tudi ti študentje učijo nove študente, ali pa delajo. Tedenska plača za delavca je 200€, za študenta pa 100€. Ko študent postane delavec ali mentor, tudi dobi 200€ na teden. Material za en radio stane 5€. Kako naj v tovarni organizirajo proizvodnjo, da bodo imeli čim večji dobiček? 
+
+Opomba: izdelati morajo natanko 20000 radijskih sprejemnikov, ne več. Zapišite ustrezen linearen program, ki reši gornjo nalogo: \begin{enumerate}[label=(\alph*)]
+	\item Odločite se, kaj bi bile primerne spremenljivke in za vsako napišite, kaj pomeni.
+	\item Zapišite kriterijsko funkcijo in omejitve.
+	\item Linearni program rešite s pomočjo računalnika (Mathematica, Excel,...).
+	\item Komentirajte rešitev.
+\end{enumerate}
+\subsection{Rešitev:}
+
+\section{Četrta Naloga}
+\subsection{Navodila:}
+Iz Italije izvira igra mora, ki je razširjena po vsem svetu. Igro igrata dva igralca po naslednjih pravilih: vsak od igralcev pokaže z desnico enega, dva ali tri prste, z levico pa napove, koliko prstov bo pokazal nasprotnik. To napravita oba hkrati. Če oba igralca napovesta pravilno ali oba narobe, je igra neodločena. Če en igralec ugane, drugi pa ne, plača tisti, ki se je zmotil, nasprotniku toliko denarnih enot, kolikor prstov sta pokazala oba skupaj (z desnicama).
+\begin{enumerate}[label=(\alph*)]
+	\item Napišite plačilno matriko za igro mora. Jasno naj bo, kaj pomenijo čiste strategije v posameznih vrsticah oziroma stolpcih.
+	\item Branko Gradišnik v knjigi “Igre: volčje in ovčje” predstavi Von Neumannovo strategijo: Za število prstov, ki jih bo predlagal vaš nasprotnik, vsakič izkličite razliko med številom štiri in pa številom vaših prstov. Če torej nameravate pokazati dva prsta, izkličite številko dve, če enega, izkličite tri, če tri, pa enega. Poleg tega morate poskrbeti za to, da boste v dvanajstih rundah sami pokazali en prst petkrat, dva prsta štirikrat, tri prste pa trikrat. To seveda počnite tako, da bo čim bolj skrito. 
+	
+	Za katero verjetnostno strategijo gre v tem opisu? Je opisana strategija dejansko optimalna za ta problem? Račune v dokazu si lahko olajšate z uporabo računalnika (čeprav ta ni nujno potreben).
+	\item Dodatna naloga: poiščite vse optimalne strategije za igro mora.
+\end{enumerate}
+\subsection{Rešitev:}
+\end{document}
