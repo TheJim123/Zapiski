@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  3 OCT 2023 19:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  3 OCT 2023 20:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"./Teorija mere vaje 2023-24.tex"
-(Teorija mere vaje 2023-24.tex
+**"./Predavanja 2023-24.tex"
+(Predavanja 2023-24.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -770,8 +770,8 @@ LaTeX Font Info:    Trying to load font information for T1+lmr on input line 66
  (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-(Teorija mere vaje 2023-24.aux)
-\openout1 = `"Teorija mere vaje 2023-24.aux"'.
+(Predavanja 2023-24.aux)
+\openout1 = `"Predavanja 2023-24.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
 LaTeX Font Info:    ... okay on input line 66.
@@ -872,72 +872,62 @@ LaTeX Warning: No \author given.
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
 Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-[2] (Teorija mere vaje 2023-24.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 5.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 5.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 5.
-)
+[2] (Predavanja 2023-24.toc)
 \tf@toc=\write4
-\openout4 = `"Teorija mere vaje 2023-24.toc"'.
+\openout4 = `"Predavanja 2023-24.toc"'.
 
  [3]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 76.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 76.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 76.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
 7.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (0.21274pt too wide) in paragraph at lines 81--84
-\T1/lmr/m/n/10 ²e mno-ºici $[] \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 f\OML/lmm/m/i
-t/10 s\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 f; D\OT1/lmr/m/n/10 ); \OML/lmm/m/it/10
- D [] \OT1/lmr/m/n/10 [\OML/lmm/m/it/10 a; b\OT1/lmr/m/n/10 ]\OMS/lmsy/m/n/10 g
-$ \T1/lmr/m/n/10 in $[] \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 f\OML/lmm/m/it/10 S\
-OT1/lmr/m/n/10 (\OML/lmm/m/it/10 f; D\OT1/lmr/m/n/10 ); \OML/lmm/m/it/10 D [] \
-OT1/lmr/m/n/10 [\OML/lmm/m/it/10 a; b\OT1/lmr/m/n/10 ]\OMS/lmsy/m/n/10 g$\T1/lm
-r/m/n/10 .
- []
-
-[4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
-nc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-math
-it.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
-rm.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
-mathsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
-/lm-mathex.enc}] [5] [6] [7] (Teorija mere vaje 2023-24.aux)
+[4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
+t.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-r
+m.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-m
+athsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
+lm-mathex.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
+/lm/lm-ts1.enc}] [5] (Predavanja 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 21755 strings out of 475247
- 467514 string characters out of 5755904
- 1937785 words of memory out of 5000000
- 42891 multiletter control sequences out of 15000+600000
- 621700 words of font info for 87 fonts, out of 8000000 for 9000
+ 21754 strings out of 475247
+ 467474 string characters out of 5755904
+ 1932785 words of memory out of 5000000
+ 42892 multiletter control sequences out of 15000+600000
+ 612729 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,93p,706b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,93p,934b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 lm/lmbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/lm/lmex10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Teorija mere vaje 2023-24.pdf" (7 pages, 285139 bytes).
+pe1/public/lm/lmmi5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Predavanja 2023-24.pdf" (5 pages, 278484 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
+ 113 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

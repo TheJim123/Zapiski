@@ -1,0 +1,139 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+
+\newcommand{\Qu}{\mth{Q}_u}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Teorija mere\\ Zapiski predavanj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje zapiske predavanj predmeta Teorija mere v okviru študija prvega letnika magistrskega študija matematike na FNM.
+	\end{abstract}
+	\newpage
+	\tableofcontents
+	\newpage
+	\section{Uvodna motivacija}
+	Za motivacijo bomo obravnavali en primer, pred tem pa bomo na hitro povzeli definicijo Riemannovega integrala. Naj bo \map{f}{[a, b]}{\R} realna, zvezna in omejena funkcija ter naj bo $D=\{x_0, x_1, \ldots, x_n\}$ delitev intervala $[a, b]$. Označimo $\Delta x_i = x_i - x_{i-1}$ ter z vsakega intervala $[x_{i-1}, x_i]$ izberemo neko poljubno točko $\acute{x}_i$. Vsoto $\sigma_n = \sum_{i = 1}^{n}f(\acute{x}_i)\Delta x_i$ imenujemo Riemannova vsota. Če obstaja limita $\lim_{\abs{\Delta x_i}\to 0}\sigma_n$ in je neodvisna od izbire delitve $D$ in testnih točk na podintervalih, ki jih določa $D$, ji pravimo Riemannov integral funkcije $f$ na $[a, b]$. Riemannov integral lahko posplošimo za računanje integralov funkcij večih spremenljivk, pri tem pa uporabljamo t.~i. Jordanovo mero. Motivacijski primer bo pokazal, da ima konstrukcija s to mero nekatere pomanjkljivosti.
+	
+	\begin{zgled}
+		Naj bo $R = \mth{Q}\cap \R = \{r_1, r_2, \ldots\}$ in definiramo funkcije \map{f_k}{[0, 1]}{[0, 1]} s predpisi \[f_1(x) = \begin{cases}
+			1;& x = r_1 \\
+			0;& x\neq r_1
+		\end{cases}, ~f_2(x) = \begin{cases}
+		1;& x = r_1 \lor x = r_2 \\
+		0;& x\in R\setminus\{r_1, r_2\}
+		\end{cases}\] itd. Vidimo, da zaporedje $\{f_k\}$ konvergira k Dirichletovi funkciji $f_D(x) = \begin{cases}
+		1;& x\in \mth{Q} \\
+		0;& x\notin \mth{Q}
+	\end{cases}$ in dodatno opazimo, da je $\int_{0}^{1}f_k(x)dx = 0 \forall k$, daj gre limita Riemannovih vrst za vsako funkcijo zaporedja proti $0$. To pa ne drži za Dirichletovo funkcijo. Če vse $\acute{x}_i$ pripadajo $\mth{Q}$, bo $\sigma_n = 1$, če so izbrane točke $\acute{x}_i$ iracionalne, pa je $\sigma_n = 0$. Limita Riemannovih vsot torej ni neodvisna od izbire delitve in testnih točk, torej integral $f_D$ ne obstaja.
+	\end{zgled}
+	
+		Francoski matematik Lebesgue se je pa problema lotil drugače: Najprej razdelimo zalogo vrednosti omejene zvezne funkcije $f$ z delitvijo $\{y_0, y_1, \ldots, y_n\}$ in sestavimo množice $E_k = \{x \in [a, b]; f(x) y_k\}$. Prepoznamo, da so $E_k \times \{y_k\}$ vodoravne daljice od $(f^{-1}(y_k), y_k)$ do $(b, y_k)$. Posledično z $\abs{E_k}$ označimo dolžino daljice $E_k$. Potem je ploščina pod grafom funkcije $f$ približno enaka vsoti $\sum_{k = 1}^{n}(y_k - y_{k-1}) \abs{E_k}$. Izkaže pa se, da so lahko v splošnem množice $E_k$ takšne, da koncept dolžine in prostornine za obravnavo več ne zadošča. Zato uvedemo koncept mere.
+		
+		\section{Kolobar množic}
+		Začnimo ta odsek z definicijo.
+		\begin{definicija}
+			Naj bo $X$ poljubna neprazna množica. Množica $K$ podmnožic množice $X$ je \pojem{kolobar}, če: \begin{itemize}
+				\item $\forall A, B\in K: A\cup B \in K$
+				\item $\forall A, B \in K: A\setminus B \in K$
+			\end{itemize}
+		\end{definicija}
+		\begin{trditev}
+			Če je $K$ kolobar množic na $X$ velja: \begin{enumerate}
+				\item $\forall A, B \in K: A \triangle B \in K$
+				\item $\forall A, B \in K: A \cap B \in K$
+				\item $\emptyset\in K$
+			\end{enumerate}
+		\end{trditev}
+		\begin{proof}
+			\begin{enumerate}
+				\item Ta trditev sledi neposredno iz definicije kolobarja množice
+				\item Upoštevamo, da lahko zapišemo $A\cap B = (A\cup B)\setminus (A\triangle B)$ in potem ta trditev sledi po prejšnji.
+				\item Upoštevamo, da je $\emptyset = a\setminus A$.
+			\end{enumerate}
+		\end{proof}
+		
+		\begin{definicija}
+			\begin{enumerate}
+				\item Pravimo, da je množica $E$ \pojem{enota kolobarja} $K$, če za $\forall A\in K$ velja $A\cap E = A$.
+				\item Kolobarju z enoto pravimo \pojem{algebra}
+			\end{enumerate}
+		\end{definicija}
+		
+		\begin{zgled}
+			\begin{enumerate}
+				\item Če je $K$ kolobar nad $X$ in je $X\in K$, potem je $X$ enota kolobarja $K$.
+				\item Naj bo $K$ kolobar vseh končnih podmnožic iz $\R$. Kolobar $K$ nima enote. To lahko vidimo tako, da predpostavimo, da obstaja enota $E$ in vzamemo dve množici, $A\in K$ z močjo $n$ in $B\in K$ z močjo $n+1$ za nek poljuben $n\in \N$. Ker je, po definiciji enote, $ A\cap E = A$, sledi, da je $A\subseteq E$, torej je $\abs{E} \geq n$. Po drugi strani, ker je $B\cap E = B$, sklepamo, da je $\abs{E}\geq n+1$. To velja za poljuben $n$, torej moč $E$ presega kardinalnost vsake množice iz $K$, torej je $E$ neskončna. To nas pa privede v protislovje s tem, da $E\in K$.
+			\end{enumerate}
+		\end{zgled}
+		
+		\begin{definicija}
+			Naj bo $\{A_k\}_{k=1}^\infty$ poljubno zaporedje množic. 
+			 \begin{itemize}
+			 	\item Pravimo, da je množica $\overline{A}$ \pojem{zgornja limita} zaporedja $\{A_k\}_{k=1}^\infty$, če za $\forall x\in \overline{A} \exists \{k_i\}_{i = 1}^\infty: x\in A_{k_i} \forall i\in \N$.
+			 	\item Pravimo, da je $\underline{A}$ \pojem{spodnja limita} zaporedja $\{A_k\}_{k=1}^\infty$, če za $\forall x \in \underline{A} \exists k_0\in \N: x\in A_k \forall k\geq k_0$
+			 \end{itemize}
+			 Pišemo: $\overline{A} = \overline{\lim_{n\to \infty}}A_n$ in $\underline{A} = \underline{\lim_{n\to \infty}}A_n$
+		\end{definicija}
+		
+\end{document}
