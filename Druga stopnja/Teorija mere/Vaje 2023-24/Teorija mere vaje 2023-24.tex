@@ -1,0 +1,213 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+
+\newcommand{\Qu}{\mth{Q}_u}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Teorija mere\\ Zapiski vaj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje rešene naloge vaj predmeta Teorija mere v okviru študija prvega letnika na magistrskega študija matematike.
+	\end{abstract}
+	\newpage
+	\tableofcontents
+	\newpage
+	\section{Relevantna literatura}
+	\begin{itemize}
+		\item R.~Drnovšek,~\emph{Rešene naloge iz teorije mere}, DMFA, Ljubljana, 2001.
+		\item D.~L.~Cohn,~\emph{Measure theory}, 2.~izd., Springer, Boston, 2013.
+	\end{itemize}
+	\section{Uvodna motivacija}
+	V tem odseku bomo najprej ponovili malo o Riemannovem integralu, nato pa navedli primer, ki nas bo motiviral za študij t.~i. Lebesguesove mere in drugih mer.
+	Za začetek vzemimo torej neko omejeno realno funkcijo \map{f}{[a, b]}{\R} in intervalu $[a, b]$ določimo delitev $D=\{x_k\}^n_{k=0} \subset [a, b]$; $a = x_0 < x_1 < \ldots < x_{n-1} < x_n = b$. Glede na delitev $D$ nato za vsak indeks $k \in \{1, 2, \ldots, n-1, n\}$ definiramo še $m_k = \inf\{f(x); x\in [x_{k-1}, x_k]\}$, $M_k = \sup\{f(x); x\in [x_{k-1}, x_k]\}$ in $\Delta x_k = x_k - x_{k-1}$ ter s pomočjo teh vsoti $s(f, D) = \sum_{k=1}^{n}m_k \Delta x_k$ in $S(f, D) = \sum_{k=1}^{n}M_k \Delta x_k$. Vsoti $s(f, D)$ pravimo spodnja integralska (oz. Darbouxjeva) vsota, vsoti $S(f, D)$ pa zgornja integralska (oz. Darbouxjeva) vsota.
+	Označimo še množici $\underline{\mth{M}} = \{s(f, D); D~\text{je delitev}~[a, b]\}$ in $\overline{\mth{M}} = \{S(f, D); D~\text{je delitev}~[a, b]\}$. Pravimo, da je funkcija $f$ integrabilna po Riemannu, če je $\inf(\overline{\mth{M}}) = \sup(\underline{\mth{M}})$.
+	
+	Sedaj, ko smo se spomnili definicije Riemannove integrabilnosti, si oglejmo primer Dirichletove funkcije \map{f_D}{[0, 1]}{[0, 1]}, ki ima predpis \[f_D(x) = \begin{cases}
+	1;& x\in \mth{Q} \\
+	0;& x\in \R\setminus\mth{Q}
+	\end{cases}\]
+	
+	Ker sta tako $\mth{Q}$ kot $\R\setminus\mth{Q}$ gosti na $\R$, so za vsako delitev $D$ in vsak indeks $k$ faktorji $m_k = 0$ in $M_k = 1$, od tod pa sledi, da sta $\overline{\mth{M}} = \{1\}$ ter $\underline{\mth{M}} = \{0\}$. Posledično je $\inf(\overline{\mth{M}}) \neq \sup(\underline{\mth{M}})$, torej $f_D$ ni integrabilna po Riemannu.
+	
+	Intuicija pa nam veleva, da naj bi t.~i.~ integral Dirichletove funkcije $f_D$ bil $0$, saj je množica iracionalnih števil $\R\setminus\mth{Q}$ bistveno večja od množice realnih števil $\mth{Q}$.
+	
+	Ta neskladnost nas motivira, da stopimo korak nazaj in na problem pogledamo malo drugače. Pri teoriji mere bomo definirali delitve, ki bodo delile množice (ne nujno intervale), na teh množicah pa bomo definirali funkcijo, ki ji bomo rekli mera.
+	\section{Ponovitev teorije množic}
+	Najprej bomo na kratko ponovili operacije na množicah in njihove lastnosti, nato pa sledijo naloge z rešitvami.
+	\subsection{Operacije na množicah}
+	Z $X$ bomo označevali t.~i.~univerzalno množico, ki bo vsebovala vse ostale imenovane množice. Tako, ko imenujemo množici $A$ in $B$, po tihem predpostavimo, da sta obe množici vsebovani v $X$. Osnovni operaciji na množicah sta unija $\cup$ in presek $\cap$. Za obe operaciji velja, da sta komutativni in asociativni, med njima velja distributivnost in obe operaciji imata enoto (za $\cap$ je to $X$, za $\cup$ pa je $\emptyset$). Dodatno velja, da $\emptyset$ izniči presek in pa zakona absorbcije $A\cap(A\cup B) = A, A\cup(A\cap B) = A$. Na koncu omenimo še De Morganova zakona $(A\cup B)^c = A^c \cap B^c$ in $(A\cap B)^c = A^c \cup B^c$.
+	\subsection{Naloge}
+	\begin{nal}
+		Naj bodo $A, B$ in $C$ poljubne množice. Preveri, ali v splošnem veljajo naslednje trditve:
+		\begin{enumerate}[a)]
+			\item $A\cap C \subseteq B, B\cap C \subseteq A \Rightarrow C \subseteq A\cap B$
+			\item $A\subseteq B, C \subseteq D \Rightarrow A\setminus D \subseteq B \setminus C$
+			\item $A\subseteq B, B\nsubseteq C \Rightarrow A \nsubseteq C$
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item Ta trditev ne drži, kar pokažemo s protiprimerom. Naj bodo $A = \{a\}, B= \{a, b\}$ in $C=\{a, c\}$. Tedaj je $A\cap C = \{a\} \subseteq B$ in $B\cap C = \{a\}\subseteq A$, toda, ker je $A\cap B = \{a\}$, posledično $C\nsubseteq A\cap B$.
+			\item Trditev drži. Naj bo $x\in A\setminus D$. Potem je $x\in A ~\&~ x\notin D$. Ker je $A\subseteq B$, je potem $x\in B$, ker je $C\subseteq D$, pa velja tudi $x\notin C$. Sledi, da je $x\in B\setminus C$.
+			\item Ta trditev ne drži, kar bomo pokazali s protiprimerom. Vzemimo množice $A = [\frac{1}{2}, 1], B = [0, 1]$ in $C = [\frac{1}{2}, 2]$. Vidimo, da dane množice zadoščajo predpostavkam naloge, hkrati pa je $A = B\cap C$, torej je $A\subseteq C$.
+		\end{enumerate}
+	\end{resitev}
+	\begin{nal}
+		Dane so množice $A, B$ in $C$. Dokaži, da množice $A, A\setminus B$ in $C\setminus(B\setminus A)$ sestavljajo pokritje množice $A\cup B\cup C$ in premisli, kdaj sestavljajo njeno razbitje.
+	\end{nal}
+	\begin{resitev}
+		Najprej se spomnimo, kaj so pokritja in razbitja. Pravimo, da je $\mathcal{A} = \{A_i\}_{i\in I}$ je pokritje množice $B$, če je $B = \bigcup_{i\in I}A_i$. Pokritje $\mathcal{A}$ množice $B$ je razbitje, če so vse množice $A_i$ neprazne in medseboj paroma disjunktne.
+		
+		Denimo sedaj, da je $x\in A\cup B \cup C$, torej $x\in A \lor x\in B \lor x\in C$.
+		\begin{enumerate}
+			\item Če je $x\in A$, smo končali.
+			\item Če $x\notin A$, obravnavamo primere: \begin{enumerate}[i.]
+				\item Če je $x\in B$, sledi, da je $x\in B\setminus A$ in smo končali.
+				\item Če $x\notin B$ more nujno biti $x\in C$. Ker je $B\setminus A \subseteq B$ iz predpostavke sledi, da $x\notin B\setminus A$. Potem je $x \in C\setminus (B\setminus A)$.
+			\end{enumerate}
+		\end{enumerate}
+		Dane množice tvorijo razbitje, če so neprazne in paroma disjunktne. Prvi pogoj se tako glasi $B\setminus A \neq \emptyset$, drugi pogoj pa je $A\cap C = \emptyset$. Drugi pogoj hkrati zagotovi, da $C\setminus (B\setminus A)$ ni prazna in da je paroma disjunktna z ostalimi množicami pokritja.
+	\end{resitev}
+	\begin{nal}
+		Poišči množice $A, B, C$ in $D$, za katere velja:
+		\begin{enumerate}[a)]
+			\item $A\subseteq B, B\in C, C \subseteq D$
+			\item $A\in B, B \subseteq C, C\in D$
+			\item $A\in C, B\in C, A \subseteq B$
+			\item $A=\{B\}, B\subseteq A$
+			\item $A\in C, B\in C, A\subseteq C, B\subseteq C$
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		Večina teh primerov ima več rešitev. Tu bodo navedene čim bolj preproste rešitve.
+		\begin{enumerate}[a)]
+			\item $A = B = \{1\}, C= \mathcal{P}(B) = \{\emptyset, 1\}, D = C$
+			\item $A = \{1\}, B = \mathcal{P}(A)= \{\emptyset, 1\}, C = B, D = \mathcal{P}(C)$
+			\item $A = B = \{1\}, C = \mathcal{P}(A)$
+			\item $A = \{\emptyset\}, B = \emptyset$
+			\item $A = B = \emptyset, C = \{\emptyset\}$
+		\end{enumerate}
+	\end{resitev}
+	\begin{nal}
+		Ali velja naslednja trditev za vsako trojico množic $A, B$ in $C$:
+		$A\cap B \subseteq C^c ~\&~ A\cup C \subseteq B \Rightarrow A\cap C = \emptyset$
+	\end{nal}
+	\begin{resitev}
+		Po prvi predpostavki velja sklep $x\in A \& x\in B \Rightarrow x\notin C$. Po drugi predpostavki velja sklep $x\in A \lor x\in C \rightarrow x\in B$.
+		Če vzamemo $x\in A\cap C$ zanj velja $x\in A~\&~x\in C$. To je posebni primer drugega sklepa, torej sledi $x\in B$. Posledično je $x\in A ~\&~ x\in B$, torej po prvem sklepu velja $x\notin C$. Hkrati pa $x\in C$. Prišli smo v protislovje. Sledi, da je $A\cap C = \emptyset$.
+	\end{resitev}
+	
+	\begin{nal}
+		Dokaži, da veljata naslednji trditvi in obravnavaj, kdaj velja enakost.
+		\begin{enumerate}[a)]
+			\item $A\setminus B \subseteq (A\setminus C)\cup (C\setminus B)$
+			\item $(A\setminus B)\setminus C \subseteq A\setminus (B\setminus C)$
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item Vzemimo nek $x\in A\setminus B$. Zanj velja $x\in A$ in $x\notin B$. \begin{enumerate}[i.]
+				\item Če je $x\in C$, potem je $x\in C\setminus B$, torej je $x\in (A\setminus C)\cup (C\setminus B)$.
+				\item Če $x\notin C$, potem je $x\in A\setminus C$, torej je $x\in (A\setminus C)\cup (C\setminus B)$.
+			\end{enumerate}
+			Dodatno velja $(A\setminus C)\cup (C\setminus B) = (A\setminus B) \cup ((A\cap B)\setminus C) \cup (C\setminus(A\cup B))$. Od tod razberemo, da bo enakost veljala, čim bo $A\cap B \subseteq C$ in $C\subseteq A\cup B$.
+			\item Naj bo $x\in (A\setminus B)\setminus C$. Potem je $x\in A\setminus B$ in $x\notin C$, od tod pa sklepamo $x\in A, x\notin B$ ter $x\notin C$. Ker velja $B\setminus C \subseteq B$ in $x\notin B$, sledi $x\notin B\setminus C$. Ko se spomnimo, da velja tudi $x\in A$, sledi $x\in A\setminus(B\setminus C)$.
+			Opazimo, da lahko zapišemo $A\setminus(B\setminus C) = ((A\setminus B)\setminus C) \cup (A\cap C)\setminus B$. Od tod sklepamo, da bo enakost veljala, čim bo $A\cap C \subseteq B$.
+		\end{enumerate}
+	\end{resitev}
+	\begin{nal}
+		Dokaži naslednjo trditev:\[
+		A \subseteq B \iff B = A \cup (B\setminus A)\]
+	\end{nal}
+	\begin{resitev}
+		\begin{itemize}
+			\item[$\Rightarrow):$] Denimo, da je $A\subseteq B$ in naj bo $x\in B$ poljuben element iz $B$. Ker je $A\subseteq B$ velja, da je $x\in A$, ali pa je $x\in B\setminus A$. Omenjeni množici sta očitno disjunktni. Ker to velja za poljubni $x\in B$, velja $B = A\cup (B\setminus A)$.
+			\item[$\Leftarrow):$] Naj bo $B = A \cup (B\setminus A)$. Potem je očitno $A\subseteq B$.
+		\end{itemize}
+	\end{resitev}
+	\begin{nal}
+		Dokaži za poljubne množice $A, B, C$:
+		\begin{enumerate}[a)]
+			\item $A\cap (B\setminus C) = (A\cap B)\setminus C$
+			\item $(A\setminus B)\setminus C = (A\setminus C)\setminus B$
+			\item $A\cap B \subseteq (A\cap C)\cup (B\setminus C)$
+			\item $A\subseteq B \iff B^c\subseteq A^c$
+			\item $A\subseteq B, A\nsubseteq C \Rightarrow B \nsubseteq C$
+			\item $A\subseteq B^c \iff A \cap B = \emptyset \iff B \subseteq A^c$
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item Naj bo $x$ poljuben element $A\cap (B\setminus C)$. To je ekvivalentno temu, da je $x\in A~\&~x\in B \setminus C$, torej $x\in A~\&~x\in B~\&~x\notin C$. To pa bo veljavno natanko tedaj, ko bo $x\in A\cap B$ in $x\notin C$, kar pa bo res natanko tedaj, ko bo $x\in (A\cap B)\setminus C$. Torej $x\in A\cap (B\setminus C) \iff x\in (A\cap B)\setminus C$ oziroma velja enakost.
+			\item $x\in (A\setminus B)\setminus C \iff x\in A\setminus B \land x\notin C \iff x\in A \land x\notin B \land x\notin C \iff (x\in A \land x\notin C) \land x\notin B \iff x\in A\setminus C \land x\notin B \iff x \in (A\setminus C)\setminus B$
+			\item Velja $x\in A\cap B \iff x\in A \land x\in B$. Obravnavamo primere: \begin{itemize}
+				\item Če je $x\in C$, potem je $x\in A\cap C$.
+				\item Če $x\notin C$, potem $x\in B\setminus C$
+			\end{itemize}
+			Sledi, da je $x\in (A\cap C)\cup (B\setminus C)$, od tod pa sledi inkluzija.
+			\item Dokazali bomo implikacijo v desno, dokaz implikacije v levo pa poteka simetrično. Naj bo $x\in B^c$ poljuben element in $A\subseteq B$. Ker $x\notin B$, posledično velja $x\notin A$, torej je $x\in A^c$. Sledi, da je $B^c \subseteq A^c$.
+			\item Naj bo $A\subseteq B$ in $A\nsubseteq C$. Potem obstaja nek element $x\in A$, za katerega velja $x\notin C$. Ker je $A\subseteq B$ posledično velja $x\in B \land x\notin C$. Ker $B$ vsebuje element, ki ni vsebovan v $C$ sledi $B\nsubseteq C$.
+			\item Naj bo $A\subseteq B^c$. Ker je $B\cap B^c = \emptyset$, sledi $A\cap B = \emptyset$. S podobnim premislekom pokažemo drugo ekvivalenco.
+		\end{enumerate}
+	\end{resitev}
+\end{document}
