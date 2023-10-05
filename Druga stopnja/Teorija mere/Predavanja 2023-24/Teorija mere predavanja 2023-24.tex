@@ -22,6 +22,7 @@
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage{enumerate}
+\usepackage{ulem}
 
 \newtheorem{trditev}{Trditev}
 \newtheorem{izr}{Izrek}
@@ -52,7 +53,7 @@
 \newcommand{\No}{\mth{N}_0}
 \newcommand{\C}{\mth{C}}
 \newcommand{\Mu}{\mathcal{M}}
-\newcommand{\sigalg}{$\sigma-$algebra~}
+\newcommand{\sigalg}{$\sigma$-algebra~}
 \newcommand{\Qu}{\mth{Q}_u}
 
 \newcommand{\pojem}[1]{\emph{#1}}
@@ -118,7 +119,7 @@
 		\begin{definicija}
 			\begin{enumerate}
 				\item Pravimo, da je množica $E$ \pojem{enota kolobarja} $K$, če za $\forall A\in K$ velja $A\cap E = A$.
-				\item Kolobarju z enoto pravimo \pojem{algebra}
+				\item Kolobarju z enoto pravimo \pojem{algebra}.
 			\end{enumerate}
 		\end{definicija}
 		
@@ -191,7 +192,7 @@
 		\end{proof}
 		
 		\begin{definicija}
-			Naj bo $X$ poljubna množica. Množica $\Mu$ podmnožic $X$ je \pojem{$\sigma-$algebra} na $X$, če velja: \begin{enumerate}
+			Naj bo $X$ poljubna množica. Množica $\Mu$ podmnožic $X$ je \pojem{\sigalg} na $X$, če velja: \begin{enumerate}
 				\item $\emptyset, X \in \Mu$
 				\item $\forall A \in \Mu: A^c \in \Mu$
 				\item $\forall \{A_k\}_{k=1}^{\infty}; A_k \in \Mu~ \forall i\in \N: \bigcup_{k = 1}^{\infty} A_k \in \Mu$
@@ -200,7 +201,7 @@
 		
 		\begin{zgled}
 			\begin{enumerate}
-				\item Naj bo $X$ neka množica in $\Mu = \{\emptyset, X\}$. Vidimo, da je $\Mu$ $\sigma-$algebra.
+				\item Naj bo $X$ neka množica in $\Mu = \{\emptyset, X\}$. Vidimo, da je $\Mu$ \sigalg.
 				\item Naj bo $X = \{a, b, c\}$. Ali je $\mathcal{P}(X)$ \sigalg? Da. V resnici je $\mathcal{P}(X)$ \sigalg za poljubno množico $X$.
 				\item Naj bo $X$ poljubna množica in $\Mu = \{A \subseteq X; A~\text{je kvečjemu števna ali pa je}~A^c ~\text{kvečjemu števna}\}$. Tudi ta $\Mu$ je \sigalg. To bomo tudi na hitro premislili. \begin{itemize}
 					\item Očitno $\Mu$ vsebuje $\emptyset$ in $X$. 
@@ -220,7 +221,7 @@
 		\begin{proof}
 			\begin{enumerate}[a)]
 				\item Naj bodo $A_1 = A, A_2 = B$ in $A_k = \emptyset~\forall k \geq 3$. Potem je $A\cup B = \bigcup_{k = 1}^\infty A_k \in\Mu$ po definiciji $\sigma-$algeber.
-				\item Uporabimo, da je \sigalg po definiciji zaprta za komplimente. Torej, za vsak $A_k \in \Mu$ je tudi $A_k^c \in \Mu$. Potem pa sestavimo zaporedje $\{A_k^c\}_{k=1}^\infty$ in po definiciji $\sigma-$algebre je potem $\bigcup_{k = 1}^\infty A_k^c \in \Mu$ ter posledično še $\left(\bigcup_{k = 1}^\infty A_k^c\right)^c = \bigcap_{k = 1}^\infty (A_k^c)^c = \bigcap_{k = 1}^\infty A_k^c \in \Mu$.
+				\item Uporabimo, da je \sigalg po definiciji zaprta za komplimente. Torej, za vsak $A_k \in \Mu$ je tudi $A_k^c \in \Mu$. Potem pa sestavimo zaporedje $\{A_k^c\}_{k=1}^\infty$ in po definiciji $\sigma$-algebre je potem $\bigcup_{k = 1}^\infty A_k^c \in \Mu$ ter posledično še $\left(\bigcup_{k = 1}^\infty A_k^c\right)^c = \bigcap_{k = 1}^\infty (A_k^c)^c = \bigcap_{k = 1}^\infty A_k^c \in \Mu$.
 				\item Vzamemo $A_1 = A, A_2 = B$ in $A_k = X~\forall k\geq 3$. Potem je $A\cap B = \bigcap_{k = 1}^\infty A_k \in \Mu$, po prejšnji točki.
 				\item $A\setminus B = A\cap B^c \in \Mu$ po prejšnji trditvi, ker sta $A, B^c \in \Mu$.
 			\end{enumerate}
@@ -265,9 +266,81 @@
 		
 		\begin{definicija}
 			Naj bo $m$ mera na kolobarju množic $K$. Pravimo, da je mera $m$: \begin{itemize}
-				\item \pojem{$\sigma-$aditivna} na K, če velja sklep: $A =\bigcup_{i = 1}^\infty A_i; A, A_i\in K~\forall i\in\N \land A_i\cap A_j =\emptyset ~\text{,če je}~i\neq j \Rightarrow m(A) = \sum_{i = 1}^\infty m(A_i)$
-				\item \pojem{$\sigma-$poladitivna} na K, če velja sklep: $A \subseteq \bigcup_{i = 1}^\infty A_i; A, A_i\in K~\forall i\in\N \Rightarrow m(A) \leq \sum_{i = 1}^\infty m(A_i)$
+				\item \pojem{$\sigma$-aditivna} na K, če velja sklep: $A =\bigcup_{i = 1}^\infty A_i; A, A_i\in K~\forall i\in\N \land A_i\cap A_j =\emptyset ~\text{,če je}~i\neq j \Rightarrow m(A) = \sum_{i = 1}^\infty m(A_i)$
+				\item \pojem{$\sigma$-poladitivna} na K, če velja sklep: $A \subseteq \bigcup_{i = 1}^\infty A_i; A, A_i\in K~\forall i\in\N \Rightarrow m(A) \leq \sum_{i = 1}^\infty m(A_i)$
 				\item \pojem{zvezna} na K, če za vsako monotono zaporedje množic $\{A_i\}_{i=1}^\infty; A_i\in K$ z limito $\lim_{i\to\infty}A_i = A\in K$ velja: $\lim_{i\to\infty}m(A_i) = m(A)$
 			\end{itemize}
 		\end{definicija}
+		\begin{izr}
+			Naj bo $K$ kolobar množic (na neki množici $X$) in $m$ poljubna mera na njem. Lastnost $\sigma$-aditivnosti, $\sigma$-poladitivnosti in zveznosti so ekvivalentne.
+		\end{izr}
+		\begin{proof}
+			Najprej bomo dokazali ekvivalenco $\sigma$-aditivnosti in $\sigma$-poladitivnosti, nato pa bomo dokazali ekvivalenco $\sigma$-aditivnosti in zveznosti.
+			\begin{enumerate}
+				\item Dokazujemo, da je mera $m$ je $\sigma$-aditivna $\iff$ mera $m$ je $\sigma$-poladitivna:\begin{itemize}
+					\item[$\Rightarrow):$] Naj bodo $A, A_i \in K~\forall i\in \N$ in naj bo $A\subseteq \bigcup_{i = 1}^\infty A_i$. Označimo $B_1 = A\cap A_1, B_2 = (A\cap A_2)\setminus B_1, \ldots, B_k = (A\cap A_k)\setminus (\bigcup_{i = 1}^{k-1}B_i)$ in pokažimo, da velja \dashuline{$B_i\cap B_j =\emptyset$ za $i\neq j$}. Brez škode za splošnost predpostavimo, da je $i<j$ in denimo, da imamo nek $x\in B_i\cap B_j$. Po definiciji preseka sledi $x\in B_i~\&~ x\in B_j$. Po drugi strani, pa je $B_j = (A\cap A_j)\setminus (\bigcup_{k = 1}^{j-1}B_k)$. Ker je $i<j$ je $B_i \subseteq \bigcup_{k = 1}^{j-1}B_k$. Ker je $x\in B_i$ potem sledi, da $x\notin B_j$. Prišli smo v protislovje, torej je res $B_i\cap B_j = \emptyset$ za $i\neq j$.
+					Sedaj bomo pokazali, da je \dashuline{$A = \bigcup_{k = 1}^\infty B_k$}. \begin{itemize}
+						\item[$\subseteq):$] Naj bo $x\in A$. Ker je $A \subseteq \bigcup_{i = 1}^\infty A_i$ obstaja neko število $k_0 \in \N$ in neko zaporedje indeksov $\{k_i\}_{i = 1}^\infty; k_i > k_0 ~\forall i\in\N$, da je $x_\in A_{k_1}, x\in A_{k_2}, \ldots $. Potem posledično velja $x\notin B_k$ za $k< k_0$, od tod pa sledi, da je $x\in B_{k_0} = (A\cap A_{k_0})\setminus (\bigcup_{k = 1}^{k_0 - 1}B_k)$. Ker smo za poljubni $x\in A$ našli neko množico $B_k$, da je $x\in B_k$, potem očitno velja $A\subseteq \bigcup_{k = 1}^\infty B_k$.
+						\item[$\supseteq):$] Naj bo sedaj $x\in \bigcup_{k = 1}^\infty B_k$ in naj bo $k_0$ najmanjši indeks, taki, da je $x\in B_{k_0} = (A\cap A_{k_0})\setminus (\bigcup_{k = 1}^{k_0 -1} B_k)$. Iz tega, da je izbrani $k_0$ najmanjši izmed vseh, ki zadoščajo prejšnjemu pogoju, sledi $x\notin \bigcup_{k = 1}^{k_0 -1} B_k$, torej je $x\in A\cap A_{k_0}$. Sledi, da je $x\in A$ Ker to velja za vsak $x\in \bigcup_{k = 1}^\infty B_k$ sledi $\bigcup_{k = 1}^\infty B_k \subseteq A$
+					\end{itemize}
+					Pokazali smo torej, da je $A = \bigcup_{k = 1}^\infty B_k$. Sedaj lahko uporabimo $\sigma$-aditivnost: \[m(A = m(A = \bigcup_{k = 1}^\infty B_k)) = \sum_{k = 1}^\infty m(B_k)\]
+					Ker je $m(B_k) \leq m(A_k)~\forall k\in\N$ je potem $m(A) \leq \sum_{k = 1}^\infty m(A_k)$ in s tem je pokazana $\sigma$-poladitivnost.
+					\item[$\Leftarrow:)$] Naj bo sedaj $A = \bigcup_{k = 1}^\infty A_k$; $A, A_k\in K~\forall k\in\N$, in $A_i\cap A_j =\emptyset$ za $i\neq j$. Ker je $A \subseteq \bigcup_{k = 1}^\infty A_k$, je po $\sigma$-poladitivnosti $m(A) \leq \sum_{k = 1}^\infty m(A_k)$. Po drugi strani je pa $A \supseteq \bigcup_{k = 1}^\infty A_k$ in posledično je $m(A) \geq \sum_{k = 1}^\infty m(A_k)$. Sledi, da je $m(A) = \sum_{k = 1}^\infty m(A_k)$, torej je $m$ $\sigma$-aditivna.
+				\end{itemize}
+				\item Dokazujemo, da je mera $m$ $\sigma$-aditivna $\iff$ mera $m$ je zvezna: \begin{itemize}
+					\item[$\Rightarrow):$] Denimo, da imamo monotono zaporedje množic $\{A_k\}_{k = 1}^\infty$ z limito $A = \lim_{k\to\infty}A_k$. \begin{itemize}
+						\item Če $\{A_k\}_{k = 1}^\infty$ narašča je $A = \bigcup_{k = 1}^\infty A_k$. Določimo $A_0 = \emptyset$ in opazimo, da je, za $i \leq j$, $m(A_i)\leq m(A_j)$, ker je $A_i \subseteq A_j$. Označimo $B_1 = A_1\setminus A_0, B_2 = A_2 \setminus A_1, \ldots B_k = A_k \setminus A_{k-1}$ in vidimo, da je $B_i\cap B_j = \emptyset$ za $i\neq j$, ter da je $A = \bigcup_{k = 1}^\infty B_k$. Potem je \begin{align*}
+							m(A) &= m(\bigcup_{k = 1}^\infty B_k) = \sum_{k = 1}^\infty m(B_k) = \lim_{n\to\infty}\sum_{k = 1}^n m(B_k) \\
+							&= \lim_{n\to\infty}(m(B_1) + m(B_2) + \ldots + m(B_n)) \\ 
+							&= \lim_{n\to\infty}(m(A_1\setminus A_0) + m(A_2\setminus A_1) + \ldots + m(A_n\setminus A_{n-1})) \\
+							&= \lim_{n\to\infty}(m(A_1) - m(A_0) + m(A_2) - m(A_1) + \ldots + m(A_n) - m(A_{n-1})) \\
+							&= \lim_{n\to\infty}(m(\emptyset) + m(A_n)) = \lim_{n\to\infty}m(A_n)
+						\end{align*}
+						\item Če $\{A_k\}_{k = 1}^\infty$ pada je $A = \bigcap_{k = 1}^\infty A_k$. Označimo $B_1 = A_1 \setminus A_2, B_2 = A_1 \setminus A_3, \ldots, B_k = A_1 \setminus A_{k+1}$. Opazimo, da je zaporedje $\{B_k\}_{k = 1}^\infty$ naraščajoče, torej je $\lim_{k\to\infty}B_k = \bigcup_{k = 1}^\infty B_k = \bigcup_{k = 1}^\infty (A_1 \setminus A_{k+1}) = A_1 \setminus \bigcap_{k = 2}^\infty A_{k}$. Ko upoštevamo, da $\{A_k\}_{k=1}^\infty$ pada, vidimo, da je $\bigcap_{k = 2}^\infty A_{k} = \bigcap_{k = 1}^\infty A_{k} = A$, torej je $\lim_{k\to\infty} B_k = A_1\setminus A$. Sledi, da je \underline{$m(\lim_{k\to\infty}B_k) = m(A_1 \setminus A) = m(A_1) - m(A)$}. Ker zaporedje $\{B_k\}_{k = 1}^\infty$ narašča, se pa lahko skličemo na prejšnjo točko in vidimo, da je \begin{align*}
+							m(\lim_{k\to\infty}B_k) &= \lim_{k\to\infty}m(B_k) = \lim_{k\to\infty}m(A_1 \setminus A_{k+1}) \\
+							&= \lim_{k\to\infty}(m(A_1) - m(A_{k+1})) \\
+							&= m(A_1) - \lim_{k\to\infty}m(A_{k+1})
+						\end{align*}
+						Posledično je $m(A) = \lim_{k\to\infty}m(A_k)$, torej je $m$ zvezna.
+					\end{itemize}
+					\item[$\Leftarrow):$] Denimo, da je $m$ zvezna mera in naj bo $A=\bigcup_{k = 1}^\infty A_k$, kjer so $A, A_k \in K~\forall k\in\N$ in $A_i\cap A_j = \emptyset$ za $i\neq j$. Naj bo $B_k = \bigcup_{i = 1}^{k}A_i$. Vidimo, da je zaporedje $\{B_k\}_{k=1}^\infty$ naraščajoče in potem je $\lim_{k\to\infty}B_k = \bigcup_{i = 1}^\infty A_i = A$ in posledično sklepamo, da je \begin{align*} m(A) &= m(\lim_{k\to\infty}B_k) = \lim_{k\to\infty}m(B_k) = \lim_{k\to\infty}m(\bigcup_{i = 1}^k A_i) \\
+						&= \lim_{k\to\infty}\sum_{i = 1}^k m(A_i) = \sum_{i = 1}^\infty m(A_i)
+					\end{align*}
+					Torej je $m$ $\sigma$-aditivna.
+				\end{itemize}
+			\end{enumerate}
+		\end{proof}
+		
+		\begin{trditev}
+			Naj bo $\{\Mu_{\alpha}\}_{\alpha\in I}$ družina $\sigma$-algeber na poljubno množico $X$. Tedaj je $\Mu = \bigcap_{\alpha\in I}\Mu_\alpha$ tudi \sigalg na $X$.
+		\end{trditev}
+		\begin{proof}Preverimo, da $\Mu$ ustreza vsem aksiomom $\sigma$-algebre.
+			\begin{itemize}
+				\item Ker sta $\emptyset, X \in \Mu_\alpha ~\forall \alpha\in I$, očitno velja $\emptyset, X \in \Mu = \bigcap_{\alpha\in I}\Mu_\alpha$.
+				\item Naj bo $A\in \Mu$. Potem je $A\in \Mu_\alpha ~\forall \alpha\in I$, torej je $A^c \in \Mu_\alpha~\forall \alpha\in I$, torej je $A^c \in \bigcap_{\alpha\in I}\Mu_\alpha = \Mu$.
+				\item Naj bo $\{A_i\}_{i = 1}^\infty$ zaporedje množic vsebovano v $\Mu$. Potem je to zaporedje vsebovano tudi v $\Mu_\alpha ~\forall\alpha\in I$. Od tod sledi, da je $\bigcup_{i = 1}^\infty A_i \in \Mu_\alpha~\forall \alpha\in I$, torej je $\bigcup_{i = 1}^\infty A_i \in \Mu$.
+			\end{itemize}
+		\end{proof}
+		\begin{definicija}
+			Naj bo $\mth{A}$ družina podmnožic $X$. Najmanjšo $\sigma$-algebro, ki vsebuje $\mth{A}$, označimo z $\Mu_{\mth{A}}$ in jo imenujemo \pojem{$\sigma$-algebra generirana z \mth{A}}.
+		\end{definicija}
+		\begin{trditev}
+			Za $\mathcal{A}$ obstaja najmanjša $\sigma$-algebra, ki vsebuje $\mathcal{A}$.
+		\end{trditev}
+		\begin{proof}
+			Vemo, da obstaja vsaj ena $\sigma$-algebra, ki vsebuje $\mathcal{A}$. Naj bo $\{\Mu_\alpha\}_{\alpha\in I}$ družina vseh $\sigma$-algeber, ki vsebujejo $\mathcal{A}$. Tedaj je $\Mu_{\mathcal{A}} = \bigcap_{\alpha\in I}\Mu_\alpha$ najmanjša taka $\sigma$-algebra, ki vsebuje $\mathcal{A}$.
+		\end{proof}
+		\begin{zgled}
+			Vzemimo $X = \R$ in $\mathcal{A} = \{\{1\}, \{2\}\}$. Potem je $\Mu_{\mathcal{A}} = \{\emptyset, \{1\}, \{2\}, \{1, 2\}, \R\setminus\{1\}, \R\setminus\{2\}, \R\setminus\{1, 2\}, \R\}$
+		\end{zgled}
+		\begin{definicija}
+			Naj bo $(X, d)$ metrični prostor. Najmanjšo $\sigma$-algebro, ki vsebuje vse odprte množice $(X, d)$ imenujemo \pojem{Borelova $\sigma$-algebra} in jo označimo z $\mathcal{B}_X$. Elemente Borelove $\sigma$-algebre imenujemo \pojem{Borelove množice}.
+		\end{definicija}
+		\begin{zgled}
+			\begin{itemize}
+				\item Odprte, zaprte množice
+				\item Končne množice
+				\item polzaprti intervali $[a, b) = \bigcap_{n = 1}^\infty (a - \frac{1}{n}, b)$
+			\end{itemize}
+		\end{zgled}
 \end{document}

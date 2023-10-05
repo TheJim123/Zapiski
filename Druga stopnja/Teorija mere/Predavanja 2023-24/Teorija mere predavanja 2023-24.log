@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  4 OCT 2023 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  5 OCT 2023 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"./Predavanja 2023-24.tex"
-(Predavanja 2023-24.tex
+**"./Teorija mere predavanja 2023-24.tex"
+(Teorija mere predavanja 2023-24.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -758,51 +758,63 @@ Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/tools\enumerate.sty
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
 \@enLab=\toks45
+) (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.sty
+\UL@box=\box77
+\UL@hyphenbox=\box78
+\UL@skip=\skip70
+\UL@hook=\toks46
+\UL@height=\dimen302
+\UL@pe=\count329
+\UL@pixel=\dimen303
+\ULC@box=\box79
+Package: ulem 2019/11/18
+\ULdepth=\dimen304
 )
-\c@trditev=\count329
-\c@izr=\count330
-\c@nal=\count331
-\c@posl=\count332
-\c@defcount=\count333
-\c@opombe=\count334
-\c@zgledcount=\count335
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 68
+\c@trditev=\count330
+\c@izr=\count331
+\c@nal=\count332
+\c@posl=\count333
+\c@defcount=\count334
+\c@opombe=\count335
+\c@zgledcount=\count336
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 69
 .
- (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-(Predavanja 2023-24.aux)
-\openout1 = `"Predavanja 2023-24.aux"'.
+(Teorija mere predavanja 2023-24.aux)
+\openout1 = `"Teorija mere predavanja 2023-24.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pd
 f.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count336
-\scratchdimen=\dimen302
-\scratchbox=\box77
-\nofMPsegments=\count337
-\nofMParguments=\count338
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count339
-\MPscratchDim=\dimen303
-\MPnumerator=\count340
-\makeMPintoPDFobject=\count341
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count337
+\scratchdimen=\dimen305
+\scratchbox=\box80
+\nofMPsegments=\count338
+\nofMParguments=\count339
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count340
+\MPscratchDim=\dimen306
+\MPnumerator=\count341
+\makeMPintoPDFobject=\count342
+\everyMPtoPDFconversion=\toks48
 )
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstop
 df-base.sty
@@ -817,50 +829,50 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 Package translations Info: no dictionary file `translations-basic-dictionary-sl
-ovenian.trsl' found. on input line 68.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-9.
+ovenian.trsl' found. on input line 69.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
+0.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
-9.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
+0.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-69.
+70.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-69.
+70.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 69.
+(Font)              <12> on input line 70.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 69.
+(Font)              <8> on input line 70.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 69.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
+(Font)              <6> on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
 
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
 
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 69
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 70
 .
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
@@ -873,31 +885,31 @@ LaTeX Warning: No \author given.
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
 Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-[2] (Predavanja 2023-24.toc)
+[2] (Teorija mere predavanja 2023-24.toc)
 \tf@toc=\write4
-\openout4 = `"Predavanja 2023-24.toc"'.
+\openout4 = `"Teorija mere predavanja 2023-24.toc"'.
 
  [3]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 78.
+(Font)              <10> on input line 79.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 78.
+(Font)              <7> on input line 79.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 78.
+(Font)              <5> on input line 79.
  [4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-math
 it.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
 rm.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
 mathsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
 /lm-mathex.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-9.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+00.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 [5{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
 nc}] [6] [7] [8]
-Overfull \hbox (10.00131pt too wide) in paragraph at lines 249--250
+Overfull \hbox (10.00131pt too wide) in paragraph at lines 250--251
 []\T1/lmr/m/it/10 Naj bodo $\OML/lmm/m/it/10 A[]; A[]; [] A[] \OMS/lmsy/m/n/10 
 2 \OML/lmm/m/it/10 K$ \T1/lmr/m/it/10 in $\OML/lmm/m/it/10 A[] \OMS/lmsy/m/n/10
  \ \OML/lmm/m/it/10 A[] \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 ;$ \T1/lmr/m/it/10 z
@@ -906,20 +918,38 @@ a $\OML/lmm/m/it/10 i \OMS/lmsy/m/n/10 6\OT1/lmr/m/n/10 = \OML/lmm/m/it/10 j$\T
 t/10 A[]\OT1/lmr/m/n/10 ) =
  []
 
-[9] [10] (Predavanja 2023-24.aux)
+[9] [10]
+Overfull \hbox (55.17302pt too wide) detected at line 298
+[]
+ []
+
+
+Overfull \hbox (10.60222pt too wide) in paragraph at lines 299--299
+\T1/lmr/m/n/10 pada, vi-dimo, da je $[][] \OML/lmm/m/it/10 A[] \OT1/lmr/m/n/10 
+= [][] \OML/lmm/m/it/10 A[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 A$\T1/lmr/m/n/10
+ , to-rej je $[][] \OML/lmm/m/it/10 B[] \OT1/lmr/m/n/10 =
+ []
+
+
+Overfull \hbox (6.18617pt too wide) in paragraph at lines 299--299
+\OML/lmm/m/it/10 A[] \OMS/lmsy/m/n/10 n \OML/lmm/m/it/10 A$\T1/lmr/m/n/10 . Sle
+di, da je $[]$.
+ []
+
+[11] [12] (Teorija mere predavanja 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 21771 strings out of 475247
- 467679 string characters out of 5755904
- 1938785 words of memory out of 5000000
- 42907 multiletter control sequences out of 15000+600000
- 618702 words of font info for 86 fonts, out of 8000000 for 9000
+ 21865 strings out of 475247
+ 469191 string characters out of 5755904
+ 1940785 words of memory out of 5000000
+ 42996 multiletter control sequences out of 15000+600000
+ 618808 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,93p,934b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,93p,947b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -937,10 +967,13 @@ ams/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Predavanja 2023-24.pdf" (10 pages, 321618 bytes).
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
+s/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
+sbm7.pfb>
+Output written on "Teorija mere predavanja 2023-24.pdf" (12 pages, 345977 bytes
+).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
+ 146 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
