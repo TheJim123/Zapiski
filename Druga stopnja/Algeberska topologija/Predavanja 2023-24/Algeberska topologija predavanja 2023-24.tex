@@ -89,8 +89,8 @@
 			Abelove grupe & $(G, +)$ & homomorfizmi Ab.~grup \\\hline
 			Polja & $(F, +, \cdot)$ & homomorfizmi polj \\\hline
 			Vektorski prostori nad poljem $F$ & $(V, +, \cdot)$ & linearne preslikave \\\hline
-			Delno urejene množice & $(P, \leqq)$ & naraščajoče funkcije \\\hline
-			Linearno urejene množice & $(L, \leqq)$ & naraščajoče funkcije \\\hline
+			Delno urejene množice & $(P, \leq)$ & naraščajoče funkcije \\\hline
+			Linearno urejene množice & $(L, \leq)$ & naraščajoče funkcije \\\hline
 			Metrični prostori & $(X, d)$ & zvezne funkcije \\\hline
 			Topološki prostori & $(X, \mathcal{T})$ & zvezne funkcije \\\hline
 		\end{tabular}
@@ -111,4 +111,101 @@
 			\end{enumerate}
 		\end{itemize}
 	\end{definicija}
+	\begin{zgled}
+		\begin{itemize}
+			\item Naj bo $(G, \circ)$ poljubna grupa in $\Ob{\Cc} = \{\ast\}, \Mor{\Cc} = G$. $\circ$ v $\Cc$ je kar $\circ$ v $G$. Očitno je (ker je to edina možnost), da vsak morfizem $a\in \Mor{\C}$ slika objekt $\ast$ v samega vase. Dodatno: $e = 1_\ast$.
+			\item  Naj bo $(L, \leq)$ poljubna linearno urejena množica in naj bo $\Ob{\Cc} = L$. Morfizme določimo na naslednji način: $\forall x, y\in L: \abs{\Mor[\Cc]{(x, y)}} = \begin{cases}
+			1;&~ x\leq y \\
+			0;&~ \neg(x\leq y)
+			\end{cases}$
+			Tranzitivnost linearne urejenosti nam zagotovi enoličnost kompozituma in posledično tudi njegovo asociativnost.
+		\end{itemize}
+	\end{zgled}
+	\begin{definicija}
+		Pravimo, da je kategorija $\Cc$ \pojem{majhna}, če je $\Ob{\Cc}$ množica.
+	\end{definicija}
+	
+	\begin{izr}
+		V majhni kategoriji je $\Mor{\Cc}$ množica (in posledično tudi $\Ob{\Cc}\cup\Mor{\Cc}$)
+	\end{izr}
+	\begin{proof}
+		Velja: $$\Mor{\Cc} = \bigcup_{(X, Y)\in \Ob{\Cc}\times\Ob{\Cc}}\Mor[\Cc]{(X, Y)}$$
+		Unija družine množic je tudi sama množica.
+	\end{proof}
+	\begin{zgled}
+		Naj bo $\Ob{\Cc} = \N$ in $F$ izbrano polje. Naj bo $\Mor{\Cc} = \bigcup_{(n, m)\in \N^2} M_{n\times m}(F) =$ množica vseh matrik z elementi iz $F$. Dodatno, omenimo, da je $M_{n\times m}(F) = \Mor[\Cc]{(m, n)}$. Za $\circ$ vzamemo množenje matrik.
+	\end{zgled}
+	\section{Funktorji}
+	\begin{definicija}
+		Naj bosta $\Cc$ in $\Dd$ poljubni kategoriji. $\map{F}{\Cc}{\Dd}$ je \pojem{kovariantni funktor}, če: \begin{itemize}
+			\item $F$ slika $\Ob{\Cc}$ v $\Ob{\Dd}$ in $\Mor{\Cc}$ v $\Mor{\Dd}$.
+			\item $\forall X, Y \in \Ob{\Cc},~\forall\map{f}{X}{Y}$ je $\map{F(f)}{F(X)}{F(Y)}$
+			\item $\forall f, g\in \Mor{\Cc}:$ če $\exists g\circ f$, potem je $F(g\circ f) = F(g)\circ F(f)$
+			\item $\forall X\in \Ob{\Cc}: F(1_X) = 1_{F(X)}$
+		\end{itemize}
+		
+		Pravimo, da je $\map{F}{\Cc}{\Dd}$ je \pojem{kontravariantni funktor}, če: \begin{itemize}
+			\item $F$ slika $\Ob{\Cc}$ v $\Ob{\Dd}$ in $\Mor{\Cc}$ v $\Mor{\Dd}$.
+			\item $\forall X, Y \in \Ob{\Cc},~\forall\map{f}{X}{Y}$ je $\map{F(f)}{F(Y)}{F(X)}$
+			\item $\forall f, g\in \Mor{\Cc}:$ če $\exists g\circ f$, potem je $F(g\circ f) = F(f)\circ F(g)$
+			\item $\forall X\in \Ob{\Cc}: F(1_X) = 1_{F(X)}$
+		\end{itemize}
+	\end{definicija}
+	
+	\begin{definicija}
+		Naj bo $\Cc$ poljubna kategorija in $\map{f}{X}{Y}$ element $\Mor{\Cc}$. Pravimo, da je $f$ \pojem{izomorfizem}, če $\exists \map{g}{Y}{X}$, da je $g\circ f = 1_X$ in $f\circ g = 1_Y$.
+	\end{definicija}
+	
+	\begin{izr}
+		Naj bo $\map{F}{\Cc}{\Dd}$ poljubni funktor poljubnih kategorij $\Cc$ in $\Dd$. Naj bosta $X, Y \in \Ob{\Cc}$ in $\map{f}{X}{Y}$ izomorfizem v $\Cc$. Potem je $F(f)$ izomorfizem v $\Dd$.
+	\end{izr}
+	\begin{proof}
+		Denimo, da je $F$ kovariantni funktor. Naj bo $\map{g}{Y}{X}$ takšen, da je $g\circ f = 1_X$ in $f\circ g = 1_Y$. Potem je $1_{F(X)} = F(1_X) = F(g\circ f) = F(g)\circ F(f)$ in $1_{F(Y)} = F(1_Y) = F(f\circ g) = F(f)\circ F(g)$, torej je $F(f)$ izomorfizem. Še več, če označimo $g = f^{-1}$ je $F(f^{-1}) = (F(f))^{-1}$.
+		Če je $F$ kontravariantni funktor poteka dokaz na enak način, zato ga opustimo.
+	\end{proof}
+	\begin{definicija}
+		V poljubni kategoriji $\Cc$ za poljubna objekta $X, Y\in \Ob{\Cc}$ definiramo relacijo: \[
+		X \approx Y \iff \exists\map{f}{X}{Y},~\textit{ki je izomorfizem}\]
+	\end{definicija}
+	\begin{izr}
+		Relacija $\approx$ je ekvivalenčna relacija na $\Ob{\Cc}$.
+	\end{izr}
+	\begin{proof}
+		Preverimo, ali $\approx$ zadošča vsem pogojem za ekvivalenčne relacije. \begin{itemize}
+			\item[refleksivnost:] Vemo, da $\forall X\in \Ob{\Cc}$ obstaja morfizem $\map{1_X}{X}{X}$, ki je izomorfizem.
+			\item[simetričnost:] Naj bosta $X, Y\in \Ob{\Cc}$ poljubna objekta in $\map{f}{X}{Y}$ izomorfizem. Po definiciji izomorfizma potem obstaja morfizem $\map{f^{-1}}{Y}{X}$, ki je tudi sam izomorfizem. Če je $X\approx Y$ je potem tudi $Y\approx X$
+			\item[tranzitivnost:] Naj bodo $X, Y, Z\in \Ob{\Cc}$ za katere velja $X\approx Y$ in $Y\approx Z$. Potem obstajata izomorfizma $\map{f}{X}{Y}$ in $\map{g}{Y}{Z}$ in trdimo, da je tudi $\map{g\circ f}{X}{Z}$ je izomorfizem. Vidimo namreč, da za $f^{-1} \circ g^{-1}$ velja $(g\circ f)\circ (f^{-1} \circ g^{-1})= g\circ f\circ f^{-1} \circ g^{-1} = g\circ 1_X \circ g^{-1} = g\circ g^{-1} = 1_Y$. Podobno vidimo tudi, da velja $(f^{-1} \circ g^{-1})\circ (g\circ f) = 1_X$. Sledi, da je $(g\circ f)$ izomorfizem in $(g\circ f)^{-1} = f^{-1} \circ g^{-1}$. Posledično je $\approx$ tranzitivna.
+		\end{itemize}
+	\end{proof}
+	\begin{posl}
+		Naj bo $\map{F}{\Cc}{\Dd}$ poljuben funktor (kovariantni ali kontravariantni) poljubnih kategorij $\Cc$ in $\Dd$.
+		Potem za poljubna objekta $X, Y\in \Ob{\Cc}$ velja: \begin{itemize}
+			\item $X\approx Y \Rightarrow F(X) \approx F(Y)$
+			\item $F(X) \not\approx F(Y) \Rightarrow X\not\approx Y$
+		\end{itemize}
+	\end{posl}
+	
+	Omenimo še nekaj oznak za znane kategorije.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|l|l|}
+			\hline
+			Oznaka & kategorija \\\hline
+			$\mathcal{S}et$ & množice \\\hline
+			$\mathcal{G}r$ & grupe \\\hline
+			$\mathcal{A}b$ & Ab. grupe \\\hline
+			$\mathcal{M}et$ & metrični prostori \\\hline
+			$\mathcal{V}ect_F$ & vektorski prostori nad poljem $F$\\\hline
+			$\mathcal{T}op$ & topološki prostori \\\hline
+		\end{tabular}
+	\end{table}
+	\begin{zgled}
+		Definiramo t.~i.~ pozabljivi funktor, ki slika iz neke kategorije struktur v kategorijo množic. Na primer funktor $\map{F}{\mathcal{G}r}{\mathcal{S}et}; F((G, \circ)) = G$. Vidimo tudi, da $F$ slika homomorfizme grup v preslikave (istih množic). Funktor $F$ je kovariantni. Če tukaj uporabimo prejšnjo posledico opazimo naslednje: Za $X, Y \in \mathcal{S}et: X\approx Y \iff \abs{X} = \abs{Y}$. Drugače povedano, dve grupi različnih moči ne moreta biti izomorfni.
+	\end{zgled}
+	
+	\begin{zgled}
+		Pokažimo, da $(\R, \mathcal{T}_{evk}) \not\approx (\R^2, \acute{\mathcal{T}}_{evk})$.
+		Denimo, da obstaja nek homeomorfizem $f$ med $\R$ in $\R^2$. Potem bo za $\forall a\in \R$ tudi $f_{|\R\setminus\{a\}}$ homeomorfizem iz $\R\setminus\{a\}$ v $\R^2\setminus\{(a, 0)\}$. Ti množici pa imata različno število povezanih komponent: $C(\R\setminus\{a\}) = 2, C(\R^2\setminus\{(a, 0)\}) = 1$. Prišli smo v protislovje, saj homeomorfizmi ohranjajo število povezanih komponent.
+		Zgoraj povedano lahko izrazimo tudi s funktorji. Naj bo $\map{F}{\mathcal{T}op}{\mathcal{S}et}$ in $F((X, \mathcal{T}))= C((X, \mathcal{T}))$. Potem velja $\abs{C((X, \mathcal{T}))} \neq \abs{C((Y, \acute{\mathcal{T}}))} \Rightarrow (X, \mathcal{T})\not\approx (Y, \acute{\mathcal{T}})$
+	\end{zgled}
 \end{document}
