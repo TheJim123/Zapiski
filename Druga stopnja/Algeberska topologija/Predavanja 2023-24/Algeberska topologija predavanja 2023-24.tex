@@ -1,0 +1,114 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{ulem}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+\newtheorem{posl}{Posledica}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Dd}{\mathcal{D}}
+\newcommand{\Mu}{\mathcal{M}}
+\newcommand{\sigalg}{$\sigma$-algebra~}
+\newcommand{\Qu}{\mth{Q}_u}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\Ob}[1]{\mathcal{O}b({#1})}
+\newcommand{\Mor}[2][ ]{\mathcal{M}or_{#1}({#2})}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Algeberska topologija\\ Zapiski predavanj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje zapiske predavanj predmeta Algeberska topologija v okviru študija prvega letnika magistrskega študija matematike na FNM.
+	\end{abstract}
+	\tableofcontents
+	\newpage
+	\section{Uvodna motivacija}
+	Tekom matematične izobrazbe se spoznamo z mnogimi t.~i.~strukturami, ki tipično zavzamejo obliko ">množica $+$ nekaj"<. Med njimi imamo tipično tudi preslikave, ki jim pogosto damo posebno ime. Naštejmo nekaj primerov.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|l|l|l|}
+			Ime & Oznaka & ime preslikav \\\hline
+			Množice & $M$ & preslikave oz. funkcije \\\hline
+			Grupe & $(G, \circ)$ & homomorfizmi grup \\\hline
+			Abelove grupe & $(G, +)$ & homomorfizmi Ab.~grup \\\hline
+			Polja & $(F, +, \cdot)$ & homomorfizmi polj \\\hline
+			Vektorski prostori nad poljem $F$ & $(V, +, \cdot)$ & linearne preslikave \\\hline
+			Delno urejene množice & $(P, \leqq)$ & naraščajoče funkcije \\\hline
+			Linearno urejene množice & $(L, \leqq)$ & naraščajoče funkcije \\\hline
+			Metrični prostori & $(X, d)$ & zvezne funkcije \\\hline
+			Topološki prostori & $(X, \mathcal{T})$ & zvezne funkcije \\\hline
+		\end{tabular}
+	\end{table}
+	Prej omenjene preslikave (na neki strukturi) lahko seveda tudi komponiramo. Za komponiranje velja, da obstajata leva in desna enota ter da je asociativno za preslikave, ki se ustrezno ujemajo z domenami in kodomenami (npr. za preslikave $f$, $g$ in $h$ mora, če želimo formirati $h\circ (g \circ f)$ veljati, da je kodomena $f$ hkrati domena $g$ ter da je kodomena $g$ hkrati domena $h$.)
+	Posplošena obravnava lastnosti skupin določenih struktur nas privede do t.~.i~ teorije kategorij.
+	
+	\section{Kategorije}
+	\begin{definicija}
+		Razred $\mathcal{C}$ z delno binarno operacijo $\circ$ je \pojem{kategorija}, če velja: \begin{itemize}
+			\item $\mathcal{C}$ je unija disjunktnih razredov $\Ob{\mathcal{C}}$ in $\Mor{\mathcal{C}}$. Elementom $\Ob{\mathcal{C}}$ pravimo \pojem{objekti}, elementom $\Mor{\mathcal{C}}$ pa \pojem{morfizmi}.
+			\item Za vsak $f\in \Mor{\mathcal{C}}$ sta enolično določena ">začetek"< in ">konec"<, ki sta oba objekta kategorije $\mathcal{C}$. Pišemo $\map{f}{X}{Y}$.
+			\item Za poljubna objekta $X, Y \in \Ob{\mathcal{C}}$ je $\Mor[\Cc]{(X, Y)} = \{f\in\Mor{\Cc}; \map{f}{X}{Y}\}$ množica (ne samo razred).
+			\item Za poljubna morfizma $\map{f}{X}{Y}$ in $\map{g}{Y}{Z}$ je enolično definiran morfizem $\map{g\circ f}{X}{Z}$ in velja:
+			\begin{enumerate}
+				\item Za poljubne morfizme $\map{f}{X}{Y}, \map{g}{Y}{Z}$ in $\map{h}{Z}{W}$ je $(h\circ g)\circ f = h\circ (g\circ f)$.
+				\item Za vsak $X\in \Ob{\Cc}$ obstaja enolično določen morfizem $1_X \in \Mor[\Cc]{(X, X)}$, z lastnostjo: $\forall \map{f}{X}{Y} \land \forall \map{g}{Z}{X}$ je $f\circ 1_X = f$~in~$1_X \circ g = g$ (Za poljubna $Y, Z\in\Ob{\Cc}$).
+			\end{enumerate}
+		\end{itemize}
+	\end{definicija}
+\end{document}
