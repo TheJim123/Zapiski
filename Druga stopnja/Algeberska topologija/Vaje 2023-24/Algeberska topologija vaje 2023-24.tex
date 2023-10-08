@@ -1,0 +1,269 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{ulem}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+\newtheorem{posl}{Posledica}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\Dd}{\mathcal{D}}
+\newcommand{\Mu}{\mathcal{M}}
+\newcommand{\sigalg}{$\sigma$-algebra~}
+\newcommand{\Qu}{\mth{Q}_u}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\Ob}[1]{\mathcal{O}b({#1})}
+\newcommand{\Mor}[2][ ]{\mathcal{M}or_{#1}({#2})}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Algeberska topologija\\ Zapiski vaj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje naloge iz predmeta Algeberska topologija in njihove rešitve. Predmet je bil izveden v okviru študija prvega letnika magistrskega študija matematike na FNM.
+	\end{abstract}
+	\tableofcontents
+	\newpage
+	\section{Uvod - vaje za ponovitev}
+	\subsection{Ponovitev grup}
+	\begin{definicija}
+		Naj bo $G$ neprazna množica in $\map{\circ}{G\times G}{G}$ binarna operacija na $G$. Pravimo, da je $G$ \pojem{grupa}, če velja: \begin{enumerate}[i)]
+			\item $\forall x, y \in G:~x\circ y \in G$
+			\item $(x\circ y)\circ z = x\circ (y\circ z)~\forall x, y, z\in G$
+			\item $\exists e\in G~\forall x\in G: x\circ e = e\circ x = x$
+			\item $\forall x\in G~\exists y\in G: x\circ y = y\circ x = e$
+		\end{enumerate}
+		Pravimo, da je $G$ \pojem{Abelova grupa}, če poleg prej navedenih pogojev velja še: $\forall x, y\in G: x\circ y = y\circ x$.
+	\end{definicija}
+	\begin{nal}
+		Naj bo $G = (1, \infty)$ in $x\circ y = xy - x - y + 2$. Pokaži, da je $G$ grupa.
+	\end{nal}
+	\begin{resitev}
+		Treba je preveriti ali $G$ zadošča pogojem grupe.
+		\begin{enumerate}[i)]
+			\item Naj bosta $x, y \in G$ poljubna in računamo: \begin{align*}
+				x\circ y &= xy - x - y + 2 = x(y-1) - y + 2 = x(y-1) - (y - 1) + 1 \\
+				&= (x-1)(y-1) + 1 > 1
+			\end{align*}
+			Sledi torej, da je tudi $x\circ y \in G$.
+			\item Naj bodo $x, y, z\in G$ poljubni. \begin{itemize}
+				\item \begin{align*}
+				(x\circ y)\circ z &= (xy - x - y + 2) \circ z = (xy - x - y + 2)z - (xy - x - y + 2) - z + 2 \\
+				&= xyz - xz - yz + 2z - xy + x + y - 2 - z + 2 = xyz - xy - yz - xz + x + y + z
+			\end{align*}
+			\item \begin{align*}
+				x\circ (y\circ z) &= x(y\circ z) - x - (y\circ z) + 2 = x(yz - y - z + 2) - x - (yz - y - z + 2) + 2 \\
+				&= xyz - xy - xz + 2x - x - yz + y +z - 2 + 2 = xyz - xy - xz - yz + x + y + z
+			\end{align*}
+		\end{itemize}
+		Sledi $(x\circ y)\circ z = x\circ (y\circ z)$
+		\item Naj bo $x\in G$ poljuben. $x\circ e = xe - x - e + 2 = x$, torej je $(x - 1)e = 2x - 2$ oz. $e = \frac{2(x-1)}{x-1} = 2$. Trdimo torej, da je $e = 2$ iskana enota. Preverimo: $2\circ x = 2x - x - 2 + 2 = x$. Enota je torej res $2$.
+		\item Naj bo $x\in G$ poljuben. Če zanj obstaja inverz $y$, potem velja $x\circ y = e = 2$. $$xy - x - y +2 = 2 \iff xy - x - y = 0 \iff x = y(x-1) \iff y = \frac{x}{x-1}$$
+		Sedaj vstavimo ta $y$ v $y\circ x$: \begin{align*} 
+			y\circ x &= \frac{x}{x-1}\circ x = \frac{x^2}{x-1} - \frac{x}{x-1} - x + 2 = \frac{x^2 - x - x(x-1) + 2(x-1)}{x-1} \\
+			&= \frac{x^2 - x - x^2 + x + 2x - 2}{x-1} = \frac{2(x-1)}{x-1} = 2
+			\end{align*} 
+		\end{enumerate}
+		Očitno velja tudi $x\circ y = y\circ x~\forall x, y\in G$, torej je $G$ celo Abelova grupa.
+	\end{resitev}
+	\begin{nal}
+		Naj bo $(G, \cdot)$ grupa. $\forall x, y\in G$ dokaži: \begin{enumerate}[a)]
+			\item $(x^{-1})^{-1} = x$
+			\item $(x^n)^{-1} = (x^{-1})^n$
+			\item $(x\cdot y)^{-1} = y^{-1}\cdot x^{-1}$
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item $(x^{-1})^{-1} = (x^{-1})^{-1} \cdot x^{-1}\cdot x = e\cdot x = x$
+			\item Ker je $x^n \cdot (x^{-1})^n = \underbrace{x\cdot \ldots \cdot x}_{n}\cdot \underbrace{x^{-1} \cdot \ldots \cdot x^{-1}}_{n} = \underbrace{x\cdot \ldots \cdot x}_{n-1}\cdot e \cdot \underbrace{x^{-1} \cdot \ldots \cdot x^{-1}}_{n-1} = e$, je $(x^n)^{-1} = (x^n)^{-1} \cdot x^n \cdot (x^{-1})^n = e\cdot (x^{-1})^n = (x^{-1})^n$
+			\item $(x\cdot y)^{-1} = (x\cdot y)^{-1} \cdot (x\cdot y) \cdot (y^{-1}\cdot x^{-1}) = e \cdot (y^{-1}\cdot x^{-1}) = y^{-1}\cdot x^{-1}$
+		\end{enumerate}
+	\end{resitev}
+	\begin{definicija}
+		\begin{itemize}
+			\item \pojem{Red elementa} $g\in G$: $\abs{g} = red(g)$ je enak naravnemu številu $n\in \N$, če: \begin{itemize}
+				\item $g^n = e$
+				\item $\forall m< n: g^m \neq e$
+			\end{itemize}
+			Če tak $n\in\N$ ne obstaja, pravimo, da je $red(g) = \infty$.
+			\item Pravimo, da je grupa $G$ \pojem{ciklična}, če je generirana z enim samim elementom: $G = \left<g\right>$, torej $\forall x \in g~\exists n\in \Z: x = g^n$.
+		\end{itemize}
+	\end{definicija}
+	\begin{nal}
+		Dokaži, da je vsaka ciklična grupa Abelova.
+	\end{nal}
+	\begin{resitev}
+		Naj bo $G = \left<g\right>$ ciklična grupa in $x, y\in G$ neka poljubna elementa. Potem $\exists m, n\in \Z: x = g^n, y = g^m$. Sledi: $xy = g^ng^m = g^{(n + m)} = g^{(m + n)} = g^mg^n = yx$
+	\end{resitev}
+	\subsection{Ponovitev izomorfizmov grup}
+	\begin{definicija}
+		Naj bosta $(G, \cdot)$ in $(\acute{G}, \ast)$ grupi in $\map{\varphi}{G}{\acute{G}}$ preslikava med njima. Pravimo, da je $\varphi$ \pojem{homomorfizem grup} $G$ in $\acute{G}$, če velja: $\forall x, y\in G: \varphi(x\cdot y) = \varphi(x)\ast\varphi(y)$. Če je $\varphi$ poleg tega bijektiven, mu pravimo \pojem{izomorfizem}. Če je $\varphi$ izomorfizem in $G = \acute{G}$, pravimo, da je $\varphi$ \pojem{avtomorfizem}.
+	\end{definicija}
+	\begin{nal}
+		Naj bosta $(G, \cdot)$ in $(\acute{G}, \ast)$ grupi in naj bo $\map{\varphi}{G}{\acute{G}}$ homomorfizem med njima. Dokaži:
+		\begin{enumerate}[a)]
+			\item $\varphi(e) = \acute{e}$
+			\item $\forall x in G,~\forall n\in\N: \varphi(x^n) = (\varphi(x))^n$
+			\item $\forall x\in G: \varphi(x^{-1}) = (\varphi(x))^{-1}$
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item $\acute{e} = \varphi(e)\ast (\varphi(e))^{-1} = \varphi(e\cdot e)\ast (\varphi(e))^{-1} =\varphi(e)\ast \varphi(e)\ast (\varphi(e))^{-1} = \varphi(e)$
+			\item $\phi(x^n) = \phi(\underbrace{x\cdot x\cdot \ldots \cdot x}_n) = \underbrace{\phi(x)\cdot \phi(x)\cdot \ldots \cdot \phi(x)}_n = (\phi(x))^n$
+			\item $(\varphi(x))^{-1}\ast \acute{e} = (\varphi(x))^{-1}\ast \varphi(e) = (\varphi(x))^{-1}\ast \varphi(x\cdot x^{-1}) = (\varphi(x))^{-1}\ast \varphi(x) \ast \varphi(x^{-1}) = \acute{e} \ast \varphi(x^{-1}) = \varphi(x^{-1})$
+		\end{enumerate}
+	\end{resitev}
+	\begin{nal}
+		Naj bo $G$ grupa in $\map{\varphi}{G}{G}$ s predpisom $\varphi(g) = g^{-1}$. Pokaži: $$G~\text{je Abelova}\iff \varphi~\textit{je izomorfizem}$$
+	\end{nal}
+	\begin{resitev}
+		\begin{itemize}
+			\item[$\Rightarrow):$] Denimo, da je $G$ Abelova grupa. Vidimo, da je $\varphi$ homomorfizem, saj za poljubna $x, y\in G$ velja $\varphi(xy) = (xy)^{-1} = y^{-1}x^{-1} = x^{-1}y^{-1} = \varphi(x)\varphi(y)$.
+			Denimo sedaj, da $\exists x\in Ker(\varphi)$. Potem je $e = \varphi(x) = x^{-1}$, torej je $x = e$. Posledično je $Ker(\varphi) = \{e\}$, torej je $\varphi$ injektiven.
+			Ker za $\forall x\in G ~\exists~ y\in G: y = x^{-1}$ in je posledično $\varphi(y) = x$, sledi, da je $\varphi$ tudi surjektiven. Sledi, da je $\varphi$ bijektiven, torej je izomorfizem.
+			\item[$\Leftarrow):$] Denimo, da je $\varphi$ izomorfizem. Potem je $\varphi(xy) = (xy)^{-1} = y^{-1}x^{-1} = \varphi(y)\varphi(x)=\varphi(yx)$. Sledi, da je $xy = yx~\forall x,y \in G$, torej je $G$ Abelova grupa.
+		\end{itemize}
+	\end{resitev}
+	\subsection{Ponovitev metričnih prostorov}
+	\begin{definicija}
+		Naj bo $X$ množica in $\map{d}{X\times X}{\R}$. Pravimo, da je $d$ \pojem{metrika} na $X$, če: \begin{itemize}
+			\item $\forall x, y \in X: d(x, y) \geq 0 \land d(x, y) = 0 \iff x = y$
+			\item $\forall x, y \in X: d(x, y) = d(y, x)$
+			\item $\forall x, y,z \in X: d(x, y) \leq d(x, z) + d(z, y)$
+		\end{itemize} 
+		Označimo: $K_r = \{y\in X;~ d(x, y) < r\}$
+	\end{definicija}
+	\begin{nal}
+		Naj bo $X = \R^2$ in $d((x_1, y_1),(x_2, y_2)) = \abs{e^{x_1} - e^{x_2}} + \abs{\arctan(y_1) - \arctan(y_2)}$ Preveri, ali je $d$ metrika na $X$
+	\end{nal}
+	\begin{resitev}
+		\begin{itemize}
+			\item[i)] Najprej vidimo, da je očitno $d((x_1, y_1),(x_2, y_2)) \geq 0 \forall (x_1, y_1),(x_2, y_2)\in \R^2$. Dodatno, $d((x_1, y_1),(x_2, y_2)) = 0 \iff \abs{e^{x_1} - e^{x_2}} = 0 \land \abs{\arctan(y_1) - \arctan(y_2)} = 0 \iff x_1 = x_2 \land y_1 = y_2 \iff (x_1, y_1)=(x_2, y_2)$.
+			\item[ii)] Ker je $\abs{e^{x_1} - e^{x_2}} = \abs{e^{x_2} - e^{x_1}} \land \abs{\arctan(y_1) - \arctan(y_2)} = \abs{\arctan(y_2) - \arctan(y_1)}$ za poljubne $x_1, x_2, y_1, y_2\in\R$, sledi $d((x_1, x_2), (y_1, y_2)) = d((y_1, y_2), (x_1, x_2))$
+			\item[iii)] \begin{align*}
+				&d((x_1, y_1),(x_2, y_2)) = \abs{e^{x_1} - e^{x_2}} + \abs{\arctan(y_1) - \arctan(y_2)} \\
+				&= \abs{e^{x_1} - e^{x_3} + e^{x_3}- e^{x_2}} + \abs{\arctan(y_1) - \arctan(y_3) + \arctan(y_3) - \arctan(y_2)} \\
+				&\leq \abs{e^{x_1} - e^{x_3}} + \abs{e^{x_3}- e^{x_2}} + \abs{\arctan(y_1) - \arctan(y_3)} + \abs{\arctan(y_3) - \arctan(y_2)} \\ 
+				&= d((x_1, y_1),(x_3, y_3)) + d((x_3, y_3),(x_2, y_2))
+				\end{align*}
+				Na kratko: $\forall (x_1, y_1),(x_2, y_2),(x_3, y_3)\in\R^2:~d((x_1, y_1),(x_2, y_2)) \leq d((x_1, y_1),(x_3, y_3)) + d((x_3, y_3),(x_2, y_2))$
+		\end{itemize}
+	\end{resitev}
+	\begin{definicija}
+		Naj bosta $(X, d)$ in $(Y, \acute{d})$ metrična prostora. Pravimo, da je $\map{f}{X}{Y}$ \pojem{zvezna} v $a\in X$, če: $$\forall\epsilon>0~\exists\delta>0; \forall x\in X: d(x, a) < \delta \Rightarrow \acute{d}(f(x), f(a))< \epsilon$$
+		Pravimo, da je $f$ zvezna na $X$, če je zvezna $\forall a\in X$. Pravimo, da je $f$ \pojem{homeomorfizem}, če je zvezna bijekcija z zveznim inverzom.
+	\end{definicija}
+	\begin{nal}
+		Naj bosta $X = \{(x, y)\in \R^2;~x, y > 0\}$ in $Y = K_1$. Ali je $X\approx Y$?
+	\end{nal}
+	\begin{resitev}
+		Denimo, da je $X\approx Y$. Potem lahko sestavimo homeomorfizem $\map{f}{X}{Y}$. Da to naredimo, bomo sestavili več homeomorfizmov, najprej iz $X$ v nek drugi prostor, $Z_1$, nato iz tega prostora v naslednjega, $Z_2$, itd., dokler ne pridemo do $Y$.
+		Vzemimo $Z_1 = (0, 2)^2$ Potem je $\map{f_1}{X}{Z_1}$ s predpisom $f_1(x, y) = (\frac{4}{\pi}\arctan(x), \frac{4}{\pi}\arctan(y))$. Ta je očitno zvezna bijekcija in tudi inverz je zvezen. Za $Z_2$ nato izberemo kar $Z_2 = (-1, 1)^2$, ki je v resnici samo togi premik $Z_1$. Potem je primeren $\map{f_2}{Z_1}{Z_2}$ s predpisom $f_2(x, y) = (x-1, y-1)$. Tudi ta funkcija je očitno homeomorfizem. Preostane nam samo še preslikava $\map{f_3}{Z_2}{Y}$. Za to določimo predpis $f_3(x, y) = (x, y\sqrt{1-x^2})$. Ta funkcija je dobro definirana, zvezna bijekcija z zveznim inverzom, torej homeomorfizem. Pišemo $f = f_3\circ f_2\circ f_1$ in ker je kompozitum homeomorfizmov tudi sam homeomorfizem, vemo, da je $f$ homeomorfizem, torej je res $X\approx Y$.
+	\end{resitev}
+	\subsection{Ponovitev topoloških prostorov}
+	\begin{definicija}
+		Naj bo $X$ neprazna množica in $\mathcal{T}\subseteq \mathcal{P}(X)$. Pravimo, da je $\mathcal{T}$ \pojem{topologija} na $X$, če velja: \begin{enumerate}[a)]
+			\item $\emptyset, X \in \mathcal{T}$
+			\item $U_\lambda \in \mathcal{T} ~\forall \lambda\in \Lambda \Rightarrow \bigcup_{\lambda\in\Lambda}U_\lambda \in \mathcal{T}$
+			\item $\forall U, V\in \mathcal{T}: U\cap V \in \mathcal{T}$
+		\end{enumerate}
+	\end{definicija}
+	\begin{nal}
+		Naj bo $X = \R$ in $\mathcal{T} = \{(r, \infty); r\in \R\}\cup\{\emptyset, \R\}$. Pokaži, da je $\mathcal{T}$ topologija na $X$.
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item Prvi pogoj velja očitno, po definiciji $\mathcal{T}$.
+			\item Preverimo vse možnosti: \begin{itemize}
+				\item $\bigcup_{r\in\R}(r, \infty) = \R \in \mathcal{T}$
+				\item $U_\lambda = \emptyset~\forall\lambda \in \Lambda \Rightarrow \bigcup_{\lambda\in\Lambda}U_\lambda = \emptyset \in \mathcal{T}$
+				\item $\exists \lambda_0 \in \Lambda; U_{\lambda_0} = \R \Rightarrow \bigcup_{\lambda\in\Lambda}U_\lambda = \R \in \mathcal{T}$
+				\item $\bigcup_{\lambda\in\Lambda}(r_\lambda, \infty) = \begin{cases}
+				(\inf_{\lambda\in\Lambda}(r_\lambda), \infty) &;~ \exists\inf_{\lambda\in\Lambda}(r_\lambda) \\
+				\R &;~\text{sicer}
+				\end{cases}$ V obeh primerih je rezultat element iz $\mathcal{T}$.
+			\end{itemize}
+			\item \begin{itemize}
+				\item $U = \emptyset \lor V = \emptyset \Rightarrow U\cap V = \emptyset \in \mathcal{T}$
+				\item $U = \R \land V\neq \emptyset \Rightarrow U\cap V = V \in \mathcal{T}$
+				\item $V = \R \land U\neq \emptyset \Rightarrow U\cap V = U \in \mathcal{T}$
+				\item $U\notin \{\emptyset, \R \} \land V \notin \{\emptyset, \R \} \Rightarrow U\cap V = (r, \infty)\cap(q, \infty) = (\max(r, q), \infty) \in \mathcal{T}$
+			\end{itemize}
+		\end{enumerate}
+		Torej je $\mathcal{T}$ res topologija na $X$.
+	\end{resitev}
+	\begin{definicija}
+		Pravimo, da je $\mathcal{B}$ \pojem{baza} za topologijo $\mathcal{T}$, če velja: \begin{enumerate}
+			\item $\mathcal{B}\subseteq \mathcal{T}$
+			\item $\forall U\in \mathcal{T}~\exists\mathcal{C}\subseteq \mathcal{B}; U = \bigcup_{C\in\mathcal{C}}C$
+		\end{enumerate}
+	\end{definicija}
+	\begin{definicija}
+		Funkcija $\map{f}{(x, \mathcal{T})}{(Y, \acute{\mathcal{T}})}$ je \pojem{zvezna}, če $\forall U \in \acute{\mathcal{T}}: f^{-1}(U)\in \mathcal{T}$
+	\end{definicija}
+	\begin{nal}
+		Naj bo $\map{f}{(\R, \mathcal{T}_e)}{(\R, \mathcal{T}_e)}$ in $\map{g}{(\R, \mathcal{T}_L)}{(\R, \mathcal{T}_D)}$ s predpisoma $f(x) = 2x - 1$ in $g(x) = x$. Pri tem sta $\mathcal{B}_D = \{(a, b]; a, b\in\R, a<b\}$ in $\mathcal{B}_L = \{[a, b); a, b\in\R, a<b\}$. Ali sta $f$ in $g$ zvezni?
+	\end{nal}
+	\begin{resitev}
+		\begin{itemize}
+			\item[f:] Najprej poračunamo predpis za $f^{-1}$. Ta se glasi $f^{-1}(y) = \frac{y+1}{2}$. Naj bo sedaj interval $(a, b)\in\mathcal{B}_e$ poljuben interval iz evklidske baze. tedaj je $f^{-1}((a, b)) = (\frac{a+1}{2}, \frac{b + 1}{2}) \in \mathcal{B}_e$, torej je $f$ zvezna.
+			\item[g:] $g(x) = x = g^{-1}(x)$. Naj bo $(a, b]\in \mathcal{B}_D$. Potem je $g^{-1}((a, b]) = (a, b] \notin \mathcal{B}_L$ Še več, ne obstaja nobena družina množic iz $\mathcal{B}_L$, katerih unija bi bila $(a, b]$. Sledi, da $g$ ni zvezna.
+		\end{itemize}
+	\end{resitev}
+\end{document}

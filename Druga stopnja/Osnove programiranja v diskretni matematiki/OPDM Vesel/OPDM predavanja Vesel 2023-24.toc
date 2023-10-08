@@ -1,0 +1,6 @@
+\babel@toc {slovene}{}\relax 
+\contentsline {section}{\numberline {1}Predstavitve grafov in onsnovni algoritmi nad njimi}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Enostavni seznami sosedov}{3}{}%
+\contentsline {subsection}{\numberline {1.2}Razširjeni seznami sosedov}{4}{}%
+\contentsline {subsection}{\numberline {1.3}Časovna zahtevnost nekaterih operacij na grafih}{4}{}%
+\contentsline {subsection}{\numberline {1.4}Urejanje seznamov sosedov}{5}{}%

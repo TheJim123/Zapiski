@@ -1,0 +1,218 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{ulem}
+\usepackage{cancel}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+\newtheorem{posl}{Posledica}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Cc}{\ensuremath{\mathcal{C}}}
+\newcommand{\Dd}{\ensuremath{\mathcal{D}}}
+\newcommand{\Mu}{\mathcal{M}}
+\newcommand{\sigalg}{$\sigma$-algebra~}
+\newcommand{\Qu}{\mth{Q}_u}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\Ob}[1]{\mathcal{O}b({#1})}
+\newcommand{\Mor}[2][ ]{\mathcal{M}or_{#1}({#2})}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Osnove programiranja v diskretni matematiki\\ Zapiski predavanj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje zapiske predavanj predmeta Osnove programiranja v diskretni matematiki profesorja Taranenka v okviru študija prvega letnika magistrskega študija matematike na FNM.
+	\end{abstract}
+	\tableofcontents
+	\newpage
+	\section{Relacije}
+	\begin{definicija}
+		\pojem{Relacija} $R$ iz množice $A$ v množico $B$ je podmnožica kartezičnega produkta $A\times B$: $R\subseteq A\times B$.
+		Če je $(a, b) \in R$ pišemo $aRb$, sicer pa $\neg(aRb)$ ali $a \cancel{R} b$.
+		Relaciji $R\subseteq A\times A$ pravimo relacija na množici $A$.
+	\end{definicija}
+	\begin{zgled}\label{zgl:relprim}
+		$\forall i\in \{1, 2, 3, 4, 5\}: R_i \subseteq \Z\times\Z$
+		\begin{enumerate}[i)]
+			\item $R_1 = \{(a, b);~a\leq b\}$
+			\item $R_2 = \{(a, b);~a > b\}$
+			\item $R_3 = \{(a, b);~a = b \lor a = -b\}$
+			\item $R_4 = \{(a, b);~a = b\}$
+			\item $R_5 = \{(a, b);~a + b \leq 3\}$
+		\end{enumerate}
+	\end{zgled}
+	\begin{zgled}
+		Koliko je možnih relacij na množici z $n\in\N$ elementi? Odgovor: $2^{n^2}$.
+	\end{zgled}
+	\begin{definicija}
+		Naj bo $A$ poljubna množica in $R$ relacija na njej. Relacija $R$ je:
+		\begin{enumerate}[a)]
+			\item \pojem{Refleksivna}, če velja: $\forall a\in A: aRa$.
+			\item \pojem{Irefleksivna}, če velja: $\forall a\in A: a\cancel{R}a$.
+			\item \pojem{Simetrična}, če velja: $\forall a, b\in A: aRb \Rightarrow bRa$.
+			\item \pojem{Asimetrična}, če velja: $\forall a, b\in A: aRb \Rightarrow b\cancel{R}a$.
+			\item \pojem{Antisimetrična}, če velja: $\forall a, b\in A: aRb \land bRa \Rightarrow a = b$.
+			\item \pojem{Tranzitivna}, če velja: $\forall a, b, c\in A: aRb \land bRc \Rightarrow aRc$.
+			\item \pojem{Intranzitivna}, če velja: $\forall a, b, c\in A: aRb \land bRc \Rightarrow a\cancel{R}c$.
+			\item \pojem{Sovisna}, če velja: $\forall a, b\in A; a\neq b: aRb \lor bRa$.
+			\item \pojem{Strogo sovisna}, če velja: $\forall a, b\in A: aRb \lor bRa$.
+		\end{enumerate}
+	\end{definicija}
+	\begin{zgled}
+		Oglejmo si relacije $R_i \subseteq \Z\times\Z$ iz zgleda \ref{zgl:relprim} in jim določimo lastnosti, ki smo jih ravnokar definirali.
+	\end{zgled}
+	\begin{resitev}
+		\begin{enumerate}[i)]
+			\item $R_1$ je refleksivna, antisimetrična, tranzitivna ter strogo sovisna.
+			\item $R_2$ je irefleksivna, asimetrična, tranzitivna ter sovisna.
+			\item $R_3$ je refleksivna, simetrična ter tranzitivna.
+			\item $R_4$ je refleksivna, simetrična ter tranzitivna.
+			\item $R_5$ je simetrična.
+		\end{enumerate}
+	\end{resitev}
+	\begin{zgled}
+		Navedimo primer relacije, ki je hkrati simetrična in antisimetrična: $R = \{(x, x); x\in \R\}$.
+	\end{zgled}
+	\section{Delna in linearna urejenost}
+	\begin{definicija}
+		Relacija $R\subseteq A\times A$ je \pojem{delna urejenost}, če je refleksivna, antisimetrična in tranzitivna. Paru $(A, R)$ pravimo \pojem{delno urejena množica}.
+	\end{definicija}
+	\begin{zgled}
+		Naštejmo nekaj primerov delno urejenih množic: \begin{itemize}
+		\item $(\text{Družina podmnožic}, \subseteq)$
+		\item $(\R, \leq)$
+		\item $(\N, |)$
+		\end{itemize}
+	\end{zgled}
+	\begin{definicija}
+		Naj bo $(A, \leq)$ delno urejena množica. Elementa $a, b\in A$ sta \pojem{primerljiva}, če velja $a\leq b$ ali $b\leq a$, sicer sta pa \pojem{neprimerljiva}.
+	\end{definicija}
+	\begin{definicija}
+		Relacija $R\subseteq A\times A$ je \pojem{linearna urejenost}, če je delna urejenost in strogo sovisna. Paru $(A, R)$ pravimo \pojem{linearno urejena množica} oz. \pojem{veriga}.
+	\end{definicija}
+	\begin{opomba}
+		Zgornjo definicijo lahko prebesedimo: Relacija $(A, R)$ je linearno urejena množica $\iff$ $(A, \leq)$ je delno urejena množica in poljubni par elementov $a, b\in A$ je primerljiv.
+	\end{opomba}
+	\begin{izr}
+		Naj bo $(A, \leq)$ delno oz. linearno urejena množica in $B\subseteq A$. Potem je zožitev relacije $\leq$ na $B$ tudi delna oz. linearna urejenost. Oznaka: $\leq_B = \{(a, b);~ a,b\in B \land a\leq b\}$
+	\end{izr}
+	\begin{proof}
+		\begin{enumerate}
+			\item Naj bodo $a, b, c\in B$ poljubni elementi. Ker je $a\in B$, je tudi $a\in A$ in velja $a\leq a$. Sledi, da je $a\leq_B a$.
+			\item Če sta $a, b\in B$, sta tudi $a, b\in A$. Denimo, da velja $a\leq_B b$ in $b\leq_B a$. Potem je tudi $a\leq b$ in $b\leq a$, torej je $a = b$.
+			\item Naj bo $a\leq_B b$ in $b\leq_B c$. Potem je $a\leq b$ in $b\leq c$, torej je $a\leq c$ in posledično je $a\leq_B c$
+			\item Ker za poljubna $a, b\in B$ velja $a\leq b \lor b\leq a$, sledi $a\leq_B b \lor b\leq_B a$.
+		\end{enumerate}
+	\end{proof}
+	\begin{zgled}
+		Naj bo $\Dd = \mathcal{P}(\Z)$ in vzemimo za relacijo $\subseteq$. Hitro vidimo, da je $(\Dd, \subseteq)$ veriga. Naj bo $\mathcal{A} = \{\{1, 2, \ldots, n\};~ n\in\N\}$. Potem je $(\mathcal{A}, \subseteq_\mathcal{A})$ veriga v $\Dd$.
+	\end{zgled}
+	\begin{definicija}
+		Naj bo $(A, \leq)$ delno urejena množica. Element $a\in A$ je: \begin{itemize}
+			\item \pojem{minimalni element}, če velja: $\forall b\in A: b\leq a \Rightarrow b = a$
+			\item \pojem{najmanjši element} oz. \pojem{prvi element}, če velja: $\forall b\in A: a\leq b$
+			\item \pojem{maksimalni element}, če velja: $\forall b\in A: a\leq b \Rightarrow b = a$
+			\item \pojem{največji element} oz. \pojem{zadnji element}, če velja: $\forall b\in A: b\leq a$
+		\end{itemize}
+	\end{definicija}
+	\begin{zgled}
+		\begin{itemize}
+			\item[$(\N, |):$] $1$ je hkrati minimalni in prvi element, ni minimalnega in ni zadnjega elementa.
+			\item[$(\R, \leq):$] Nima niti minimalnega, niti maksimalnega, niti prvega niti zadnjega elementa.
+			\item[$(\N\setminus\{1\}, |):$] minimalni elementi so vsa praštevila. Nima niti prvega element niti minimalnega niti zadnjega elementa.
+		\end{itemize}
+	\end{zgled}
+	\begin{izr}
+		Naj bo $(A, \leq)$ delno urejena množica. \begin{enumerate}
+			\item Če obstaja prvi ali zadnji element, je enoličen.
+			\item Če je $a\in A$ prvi (oz. zadnji) element, je tudi edini minimalni (oz. maksimalni) element.
+			\item Če je $A$ končna, potem vedno obstaja vsaj en minimalni oz. vsaj en maksimalni element.
+		\end{enumerate}
+	\end{izr}
+	\begin{proof}
+		\begin{enumerate}
+			\item Denimo, da imamo dva različna prva elementa: $a, b\in A; a\neq b$. Ker je $a$ prvi element je $a\leq b$ in ker je $b$ prvi element je $b \leq a$. Posledično, ker je $\leq$ antisimetrična, je $a = b$, kar pa nas privede v protislovje.
+			\item Denimo, da je $a\in A$ prvi element. Naj bo $b\in A$ minimalni element. Ker je $a$ prvi element velja $a\leq b$ in ker je $b$ minimalni element posledično velja $b = a$.
+			\item To točko bomo pokazali z indukcijo na $\abs{A}$. \begin{itemize}
+				\item[\abs{A}$=1:$] Ta primer je trivialen - trditev očitno velja v tem primeru.
+				\item[\abs{A}$=n:$] Denimo, da trditev velja za množice moči $n-1$. BŠS denimo, da ima vsaka množica moči $n-1$ vsaj en minimalni element. Naj bo $a\in A$ poljuben element in označimo $\acute{A} = A\setminus\{a\}$. Po indukcijski predpostavki, ima $\acute{A}$ minimalni element $b\in \acute{A}$. Obravnavamo primere: \begin{itemize}
+					\item Če je $a\leq b$, je $a$ minimalni element v $A$.
+					\item Če je $b\leq a$, je $b$ minimalni tudi v $A$.
+					\item Če $a$ in $b$ nista primerljiva je $b$ minimalni element v $A$.
+				\end{itemize}
+			\end{itemize}
+		\end{enumerate}
+	\end{proof}
+	\begin{izr}
+		Naj bo $(A, \leq)$ linearno urejena množica. \begin{enumerate}[i)]
+			\item $a\in A$ je prvi element $\iff a$ je minimalni element
+			\item $a\in A$ je zadnji element $\iff a$ je maksimalni element
+		\end{enumerate}
+	\end{izr}
+	\begin{proof}
+		\begin{enumerate}[i)]
+			\item Denimo, da je $a\in A$ prvi element. Potem je, po prejšnjem izreku, $a$ edini minimalni element. Obratno, denimo da je $a$ minimalni element. Ker je $\leq$ strogo sovisna, velja $\forall b\in A: b\leq a \lor a\leq b$. Denimo, da je $b\leq a$. Ker je $a$ minimalni element, sledi $b = a$. Torej $\forall b\in A: a\leq b$ oz. $a$ je prvi element.
+			\item Naj bo $a\in A$ zadnji element. Potem po prejšnjem izreku velja, da je $a$ edini maksimalni element. Denimo sedaj, da je $a$ maksimalni element. Zaradi stroge sovisnosti $\leq$ je $\forall b\in A: a\leq b \lor b\leq a$. Denimo, da za nek $b\in A$ velja $a\leq b$. Ker je $a$ maksimalni element je potem $b = a$. Sledi torej, da $\forall b\in A$ velja $b\leq a$, torej je $a$ zadnji element.
+		\end{enumerate}
+	\end{proof}
+	\begin{posl}
+		Naj bo $(A, \leq)$ linearno urejena množica. Če obstaja prvi (ali zadnji) element, je enoličen.
+	\end{posl}
+	\begin{posl}
+		Vsaka končna linearno urejena množica vsebuje natanko en prvi in natanko en zadnji element.
+	\end{posl}
+\end{document}
