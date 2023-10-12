@@ -181,12 +181,117 @@
 	To hitrost lahko torej pričakujemo pri enostavnih seznamih sosedov. Obstaja pa še hitrejši način, če si pomagamo z razširjenimi seznami sosedov. To naredimo tako, da upoštevamo, da je v vsakem polju seznama $S_i$ na v komponenti vozlišče $v_i$.
 	Nove sezname gradimo tako, da se sprehajamo od seznama $S_n$, do $S_1$ in na vsakem koraku odstranimo polje $(v_i, v_j, \ldots)$ iz $S_i$. Nato odstranjenemu polju zamenjamo prvo in drugo komponento, da dobimo polje oblike $(v_j, v_i, \ldots)$ in to novo polje vstavimo na začetek novega seznama, ki ustreza vozlišču $v_j$. Algoritem še zapišemo bolj pregledno:
 	\begin{algorithm}[h!]
-		\KwData{Razširjeni seznami sosedov $S_1$,\ldots, $S_n$}
-		\KwResult{Urejeni razširjeni seznami sosedov $B_1$,\ldots, $B_n$}
-			Ustvari prazne razširjene sezname sosedov $B_1$,\ldots, $B_n$\;
-			\For{i = n downto 1}{\While{$S_i\neq \emptyset$}{Odstrani prvo polje $p=(v_i, v_j, \ldots)$ iz $S_i$\; Dodaj $\acute{p} = (v_j, v_i, \ldots)$ na začetek $B_j$\;}}
+		\DontPrintSemicolon
+		\KwData{Razširjeni seznami sosedov $S_1,\ldots, S_n$}
+		\KwResult{Urejeni razširjeni seznami sosedov $B_1,\ldots, B_n$}
+		\SetAlgorithmName{Algoritem}
+			~~Ustvari prazne razširjene sezname sosedov $B_1,\ldots, B_n$\;
+			\For{i = n \text{downto} 1}{\While{$S_i\neq \emptyset$}{\Begin{Odstrani prvo polje~ $p=(v_i, v_j, \ldots)$iz $S_i$\; Dodaj $\acute{p} = (v_j, v_i, \ldots)$ na začetek $B_j$\;}}}
+			\Return{$B_1, B_2, \ldots, B_n$}
+			\caption{Algoritem za urejanje razširjenih seznamov sosedov}\label{alg:uredrazsezsos}
 	\end{algorithm}
 		
 		Ta algoritem ima časovno zahtevnost $O(m)$, torej je hitrejši od algoritma na enostavnih seznamih sosedov, katerih urejanje je imelo časovno zahtevnost $O(m\log(n))$.
+	\begin{definicija}
+		Naj bosta $G$ in $H$ grafa. Bijekcija $\map{f}{V(G)}{V(H)}$ je \pojem{izomorfizem grafov}, če za poljuben par $u, v\in V(G)$ velja: $uv\in E(G) \iff f(u)f(v)\in E(H)$
+	\end{definicija}
+	Trenutno še ne poznamo algoritma, ki bi preveril, če sta dva grafa izomorfna, v polinomskem času. Lahko pa učinkovito preverimo, ali je dana bijekcija $\map{f}{V(G)}{V(H)}$ izomorfizem grafov, ali ne. Slednje nam pokaže naslednji izrek.
+	\begin{izr}
+		Za dana grafa $G$ in $H$ ter bijekcijo $\map{f}{V(G)}{V(H)}$ lahko v linearnem času preverimo, ali je $f$ izomorfizem.
+	\end{izr}
+	\begin{proof}
+		Naj bodo $S_1, S_2, \ldots, S_n$ razširjeni seznami sosedov grafa $G$ in $C_1, C_2, \ldots, C_n$ razširjeni seznami sosedov grafa $H$. Najprej oblikujemo nove razširjene sezname sosedov $\acute{C}_1, \acute{C}_2, \ldots, \acute{C}_n$, kjer je $\acute{C}_i$ seznam, ki pripada $f(v_i); v_i\in V(G)$. Torej, $(f(v_i), f(v_j), \ldots)\in \acute{C}_i$.
+		Sedaj z algoritmom \ref{alg:uredrazsezsos} za urejanje razširjenih seznamov sosedov uredimo $S_1, S_2, \ldots, S_n$ in $\acute{C}_1, \acute{C}_2, \ldots, \acute{C}_n$. Nato elemente seznamov $S_1, S_2, \ldots, S_n$ po vrsti zložimo v seznam $L_G$, elemente seznamov $\acute{C}_1, \acute{C}_2, \ldots, \acute{C}_n$ pa po vrsti v seznam $L_H$. Če je $f$ izomorfizem grafov, morata biti $L_G$ in $L_H$ identična v smislu, da za $\forall v_i \in L_G$ na enakem mestu v $L_H$ najdemo $f(v_i)$. Oba seznama uredimo v linearnem času $O(m))$, sestavljanje $L_G$ in $L_H$ tudi potrebuje $O(m)$ časa, torej časovna zahtevnost celotnega postopka $O(m)$.
+	\end{proof}
+	\section{Pregled grafa v širino}
+	\begin{definicija}
+		\pojem{Pot} v grafu $G$ je zaporedje paroma različnih vozlišč $v_1v_2\ldots v_k$, kjer za poljuben par zaporednih vozlišč iz poti velja $v_iv_{i+1} \in E(G) \forall i\in \{1, 2, \ldots, k\}$. Za vozlišči $u, v\in V(G)$ je \pojem{$u,v$-pot} pot, ki se začne v $u$ in konča v $v$. 
+		\pojem{Razdalja} med vozlišči $u$ in $v$ je definirana s predpisom $d_G(u, v) = \min(\abs{p};~ p~\text{je $u, v$-pot})$. Pri tem je, za dano pot $p$, $\abs{p}$ dolžina poti $p$, torej število povezav v poti $p$.
+	\end{definicija}
+	Zapišimo sedaj algoritem za pregled grafa v širino.
+		\begin{algorithm}[h!]
+		\DontPrintSemicolon
+		\KwData{Vozlišče $v\in V(G)$, razširjeni seznami sosedov $S_1,\ldots, S_n$ grafa $G$}
+		\KwResult{Označitev $l$ množice vozlišč $V(G)$, kjer je $l(u) = d_G(v, u)$}
+		\SetAlgorithmName{Algoritem}
+		~~Pripravi vrsto (queue) $V = \{v\}$\;
+		$l(v) = 0$\;
+		\While{$V \neq \emptyset$}{\Begin{Odstrani $u$ iz začetka $V$\; \For{$w\in S_u$}{\If{$l(w)$ ni določen}{\Begin{$l(w)=l(u)+1$\; Vstavi $w$ na konec vrste $V$\;}}}}}
+		\Return{Označitev $l$}
+		\caption{Algoritem \pojem{BFS} za pregled grafa v širino}\label{alg:BFS}
+	\end{algorithm}
+	\begin{izr}
+		Naj bo $C$ povezana komponenta grafa $G$ in naj bo $v\in V(C)$. Algoritem $BFS$ za vsako vozlišče $u\in V(C)$ določi $l(u) = d_G(v, u) = d_C(v, u)$ v času $O(\abs{E(C)})$
+	\end{izr}
+	\begin{proof}
+		Najprej bomo dokazali pravilnost, nato pa še časovno zahtevnost.
+		\begin{itemize}
+			\item[Pravilnost:] Pravilnost bomo dokazali z indukcijo po $d(v, w) = i$. \begin{enumerate}
+				\item[$i = 0:$] v tem primeru je $d(v, w) = 0$, kar je možno le, ko je $w = v$. Sledi, da je $l(w) = 0 = l(v)$. V vrsto $V$ algoritma prihajajo vozlišča na eni strani in odhajajo na drugi. Ker $l$ povečujemo, dobimo naraščajoče zaporedje in sosednji vozlišči se razlikujeta za največ $1$.
+				\item[$i>0:$] Denimo, da izrek velja za vsa vozlišča $v, u \in V(C)$, za katera je $d(v, u)\leq i$. Opazujemo $w\in V$ za katerega je $d(v, w) = i+1$. Za tak $w$ obstaja nek $u_0\in V(C)$, da je $d(v, u_0) = i$ in $u_0w\in E(C)$. Po indukcijski predpostavki je potem $l(u_0)=i$, to oznako pa smo dobili od nekega vozlišča, ki je od $v$ oddaljeno za $i-1$. Oznake vozlišč na razdalji $i$ dobimo tako, da najprej sprocesiramo vozlišča, ki so na razdalji $i-1$, teh vozlišč pa na tej točki ni več v $V$. V vrsti $V$ so torej samo vozlišča, ki so od $v$ oddaljene $i$. Potem je pa $l(w) = i+1$.
+			\end{enumerate}
+			\item[Čas. zaht.:] Telo \pojem{for} zanke se izvede $2\abs{E(C)}$-krat z zahtevnostjo $O(1)$, torej je skupna zahtevnost $(\abs{E(C)})$.
+		\end{itemize}
+	\end{proof}
+	\begin{definicija}
+		\pojem{Matrika razdalj} $D$ grafa $G$ je matrika dimenzije $\abs{V(G)}\times\abs{V(G)}$ za katero velja $d_{i, j} = d_G(v_i, v_j) \forall i,j\in \{1, 2, \ldots, \abs{V(G)}\}$.
+	\end{definicija}
 	
+	\begin{posl}
+		Naj bo $G$ graf in $\abs{V(G)} = n$ ter $\abs{E(G)} = m$. Tedaj velja: \begin{enumerate}[i)]
+			\item Povezane komponente $G$ lahko poiščemo v času $O(n+m)$
+			\item Matriko razdalj grafa $G$ lahko poiščemo v času $O(mn)$
+		\end{enumerate}
+	\end{posl}
+	\begin{proof}
+		\begin{enumerate}[i)]
+			\item Sprehodimo se po vseh vozliščih grafa in za vsako vozlišče z nedoločenim $l$ poženemo algoritem \ref{alg:BFS}. Za vsako povezano komponento $C$ grafa $G$ nas to stane $O(\abs{E(C)})$, torej je skupna časovna zahtevnost za cel graf $G$ enaka $O(m)$. Če ima graf manj od $n$ povezav, je vseeno treba obiskati vsa vozlišča. Skupen čas celotnega postopka je torej $O(m + n)$.
+			\item Za vsako izmed $n$ vozlišč poženemo algoritem \ref{alg:BFS}. Vsaka izvedba tega algoritma ima zahtevnost $O(m)$, izvedb pa je $n$, torej je zahtevnost celotnega postopka $O(mn)$
+		\end{enumerate}
+	\end{proof}
+	\begin{zgled}
+		Vrnimo se k grafu $G$ iz zgleda \ref{zgl:grafG} in mu določimo tabelo označitev za začetno točko $v = 1$.
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{c|c|c|c|c|c|c}
+				$u$ & $v$ & $l_1$ & $l_2$ & $l_3$ & $l_4$ & $l_5$ \\\hline
+				& $1$ & $0$ & & & & \\\hline
+				$1$ & $2, 3$ & & $1$ & $1$ & & \\\hline
+				$2$ & $3, 4$ & & & & $2$ & \\\hline
+				$3$ & $1, 5$ & & & & & $2$\\\hline
+				$4$ & $2, 5$ & & & & & \\\hline
+				$5$ & $3, 4$ & & & & & \\
+			\end{tabular}
+		\end{table}
+	\end{zgled}
+	Če poženemo \pojem{BFS} algoritem za neko začetno vozlišče $v\in V(G)$ lahko $V(G)$ razbijemo na množice $L_0, L_1,\ldots$, kjer je $L_i =\{u\in V(G) ;~d(v, u) = i\}$. \begin{definicija}
+		Naj bo $G$ graf in $v\in V(G)$. Če je $u\in L_i$ in $uw\in E(G)$ in \begin{itemize}
+			\item Če je $w\in L_{i-1}$, pravimo, da je $uw$ \pojem{povezava navzgor}
+			\item Če je $w\in L_{i+1}$, pravimo, da je $uw$ \pojem{povezava navzdol}
+			\item Če je $w\in L_{i}$, pravimo, da je $uw$ \pojem{povezava povprek}
+		\end{itemize}
+	\end{definicija}
+	Za povezan graf $G$ lahko skonstruiramo t.~i.~\pojem{$BFS$-drevo} s korenom v $v\in V(G)$. Za $BFS$-drevo $T$ s korenom $v\in V(G)$ velja: $D_T(v, u) = d_G(v, u)~\forall u\in V(T)\subseteq V(G)$. Če je $V(T) = V(G)$ se spomnimo, da pravimo, da je $T$ \pojem{vpeti podgraf} grafa $G$.
+	\begin{definicija}
+		Graf $G$ je \pojem{dvodelni graf}, če obstaja \pojem{razbitje} $V(G) = (X, Y)$, tako da za vsako povezavo iz $E(G)$ velja, da ima eno krajišče v $X$ in drugo krajišče v $Y$
+	\end{definicija}
+	\begin{trditev}
+		\label{trd:dvodelgraf1}
+		Graf $G$ je dvodelen $\iff$ $G$ ne vsebuje lihega cikla
+	\end{trditev}
+	\begin{trditev}
+		Graf $G$ je dvodelen $\iff$ $G$ ne vsebuje povezave povprek za $BFS$ označitev, ki se začne v poljubnem $v\in V(G)$
+	\end{trditev}
+	\begin{proof}
+		\begin{itemize}
+			\item[$\Rightarrow:)$] Denimo, da obstaja neka povezava povprek $uw\in E(G)$ za neki vozlišči $u\in X$ in $w\in Y$, kjer je $(X, Y)$ razbitje $G$. Potem obstaja tak $i\in \{1, 2, \ldots, n\}$, da je $d(v, u) = i =d(v, w)$. Ker sta $X$ in $Y$ povezani, graf $G$ potem vsebuje en cikel dolžine $2i + 1$, to je pa protislovno s tem, da je $G$ dvodelen po trditvi \ref{trd:dvodelgraf1}.
+			\item[$\Leftarrow:)$] Za vozlišče $v\in V(G)$ izvedemo $BFS$ algoritem in definiramo $X = \bigcup_{i = 0} L_{2i}$ ter $Y = \bigcup_{i = 0}L_{2i+1}$. Očitno je $X\cup Y = G$ in $X\cap Y = \emptyset$, torej je $(X, Y)$ razbitje $G$. Ker $G$ nima povezav povprek za $u\in L_i in uw\in E(G)$ velja, da je $w\in L_{i-1}$ ali pa je $w\in L_{i+1}$. Torej, če je $u\in L_i \subseteq X$, je potem $w\in Y$ in obratno, če je $u\in L_i \subseteq Y$, je $w\in X$. Za vsako povezavo $uw\in E(G)$ je potem eno krajišče iz $X$ in drugo iz $Y$. Potem je pa $G$ dvodelni graf.
+		\end{itemize}
+	\end{proof}
+	\begin{trditev}
+		Dvodelne grafe lahko prepoznamo v linearnem času.
+	\end{trditev}
+	\begin{proof}
+		Vemo, da lahko za vsak $v\in V(G)$ algoritem $BFS$ izvedemo v linearnem času. Naj bo torej $v\in V(G)$ poljubno vozlišče in se sprehodimo po vseh povezavah. Po prejšnji trditvi bo potem $G$ dvodelen $\iff$ vsak par zaporednih krajišč ima različni oznaki.
+	\end{proof}
 \end{document}

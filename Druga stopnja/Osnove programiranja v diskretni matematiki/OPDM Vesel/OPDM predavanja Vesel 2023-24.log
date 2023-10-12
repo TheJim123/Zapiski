@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  8 OCT 2023 19:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  12 OCT 2023 21:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -960,26 +960,49 @@ mathit.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
 /lm-rm.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
 /lm-mathsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvip
 s/lm/lm-mathex.enc}] [4]
-Overfull \hbox (15.6502pt too wide) in paragraph at lines 190--191
+Overfull \hbox (15.6502pt too wide) in paragraph at lines 194--195
 \T1/lmr/m/n/10 stav-nih se-zna-mih so-se-dov, ka-te-rih ure-ja-nje je imelo £a-
 sovno zah-tev-nost $\OML/lmm/m/it/10 O\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 m []\OT
 1/lmr/m/n/10 (\OML/lmm/m/it/10 n\OT1/lmr/m/n/10 ))$\T1/lmr/m/n/10 . 
  []
 
-[5] (OPDM predavanja Vesel 2023-24.aux)
+
+Overfull \hbox (14.41858pt too wide) in paragraph at lines 203--205
+[]\T1/lmr/m/n/10 Naj bodo $\OML/lmm/m/it/10 S[]; S[]; [] ; S[]$ \T1/lmr/m/n/10 
+raz-²ir-jeni se-znami so-se-dov grafa $\OML/lmm/m/it/10 G$ \T1/lmr/m/n/10 in $\
+OML/lmm/m/it/10 C[]; C[]; [] ; C[]$
+ []
+
+[5] [6]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
+69.
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+[7{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
+nc}]
+Overfull \hbox (1.04944pt too wide) in paragraph at lines 288--289
+[]\T1/lmr/m/n/10 Za vo-z-li-²£e $\OML/lmm/m/it/10 v \OMS/lmsy/m/n/10 2 \OML/lmm
+/m/it/10 V\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 G\OT1/lmr/m/n/10 )$ \T1/lmr/m/n/10 
+iz-ve-demo $\OML/lmm/m/it/10 BFS$ \T1/lmr/m/n/10 al-go-ri-tem in de-fi-ni-ramo 
+$\OML/lmm/m/it/10 X \OT1/lmr/m/n/10 = [][] \OML/lmm/m/it/10 L[]$
+ []
+
+[8] (OPDM predavanja Vesel 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 23025 strings out of 475247
- 489015 string characters out of 5755904
- 1935785 words of memory out of 5000000
- 44141 multiletter control sequences out of 15000+600000
- 629977 words of font info for 89 fonts, out of 8000000 for 9000
+ 23075 strings out of 475247
+ 490320 string characters out of 5755904
+ 1938785 words of memory out of 5000000
+ 44186 multiletter control sequences out of 15000+600000
+ 630342 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,93p,603b,643s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,23n,93p,711b,643s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -993,10 +1016,11 @@ nts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX
 TeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb>
-Output written on "OPDM predavanja Vesel 2023-24.pdf" (5 pages, 263674 bytes).
+rams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
+Output written on "OPDM predavanja Vesel 2023-24.pdf" (8 pages, 299111 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
+ 114 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
