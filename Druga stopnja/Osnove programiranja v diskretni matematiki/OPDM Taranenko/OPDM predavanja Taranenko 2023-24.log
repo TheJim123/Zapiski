@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  8 OCT 2023 15:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  13 OCT 2023 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -773,50 +773,106 @@ Package: ulem 2019/11/18
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
-\c@trditev=\count330
-\c@izr=\count331
-\c@nal=\count332
-\c@posl=\count333
-\c@defcount=\count334
-\c@opombe=\count335
-\c@zgledcount=\count336
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 74
-.
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/algorithm2e\algorit
+hm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count330
 
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip71
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage
+.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count331
+)
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/tools\xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/relsize\relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip72
+\skiplinenumber=\skip73
+\skiprule=\skip74
+\skiphlne=\skip75
+\skiptext=\skip76
+\skiplength=\skip77
+\algomargin=\skip78
+\skipalgocfslide=\skip79
+\algowidth=\dimen305
+\inoutsize=\dimen306
+\inoutindent=\dimen307
+\interspacetitleruled=\dimen308
+\interspacealgoruled=\dimen309
+\interspacetitleboxruled=\dimen310
+\algocf@ruledwidth=\skip80
+\algocf@inoutbox=\box80
+\algocf@inputbox=\box81
+\AlCapSkip=\skip81
+\AlCapHSkip=\skip82
+\algoskipindent=\skip83
+\algocf@nlbox=\box82
+\algocf@hangingbox=\box83
+\algocf@untilbox=\box84
+\algocf@skipuntil=\skip84
+\algocf@capbox=\box85
+\algocf@lcaptionbox=\skip85
+\algoheightruledefault=\skip86
+\algoheightrule=\skip87
+\algotitleheightruledefault=\skip88
+\algotitleheightrule=\skip89
+\c@algocfline=\count332
+\c@algocfproc=\count333
+\c@algocf=\count334
+\algocf@algoframe=\box86
+\algocf@algobox=\box87
+)
+\c@trditev=\count335
+\c@izr=\count336
+\c@nal=\count337
+\c@posl=\count338
+\c@defcount=\count339
+\c@opombe=\count340
+\c@zgledcount=\count341
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 81
+.
+ (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 (OPDM predavanja Taranenko 2023-24.aux)
 \openout1 = `"OPDM predavanja Taranenko 2023-24.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pd
 f.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count337
-\scratchdimen=\dimen305
-\scratchbox=\box80
-\nofMPsegments=\count338
-\nofMParguments=\count339
+\scratchcounter=\count342
+\scratchdimen=\dimen311
+\scratchbox=\box88
+\nofMPsegments=\count343
+\nofMParguments=\count344
 \everyMPshowfont=\toks47
-\MPscratchCnt=\count340
-\MPscratchDim=\dimen306
-\MPnumerator=\count341
-\makeMPintoPDFobject=\count342
+\MPscratchCnt=\count345
+\MPscratchDim=\dimen312
+\MPnumerator=\count346
+\makeMPintoPDFobject=\count347
 \everyMPtoPDFconversion=\toks48
 )
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstop
@@ -832,50 +888,50 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 Package translations Info: no dictionary file `translations-basic-dictionary-sl
-ovenian.trsl' found. on input line 74.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
-5.
+ovenian.trsl' found. on input line 81.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
+2.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
-5.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
+2.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-75.
+82.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-75.
+82.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 75.
+(Font)              <12> on input line 82.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 75.
+(Font)              <8> on input line 82.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 75.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+(Font)              <6> on input line 82.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
 
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
 
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 75
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 82
 .
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
@@ -888,64 +944,99 @@ LaTeX Warning: No \author given.
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
 Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-(OPDM predavanja Taranenko 2023-24.toc)
+(OPDM predavanja Taranenko 2023-24.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 5.
+)
 \tf@toc=\write4
 \openout4 = `"OPDM predavanja Taranenko 2023-24.toc"'.
 
- [2]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 84.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 84.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 84.
- [3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-math
-it.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
-mathsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
-/lm-rm.enc}]
+ [2] [3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
+mathit.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
+/lm-mathsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvip
+s/lm/lm-rm.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-36.
+43.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 [4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
-nc}] [5] [6] (OPDM predavanja Taranenko 2023-24.aux)
+nc}] [5] [6{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm
+/lm-mathex.enc}]
+
+LaTeX Warning: Command \v invalid in math mode on input line 293.
+
+
+Overfull \hbox (69.08673pt too wide) in paragraph at lines 285--294
+[]\T1/lmr/m/n/10 Za $\OML/lmm/m/it/10 Rang$\T1/lmr/m/n/10 : $[]$ 
+ []
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 303.
+
+
+Overfull \hbox (79.41916pt too wide) in paragraph at lines 295--304
+[]\T1/lmr/m/n/10 Za $\OML/lmm/m/it/10 Derang$\T1/lmr/m/n/10 : $[]$ 
+ []
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 311.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 313.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 314.
+
+
+Overfull \hbox (92.10826pt too wide) in paragraph at lines 305--315
+[]\T1/lmr/m/n/10 Za $\OML/lmm/m/it/10 Naslednik$\T1/lmr/m/n/10 : $[]$ 
+ []
+
+[7] [8] [9] (OPDM predavanja Taranenko 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 21902 strings out of 475247
- 469979 string characters out of 5755904
+ 22982 strings out of 475247
+ 488458 string characters out of 5755904
  1936785 words of memory out of 5000000
- 43031 multiletter control sequences out of 15000+600000
- 618808 words of font info for 87 fonts, out of 8000000 for 9000
+ 44094 multiletter control sequences out of 15000+600000
+ 621806 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,93p,517b,534s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,93p,517b,541s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /latxfont/line10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/lm/lmbx10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/font
 s/type1/public/lm/lmbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/lm/lmbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/Uporabnik/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabn
-ik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Upor
-abnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb>
-Output written on "OPDM predavanja Taranenko 2023-24.pdf" (6 pages, 294358 byte
+eX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/Uporabnik/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/Uporabnik/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabni
+k/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Upor
+abnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/
+Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Use
+rs/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/
+Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb>
+Output written on "OPDM predavanja Taranenko 2023-24.pdf" (9 pages, 337998 byte
 s).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 142 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,3 +1,7 @@
 \babel@toc {slovene}{}\relax 
 \contentsline {section}{\numberline {1}Relacije}{3}{}%
 \contentsline {section}{\numberline {2}Delna in linearna urejenost}{4}{}%
+\contentsline {section}{\numberline {3}Generiranje kombinatoričnih objektov}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Določanje vseh podmnožic}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.1}Urejenost porojena z leksikografsko}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.2}Ureditev z najmanjšo spremembo}{8}{}%

@@ -24,6 +24,7 @@
 \usepackage{enumerate}
 \usepackage{ulem}
 \usepackage{cancel}
+\usepackage{algorithm2e}
 
 \newtheorem{trditev}{Trditev}
 \newtheorem{izr}{Izrek}
@@ -67,6 +68,12 @@
 \newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
 \newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
 \newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\newcommand{\Pot}[1]{\mathcal{P}({#1})}
+\newcommand{\set}[1]{\ensuremath{\{1, 2, \ldots , #1\}}}
+\newcommand{\seto}[1]{\ensuremath{\{0, 1, \ldots , #1\}}}
+
+\newcommand{\mn}[1]{\ensuremath{\left[#1\right]}}
 
 \title{Osnove programiranja v diskretni matematiki\\ Zapiski predavanj}
 \date{2023/24}
@@ -169,6 +176,7 @@
 			\item \pojem{največji element} oz. \pojem{zadnji element}, če velja: $\forall b\in A: b\leq a$
 		\end{itemize}
 	\end{definicija}
+	Navedimo nekaj primerov.
 	\begin{zgled}
 		\begin{itemize}
 			\item[$(\N, |):$] $1$ je hkrati minimalni in prvi element, ni minimalnega in ni zadnjega elementa.
@@ -215,4 +223,159 @@
 	\begin{posl}
 		Vsaka končna linearno urejena množica vsebuje natanko en prvi in natanko en zadnji element.
 	\end{posl}
+	Od zdaj naprej se bomo pretežno ukvarjali s končnimi množicami. Kadar bomo rekli, da je množica urejena, bomo s tem mislili linearno urejenost.
+	\begin{definicija}
+		Naj bo $(A, \leq)$ linearno urejena množica in $A$ končna. Tak $(A, \leq)$ imenujemo \pojem{abeceda}. \pojem{Beseda dolžine $n$} nad $(A, \leq)$ je $n$-terica $b = (b_1, b_2,\ldots, b_n) = b_1b_2\ldots b_n$, kjer je $b_i\in A~\forall i\in \{1, 2, \ldots, n\}$.
+	\end{definicija}
+	\begin{definicija}
+		Naj bo $a$ beseda dolžine $n$ in $b$ beseda dolžine $m; n\leq m$ nad abecedo $(A, \leq)$. Potem je $a\leq_{LEX} b$, če velja: \begin{itemize}
+			\item $\forall i \in \{1, 2, \ldots n\}: a_i = b_i$, ali
+			\item  $\exists j \in \{1, 2, \ldots, n\}: \forall i \in \{1, 2, \ldots, j-1\} a_i = b_i ~\&~ a_j \leq b_j$
+		\end{itemize}
+		Očitno je leksikografska urejenost besed $\leq_{LEX}$ linearna urejenost.
+	\end{definicija}
+	
+	\section{Generiranje kombinatoričnih objektov}
+	Naj bo $A$ neka končna množica. Pogosto potrebujemo učinkovite algoritme za generiranje: \begin{itemize}
+		\item Vseh podmnožic množice $A$
+		\item Vseh podmnožic dolžine $k$ množice $A$
+		\item  Vseh permutacij elementov množice $A$
+	\end{itemize}
+	V vseh primerih bomo obravnavali ureditev, ki jo naravno porodi leksikografska ureditev ter ureditev najmanjše spremembe. Pri tem bomo govorili o naslednjih operacijah: \begin{itemize}
+		\item[Rangiranje:] $\map{Rang}{S}{\{0, 1, \ldots, \abs{S}-1\}}$ je bijekcija, ki vsakemu objektu $s\in S$ določi njegov položaj v ureditvi. Velja torej: $a\leq b \iff Rang(a)\leq Rang(b)$
+		\item[Derangiranje:] $\map{Derang}{\{0, 1, \ldots, \abs{S}-1\}}{S}$ je bijektivni inverz preslikave $Rang$, ki vsaki poziciji v ureditvi $i\in \{0, 1, \ldots, \abs{S}-1\}$ določi pripadajoč objekt. Velja: $\forall a\in S,\forall r\in \{0, 1, \ldots \abs{S}-1\}: Rang(a) = r \iff Derang(r) = a$
+		\item[Naslednik:] $\map{Naslednik}{S}{S\cup\{nedefinirano\}}$ je preslikava s predpisom $\forall s\in S: Naslednik(s) = \begin{cases}
+		Derang(Rang(s)+1)&;~ rang(s) < \abs{S}-1 \\
+		nedefinirano &;~ \text{sicer}
+		\end{cases}$
+		Velja: $\forall s\in S: Naslednik(s) = t\neq nedefinirano \iff Rang(t)=Rang(s) + 1$
+	\end{itemize}
+	
+	\subsection{Določanje vseh podmnožic}
+	Brez škode za splošnost recimo, da je $A = \{1, 2, \ldots, n\} = \mn{n}$ in $\mathcal{A} = \Pot{A}$. Potem lahko vsaki podmnožici $T\in \mathcal{A}$ določimo t.~i.~ \pojem{karakteristični vektor} $\chi(T)$ dolžine $n$ s predpisom $\chi(T) = (X_{n-1}, \ldots, X_{1}, X_{0}); X_i = \begin{cases}
+	0 &;~ n-i \notin T \\
+	1 &;~ n-i \in T
+	\end{cases}$.
+	
+	\subsubsection{Urejenost porojena z leksikografsko}
+	\begin{definicija}
+		Naj bo $A = \mn{n}$. Leksikografska urejenost $\mathcal{A} = \Pot{A}$ je tista urejenost, ki je porojena z leksikografsko ureditvijo pripadajočih karakterističnih vektorjev $\chi(T); T\in \mathcal{A}$. 
+	\end{definicija}
+	\begin{zgled}
+		\label{zgl:lex123}
+		Poglejmo si leksikografsko ureditev od $\Pot{\{1, 2, 3\}}$.
+			\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				$T$ & $\chi(T)$ & $Rang(T)$ \\\hline
+				$\emptyset$ & $000$ & $0$ \\\hline
+				$\{3\}$ & $001$ & $1$ \\\hline
+				$\{2\}$ & $010$ & $2$ \\\hline
+				$\{2, 3\}$ & $011$ & $3$ \\\hline
+				$\{1\}$ & $100$ & $4$ \\\hline
+				$\{1, 3\}$ & $101$ & $5$ \\\hline
+				$\{1, 2\}$ & $110$ & $6$ \\\hline
+				$\{1, 2, 3\}$ & $111$ & $7$ \\\hline
+			\end{tabular}
+		\end{table}
+	\end{zgled}
+	Opazimo, da leksikografska ureditev $\mathcal{A}$ sovpada z naraščujočo ureditvijo binarno predstavljenih pripadajočih rangov.
+	Navedimo sedaj algoritme za $Rang, Derang$ in $Naslednik$ za podmnožice:
+	\begin{itemize}
+		\item Za $Rang$: \begin{algorithm}[H]
+			\DontPrintSemicolon
+			\KwData{$n\in \N$ in podmnožica $T\in \Pot{\mn{n}}$}
+			\KwResult{$r = Rang(T)$}
+			\SetAlgorithmName{Algoritem}
+			~~$r = 0$\;
+			\For{$i \in \{n, n-1, \ldots, 1\}$}{\If{$i\in T$}{$r = r + 2^{n-i}$}}
+			\Return{$r$}
+			\caption{Algoritem $LexRangPodmnožice(n, T)$}\label{alg:lexrangpodmn}
+		\end{algorithm}
+		\item Za $Derang$: \begin{algorithm}[H]
+			\DontPrintSemicolon
+			\KwData{$n\in \N$ in rang $r \in \{0, 1, \ldots, n-1\}$}
+			\KwResult{množica $T\in \Pot{\mn{n}}$, za katero je $Rang(T) = r$}
+			\SetAlgorithmName{Algoritem}
+			~~$T = \emptyset$\;
+			\For{$i \in \{n, n-1, \ldots, 1\}$}{\If{$r \mod 2 \equiv 1$}{$T = T\cup \{i\}$\;$r = \lfloor \frac{r}{2}\rfloor$}}
+			\Return{$T$}
+			\caption{Algoritem $LexDerangPodmnožice(n, r)$}\label{alg:lexderangpodmn}
+		\end{algorithm}
+		\item Za $Naslednik$: \begin{algorithm}[H]
+			\DontPrintSemicolon
+			\KwData{$n\in \N$ in podmnožica $T\in \Pot{\mn{n}}$}
+			\KwResult{množica $Nas$, ki je naslednik množice $T$}
+			\SetAlgorithmName{Algoritem}
+			~~$Nas = nedefinirano$\;
+			$r = LexRangPodmnožice(n, T)$\;
+			\If{$r< 2^{n}-1$}{$Nas = LexDerangPodmnožice(n, r+1)$}
+			\Return{$Nas$}
+			\caption{Algoritem $LexNaslednikPodmnožice(n, T)$}\label{alg:lexnaspodmn}
+		\end{algorithm}
+	\end{itemize}
+
+V leksikografski ureditvi podmnožic se nam lahko zgodi, da sta dve zaporedni podmnožici zelo različni. To se zgodi v zgledu \ref{zgl:lex123} na sredini tabele, kjer podmnožici $\{2, 3\}$ sledi njen komplement $\{1\}$. To nas motivira, da začnemo študirati ureditve v katerih se dva zaporedna elementa medseboj čim manj razlikujeta.
+
+\subsubsection{Ureditev z najmanjšo spremembo}
+Za začetek naredimo en primer na znani množici $\{1, 2, 3\}$.
+\begin{zgled}
+	Zapiši karakteristične vektorje podmnožice množice $\{1, 2, 3\}$ tako, da se dva zaporedna razlikujeta v natanko enem mestu:
+	$$000 \leq 001 \leq 011 \leq 010 \leq 110 \leq 100 \leq 101 \leq 111$$
+\end{zgled}
+
+\begin{definicija}
+	Naj bo $A=\set{n}$ za nek $n\in \N$ in $\mathcal{A} = \Pot{A}$. Spomnimo se, da je za $T_1, T_2 \in \mathcal{A}$ simetrična razlika množic $T_1 \triangle T_2 = (T_1 \cup T_2)\setminus (T_1 \cap T_2)$. Potem količino $d(T_1, T_2) = \abs{T_1\triangle T_2}$ imenujemo \pojem{Hemmingova razdalja} med $T_1$ in $T_2$. Za $T_1 \neq T_2$ je $d(T_1, T_2) \geq 1$.
+\end{definicija}
+\begin{opomba}
+	Opazimo, da je $d(T_1, T_2)$ ravno enaka številu bitov, v katerih se $\chi(T_1)$ in $\chi(T_2)$ razlikujeta.
+\end{opomba}
+	
+\begin{definicija}
+	Vsako ureditev vseh binarnih nizov dolžine $n$ v kateri se dva zaporedna elementa razlikujeta v natanko enem bitu imenujemo \pojem{Grayeva koda}. Ena izmed njih je t.~i.~\pojem{zrcaljena Grayeva koda}. Označimo: $G^n = \text{ureditev vseh binarnih nizov dolžine $n$ v zrcaljeni Grayevi kodi}$, $G^n = (G^n_0, G^n_1, \ldots, G^n_{2^n - 1})$.
+	Zrcaljena Grayeva koda je definirana rekurzivno na naslednji način: \begin{algorithm}[H]
+		\DontPrintSemicolon
+		\KwData{Dolžina binarnih nizov $n_0\in \N$}
+		\KwResult{Zrcaljena Grayeva koda $G^{n_0}$}
+		\SetAlgorithmName{Algoritem}
+		~~$G_1 = (0, 1)$ \;
+		\For{$n\in \{2, 3, \ldots, n_0\}$}{$G^n = (0G^{n-1}_0, 0G^{n-1}_1, \ldots, 0G^{n-1}_{2^{n-1}-1}, 1G^{n-1}_{2^{n-1}-1}, \ldots, 1G^{n-1}_1, 1G^{n-1}_0)$}
+		\Return{$G^{n_0}$}
+		\caption{Algoritem za zrcaljeno Grayevo kodo za bin.~nize dolžine $n_0$.}\label{alg:zrcgray}
+	\end{algorithm}
+\end{definicija}
+\newpage
+	\begin{zgled}
+		S tabelo prikažimo izvedbo algoritma \ref{alg:zrcgray} za $n_0 = 3$.
+			\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				 &  &   \\\hline
+				$0$ & $00$ & $000$ \\
+				$1$ & $01$ & $001$ \\
+				 & $11$ & $011$ \\
+				 & $10$ & $010$ \\\hline
+				 &  & $110$ \\
+				 &  & $111$ \\
+				 &  & $101$ \\
+				 &  & $100$ \\
+			\end{tabular}
+		\end{table}
+	\end{zgled}
+	
+	\begin{izr}
+		$\forall n\in\N$ je $G^n$ Grayeva koda.
+	\end{izr}
+	\begin{proof}
+		Dokaz bomo izvedli z indukcijo po $n$. \begin{itemize}
+			\item[$(n = 1):$] $G_1 = (0, 1)$, kar je očitno Grayeva koda.
+			\item[$(n > 1):$] Denimo, da je $G^k$ Grayeva koda $\forall k\in \set{n-1}$ in gledamo $G^n_{i}$ ter $G^n_{i+1}$. \begin{enumerate}[i)]
+				\item Denimo, da je $i \leq i+1 \leq 2^{n-1}-1$. Potem sta prva bita od $G^n_{i}$ in $G^n_{i+1}$ enaka in edina možna razlika se lahko pojavi pri gledanju zadnjih $(n-1)$ bitov. Torej $G^n_{i} = 0G^{n-1}_i$ in $G^n_{i+1} = 0G^{n-1}_{i+1}$ in edina razlika se lahko pojavi pri primerjanju $G^{n-1}_{i}$ in $G^{n-1}_{i+1}$. Ta sta pa po indukcijski predpostavki razlikujeta v natanko $1$ bitu.
+				\item Denimo, da je $2^{n-1}-1 < i < 2^n - 1$. Potem je $G^n_{i} = 1G^{n-1}_{i+1}$ in $G^n_{i+1} = 1G^{n-1}_{i}$ in edina razlika nastopi pri primerjavi $G^{n-1}_i$ in $G^{n-1}_{i+1}$. Ta se pa po predpostavki razlikujeta v natanko $1$ bitu.
+				\item Denimo, da je $i = 2^{n-1}-1$. Potem je $G^n_{i} = 0G^{n-1}_{2^{n-1}-1}$ in $G^n_{i+1} = 1G^{n-1}_{2^{n-1}-1}$ in $G^n_{i}$ ter $G^n_{i+1}$ se posledično razlikujeta v natanko enem bitu.
+			\end{enumerate}
+			Torej $\forall i \in \seto{2^{n}-2}$ velja, da se $G^n_i$ in $G^n_{i+1}$ razlikujeta v natanko enem bitu.
+		\end{itemize}
+		Potem je pa tudi $G^n$ Grayeva koda.
+	\end{proof}
 \end{document}
