@@ -1,0 +1,381 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{ulem}
+\usepackage{cancel}
+\usepackage{algorithm2e}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+\newtheorem{posl}{Posledica}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Cc}{\ensuremath{\mathcal{C}}}
+\newcommand{\Dd}{\ensuremath{\mathcal{D}}}
+\newcommand{\Mu}{\mathcal{M}}
+\newcommand{\sigalg}{$\sigma$-algebra~}
+\newcommand{\Qu}{\mth{Q}_u}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\Ob}[1]{\mathcal{O}b({#1})}
+\newcommand{\Mor}[2][ ]{\mathcal{M}or_{#1}({#2})}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\newcommand{\Pot}[1]{\mathcal{P}({#1})}
+\newcommand{\set}[1]{\ensuremath{\{1, 2, \ldots , #1\}}}
+\newcommand{\seto}[1]{\ensuremath{\{0, 1, \ldots , #1\}}}
+
+\newcommand{\mn}[1]{\ensuremath{\left[#1\right]}}
+
+\title{Osnove programiranja v diskretni matematiki\\ Zapiski predavanj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje zapiske predavanj predmeta Osnove programiranja v diskretni matematiki profesorja Taranenka v okviru študija prvega letnika magistrskega študija matematike na FNM.
+	\end{abstract}
+	\tableofcontents
+	\newpage
+	\section{Relacije}
+	\begin{definicija}
+		\pojem{Relacija} $R$ iz množice $A$ v množico $B$ je podmnožica kartezičnega produkta $A\times B$: $R\subseteq A\times B$.
+		Če je $(a, b) \in R$ pišemo $aRb$, sicer pa $\neg(aRb)$ ali $a \cancel{R} b$.
+		Relaciji $R\subseteq A\times A$ pravimo relacija na množici $A$.
+	\end{definicija}
+	\begin{zgled}\label{zgl:relprim}
+		$\forall i\in \{1, 2, 3, 4, 5\}: R_i \subseteq \Z\times\Z$
+		\begin{enumerate}[i)]
+			\item $R_1 = \{(a, b);~a\leq b\}$
+			\item $R_2 = \{(a, b);~a > b\}$
+			\item $R_3 = \{(a, b);~a = b \lor a = -b\}$
+			\item $R_4 = \{(a, b);~a = b\}$
+			\item $R_5 = \{(a, b);~a + b \leq 3\}$
+		\end{enumerate}
+	\end{zgled}
+	\begin{zgled}
+		Koliko je možnih relacij na množici z $n\in\N$ elementi? Odgovor: $2^{n^2}$.
+	\end{zgled}
+	\begin{definicija}
+		Naj bo $A$ poljubna množica in $R$ relacija na njej. Relacija $R$ je:
+		\begin{enumerate}[a)]
+			\item \pojem{Refleksivna}, če velja: $\forall a\in A: aRa$.
+			\item \pojem{Irefleksivna}, če velja: $\forall a\in A: a\cancel{R}a$.
+			\item \pojem{Simetrična}, če velja: $\forall a, b\in A: aRb \Rightarrow bRa$.
+			\item \pojem{Asimetrična}, če velja: $\forall a, b\in A: aRb \Rightarrow b\cancel{R}a$.
+			\item \pojem{Antisimetrična}, če velja: $\forall a, b\in A: aRb \land bRa \Rightarrow a = b$.
+			\item \pojem{Tranzitivna}, če velja: $\forall a, b, c\in A: aRb \land bRc \Rightarrow aRc$.
+			\item \pojem{Intranzitivna}, če velja: $\forall a, b, c\in A: aRb \land bRc \Rightarrow a\cancel{R}c$.
+			\item \pojem{Sovisna}, če velja: $\forall a, b\in A; a\neq b: aRb \lor bRa$.
+			\item \pojem{Strogo sovisna}, če velja: $\forall a, b\in A: aRb \lor bRa$.
+		\end{enumerate}
+	\end{definicija}
+	\begin{zgled}
+		Oglejmo si relacije $R_i \subseteq \Z\times\Z$ iz zgleda \ref{zgl:relprim} in jim določimo lastnosti, ki smo jih ravnokar definirali.
+	\end{zgled}
+	\begin{resitev}
+		\begin{enumerate}[i)]
+			\item $R_1$ je refleksivna, antisimetrična, tranzitivna ter strogo sovisna.
+			\item $R_2$ je irefleksivna, asimetrična, tranzitivna ter sovisna.
+			\item $R_3$ je refleksivna, simetrična ter tranzitivna.
+			\item $R_4$ je refleksivna, simetrična ter tranzitivna.
+			\item $R_5$ je simetrična.
+		\end{enumerate}
+	\end{resitev}
+	\begin{zgled}
+		Navedimo primer relacije, ki je hkrati simetrična in antisimetrična: $R = \{(x, x); x\in \R\}$.
+	\end{zgled}
+	\section{Delna in linearna urejenost}
+	\begin{definicija}
+		Relacija $R\subseteq A\times A$ je \pojem{delna urejenost}, če je refleksivna, antisimetrična in tranzitivna. Paru $(A, R)$ pravimo \pojem{delno urejena množica}.
+	\end{definicija}
+	\begin{zgled}
+		Naštejmo nekaj primerov delno urejenih množic: \begin{itemize}
+		\item $(\text{Družina podmnožic}, \subseteq)$
+		\item $(\R, \leq)$
+		\item $(\N, |)$
+		\end{itemize}
+	\end{zgled}
+	\begin{definicija}
+		Naj bo $(A, \leq)$ delno urejena množica. Elementa $a, b\in A$ sta \pojem{primerljiva}, če velja $a\leq b$ ali $b\leq a$, sicer sta pa \pojem{neprimerljiva}.
+	\end{definicija}
+	\begin{definicija}
+		Relacija $R\subseteq A\times A$ je \pojem{linearna urejenost}, če je delna urejenost in strogo sovisna. Paru $(A, R)$ pravimo \pojem{linearno urejena množica} oz. \pojem{veriga}.
+	\end{definicija}
+	\begin{opomba}
+		Zgornjo definicijo lahko prebesedimo: Relacija $(A, R)$ je linearno urejena množica $\iff$ $(A, \leq)$ je delno urejena množica in poljubni par elementov $a, b\in A$ je primerljiv.
+	\end{opomba}
+	\begin{izr}
+		Naj bo $(A, \leq)$ delno oz. linearno urejena množica in $B\subseteq A$. Potem je zožitev relacije $\leq$ na $B$ tudi delna oz. linearna urejenost. Oznaka: $\leq_B = \{(a, b);~ a,b\in B \land a\leq b\}$
+	\end{izr}
+	\begin{proof}
+		\begin{enumerate}
+			\item Naj bodo $a, b, c\in B$ poljubni elementi. Ker je $a\in B$, je tudi $a\in A$ in velja $a\leq a$. Sledi, da je $a\leq_B a$.
+			\item Če sta $a, b\in B$, sta tudi $a, b\in A$. Denimo, da velja $a\leq_B b$ in $b\leq_B a$. Potem je tudi $a\leq b$ in $b\leq a$, torej je $a = b$.
+			\item Naj bo $a\leq_B b$ in $b\leq_B c$. Potem je $a\leq b$ in $b\leq c$, torej je $a\leq c$ in posledično je $a\leq_B c$
+			\item Ker za poljubna $a, b\in B$ velja $a\leq b \lor b\leq a$, sledi $a\leq_B b \lor b\leq_B a$.
+		\end{enumerate}
+	\end{proof}
+	\begin{zgled}
+		Naj bo $\Dd = \mathcal{P}(\Z)$ in vzemimo za relacijo $\subseteq$. Hitro vidimo, da je $(\Dd, \subseteq)$ veriga. Naj bo $\mathcal{A} = \{\{1, 2, \ldots, n\};~ n\in\N\}$. Potem je $(\mathcal{A}, \subseteq_\mathcal{A})$ veriga v $\Dd$.
+	\end{zgled}
+	\begin{definicija}
+		Naj bo $(A, \leq)$ delno urejena množica. Element $a\in A$ je: \begin{itemize}
+			\item \pojem{minimalni element}, če velja: $\forall b\in A: b\leq a \Rightarrow b = a$
+			\item \pojem{najmanjši element} oz. \pojem{prvi element}, če velja: $\forall b\in A: a\leq b$
+			\item \pojem{maksimalni element}, če velja: $\forall b\in A: a\leq b \Rightarrow b = a$
+			\item \pojem{največji element} oz. \pojem{zadnji element}, če velja: $\forall b\in A: b\leq a$
+		\end{itemize}
+	\end{definicija}
+	Navedimo nekaj primerov.
+	\begin{zgled}
+		\begin{itemize}
+			\item[$(\N, |):$] $1$ je hkrati minimalni in prvi element, ni minimalnega in ni zadnjega elementa.
+			\item[$(\R, \leq):$] Nima niti minimalnega, niti maksimalnega, niti prvega niti zadnjega elementa.
+			\item[$(\N\setminus\{1\}, |):$] minimalni elementi so vsa praštevila. Nima niti prvega element niti minimalnega niti zadnjega elementa.
+		\end{itemize}
+	\end{zgled}
+	\begin{izr}
+		Naj bo $(A, \leq)$ delno urejena množica. \begin{enumerate}
+			\item Če obstaja prvi ali zadnji element, je enoličen.
+			\item Če je $a\in A$ prvi (oz. zadnji) element, je tudi edini minimalni (oz. maksimalni) element.
+			\item Če je $A$ končna, potem vedno obstaja vsaj en minimalni oz. vsaj en maksimalni element.
+		\end{enumerate}
+	\end{izr}
+	\begin{proof}
+		\begin{enumerate}
+			\item Denimo, da imamo dva različna prva elementa: $a, b\in A; a\neq b$. Ker je $a$ prvi element je $a\leq b$ in ker je $b$ prvi element je $b \leq a$. Posledično, ker je $\leq$ antisimetrična, je $a = b$, kar pa nas privede v protislovje.
+			\item Denimo, da je $a\in A$ prvi element. Naj bo $b\in A$ minimalni element. Ker je $a$ prvi element velja $a\leq b$ in ker je $b$ minimalni element posledično velja $b = a$.
+			\item To točko bomo pokazali z indukcijo na $\abs{A}$. \begin{itemize}
+				\item[\abs{A}$=1:$] Ta primer je trivialen - trditev očitno velja v tem primeru.
+				\item[\abs{A}$=n:$] Denimo, da trditev velja za množice moči $n-1$. BŠS denimo, da ima vsaka množica moči $n-1$ vsaj en minimalni element. Naj bo $a\in A$ poljuben element in označimo $\acute{A} = A\setminus\{a\}$. Po indukcijski predpostavki, ima $\acute{A}$ minimalni element $b\in \acute{A}$. Obravnavamo primere: \begin{itemize}
+					\item Če je $a\leq b$, je $a$ minimalni element v $A$.
+					\item Če je $b\leq a$, je $b$ minimalni tudi v $A$.
+					\item Če $a$ in $b$ nista primerljiva je $b$ minimalni element v $A$.
+				\end{itemize}
+			\end{itemize}
+		\end{enumerate}
+	\end{proof}
+	\begin{izr}
+		Naj bo $(A, \leq)$ linearno urejena množica. \begin{enumerate}[i)]
+			\item $a\in A$ je prvi element $\iff a$ je minimalni element
+			\item $a\in A$ je zadnji element $\iff a$ je maksimalni element
+		\end{enumerate}
+	\end{izr}
+	\begin{proof}
+		\begin{enumerate}[i)]
+			\item Denimo, da je $a\in A$ prvi element. Potem je, po prejšnjem izreku, $a$ edini minimalni element. Obratno, denimo da je $a$ minimalni element. Ker je $\leq$ strogo sovisna, velja $\forall b\in A: b\leq a \lor a\leq b$. Denimo, da je $b\leq a$. Ker je $a$ minimalni element, sledi $b = a$. Torej $\forall b\in A: a\leq b$ oz. $a$ je prvi element.
+			\item Naj bo $a\in A$ zadnji element. Potem po prejšnjem izreku velja, da je $a$ edini maksimalni element. Denimo sedaj, da je $a$ maksimalni element. Zaradi stroge sovisnosti $\leq$ je $\forall b\in A: a\leq b \lor b\leq a$. Denimo, da za nek $b\in A$ velja $a\leq b$. Ker je $a$ maksimalni element je potem $b = a$. Sledi torej, da $\forall b\in A$ velja $b\leq a$, torej je $a$ zadnji element.
+		\end{enumerate}
+	\end{proof}
+	\begin{posl}
+		Naj bo $(A, \leq)$ linearno urejena množica. Če obstaja prvi (ali zadnji) element, je enoličen.
+	\end{posl}
+	\begin{posl}
+		Vsaka končna linearno urejena množica vsebuje natanko en prvi in natanko en zadnji element.
+	\end{posl}
+	Od zdaj naprej se bomo pretežno ukvarjali s končnimi množicami. Kadar bomo rekli, da je množica urejena, bomo s tem mislili linearno urejenost.
+	\begin{definicija}
+		Naj bo $(A, \leq)$ linearno urejena množica in $A$ končna. Tak $(A, \leq)$ imenujemo \pojem{abeceda}. \pojem{Beseda dolžine $n$} nad $(A, \leq)$ je $n$-terica $b = (b_1, b_2,\ldots, b_n) = b_1b_2\ldots b_n$, kjer je $b_i\in A~\forall i\in \{1, 2, \ldots, n\}$.
+	\end{definicija}
+	\begin{definicija}
+		Naj bo $a$ beseda dolžine $n$ in $b$ beseda dolžine $m; n\leq m$ nad abecedo $(A, \leq)$. Potem je $a\leq_{LEX} b$, če velja: \begin{itemize}
+			\item $\forall i \in \{1, 2, \ldots n\}: a_i = b_i$, ali
+			\item  $\exists j \in \{1, 2, \ldots, n\}: \forall i \in \{1, 2, \ldots, j-1\} a_i = b_i ~\&~ a_j \leq b_j$
+		\end{itemize}
+		Očitno je leksikografska urejenost besed $\leq_{LEX}$ linearna urejenost.
+	\end{definicija}
+	
+	\section{Generiranje kombinatoričnih objektov}
+	Naj bo $A$ neka končna množica. Pogosto potrebujemo učinkovite algoritme za generiranje: \begin{itemize}
+		\item Vseh podmnožic množice $A$
+		\item Vseh podmnožic dolžine $k$ množice $A$
+		\item  Vseh permutacij elementov množice $A$
+	\end{itemize}
+	V vseh primerih bomo obravnavali ureditev, ki jo naravno porodi leksikografska ureditev ter ureditev najmanjše spremembe. Pri tem bomo govorili o naslednjih operacijah: \begin{itemize}
+		\item[Rangiranje:] $\map{Rang}{S}{\{0, 1, \ldots, \abs{S}-1\}}$ je bijekcija, ki vsakemu objektu $s\in S$ določi njegov položaj v ureditvi. Velja torej: $a\leq b \iff Rang(a)\leq Rang(b)$
+		\item[Derangiranje:] $\map{Derang}{\{0, 1, \ldots, \abs{S}-1\}}{S}$ je bijektivni inverz preslikave $Rang$, ki vsaki poziciji v ureditvi $i\in \{0, 1, \ldots, \abs{S}-1\}$ določi pripadajoč objekt. Velja: $\forall a\in S,\forall r\in \{0, 1, \ldots \abs{S}-1\}: Rang(a) = r \iff Derang(r) = a$
+		\item[Naslednik:] $\map{Naslednik}{S}{S\cup\{nedefinirano\}}$ je preslikava s predpisom $\forall s\in S: Naslednik(s) = \begin{cases}
+		Derang(Rang(s)+1)&;~ rang(s) < \abs{S}-1 \\
+		nedefinirano &;~ \text{sicer}
+		\end{cases}$
+		Velja: $\forall s\in S: Naslednik(s) = t\neq nedefinirano \iff Rang(t)=Rang(s) + 1$
+	\end{itemize}
+	
+	\subsection{Določanje vseh podmnožic}
+	Brez škode za splošnost recimo, da je $A = \{1, 2, \ldots, n\} = \mn{n}$ in $\mathcal{A} = \Pot{A}$. Potem lahko vsaki podmnožici $T\in \mathcal{A}$ določimo t.~i.~ \pojem{karakteristični vektor} $\chi(T)$ dolžine $n$ s predpisom $\chi(T) = (X_{n-1}, \ldots, X_{1}, X_{0}); X_i = \begin{cases}
+	0 &;~ n-i \notin T \\
+	1 &;~ n-i \in T
+	\end{cases}$.
+	
+	\subsubsection{Urejenost porojena z leksikografsko}
+	\begin{definicija}
+		Naj bo $A = \mn{n}$. Leksikografska urejenost $\mathcal{A} = \Pot{A}$ je tista urejenost, ki je porojena z leksikografsko ureditvijo pripadajočih karakterističnih vektorjev $\chi(T); T\in \mathcal{A}$. 
+	\end{definicija}
+	\begin{zgled}
+		\label{zgl:lex123}
+		Poglejmo si leksikografsko ureditev od $\Pot{\{1, 2, 3\}}$.
+			\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				$T$ & $\chi(T)$ & $Rang(T)$ \\\hline
+				$\emptyset$ & $000$ & $0$ \\\hline
+				$\{3\}$ & $001$ & $1$ \\\hline
+				$\{2\}$ & $010$ & $2$ \\\hline
+				$\{2, 3\}$ & $011$ & $3$ \\\hline
+				$\{1\}$ & $100$ & $4$ \\\hline
+				$\{1, 3\}$ & $101$ & $5$ \\\hline
+				$\{1, 2\}$ & $110$ & $6$ \\\hline
+				$\{1, 2, 3\}$ & $111$ & $7$ \\\hline
+			\end{tabular}
+		\end{table}
+	\end{zgled}
+	Opazimo, da leksikografska ureditev $\mathcal{A}$ sovpada z naraščujočo ureditvijo binarno predstavljenih pripadajočih rangov.
+	Navedimo sedaj algoritme za $Rang, Derang$ in $Naslednik$ za podmnožice:
+	\begin{itemize}
+		\item Za $Rang$: \begin{algorithm}[H]
+			\DontPrintSemicolon
+			\KwData{$n\in \N$ in podmnožica $T\in \Pot{\mn{n}}$}
+			\KwResult{$r = Rang(T)$}
+			\SetAlgorithmName{Algoritem}
+			~~$r = 0$\;
+			\For{$i \in \{n, n-1, \ldots, 1\}$}{\If{$i\in T$}{$r = r + 2^{n-i}$}}
+			\Return{$r$}
+			\caption{Algoritem $LexRangPodmnožice(n, T)$}\label{alg:lexrangpodmn}
+		\end{algorithm}
+		\item Za $Derang$: \begin{algorithm}[H]
+			\DontPrintSemicolon
+			\KwData{$n\in \N$ in rang $r \in \{0, 1, \ldots, n-1\}$}
+			\KwResult{množica $T\in \Pot{\mn{n}}$, za katero je $Rang(T) = r$}
+			\SetAlgorithmName{Algoritem}
+			~~$T = \emptyset$\;
+			\For{$i \in \{n, n-1, \ldots, 1\}$}{\If{$r \mod 2 \equiv 1$}{$T = T\cup \{i\}$\;$r = \lfloor \frac{r}{2}\rfloor$}}
+			\Return{$T$}
+			\caption{Algoritem $LexDerangPodmnožice(n, r)$}\label{alg:lexderangpodmn}
+		\end{algorithm}
+		\item Za $Naslednik$: \begin{algorithm}[H]
+			\DontPrintSemicolon
+			\KwData{$n\in \N$ in podmnožica $T\in \Pot{\mn{n}}$}
+			\KwResult{množica $Nas$, ki je naslednik množice $T$}
+			\SetAlgorithmName{Algoritem}
+			~~$Nas = nedefinirano$\;
+			$r = LexRangPodmnožice(n, T)$\;
+			\If{$r< 2^{n}-1$}{$Nas = LexDerangPodmnožice(n, r+1)$}
+			\Return{$Nas$}
+			\caption{Algoritem $LexNaslednikPodmnožice(n, T)$}\label{alg:lexnaspodmn}
+		\end{algorithm}
+	\end{itemize}
+
+V leksikografski ureditvi podmnožic se nam lahko zgodi, da sta dve zaporedni podmnožici zelo različni. To se zgodi v zgledu \ref{zgl:lex123} na sredini tabele, kjer podmnožici $\{2, 3\}$ sledi njen komplement $\{1\}$. To nas motivira, da začnemo študirati ureditve v katerih se dva zaporedna elementa medseboj čim manj razlikujeta.
+
+\subsubsection{Ureditev z najmanjšo spremembo}
+Za začetek naredimo en primer na znani množici $\{1, 2, 3\}$.
+\begin{zgled}
+	Zapiši karakteristične vektorje podmnožice množice $\{1, 2, 3\}$ tako, da se dva zaporedna razlikujeta v natanko enem mestu:
+	$$000 \leq 001 \leq 011 \leq 010 \leq 110 \leq 100 \leq 101 \leq 111$$
+\end{zgled}
+
+\begin{definicija}
+	Naj bo $A=\set{n}$ za nek $n\in \N$ in $\mathcal{A} = \Pot{A}$. Spomnimo se, da je za $T_1, T_2 \in \mathcal{A}$ simetrična razlika množic $T_1 \triangle T_2 = (T_1 \cup T_2)\setminus (T_1 \cap T_2)$. Potem količino $d(T_1, T_2) = \abs{T_1\triangle T_2}$ imenujemo \pojem{Hemmingova razdalja} med $T_1$ in $T_2$. Za $T_1 \neq T_2$ je $d(T_1, T_2) \geq 1$.
+\end{definicija}
+\begin{opomba}
+	Opazimo, da je $d(T_1, T_2)$ ravno enaka številu bitov, v katerih se $\chi(T_1)$ in $\chi(T_2)$ razlikujeta.
+\end{opomba}
+	
+\begin{definicija}
+	Vsako ureditev vseh binarnih nizov dolžine $n$ v kateri se dva zaporedna elementa razlikujeta v natanko enem bitu imenujemo \pojem{Grayeva koda}. Ena izmed njih je t.~i.~\pojem{zrcaljena Grayeva koda}. Označimo: $G^n = \text{ureditev vseh binarnih nizov dolžine $n$ v zrcaljeni Grayevi kodi}$, $G^n = (G^n_0, G^n_1, \ldots, G^n_{2^n - 1})$.
+	Zrcaljena Grayeva koda je definirana rekurzivno na naslednji način: \begin{algorithm}[H]
+		\DontPrintSemicolon
+		\KwData{Dolžina binarnih nizov $n_0\in \N$}
+		\KwResult{Zrcaljena Grayeva koda $G^{n_0}$}
+		\SetAlgorithmName{Algoritem}
+		~~$G_1 = (0, 1)$ \;
+		\For{$n\in \{2, 3, \ldots, n_0\}$}{$G^n = (0G^{n-1}_0, 0G^{n-1}_1, \ldots, 0G^{n-1}_{2^{n-1}-1}, 1G^{n-1}_{2^{n-1}-1}, \ldots, 1G^{n-1}_1, 1G^{n-1}_0)$}
+		\Return{$G^{n_0}$}
+		\caption{Algoritem za zrcaljeno Grayevo kodo za bin.~nize dolžine $n_0$.}\label{alg:zrcgray}
+	\end{algorithm}
+\end{definicija}
+\newpage
+	\begin{zgled}
+		S tabelo prikažimo izvedbo algoritma \ref{alg:zrcgray} za $n_0 = 3$.
+			\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				 &  &   \\\hline
+				$0$ & $00$ & $000$ \\
+				$1$ & $01$ & $001$ \\
+				 & $11$ & $011$ \\
+				 & $10$ & $010$ \\\hline
+				 &  & $110$ \\
+				 &  & $111$ \\
+				 &  & $101$ \\
+				 &  & $100$ \\
+			\end{tabular}
+		\end{table}
+	\end{zgled}
+	
+	\begin{izr}
+		$\forall n\in\N$ je $G^n$ Grayeva koda.
+	\end{izr}
+	\begin{proof}
+		Dokaz bomo izvedli z indukcijo po $n$. \begin{itemize}
+			\item[$(n = 1):$] $G_1 = (0, 1)$, kar je očitno Grayeva koda.
+			\item[$(n > 1):$] Denimo, da je $G^k$ Grayeva koda $\forall k\in \set{n-1}$ in gledamo $G^n_{i}$ ter $G^n_{i+1}$. \begin{enumerate}[i)]
+				\item Denimo, da je $i \leq i+1 \leq 2^{n-1}-1$. Potem sta prva bita od $G^n_{i}$ in $G^n_{i+1}$ enaka in edina možna razlika se lahko pojavi pri gledanju zadnjih $(n-1)$ bitov. Torej $G^n_{i} = 0G^{n-1}_i$ in $G^n_{i+1} = 0G^{n-1}_{i+1}$ in edina razlika se lahko pojavi pri primerjanju $G^{n-1}_{i}$ in $G^{n-1}_{i+1}$. Ta sta pa po indukcijski predpostavki razlikujeta v natanko $1$ bitu.
+				\item Denimo, da je $2^{n-1}-1 < i < 2^n - 1$. Potem je $G^n_{i} = 1G^{n-1}_{i+1}$ in $G^n_{i+1} = 1G^{n-1}_{i}$ in edina razlika nastopi pri primerjavi $G^{n-1}_i$ in $G^{n-1}_{i+1}$. Ta se pa po predpostavki razlikujeta v natanko $1$ bitu.
+				\item Denimo, da je $i = 2^{n-1}-1$. Potem je $G^n_{i} = 0G^{n-1}_{2^{n-1}-1}$ in $G^n_{i+1} = 1G^{n-1}_{2^{n-1}-1}$ in $G^n_{i}$ ter $G^n_{i+1}$ se posledično razlikujeta v natanko enem bitu.
+			\end{enumerate}
+			Torej $\forall i \in \seto{2^{n}-2}$ velja, da se $G^n_i$ in $G^n_{i+1}$ razlikujeta v natanko enem bitu.
+		\end{itemize}
+		Potem je pa tudi $G^n$ Grayeva koda.
+	\end{proof}
+\end{document}

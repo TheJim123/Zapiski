@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  14 OCT 2023 20:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  14 OCT 2023 20:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"./OPDM predavanja Taranenko 2023-24.tex"
-(OPDM predavanja Taranenko 2023-24.tex
+**"./Izbrana poglavja iz topologije vaje 2023-24.tex"
+(Izbrana poglavja iz topologije vaje 2023-24.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -830,8 +830,8 @@ Package: relsize 2013/03/29 ver 4.1
 \algocf@algoframe=\box86
 \algocf@algobox=\box87
 )
-\c@lema=\count335
-\c@trditev=\count336
+\c@trditev=\count335
+\c@lema=\count336
 \c@izr=\count337
 \c@nal=\count338
 \c@posl=\count339
@@ -843,8 +843,8 @@ LaTeX Font Info:    Trying to load font information for T1+lmr on input line 83
  (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-(OPDM predavanja Taranenko 2023-24.aux)
-\openout1 = `"OPDM predavanja Taranenko 2023-24.aux"'.
+(Izbrana poglavja iz topologije vaje 2023-24.aux)
+\openout1 = `"Izbrana poglavja iz topologije vaje 2023-24.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
@@ -945,94 +945,36 @@ LaTeX Warning: No \author given.
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
 Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-(OPDM predavanja Taranenko 2023-24.toc)
+(Izbrana poglavja iz topologije vaje 2023-24.toc)
 \tf@toc=\write4
-\openout4 = `"OPDM predavanja Taranenko 2023-24.toc"'.
+\openout4 = `"Izbrana poglavja iz topologije vaje 2023-24.toc"'.
 
- [2]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 92.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 92.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 92.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-3.
-
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-[3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
-t.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-t
-s1.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
-rm.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
-mathsy.enc}]
-Overfull \hbox (5.11595pt too wide) in paragraph at lines 139--140
-[]\T1/lmr/bx/n/10 Izrek 1. []\T1/lmr/m/it/10 Naj bo $\OMS/lmsy/m/n/10 8\OML/lmm
-/m/it/10 n \OMS/lmsy/m/n/10 2 \U/msb/m/n/10 N\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 
-X[]; d[]\OT1/lmr/m/n/10 )$ \T1/lmr/m/it/10 me-tri£ni pro-stor, tak, da je $\OMS
-/lmsy/m/n/10 8\OML/lmm/m/it/10 x; y \OMS/lmsy/m/n/10 2 \OML/lmm/m/it/10 X[]d[]\
-OT1/lmr/m/n/10 (\OML/lmm/m/it/10 x; y\OT1/lmr/m/n/10 ) \OML/lmm/m/it/10 <
- []
-
-
-Overfull \hbox (14.34514pt too wide) in paragraph at lines 139--140
-\OML/lmm/m/it/10 D\OT1/lmr/m/n/10 ((\OML/lmm/m/it/10 x[]; x[]; []\OT1/lmr/m/n/1
-0 )\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 (\OML/lmm/m/it/10 y[]; y[]; []\OT1/lmr/m/
-n/10 )) = []\OMS/lmsy/m/n/10 f[]g$ \T1/lmr/m/it/10 za po-ljubne $\OT1/lmr/m/n/1
-0 (\OML/lmm/m/it/10 x[]; x[]; []\OT1/lmr/m/n/10 )\OML/lmm/m/it/10 ; \OT1/lmr/m/
-n/10 (\OML/lmm/m/it/10 y[]; y[]; []\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 2
- []
-
-[4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathe
-x.enc}]
-Overfull \hbox (15.7184pt too wide) detected at line 172
-[]
- []
-
-[5]
-Overfull \hbox (20.05142pt too wide) detected at line 187
-[]
- []
-
-[6] (OPDM predavanja Taranenko 2023-24.aux)
+ [2] [3]
+(Izbrana poglavja iz topologije vaje 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22960 strings out of 475247
- 487872 string characters out of 5755904
- 1942785 words of memory out of 5000000
- 44074 multiletter control sequences out of 15000+600000
- 612835 words of font info for 85 fonts, out of 8000000 for 9000
+ 22860 strings out of 475247
+ 486002 string characters out of 5755904
+ 1919785 words of memory out of 5000000
+ 43996 multiletter control sequences out of 15000+600000
+ 592686 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,93p,979b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,6n,93p,527b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
-0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
-mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-lm/lmbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/lm/lmex10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/lm/lmmi5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/Uporabnik/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
-s/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
-sbm7.pfb>
-Output written on "OPDM predavanja Taranenko 2023-24.pdf" (6 pages, 323235 byte
-s).
+2.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
+mbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
+m/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmr9.pfb>
+Output written on "Izbrana poglavja iz topologije vaje 2023-24.pdf" (3 pages, 1
+48497 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
+ 46 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

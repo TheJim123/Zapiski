@@ -26,6 +26,7 @@
 \usepackage{cancel}
 \usepackage{algorithm2e}
 
+\newtheorem{lema}{Lema}
 \newtheorem{trditev}{Trditev}
 \newtheorem{izr}{Izrek}
 \newtheorem{nal}{Naloga}
@@ -47,6 +48,7 @@
 \newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
 \setlength{\parindent}{0mm}
 
+\newcommand{\ul}[1]{\underline{\ensuremath{#1}}}
 \newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
 \newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
 \newcommand{\R}{\mth{R}}
@@ -75,307 +77,121 @@
 
 \newcommand{\mn}[1]{\ensuremath{\left[#1\right]}}
 
-\title{Osnove programiranja v diskretni matematiki\\ Zapiski predavanj}
+\title{Izbrana poglavja iz topologije \\ Zapiski predavanj}
 \date{2023/24}
 %===============================================================================
 \begin{document}
 	\maketitle
 	\newpage
 	\begin{abstract}
-		\noindent Dokument vsebuje zapiske predavanj predmeta Osnove programiranja v diskretni matematiki profesorja Taranenka v okviru študija prvega letnika magistrskega študija matematike na FNM.
+		\noindent Dokument vsebuje zapiske predavanj predmeta Izbrana poglavja iz topologije v okviru študija prvega letnika magistrskega študija matematike na FNM.
 	\end{abstract}
 	\tableofcontents
 	\newpage
-	\section{Relacije}
-	\begin{definicija}
-		\pojem{Relacija} $R$ iz množice $A$ v množico $B$ je podmnožica kartezičnega produkta $A\times B$: $R\subseteq A\times B$.
-		Če je $(a, b) \in R$ pišemo $aRb$, sicer pa $\neg(aRb)$ ali $a \cancel{R} b$.
-		Relaciji $R\subseteq A\times A$ pravimo relacija na množici $A$.
-	\end{definicija}
-	\begin{zgled}\label{zgl:relprim}
-		$\forall i\in \{1, 2, 3, 4, 5\}: R_i \subseteq \Z\times\Z$
-		\begin{enumerate}[i)]
-			\item $R_1 = \{(a, b);~a\leq b\}$
-			\item $R_2 = \{(a, b);~a > b\}$
-			\item $R_3 = \{(a, b);~a = b \lor a = -b\}$
-			\item $R_4 = \{(a, b);~a = b\}$
-			\item $R_5 = \{(a, b);~a + b \leq 3\}$
+	\section{Metrizabilnost topoloških prostorov}
+	Za začetek se spomnimo nekaj znanih pojmov s področja topologije. Naj bo $X$ neprazna množica: \begin{itemize}
+		\item Pravimo, da je topološki prostor $(X, \mathcal{T})$ \pojem{metrizabilen}, če obstaja metrika $\map{d}{X}{\R}$, taka, da je $\mathcal{T}_d = \mathcal{T}$, kjer je $\mathcal{T}_d$ topologija na $X$, ki ima za bazo $\mathcal{B}_d = \{K_d(x, r);~x\in X ~\&~r>0\}$.
+		\item Naj bosta $\mathcal{T}_1$ in $\mathcal{T}_2$ topologiji na $X$ in $\mathcal{B}_1$ ter $\mathcal{B}_2$ bazi za $\mathcal{T}_1$ in $\mathcal{T}_2$. Tedaj je $\mathcal{T}_1 \subseteq \mathcal{T}_2$, če je $\mathcal{B}_1 \subseteq \mathcal{T}_2$
+		\item Naj bosta $d_1$ in $d_2$ metriki na $X$. Pravimo, da sta $d_1$ in $d_2$ \pojem{ekvivalentni}, če je $\mathcal{T}_{d_1} = \mathcal{T}_{d_2}$
+	\end{itemize}
+	
+	\begin{lema}
+		Naj bo $X_d$ matrični prostor in naj bo $\map{\rho}{X\times X}{\R}$ definirana s predpisom $$\rho(x, y) = \frac{d(x, y)}{1 + d(x, y)} $$. Tedaj velja: \begin{enumerate}
+			\item $\rho$ je metrika na $X$ za katero je $\rho(x, y) \in [0, 1)\forall x, y\in X$
+			\item $\mathcal{T}_d = \mathcal{T}_\rho$
 		\end{enumerate}
-	\end{zgled}
-	\begin{zgled}
-		Koliko je možnih relacij na množici z $n\in\N$ elementi? Odgovor: $2^{n^2}$.
-	\end{zgled}
-	\begin{definicija}
-		Naj bo $A$ poljubna množica in $R$ relacija na njej. Relacija $R$ je:
-		\begin{enumerate}[a)]
-			\item \pojem{Refleksivna}, če velja: $\forall a\in A: aRa$.
-			\item \pojem{Irefleksivna}, če velja: $\forall a\in A: a\cancel{R}a$.
-			\item \pojem{Simetrična}, če velja: $\forall a, b\in A: aRb \Rightarrow bRa$.
-			\item \pojem{Asimetrična}, če velja: $\forall a, b\in A: aRb \Rightarrow b\cancel{R}a$.
-			\item \pojem{Antisimetrična}, če velja: $\forall a, b\in A: aRb \land bRa \Rightarrow a = b$.
-			\item \pojem{Tranzitivna}, če velja: $\forall a, b, c\in A: aRb \land bRc \Rightarrow aRc$.
-			\item \pojem{Intranzitivna}, če velja: $\forall a, b, c\in A: aRb \land bRc \Rightarrow a\cancel{R}c$.
-			\item \pojem{Sovisna}, če velja: $\forall a, b\in A; a\neq b: aRb \lor bRa$.
-			\item \pojem{Strogo sovisna}, če velja: $\forall a, b\in A: aRb \lor bRa$.
+	\end{lema}
+	\begin{proof}
+		\begin{enumerate}
+			\item Glede na definicijo $\rho$ je očitno, da je $\rho(x, y) < 1$. Preverimo torej, da je $\rho$ metrika na $X$. \begin{enumerate}[i)]
+				\item Naj bosta $x, y\in X$ poljubna elementa. Vemo, da je $d(x, y) \geq 0$ ker je $d$ metrika na $X$). Potem je pa tudi $\rho(x, y) \geq 0$. Posledično je torej $\rho(x, y)\in [0, 1) \forall x, y \in X$.
+				\item Velja: $\rho(x, y) = 0 \iff d(x, y) = 0 \iff x = y$.
+				\item Velja: $\forall x, y \in X: \rho(x, y) = \frac{d(x, y)}{1 + d(x, y)} = \frac{d(y, x)}{1 + d(y, x)} = \rho(y, x)$.
+				\item  Naj bodo $x, y, z \in X$ poljubni. Preverimo, ali velja $\rho(x, y) \leq \rho(x, z)+ \rho(z, y)$: \begin{equation*}
+					\rho(x, y) \leq \rho(x, z) + \rho(z, y) \iff \frac{d(x, y)}{1 + d(x, y)} \leq \frac{d(x, z)}{1 + d(x, z)} + \frac{d(z, y)}{1 + d(z, y)}
+				\end{equation*}
+				Z množenjem se znebimo ulomkov in tako dobimo neenakost:
+				\begin{align*}
+					d(x, y)(1 + d(x, z))(1 + d(z, y)) &\leq d(x, z)(1 + d(x, y))(1 + d(z, y)) ~+ \\ &+ d(z, y)(1 + d(x, z))(1 + d(x, y)) 	
+				\end{align*}
+				Da bo zapis krajši označimo $d(x, y) = d_{x, y}, d(x, z) = d_{x, z}$ in $d(z, y) = d_{z, y}$. Ko poračunamo faktorje na obeh straneh neenačaja dobimo:
+				\begin{align*}
+					d_{x, y} &+ d_{x, y}d_{x, z} + d_{x, y}d_{z, y} + d_{x, y}d_{x, z}d_{z, y} \leq \\
+					&\leq d_{x, z}d_{x, y} + d_{x, z} + d_{x, z}d_{z, y} + d_{x, y}d_{x, z}d_{z, y} + \\
+					&+ d_{z, y} + d_{z, y}d_{x, z} + d_{z, y}d_{x, y} + d_{x, y}d_{x, z}d_{z, y}
+				\end{align*}
+				Pokrajšamo skupne člene in tako dobimo:
+				\begin{equation*}
+					d_{x, y} \leq d_{x, z} + d_{x, z}d_{z, y} + d_{z, y} + d_{z, y}d_{x, z} + d_{x, y}d_{x, z}d_{z, y}
+				\end{equation*}
+				Ta pogoj pa je izpolnjen, ker je $d(x, y)\leq d(x, z) + d(z, y)$.
+			\end{enumerate}
+			Sledi, da je $\rho$ res metrika na $X$.
+			\item Naj bo $x\in X$ in $r>0$. Označimo $K_d(x, r) = \{y\in X;~ d(x, y) < r\}$. Ker je $\rho(x, y) = \frac{d(x, y)}{1 + d(x, y)}$, je potem $\rho(x, y)(1 + d(x, y)) = d(x, y)$ oz. $d(x, y) = \frac{\rho(x, y)}{1 - \rho(x, y)}$. Ko to vstavimo v definicijo $K_d(x, r)$ dobimo: $$K_d(x, r) = \{y\in X;~\frac{\rho(x, y)}{1 - \rho(x, y)}< r\} = \{y\in X;~\rho(x, y)< r - r\rho(x, y)\}$$ Pogoj $\rho(x, y) < r - r\rho(x, y)$ je pa ekvivalenten pogoju $\rho(x, y)(1 + r) < r$ oziroma $\rho(x, y) < \frac{r}{1 + r}$. Potem pa velja: $$K_d(x, r) =\{y\in X;~ \rho(x, y) < \frac{r}{1 + r}\} = K_\rho(x, \frac{r}{1 + r})$$
+			Iz zgornje enakosti potem sledi, da je $K_d(x, r) \in \mathcal{T}_\rho$, torej je $\mathcal{T}_d \subseteq \mathcal{T}_\rho$. Na podoben način lahko vidimo tudi, da je $K_\rho(x, r) = K_d(x, \frac{r}{1 - r})$, torej je $\mathcal{T}_\rho \subseteq \mathcal{T}_d$. Sledi, da je $\mathcal{T}_d = \mathcal{T}_\rho$.
 		\end{enumerate}
-	\end{definicija}
-	\begin{zgled}
-		Oglejmo si relacije $R_i \subseteq \Z\times\Z$ iz zgleda \ref{zgl:relprim} in jim določimo lastnosti, ki smo jih ravnokar definirali.
-	\end{zgled}
-	\begin{resitev}
-		\begin{enumerate}[i)]
-			\item $R_1$ je refleksivna, antisimetrična, tranzitivna ter strogo sovisna.
-			\item $R_2$ je irefleksivna, asimetrična, tranzitivna ter sovisna.
-			\item $R_3$ je refleksivna, simetrična ter tranzitivna.
-			\item $R_4$ je refleksivna, simetrična ter tranzitivna.
-			\item $R_5$ je simetrična.
-		\end{enumerate}
-	\end{resitev}
-	\begin{zgled}
-		Navedimo primer relacije, ki je hkrati simetrična in antisimetrična: $R = \{(x, x); x\in \R\}$.
-	\end{zgled}
-	\section{Delna in linearna urejenost}
-	\begin{definicija}
-		Relacija $R\subseteq A\times A$ je \pojem{delna urejenost}, če je refleksivna, antisimetrična in tranzitivna. Paru $(A, R)$ pravimo \pojem{delno urejena množica}.
-	\end{definicija}
-	\begin{zgled}
-		Naštejmo nekaj primerov delno urejenih množic: \begin{itemize}
-		\item $(\text{Družina podmnožic}, \subseteq)$
-		\item $(\R, \leq)$
-		\item $(\N, |)$
-		\end{itemize}
-	\end{zgled}
-	\begin{definicija}
-		Naj bo $(A, \leq)$ delno urejena množica. Elementa $a, b\in A$ sta \pojem{primerljiva}, če velja $a\leq b$ ali $b\leq a$, sicer sta pa \pojem{neprimerljiva}.
-	\end{definicija}
-	\begin{definicija}
-		Relacija $R\subseteq A\times A$ je \pojem{linearna urejenost}, če je delna urejenost in strogo sovisna. Paru $(A, R)$ pravimo \pojem{linearno urejena množica} oz. \pojem{veriga}.
-	\end{definicija}
+	\end{proof}
 	\begin{opomba}
-		Zgornjo definicijo lahko prebesedimo: Relacija $(A, R)$ je linearno urejena množica $\iff$ $(A, \leq)$ je delno urejena množica in poljubni par elementov $a, b\in A$ je primerljiv.
+		Naj bo $(X, \mathcal{T})$ metrizabilen prostor. Tedaj lahko brez škode za splošnost predpostavimo, da je metrika $d$ na $X$ taka, da je $\mathcal{T}_d = \mathcal{T}$ in $\forall x, y\in X: d(x, y) < 1$.
 	\end{opomba}
 	\begin{izr}
-		Naj bo $(A, \leq)$ delno oz. linearno urejena množica in $B\subseteq A$. Potem je zožitev relacije $\leq$ na $B$ tudi delna oz. linearna urejenost. Oznaka: $\leq_B = \{(a, b);~ a,b\in B \land a\leq b\}$
+		\label{izr:prodmetr}
+		Naj bo $\forall n\in\N (X_n, d_n)$ metrični prostor, tak, da je $\forall x, y \in X_n d_n(x, y) < 1$. Tedaj je $\map{D}{\prod_{n = 1}^{\infty}X_n\times\prod_{n = 1}^{\infty}X_n}{\R}$, ki je definirana s predpisom $D((x_1, x_2, \ldots), (y_1, y_2, \ldots)) = \max\{\frac{d_n(x_n, y_n)}{2^n;~n\in\N}\}$ za poljubne $(x_1, x_2, \ldots),(y_1, y_2, \ldots)\in \prod_{n = 1}^{\infty}X_n$ metrika na $\prod_{n = 1}^{\infty}X_n$.
 	\end{izr}
 	\begin{proof}
-		\begin{enumerate}
-			\item Naj bodo $a, b, c\in B$ poljubni elementi. Ker je $a\in B$, je tudi $a\in A$ in velja $a\leq a$. Sledi, da je $a\leq_B a$.
-			\item Če sta $a, b\in B$, sta tudi $a, b\in A$. Denimo, da velja $a\leq_B b$ in $b\leq_B a$. Potem je tudi $a\leq b$ in $b\leq a$, torej je $a = b$.
-			\item Naj bo $a\leq_B b$ in $b\leq_B c$. Potem je $a\leq b$ in $b\leq c$, torej je $a\leq c$ in posledično je $a\leq_B c$
-			\item Ker za poljubna $a, b\in B$ velja $a\leq b \lor b\leq a$, sledi $a\leq_B b \lor b\leq_B a$.
-		\end{enumerate}
-	\end{proof}
-	\begin{zgled}
-		Naj bo $\Dd = \mathcal{P}(\Z)$ in vzemimo za relacijo $\subseteq$. Hitro vidimo, da je $(\Dd, \subseteq)$ veriga. Naj bo $\mathcal{A} = \{\{1, 2, \ldots, n\};~ n\in\N\}$. Potem je $(\mathcal{A}, \subseteq_\mathcal{A})$ veriga v $\Dd$.
-	\end{zgled}
-	\begin{definicija}
-		Naj bo $(A, \leq)$ delno urejena množica. Element $a\in A$ je: \begin{itemize}
-			\item \pojem{minimalni element}, če velja: $\forall b\in A: b\leq a \Rightarrow b = a$
-			\item \pojem{najmanjši element} oz. \pojem{prvi element}, če velja: $\forall b\in A: a\leq b$
-			\item \pojem{maksimalni element}, če velja: $\forall b\in A: a\leq b \Rightarrow b = a$
-			\item \pojem{največji element} oz. \pojem{zadnji element}, če velja: $\forall b\in A: b\leq a$
-		\end{itemize}
-	\end{definicija}
-	Navedimo nekaj primerov.
-	\begin{zgled}
+		Preverili bomo najprej, da je $D$ dobro definirana, nato pa še, da je metrika. Pri tem bomo uporabili zapis $X = \prod_{n = 1}^{\infty}X_n$ in za poljuben $(x_1, x_2, \ldots) \in X : \underline{x} = (x_1, x_2, \ldots)$.
 		\begin{itemize}
-			\item[$(\N, |):$] $1$ je hkrati minimalni in prvi element, ni minimalnega in ni zadnjega elementa.
-			\item[$(\R, \leq):$] Nima niti minimalnega, niti maksimalnega, niti prvega niti zadnjega elementa.
-			\item[$(\N\setminus\{1\}, |):$] minimalni elementi so vsa praštevila. Nima niti prvega element niti minimalnega niti zadnjega elementa.
-		\end{itemize}
-	\end{zgled}
-	\begin{izr}
-		Naj bo $(A, \leq)$ delno urejena množica. \begin{enumerate}
-			\item Če obstaja prvi ali zadnji element, je enoličen.
-			\item Če je $a\in A$ prvi (oz. zadnji) element, je tudi edini minimalni (oz. maksimalni) element.
-			\item Če je $A$ končna, potem vedno obstaja vsaj en minimalni oz. vsaj en maksimalni element.
-		\end{enumerate}
-	\end{izr}
-	\begin{proof}
-		\begin{enumerate}
-			\item Denimo, da imamo dva različna prva elementa: $a, b\in A; a\neq b$. Ker je $a$ prvi element je $a\leq b$ in ker je $b$ prvi element je $b \leq a$. Posledično, ker je $\leq$ antisimetrična, je $a = b$, kar pa nas privede v protislovje.
-			\item Denimo, da je $a\in A$ prvi element. Naj bo $b\in A$ minimalni element. Ker je $a$ prvi element velja $a\leq b$ in ker je $b$ minimalni element posledično velja $b = a$.
-			\item To točko bomo pokazali z indukcijo na $\abs{A}$. \begin{itemize}
-				\item[\abs{A}$=1:$] Ta primer je trivialen - trditev očitno velja v tem primeru.
-				\item[\abs{A}$=n:$] Denimo, da trditev velja za množice moči $n-1$. BŠS denimo, da ima vsaka množica moči $n-1$ vsaj en minimalni element. Naj bo $a\in A$ poljuben element in označimo $\acute{A} = A\setminus\{a\}$. Po indukcijski predpostavki, ima $\acute{A}$ minimalni element $b\in \acute{A}$. Obravnavamo primere: \begin{itemize}
-					\item Če je $a\leq b$, je $a$ minimalni element v $A$.
-					\item Če je $b\leq a$, je $b$ minimalni tudi v $A$.
-					\item Če $a$ in $b$ nista primerljiva je $b$ minimalni element v $A$.
-				\end{itemize}
-			\end{itemize}
-		\end{enumerate}
-	\end{proof}
-	\begin{izr}
-		Naj bo $(A, \leq)$ linearno urejena množica. \begin{enumerate}[i)]
-			\item $a\in A$ je prvi element $\iff a$ je minimalni element
-			\item $a\in A$ je zadnji element $\iff a$ je maksimalni element
-		\end{enumerate}
-	\end{izr}
-	\begin{proof}
-		\begin{enumerate}[i)]
-			\item Denimo, da je $a\in A$ prvi element. Potem je, po prejšnjem izreku, $a$ edini minimalni element. Obratno, denimo da je $a$ minimalni element. Ker je $\leq$ strogo sovisna, velja $\forall b\in A: b\leq a \lor a\leq b$. Denimo, da je $b\leq a$. Ker je $a$ minimalni element, sledi $b = a$. Torej $\forall b\in A: a\leq b$ oz. $a$ je prvi element.
-			\item Naj bo $a\in A$ zadnji element. Potem po prejšnjem izreku velja, da je $a$ edini maksimalni element. Denimo sedaj, da je $a$ maksimalni element. Zaradi stroge sovisnosti $\leq$ je $\forall b\in A: a\leq b \lor b\leq a$. Denimo, da za nek $b\in A$ velja $a\leq b$. Ker je $a$ maksimalni element je potem $b = a$. Sledi torej, da $\forall b\in A$ velja $b\leq a$, torej je $a$ zadnji element.
-		\end{enumerate}
-	\end{proof}
-	\begin{posl}
-		Naj bo $(A, \leq)$ linearno urejena množica. Če obstaja prvi (ali zadnji) element, je enoličen.
-	\end{posl}
-	\begin{posl}
-		Vsaka končna linearno urejena množica vsebuje natanko en prvi in natanko en zadnji element.
-	\end{posl}
-	Od zdaj naprej se bomo pretežno ukvarjali s končnimi množicami. Kadar bomo rekli, da je množica urejena, bomo s tem mislili linearno urejenost.
-	\begin{definicija}
-		Naj bo $(A, \leq)$ linearno urejena množica in $A$ končna. Tak $(A, \leq)$ imenujemo \pojem{abeceda}. \pojem{Beseda dolžine $n$} nad $(A, \leq)$ je $n$-terica $b = (b_1, b_2,\ldots, b_n) = b_1b_2\ldots b_n$, kjer je $b_i\in A~\forall i\in \{1, 2, \ldots, n\}$.
-	\end{definicija}
-	\begin{definicija}
-		Naj bo $a$ beseda dolžine $n$ in $b$ beseda dolžine $m; n\leq m$ nad abecedo $(A, \leq)$. Potem je $a\leq_{LEX} b$, če velja: \begin{itemize}
-			\item $\forall i \in \{1, 2, \ldots n\}: a_i = b_i$, ali
-			\item  $\exists j \in \{1, 2, \ldots, n\}: \forall i \in \{1, 2, \ldots, j-1\} a_i = b_i ~\&~ a_j \leq b_j$
-		\end{itemize}
-		Očitno je leksikografska urejenost besed $\leq_{LEX}$ linearna urejenost.
-	\end{definicija}
-	
-	\section{Generiranje kombinatoričnih objektov}
-	Naj bo $A$ neka končna množica. Pogosto potrebujemo učinkovite algoritme za generiranje: \begin{itemize}
-		\item Vseh podmnožic množice $A$
-		\item Vseh podmnožic dolžine $k$ množice $A$
-		\item  Vseh permutacij elementov množice $A$
-	\end{itemize}
-	V vseh primerih bomo obravnavali ureditev, ki jo naravno porodi leksikografska ureditev ter ureditev najmanjše spremembe. Pri tem bomo govorili o naslednjih operacijah: \begin{itemize}
-		\item[Rangiranje:] $\map{Rang}{S}{\{0, 1, \ldots, \abs{S}-1\}}$ je bijekcija, ki vsakemu objektu $s\in S$ določi njegov položaj v ureditvi. Velja torej: $a\leq b \iff Rang(a)\leq Rang(b)$
-		\item[Derangiranje:] $\map{Derang}{\{0, 1, \ldots, \abs{S}-1\}}{S}$ je bijektivni inverz preslikave $Rang$, ki vsaki poziciji v ureditvi $i\in \{0, 1, \ldots, \abs{S}-1\}$ določi pripadajoč objekt. Velja: $\forall a\in S,\forall r\in \{0, 1, \ldots \abs{S}-1\}: Rang(a) = r \iff Derang(r) = a$
-		\item[Naslednik:] $\map{Naslednik}{S}{S\cup\{nedefinirano\}}$ je preslikava s predpisom $\forall s\in S: Naslednik(s) = \begin{cases}
-		Derang(Rang(s)+1)&;~ rang(s) < \abs{S}-1 \\
-		nedefinirano &;~ \text{sicer}
-		\end{cases}$
-		Velja: $\forall s\in S: Naslednik(s) = t\neq nedefinirano \iff Rang(t)=Rang(s) + 1$
-	\end{itemize}
-	
-	\subsection{Določanje vseh podmnožic}
-	Brez škode za splošnost recimo, da je $A = \{1, 2, \ldots, n\} = \mn{n}$ in $\mathcal{A} = \Pot{A}$. Potem lahko vsaki podmnožici $T\in \mathcal{A}$ določimo t.~i.~ \pojem{karakteristični vektor} $\chi(T)$ dolžine $n$ s predpisom $\chi(T) = (X_{n-1}, \ldots, X_{1}, X_{0}); X_i = \begin{cases}
-	0 &;~ n-i \notin T \\
-	1 &;~ n-i \in T
-	\end{cases}$.
-	
-	\subsubsection{Urejenost porojena z leksikografsko}
-	\begin{definicija}
-		Naj bo $A = \mn{n}$. Leksikografska urejenost $\mathcal{A} = \Pot{A}$ je tista urejenost, ki je porojena z leksikografsko ureditvijo pripadajočih karakterističnih vektorjev $\chi(T); T\in \mathcal{A}$. 
-	\end{definicija}
-	\begin{zgled}
-		\label{zgl:lex123}
-		Poglejmo si leksikografsko ureditev od $\Pot{\{1, 2, 3\}}$.
-			\begin{table}[h!]
-			\centering
-			\begin{tabular}{|c|c|c|}
-				$T$ & $\chi(T)$ & $Rang(T)$ \\\hline
-				$\emptyset$ & $000$ & $0$ \\\hline
-				$\{3\}$ & $001$ & $1$ \\\hline
-				$\{2\}$ & $010$ & $2$ \\\hline
-				$\{2, 3\}$ & $011$ & $3$ \\\hline
-				$\{1\}$ & $100$ & $4$ \\\hline
-				$\{1, 3\}$ & $101$ & $5$ \\\hline
-				$\{1, 2\}$ & $110$ & $6$ \\\hline
-				$\{1, 2, 3\}$ & $111$ & $7$ \\\hline
-			\end{tabular}
-		\end{table}
-	\end{zgled}
-	Opazimo, da leksikografska ureditev $\mathcal{A}$ sovpada z naraščujočo ureditvijo binarno predstavljenih pripadajočih rangov.
-	Navedimo sedaj algoritme za $Rang, Derang$ in $Naslednik$ za podmnožice:
-	\begin{itemize}
-		\item Za $Rang$: \begin{algorithm}[H]
-			\DontPrintSemicolon
-			\KwData{$n\in \N$ in podmnožica $T\in \Pot{\mn{n}}$}
-			\KwResult{$r = Rang(T)$}
-			\SetAlgorithmName{Algoritem}
-			~~$r = 0$\;
-			\For{$i \in \{n, n-1, \ldots, 1\}$}{\If{$i\in T$}{$r = r + 2^{n-i}$}}
-			\Return{$r$}
-			\caption{Algoritem $LexRangPodmnožice(n, T)$}\label{alg:lexrangpodmn}
-		\end{algorithm}
-		\item Za $Derang$: \begin{algorithm}[H]
-			\DontPrintSemicolon
-			\KwData{$n\in \N$ in rang $r \in \{0, 1, \ldots, n-1\}$}
-			\KwResult{množica $T\in \Pot{\mn{n}}$, za katero je $Rang(T) = r$}
-			\SetAlgorithmName{Algoritem}
-			~~$T = \emptyset$\;
-			\For{$i \in \{n, n-1, \ldots, 1\}$}{\If{$r \mod 2 \equiv 1$}{$T = T\cup \{i\}$\;$r = \lfloor \frac{r}{2}\rfloor$}}
-			\Return{$T$}
-			\caption{Algoritem $LexDerangPodmnožice(n, r)$}\label{alg:lexderangpodmn}
-		\end{algorithm}
-		\item Za $Naslednik$: \begin{algorithm}[H]
-			\DontPrintSemicolon
-			\KwData{$n\in \N$ in podmnožica $T\in \Pot{\mn{n}}$}
-			\KwResult{množica $Nas$, ki je naslednik množice $T$}
-			\SetAlgorithmName{Algoritem}
-			~~$Nas = nedefinirano$\;
-			$r = LexRangPodmnožice(n, T)$\;
-			\If{$r< 2^{n}-1$}{$Nas = LexDerangPodmnožice(n, r+1)$}
-			\Return{$Nas$}
-			\caption{Algoritem $LexNaslednikPodmnožice(n, T)$}\label{alg:lexnaspodmn}
-		\end{algorithm}
-	\end{itemize}
-
-V leksikografski ureditvi podmnožic se nam lahko zgodi, da sta dve zaporedni podmnožici zelo različni. To se zgodi v zgledu \ref{zgl:lex123} na sredini tabele, kjer podmnožici $\{2, 3\}$ sledi njen komplement $\{1\}$. To nas motivira, da začnemo študirati ureditve v katerih se dva zaporedna elementa medseboj čim manj razlikujeta.
-
-\subsubsection{Ureditev z najmanjšo spremembo}
-Za začetek naredimo en primer na znani množici $\{1, 2, 3\}$.
-\begin{zgled}
-	Zapiši karakteristične vektorje podmnožice množice $\{1, 2, 3\}$ tako, da se dva zaporedna razlikujeta v natanko enem mestu:
-	$$000 \leq 001 \leq 011 \leq 010 \leq 110 \leq 100 \leq 101 \leq 111$$
-\end{zgled}
-
-\begin{definicija}
-	Naj bo $A=\set{n}$ za nek $n\in \N$ in $\mathcal{A} = \Pot{A}$. Spomnimo se, da je za $T_1, T_2 \in \mathcal{A}$ simetrična razlika množic $T_1 \triangle T_2 = (T_1 \cup T_2)\setminus (T_1 \cap T_2)$. Potem količino $d(T_1, T_2) = \abs{T_1\triangle T_2}$ imenujemo \pojem{Hemmingova razdalja} med $T_1$ in $T_2$. Za $T_1 \neq T_2$ je $d(T_1, T_2) \geq 1$.
-\end{definicija}
-\begin{opomba}
-	Opazimo, da je $d(T_1, T_2)$ ravno enaka številu bitov, v katerih se $\chi(T_1)$ in $\chi(T_2)$ razlikujeta.
-\end{opomba}
-	
-\begin{definicija}
-	Vsako ureditev vseh binarnih nizov dolžine $n$ v kateri se dva zaporedna elementa razlikujeta v natanko enem bitu imenujemo \pojem{Grayeva koda}. Ena izmed njih je t.~i.~\pojem{zrcaljena Grayeva koda}. Označimo: $G^n = \text{ureditev vseh binarnih nizov dolžine $n$ v zrcaljeni Grayevi kodi}$, $G^n = (G^n_0, G^n_1, \ldots, G^n_{2^n - 1})$.
-	Zrcaljena Grayeva koda je definirana rekurzivno na naslednji način: \begin{algorithm}[H]
-		\DontPrintSemicolon
-		\KwData{Dolžina binarnih nizov $n_0\in \N$}
-		\KwResult{Zrcaljena Grayeva koda $G^{n_0}$}
-		\SetAlgorithmName{Algoritem}
-		~~$G_1 = (0, 1)$ \;
-		\For{$n\in \{2, 3, \ldots, n_0\}$}{$G^n = (0G^{n-1}_0, 0G^{n-1}_1, \ldots, 0G^{n-1}_{2^{n-1}-1}, 1G^{n-1}_{2^{n-1}-1}, \ldots, 1G^{n-1}_1, 1G^{n-1}_0)$}
-		\Return{$G^{n_0}$}
-		\caption{Algoritem za zrcaljeno Grayevo kodo za bin.~nize dolžine $n_0$.}\label{alg:zrcgray}
-	\end{algorithm}
-\end{definicija}
-\newpage
-	\begin{zgled}
-		S tabelo prikažimo izvedbo algoritma \ref{alg:zrcgray} za $n_0 = 3$.
-			\begin{table}[h!]
-			\centering
-			\begin{tabular}{|c|c|c|}
-				 &  &   \\\hline
-				$0$ & $00$ & $000$ \\
-				$1$ & $01$ & $001$ \\
-				 & $11$ & $011$ \\
-				 & $10$ & $010$ \\\hline
-				 &  & $110$ \\
-				 &  & $111$ \\
-				 &  & $101$ \\
-				 &  & $100$ \\
-			\end{tabular}
-		\end{table}
-	\end{zgled}
-	
-	\begin{izr}
-		$\forall n\in\N$ je $G^n$ Grayeva koda.
-	\end{izr}
-	\begin{proof}
-		Dokaz bomo izvedli z indukcijo po $n$. \begin{itemize}
-			\item[$(n = 1):$] $G_1 = (0, 1)$, kar je očitno Grayeva koda.
-			\item[$(n > 1):$] Denimo, da je $G^k$ Grayeva koda $\forall k\in \set{n-1}$ in gledamo $G^n_{i}$ ter $G^n_{i+1}$. \begin{enumerate}[i)]
-				\item Denimo, da je $i \leq i+1 \leq 2^{n-1}-1$. Potem sta prva bita od $G^n_{i}$ in $G^n_{i+1}$ enaka in edina možna razlika se lahko pojavi pri gledanju zadnjih $(n-1)$ bitov. Torej $G^n_{i} = 0G^{n-1}_i$ in $G^n_{i+1} = 0G^{n-1}_{i+1}$ in edina razlika se lahko pojavi pri primerjanju $G^{n-1}_{i}$ in $G^{n-1}_{i+1}$. Ta sta pa po indukcijski predpostavki razlikujeta v natanko $1$ bitu.
-				\item Denimo, da je $2^{n-1}-1 < i < 2^n - 1$. Potem je $G^n_{i} = 1G^{n-1}_{i+1}$ in $G^n_{i+1} = 1G^{n-1}_{i}$ in edina razlika nastopi pri primerjavi $G^{n-1}_i$ in $G^{n-1}_{i+1}$. Ta se pa po predpostavki razlikujeta v natanko $1$ bitu.
-				\item Denimo, da je $i = 2^{n-1}-1$. Potem je $G^n_{i} = 0G^{n-1}_{2^{n-1}-1}$ in $G^n_{i+1} = 1G^{n-1}_{2^{n-1}-1}$ in $G^n_{i}$ ter $G^n_{i+1}$ se posledično razlikujeta v natanko enem bitu.
+			\item Naj bosta $\ul{y}$ in $\ul{y}$ poljubna elementa $X$. Obravnavamo možnosti: \begin{enumerate}[i)]
+				\item Denimo, da je $\ul{x} = \ul{y}$ in označimo $A =\{\frac{d_n(x_n, y_n)}{2^n};~n\in\N\}$. Po predpostavki za vsak $n\in\N$ velja, da je $x_n = y_n$. Potem je pa $A = \{0\}$ in $D(\ul{x}, \ul{y})=\max(A) = 0$.
+				\item Naj bosta sedaj $\ul{x}$ in $\ul{y}$ različna. Potem $\exists n_0\in \N$, da je $x_{n_0}\neq y_{n_0}$ in označimo $r_0 = \frac{d_{n_0}(x_{n_0}, y_{n_0})}{2^{n_0}} > 0$. Ker je $A$ neprazna množica in v $\R$ navzgor omejena z $1$, obstaja $\sup(A)$. Opazimo tudi, da je zaporedje $\frac{d_n(x_n, y_n)}{2^n}$ navzdol omejeno z $0$ in navzgor omejeno z zaporedjem $\frac{1}{2^n}$. Ker je $\lim_{n\to\infty}\frac{1}{2^n} = 0$ po izreku o sendviču potem velja, da je $\lim_{n\to\infty}\frac{d_n(x_n, y_n)}{2^n} = 0$. Naj bo $n_1\in \N$ tak, da $\forall n\in\N; n\geq n_1: \frac{d_n(x_n, y_n)}{2^n} < r_0$. Dodatno, ker je (očitno) $\sup(A) \geq r_0$, je $\sup(A) = \sup\{\frac{d_n(x_n, y_n)}{2^n};~n\in \set{n_1}\} = \max\{\frac{d_n(x_n, y_n)}{2^n};~n\in\set{n_1}\}=\max(A)$. Drugače povedano, za vsak par $\ul{x}, \ul{y}\in X$ za pripadajočo množico $A$ obstaja maksimum, torej je $D$ dobro definirana.
+				\item Preverimo še, da je $D$ res metrika. \begin{enumerate}[a)]
+					\item Za poljubna $\ul{x}, \ul{y}\in X$ je $D(\ul{x}, \ul{y}) \geq 0$ in $D(\ul{x}, \ul{y})\iff \ul{x} = \ul{y}$
+					\item Za poljubna $\ul{x}, \ul{y}\in X$ je $D(\ul{x}, \ul{y}) = D(\ul{y}, \ul{x})$
+					\item Premislimo, da velja trikotniška neenakost:
+					Naj bodo $\ul{x}, \ul{y}, \ul{z}\in X$ poljubni elementi. Potem $\exists n_0 \in \N$, tak, da velja: \begin{align*}
+						D(\ul{x}, \ul{y}) &\leq \max\{\frac{d_n(x_n, z_n) + d_n(z_n, y_n)}{2^n};~n\in\N\} \\ &=\frac{d_{n_0}(x_{n_0}, z_{n_0}) + d_{n_0}(z_{n_0}, y_{n_0})}{2^{n_0}} \\ 
+						&= \frac{d_{n_0}(x_{n_0}, z_{n_0})}{2^{n_0}} + \frac{d_{n_0}(z_{n_0}, y_{n_0})}{2^{n_0}} \\
+						&\leq \max\{\frac{d_n(x_n, z_n)}{2^n}; n\in\N\} + \max\{\frac{d_n(z_n, y_n)}{2^n}; n\in\N\} \\
+						&= D(\ul{x}, \ul{z}) + D(\ul{z}, \ul{y})
+					\end{align*} 
+				\end{enumerate}
 			\end{enumerate}
-			Torej $\forall i \in \seto{2^{n}-2}$ velja, da se $G^n_i$ in $G^n_{i+1}$ razlikujeta v natanko enem bitu.
 		\end{itemize}
-		Potem je pa tudi $G^n$ Grayeva koda.
+	\end{proof}
+	\begin{definicija}
+		Prostor $(\prod_{n = 1}^{\infty}X_n, D)$, kjer je $D$ definirana kot v izreku \ref{izr:prodmetr}, pravimo \pojem{produkt metričnih prostorov} $(X_1, d_1), (X_2, d_2), \ldots$. Metriki $D$ pravimo \pojem{produktna metrika} na $\prod_{n = 1}^{\infty}X_n$, ki je dobljena iz metrik $d_1, d_2, \ldots$.
+	\end{definicija}
+	\begin{definicija}
+		Naj bo $\Lambda$ poljubna indeksna množica in naj bo za $\forall\lambda\in\Lambda (X_\lambda, \mathcal{T}_\lambda)$ topološki prostor. Topologiji $\mathcal{U}$ na $X =\prod_{\lambda\in\Lambda}X_\lambda$ pravimo \pojem{produktna topologija} na $X$, dobljena iz topologij $\{\mathcal{T}_\lambda\}_{\lambda\in\Lambda}$, če je $\mathcal{P} = \{p^{-1}_\lambda(U_\lambda);~ \lambda\in\Lambda ~\&~U_\lambda \in \mathcal{T}_\lambda\}$ njena podbaza. Pri tem je $\forall\lambda\in\Lambda \map{p_\lambda}{X}{X_\lambda}$ projekcija na $\lambda$-ti faktor.
+	\end{definicija}
+	\begin{opomba}
+		Seveda obstaja natanko ena topologija $\mathcal{U}$ na $\prod_{\lambda\in\Lambda}$, ki ima $\mathcal{P}$ za podbazo.
+	\end{opomba}
+	Naj bo $B\in \mathcal{B}$ bazna množica za produktno topologijo $\mathcal{U}$. Potem obstajajo taki indeksi $\lambda_1, \lambda_2, \ldots, \lambda_n \in \Lambda$, da je $B = p^{-1}_{\lambda_1}(U_{\lambda_1})\cap p^{-1}_{\lambda_2}(U_{\lambda_2})\cap \ldots \cap p^{-1}_{\lambda_n}(U_{\lambda_n})$ za neke množice $U_{\lambda_1}\in \mathcal{T}_{\lambda_1}, U_{\lambda_2}\in \mathcal{T}_{\lambda_2}, \ldots, U_{\lambda_n}\in \mathcal{T}_{\lambda_n}$. Z določeno mero zlorabe notacije potem sledi: \begin{align*} B &= \left(U_{\lambda_1}\times \prod_{\lambda\in\Lambda\setminus\{\lambda_1\}}X_\lambda\right)\cap \left(U_{\lambda_2}\times \prod_{\lambda\in\Lambda\setminus\{\lambda_2\}}X_\lambda\right)\cap \ldots \cap \left(U_{\lambda_n}\times \prod_{\lambda\in\Lambda\setminus\{\lambda_n\}}X_\lambda\right) \\
+		&=\left(U_{\lambda_1}\times U_{\lambda_2}\times\ldots\times U_{\lambda_n}\right) \times \prod_{\lambda\in\Lambda\setminus\{\lambda_1, \lambda_2, \ldots, \lambda_n\}}X_\lambda
+	\end{align*}
+	To nam bo pomagalo pri dokazu naslednjega izreka.
+	\begin{izr}
+		Za poljuben $n\in\N$ naj bo $(X_n, d_n)$ metrični prostor in naj bo $D$ produktna metrika na $X = \prod_{n = 1}^\infty X_n$, dobljena iz $d_1, d_2, \ldots$. Naj bo $\mathcal{U}$ produktna topologija na $X$, ki je dobljena iz topologij $\mathcal{T}_{d_1}, \mathcal{T}_{d_2}, \ldots$. Tedaj je $\mathcal{U} = \mathcal{T}_D$.
+	\end{izr}
+	
+	\begin{proof}
+		Pokazali bomo, da obe topologiji vsebujeta drugo. \begin{itemize}
+			\item[$\mathcal{U} \supseteq \mathcal{T}_D):$] Baza topologije $\mathcal{T}_D$ je $\mathcal{B}_D = \{K_D(\ul{x}, r);~ \ul{x}\in X ~\&~ r>0\}$. Dovolj bo, če pokažemo, da je $\mathcal{B}_D \subseteq \mathcal{U}$. To bomo storili tako, da za vsako kroglo $K_D(\ul{x}, r)\in \mathcal{B}_D$ in vsak element $\ul{y}\in K_D(\ul{x}, r)$ najdemo okolico $U_{\ul{y}}\in \mathcal{U}$, da bo $K_D(\ul{x}, r) = \bigcup_{\ul{y}\in K_D(\ul{x}, r)}U_{\ul{y}}$.
+			
+			Naj bo torej $\ul{x}$ poljubna točka iz $X$ in naj bo $r>0$. Naj bo $\ul{y}\in K_D(\ul{x}, r)$ in označimo $r_0 = \frac{r - D(\ul{x}, \ul{y})}{2} > 0$. Ker je $\lim_{n\to\infty}\frac{1}{2^n} = 0$ obstaja nek $n_0\in\N$, da bo $\forall n\geq n_0 \frac{1}{2^n} < r_0$. Označimo: $$U_{\ul{y}} = K_{d_1}(y_1, \frac{r_0}{2})\times K_{d_2}(y_2, \frac{r_0}{2})\times\ldots K_{d_{n_0}}(y_{n_0}, \frac{r_0}{2})\times\prod_{k = n_0 + 1}^\infty X_k$$
+			Očitno je $\ul{y}\in U_{\ul{y}}$. Naj bo sedaj $\ul{z}\in U_{\ul{y}}$. Vemo, da je za vsak $n\in\N$ $d_n(z_n, y_n) < \frac{r_0}{2}$. Potem je pa: \begin{align*}
+				D(\ul{x}, \ul{z}) &= \max\{\frac{d_n(x_n, z_n)}{2^n};~n\in\N\} \\
+				&= \max\left(\{\frac{d_1(x_1, z_1)}{2}, \ldots, \frac{d_{n_0}(x_{n_0}, z_{n_0})}{2^{n_0}}\}\cup\{\frac{d_n(x_n, z_n)}{2^n};~n> n_0\}\right) \\
+				&\leq \max\left(\{\frac{d_n(x_n, y_n) + d_n(y_n, z_n)}{2^n};~n\in \set{n_0}\}\cup\{\frac{1}{2^n}\}^{\infty}_{n = n_0 + 1}\right)
+			\end{align*}
+			Vemo, da je $d_i(x_i, z_i) < \frac{r_0}{2}$ za vse $i\in \set{n_0}$ in iz prejšnje definicije $r_0$ izrazimo $D(\ul{x}, \ul{y}) = r - 2r_0$. Potem je pa $\frac{d_i(x_i, y_i)}{2^i} \leq D(\ul{x}, \ul{y})= r - 2r_0$. Za vask $i\in \set{n_0}$ sledi ocena: \begin{align*}
+				\frac{d_i(x_i, y_i)}{2^i} &\leq \frac{d_i(x_i, z_i)}{2^i} + \frac{d_i(z_i, y_i)}{2^i} < r - 2r_0 + \frac{r_0}{2^{i+1}} \\ &< r - 2r_0 + r_0 < r- r_0 < r
+			\end{align*}
+			Posledično je $D(\ul{x}, \ul{z}) < r$, torej je $\ul{z}\in K_D(\ul{x}, r)$. Ker to velja za vsak $\ul{z} \in U_{\ul{y}}$, je potem $U_{\ul{y}} \subseteq K_D(\ul{x}, r)$. Ker je to res za vsak $\ul{y}\in K_D(\ul{x}, r)$, je potem res $K_D(\ul{x}, r)=\bigcup_{\ul{y}\in K_D(\ul{x}, r)}U_{\ul{y}}$, torej je $\mathcal{T}_D \subseteq \mathcal{U}$.
+			\item[$\mathcal{U} \subseteq \mathcal{T}_D):$] Naj bo $B = U_1\times U_2\times\ldots\times U_n \times \prod_{k = 1}^\infty X_{n+k}$ bazna množica $\mathcal{U}$ in naj bo $\ul{x}\in B$. Potem je $x_1\in U_1, x_2\in U_2,\ldots, x_n\in U_n$. Za vsak $i\in\set{n}$ je torej $U_i\in \mathcal{T}_i$, torej $\exists r_i; K_{d_i}(x_i, r_i)\subseteq U_i$. 
+			
+			Določimo $r = \min\{\frac{r_i}{2^i};~ i\in\set{n}\}$ in naj bo $\ul{y}\in K_D(\ul{x}, r)$. Potem je $D(\ul{y}, \ul{x}) = \max\{\frac{d_i(y_i, x_i)}{2^i};~i\in\N\} < r$. Obstaja nek $i_0\in\N$, da je $D(\ul{y}, \ul{x}) = \frac{d_{i_0}(y_{i_0}, x_{i_0})}{2^{i_0}} = r_0$. Vemo že, da je $r_0 < r = \min\{\frac{r_i}{2^i};~i\in\set{n}\}$. Potem pa za vsak $i\in \set{n}$ velja $\frac{d_i(y_i, x_i)}{2^i} \leq r_0 < r \leq \frac{r_i}{2^i}$, torej je $\forall i \in \set{n}$ $d_i(y_i, x_i) < r_i$ oz. $y_i\in K_{d_i}(x_i, r_i)$. Potem je pa $\ul{y}\in B$. Ker to velja, sledi, da je $K_D(\ul{x}, r) \subseteq B ~\forall \ul{x}\in B$ in posledično je $B = \bigcup_{\ul{x}\in B} K_D(\ul{x}, r_{\ul{x}}) \in \mathcal{T}_D$, torej je $\mathcal{U} \subseteq \mathcal{T}_D$.
+		\end{itemize}
 	\end{proof}
 \end{document}
