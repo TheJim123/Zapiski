@@ -84,10 +84,112 @@
 	\maketitle
 	\newpage
 	\begin{abstract}
-		\noindent Dokument vsebuje zapiske predavanj predmeta Izbrana poglavja iz topologije v okviru študija prvega letnika magistrskega študija matematike na FNM.
+		\noindent Dokument vsebuje zapiske vaj predmeta Izbrana poglavja iz topologije v okviru študija prvega letnika magistrskega študija matematike na FNM.
 	\end{abstract}
 	\tableofcontents
 	\newpage
 	\section{Ponovitev stare snovi}
-	Vaje...
+	\subsection{Povezanost}
+	\begin{definicija}
+		Naj bo $(X, \mathcal{T})$ topološki prostor in $U, V \subseteq X$. Pravimo, da $U$ in $V$ tvorita \pojem{separacijo} $X$, če velja: \begin{itemize}
+			\item $U, V \in \mathcal{T}$
+			\item $U,V \neq \emptyset$
+			\item $U\cap V = \emptyset$
+			\item $U\cup V = X$
+		\end{itemize}
+		Dodatno, pravimo, da je prostor $(X, \mathcal{T})$ \pojem{nepovezan}, če ima kako separacijo in \pojem{povezan} sicer.
+	\end{definicija}
+	\begin{nal}
+		Naj bo $\mathcal{T} = \{U\subseteq \R;~ \R\setminus U~\text{je končna}\}\cup \{\emptyset\}$. Ali je $(\R, \mathcal{T})$ povezan prostor?
+	\end{nal}
+	\begin{resitev}
+		Denimo, da $(\R, \mathcal{T})$ ni povezan. Naj $U, V\in \mathcal{T}\setminus\{\emptyset\}$ tvorita separacijo $\R$. Potem obstajajo $u_1, u_2, \ldots, u_n, v_1, v_2, \ldots, v_m \in \R$, taki, da so $u_i \neq v_j \forall i, j$, in sta $U = \R\setminus\{u_1, u_2, \ldots, u_n\}$ ter $V = \R\setminus\{v_1, v_2, \ldots, v_m\}$. Naj bo $z \in \R\setminus\{u_1, u_2, \ldots, u_n, v_1, v_2, \ldots, v_m\}$. Potem je tudi $z\in U$ in $z \in V$, torej je $z\in U\cap V \neq \emptyset$. To je pa protislovno s tretjim aksiomom separacije $U, V$. Torej je $(\R, \mathcal{T})$ povezan.
+	\end{resitev}
+	\begin{nal}
+		Ali obstaja topološki prostor $(X, \mathcal{T})$, za katerega velja: \begin{itemize}
+			\item $\forall A\subseteq X: \abs{A} = 2 \Rightarrow (A, \mathcal{T}_A)$ je povezan
+			\item $\exists B \subseteq X: (B, \mathcal{T}_B)$ ni povezan.
+		\end{itemize}
+	\end{nal}
+	\begin{resitev}
+		Najpraj opazimo, da če tak prostor obstaja, bo $\abs{X}\geq 3$. Naj bo $(X, \mathcal{T})$ prostor, za katerega velja prva zahteva in naj bo $B\subseteq X, B\neq\emptyset$. Denimo, da je $\abs{X}\geq 3$: \begin{enumerate}[i)]
+			\item Če je $\abs{B}=1$ je $(B, \mathcal{T}_B)$ očitno povezan.
+			\item Če je $\abs{B}=2$ je $(B, \mathcal{T}_B)$ povezan po predpostavki.
+			\item Denimo, da je $\abs{B}>2$. Naj bodo $x_1, x_2, x_3 \in X$ paroma različni in naj bo $\{x_1, x_2, x_3\}\subseteq B$, za katero velja, da je $(B, \mathcal{T}_B)$ nepovezan. Potem obstaja separacija $U, V$ in brez škode za splošnost denimo $\{x_1, x_2\}\subseteq U$ in $\{x_3\}\in V$. Po predpostavki je $\{x_1, x_2\}$ povezan, po drugi pa je $\{x_1, x_2\} = \{x_1\}\cup \{x_2\}$, torej je $\{x_1\},\{x_2\}$ separacija od $\{x_1, x_2\}$. Pridemo v protislovje s predpostavko, da so vsi prodprostori moči $2$ povezani.
+		\end{enumerate}
+		Posledično ni takega topološkega prostora $(X, \mathcal{T})$, ki bi ustrezal obema pogojema.
+	\end{resitev}
+	\begin{definicija}
+		Naj bo $(x, \mathcal{T})$ topološki prostor in $x, y\in X$. Pravimo, da je $\map{f}{[0, 1]}{X}$ \pojem{pot} od $x$, do $y$, če je $f$ zvezna in $f(0) = x$ ter $f(1) = y$. Pravimo, da je $(X, \mathcal{T})$ \pojem{povezan s potmi}, če za vsak par $x, y\in X$ obstaja pot od $x$ do $y$.
+	\end{definicija}
+	\begin{nal}
+		Naj bo $X$ neprazna množica in $a\in X$. Naj bo $\mathcal{T}$ topologija na $X$, za katero velja: $\forall U \in \mathcal{T}\setminus\{\emptyset\}: a\in U$. Ali je $(X, \mathcal{T})$ povezan s potmi?
+	\end{nal}
+	\begin{resitev}
+		Naj bosta $x, y \in X$ poljubna. Iščemo pot $\map{f}{[0, 1]}{X}$ od $x$ do $a$. Določimo predpis $f(t) =\begin{cases}
+			x &;~ t = 0 \\
+			a &;~ t\in (0, 1]
+		\end{cases}$ in preverimo, ali je $f$ zvezna:
+		\begin{itemize}
+			\item $U = \emptyset: f^{-1}(U) = \emptyset$
+			\item Denimo, da $U\neq \emptyset$: \begin{itemize}
+				\item Če je $a\in U in x\notin U$, potem je $f^{-1}(U) = (0, 1]$, to pa je odprta v $[0, 1]$ (opremljen z evklidsko topologijo).
+				\item Če je $a, x\in U$, potem je $f^{-1}(U) = [0, 1]$, kar pa je vedno odprto v $[0, 1]$
+			\end{itemize}
+		\end{itemize}
+		Sledi, da je $f$ zvezna. S podobnim argumentom vidimo, da je tudi \map{g}{[0, 1]}{X} s predpisom $g(t) = \begin{cases}
+		a &;~ t \in [0, 1) \\
+		y &;~ t = 1
+		\end{cases}$ pot od $a$ do $y$. Ti dve poti združimo v pot $h$ od $x$ do $y$ s predpisom $h(t) = \begin{cases}
+		f(2t) &;~ t\in [0, \frac{1}{2}] \\
+		g(2t - 1) &;~ t\in [\frac{1}{2}, 1]
+	\end{cases}$.
+	\end{resitev}
+	\begin{nal}
+		Naj bo $X =\{(x, y)\in \R^2 ;~ 1 < x^2 + y^2 < 4\}$. Ali je $(X, \mathcal{T}_e)$ povezan s potmi?
+	\end{nal}
+	\begin{resitev}
+		Naj bosta $(x, y), (a, b) \in X$ različni točki in spremenimo pogled v polarne koordinate: $(x, y) = (r, \varphi), (a, b) = (q, \alpha)$. Potem je $\map{f}{[0, 1]}{X}$ s predpisom $f(t) = ((1-t)r + tq, (1-t)\varphi + t\alpha)$ dobro definirana in zvezna ter velja $f(0) = (r, \varphi)$ in $f(1) = (q, \alpha)$. Torej je $f$ pot med $(r, \varphi)$ in $(q, \alpha)$. Ker sta bili obravnavani točki poljubni sledi, da je $(X, \mathcal{T}_e)$ povezan s potmi.
+	\end{resitev}
+	\begin{nal}
+		Naj bosta $(\R, \mathcal{T}_e)$ in $([0, 1], \{\emptyset, [0, 1]\})$ topološka prostora. Naj bo $X = \R\times [0, 1]$ in ga opremimo s produktno topologijo $\mathcal{T}$. Pokaži, da je $(X, \mathcal{T})$ povezan s potmi.
+	\end{nal}
+	\begin{resitev}
+		Naj bosta $(x, y), (a, b) \in X$ poljubni točki in naj bosta $f_1(t) = (1-t)x + ta$ ter $f_2(t) = (1-t)y + tb$. Naj bo $f(t) = (f_1(t), f_2(t))$. Ker sta $f_1$ in $f_2$ zvezni, je tudi $f$ zvezna. Poleg tega je $f(0) = (x, y)$ in $f(1) = (a, b)$. Sledi, da je $f$ pot med $(x, y)$ in $(a, b)$.
+	\end{resitev}
+	\subsection{Lokalna povezanost}
+	\begin{definicija}
+		Naj bo $(X, \mathcal{T})$ topološki prostor. Pravimo, da je \pojem{lokalno povezan v točki} $x\in X$, če $\forall U\in \mathcal{T}$ velja: $x\in U \Rightarrow \exists V\in \mathcal{T}; x\in V\subseteq U$ in $(V, \mathcal{T}_V)$ je povezan. Če ta pogoj velja $\forall x\in X$, pravimo, da je $(X, \mathcal{T})$ \pojem{lokalno povezan}.
+	\end{definicija}
+	\begin{nal}
+		Ali so naslednji prostori lokalno povezani?\begin{enumerate}[a)]
+			\item $X_1 = \left((0, 1]\times\{0\}\right)\cup\left(\{\frac{1}{n};~n\in\N\}\times [0, 1]\right)$
+			\item $X_2 = \{(x, \sin(\frac{1}{x}));~x\in (0, 1] \}\cup\left(\{0\}\times [-1, 1]\right)$
+			\item $X_3 = X_1\cup\left(\{0\}\times [0, 1]\right)$
+			\item $X_4 = \bigcup_{i = 1}^{\infty}L_n ; L_n = \{(x, \frac{x}{n});~x\in [0, \frac{1}{n}]\} \forall n\in\N$.
+		\end{enumerate}
+	\end{nal}
+	\begin{resitev}
+		\begin{enumerate}[a)]
+			\item Sumimo, da $X_1$ je lokalno povezan. Naj bo $(x, y)\in X_1$ poljubna točka. \begin{itemize}
+			\item Če je $y> 0$, potem obstaja nek $n_0 \in \N$, da je $x = \frac{1}{n_0}$. Naj bo $(x, y)\in U\in \mathcal{T}$. Potem je $K_r(x, y)\cap U = V$ za $r = \frac{1}{2n(n+1)}$. Velja, da je $V\in \mathcal{T}$ in $(x, y)\in V\subseteq U$. Pri tem je, odvisno od $y$, $V$ homeomorfen bodisi odprti daljici ali pa odprti daljici iz katere gre pravokoten poltrak (podobno obliki črke T). Oba od teh prostorov pa sta očitno povezana (s potmi), torej je tudi $V$.
+			\item  Denimo, da je $y = 0$. Potem, če se $x$ nahaja med $\frac{1}{n+1}$ in $\frac{1}{n}$ za nek $n\in\N$, določimo $r = \frac{1}{2}\min\{\abs{x - \frac{1}{n}}, \abs{x - \frac{1}{n+1}}\}$. Sicer, če je $x = \frac{1}{n}$ za nek $n\in \N$, potem določimo $r = \frac{1}{2}\min\{\abs{x - \frac{1}{n+1}}, \abs{x - \frac{1}{n-1}}\}$. V vsakem primeru določimo $V = K_r(x, 0)\cap U$ in velja $(x, y)\in V\subseteq U$ ter $V\in \mathcal{T}$. Tudi tukaj je $V$ homeomorfen prej omenjenima oblikama (odprta daljica ali odprti ">T"<), torej je povezan (s potmi).
+				\end{itemize}
+			Sledi, da je $X_1$ lokalno povezan (s potmi).
+			\item Sumimo, da $X_2$ ni lokalno povezan. Naj bo $U = K_{\frac{1}{2}}(0, 0)\cap X_2$ in $V\in \mathcal{T}$ tak, da je $(0, 0)\in V \subseteq U$. Pokazati moramo, da $(V, \mathcal{T}_V)$ ni povezan. Ker je $V\in \mathcal{T}$ obstaja nek $r> 0$, da je $K_r(0, 0)\subseteq V$. Hkrati upoštevamo, da so ničle funkcije $\sin\frac{1}{x}$ ravno $x = \frac{1}{k\pi};~k\in\Z$. Brez škode za splošnost obstaja nek $k_0\in\Z$, da je $\frac{1}{k_0\pi} < r$. Potem je pa $(\frac{1}{k_0\pi}, 0)\in V$. Potem obstaja $\max\{\frac{1}{k\pi};~ k\in\Z~\&~(\frac{1}{k\pi}, 0)\in V\} = \frac{1}{k_1\pi}$. Drugače povedano, določili smo skrajno desno ničlo $\sin\frac{1}{x}$ v $V$. Potem bo pa $\sin(\frac{1}{k_1\pi + \frac{\pi}{2}})\in \{-1, 1\}$. Označimo $k_2 = \frac{1}{k_1\pi + \frac{\pi}{2}}$ in vidimo, da $(k_2, 0)\notin V$. Sedaj doloćimo $U_S = ((k_2, \infty)\times\R)\cap V$ in $V_S = ((-\infty, k_2)\times\R)\cap V$. $U_S$ in $V_S$ tvorita separacijo $V$, torej je $(V, \mathcal{T}_V)$ nepovezan.
+			\item Naj bo $x = 0$ in $y>0$ ter naj bo $(x, y)\in U\in \mathcal{T}$. Obstaja nek $r> 0$, da bo $V = K_r(x, y)\cap X_3 \subseteq U$. Za $V_S$ določimo skrajno desno odprto daljico, ki jo vsebuje $V$, za $U_S$ pa vzamemo $V\setminus V_S$. Očitno je $U_S, V_S$ separacija, torej $(V, \mathcal{T}_V)$ ni povezan in posledično $X_3$ ni lokalno povezan.
+			\item Hitro vidimo, da bo vsaka odprta okolica neke točke v $X_4$ vsebovala $V$, ki bo homeomorfen odprti daljici ali pa nekemu šopu poltrakov s skupnim vrhom. Te množice so povezane, torej je $X_4$ lokalno povezana.
+		\end{enumerate}
+	\end{resitev}
+	\begin{nal}
+		Dokaži: $(X,\mathcal{T})$ je lokalno povezan $\iff$ obstaja baza $\mathcal{B}\subseteq\mathcal{T}$, da $\forall B\in \mathcal{B}: (B, \mathcal{T}_B)$ je povezan.
+	\end{nal}
+	\begin{resitev}
+		\begin{itemize}
+			\item[$\Rightarrow):$] Naj bo $(X, \mathcal{T})$ lokalno povezan in $U\in \mathcal{T}$. Po definicij potem $\forall x\in U \exists V_{x, U} \in \mathcal{T}$, da je $x\in V_{x, U}\subseteq U$ in da je $(V_{x, U}, \mathcal{T}_{V_{x, U}})$ povezan. Potem je $\mathcal{B} = \{V_{x, U}; U\in \mathcal{T}, x\in U\}$ baza za $\mathcal{T}$, v kateri je vsak element povezan.
+			\item[$\Leftarrow):$] Naj bosta $x\in X$ in $U\in \mathcal{T}$ ter $x\in U$. Ker je $\mathcal{B}$ baza potem obstaja $V\in \mathcal{B}$, da je $x\in V\subseteq U$ in je $(V, \mathcal{T}_V)$ povezan. Potem je pa $(X, \mathcal{T})$ lokalno povezan.
+		\end{itemize}
+		\qed
+	\end{resitev}
+	Navedimo še nekaj zanimivih primerov. Kantorjeva množica $C$ je primer prostora, ki ni lokalno povezan v nobeni točki. Kantorjeva pahljača je primer povezanega prostora (celo s potmi), ki pa ni lokalno povezan v nobeni točki, razen v vrhu pahljače. Če v enega izmed skranjih robov Kantorjeve pahljače pripnemo vrh ene druge Kantorjeve pahljače, tako da je vrh prve tudi skranji konec druge (dobimo obliko ">paralelograma"<), dobimo primer prostora, ki je povsod povezan s potmi, ni pa lokalno povezan v nobeni točki.
 \end{document}

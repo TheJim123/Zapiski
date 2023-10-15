@@ -1,2 +1,4 @@
 \babel@toc {slovene}{}\relax 
 \contentsline {section}{\numberline {1}Ponovitev stare snovi}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Povezanost}{3}{}%
+\contentsline {subsection}{\numberline {1.2}Lokalna povezanost}{4}{}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  14 OCT 2023 20:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  15 OCT 2023 19:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -945,36 +945,65 @@ LaTeX Warning: No \author given.
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
 Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-(Izbrana poglavja iz topologije vaje 2023-24.toc)
+(Izbrana poglavja iz topologije vaje 2023-24.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 3.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 3.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 3.
+)
 \tf@toc=\write4
 \openout4 = `"Izbrana poglavja iz topologije vaje 2023-24.toc"'.
 
- [2] [3]
-(Izbrana poglavja iz topologije vaje 2023-24.aux)
+ [2]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
+5.
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+[3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
+c}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
+t.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-m
+athsy.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
+lm-ts1.enc}] [4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvip
+s/lm/lm-mathex.enc}] [5] [6] (Izbrana poglavja iz topologije vaje 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22860 strings out of 475247
- 486002 string characters out of 5755904
- 1919785 words of memory out of 5000000
- 43996 multiletter control sequences out of 15000+600000
- 592686 words of font info for 64 fonts, out of 8000000 for 9000
+ 22960 strings out of 475247
+ 487899 string characters out of 5755904
+ 1939785 words of memory out of 5000000
+ 44073 multiletter control sequences out of 15000+600000
+ 624369 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,93p,527b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,1072b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
-2.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
-mbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
-m/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/lm/lmr9.pfb>
-Output written on "Izbrana poglavja iz topologije vaje 2023-24.pdf" (3 pages, 1
-48497 bytes).
+0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
+mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+lm/lmbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmex10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/lm/lmmi5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/Uporabnik/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Uporabnik/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Izbrana poglavja iz topologije vaje 2023-24.pdf" (6 pages, 3
+12959 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
+ 121 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
