@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  5 OCT 2023 12:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.9.24) (preloaded format=pdflatex 2023.10.2)  17 OCT 2023 20:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -936,7 +936,16 @@ Overfull \hbox (6.18617pt too wide) in paragraph at lines 299--299
 di, da je $[]$.
  []
 
-[11] [12] (Teorija mere predavanja 2023-24.aux)
+[11] [12]
+Overfull \hbox (14.82219pt too wide) in paragraph at lines 367--367
+[][] \OML/lmm/m/it/10 A[] \OT1/lmr/m/n/10 = \OML/lmm/m/it/10 A$\T1/lmr/m/n/10 .
+ Po prvi to£ki iz-reka je $\OML/lmm/m/it/10 ^^V\OT1/lmr/m/n/10 (\OML/lmm/m/it/1
+0 A\OT1/lmr/m/n/10 ) = \OML/lmm/m/it/10 ^^V\OT1/lmr/m/n/10 ([][]\OML/lmm/m/it/1
+0 A[]\OT1/lmr/m/n/10 ) \OMS/lmsy/m/n/10 ^^U [][]\OML/lmm/m/it/10 ^^V\OT1/lmr/m/
+n/10 (\OML/lmm/m/it/10 A[]\OT1/lmr/m/n/10 )$\T1/lmr/m/n/10 ,
+ []
+
+[13] [14] [15] (Teorija mere predavanja 2023-24.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -945,11 +954,11 @@ L3 programming layer <2023-08-29>
 Here is how much of TeX's memory you used:
  21865 strings out of 475247
  469191 string characters out of 5755904
- 1940785 words of memory out of 5000000
+ 1942785 words of memory out of 5000000
  42996 multiletter control sequences out of 15000+600000
  618808 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,93p,947b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,93p,1185b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -970,10 +979,10 @@ ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/User
 s/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
 sbm7.pfb>
-Output written on "Teorija mere predavanja 2023-24.pdf" (12 pages, 345977 bytes
+Output written on "Teorija mere predavanja 2023-24.pdf" (15 pages, 361924 bytes
 ).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
+ 156 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

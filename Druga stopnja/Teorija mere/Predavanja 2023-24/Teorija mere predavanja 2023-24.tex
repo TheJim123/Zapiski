@@ -343,4 +343,71 @@
 				\item polzaprti intervali $[a, b) = \bigcap_{n = 1}^\infty (a - \frac{1}{n}, b)$
 			\end{itemize}
 		\end{zgled}
+		\begin{definicija}
+			Mera na $\sigma$-algebri $M$ je funkcija $\map{\mu}{M}{[0, \infty]}$, za katero velja: \begin{enumerate}
+				\item $\mu(\emptyset) = 0$
+				\item Za vsako zaporedje$\{A_i\}^{\infty}_{i=1} \subseteq M$ disjunktnih množic je $\mu(\bigcup^{\infty}_{i = 1}A_i)= \sum_{i = 1}^{\infty}\mu(A_i)$
+			\end{enumerate}
+		\end{definicija}
+		\begin{opomba}
+			Spomnimo se, da je \sigalg poseben primer kolobarja, torej so na $M$ $\sigma$-aditivnost, $\sigma$-poladitivnost in zveznost mere ekvivalentne.
+		\end{opomba}
+		\begin{izr}
+			Naj bo $(X, \Mu, \mu)$ prostor z mero in $\{A_i\}_{i = 1}^{\infty}$ zaporedje v $M$. Velja: \begin{enumerate}
+				\item $\mu(\overline{\lim}_{i\to\infty}A_i) \geq \overline{\lim}_{i\to\infty}\mu(A_i) = \limsup_{i\to\infty}\mu(A_i) = \inf_{1 \leq i}\sup_{i\leq m}A_m$.
+				\item $\mu(\underline{\lim}_{i\to\infty}A_i) \leq \underline{\lim}_{i\to\infty}\mu(A_i) = \liminf_{i\to\infty}\mu(A_i) = \sup_{1 \leq i}\inf_{i\leq m}A_m$.
+				\item $\lim_{i\to\infty}A_i = A \Rightarrow \lim_{i\to\infty}\mu(A_i) = \mu(A)$.
+			\end{enumerate}
+		\end{izr}
+		\begin{proof}
+			Naj bo $\{A_i\}_{i=1}^{\infty}$ zaporedje v $M$
+			\begin{enumerate}
+				\item Vemo, da je $\overline{\lim}_{i\to\infty}A_i = \bigcap_{i = 1}^\infty \bigcup_{k = i}^{\infty} A_k$ in za vsak $i\in\N$ označimo $B_i = \bigcup_{k = i}^{\infty} A_k$. Potem je $\overline{\lim}_{i\to\infty}A_i = \bigcap_{i = 1}^\infty B_i$, kjer je $\{B_i\}_{i = 1}^{\infty}$ padajoče zaporedje. Sledi, da je $\lim_{i\to\infty}B_i = \bigcap_{i = 1}^{\infty} B_i = \overline{\lim}_{i\to\infty}A_i$. Ker je $\mu$ zvezna in je zaporedje $\{B_i\}_{i = 1}^{\infty}$ padajoče, je $\mu(\overline{\lim}_{i\to\infty}A_i) = \lim_{i\to\infty}\mu(B_i)$. Sledi, da je $\{\mu(A_i)\}_{i = 1}^{\infty}$ zaporedje števil in obstaja $\overline{\lim}_{i\to\infty}\mu(A_i) = \overline{a}$. Posledično obstaja neko podzaporedje $\{A_{i_k}\}_{k=1}^{\infty}$, da je $\lim_{k\to\infty}\mu(A_{i_k}) = \overline{a} = \overline{\lim}_{i\to\infty}\mu(A_i)$. Ker je $\mu$ monotona in $\forall k\in \N A_k\subseteq B_k$, je tudi $\mu(A_k) \leq \mu(B_k)$ in potem je $\mu(\overline{\lim}_{i\to\infty}A_i) = \lim_{i\to\infty}\mu(B_i) = \lim_{k\to\infty}\mu(B_{i_k}) \leq \lim_{k\to\infty}\mu(A_{i_k})  = \overline{\lim}_{i\to\infty}\mu(A_i)$.
+				\item Vemo, da je $\underline{\lim}_{i\to\infty}A_i = \bigcup_{i = 1}^\infty \bigcap_{k = i}^{\infty} A_k$ in za vsak $i\in\N$ označimo $B_i = \bigcap_{k = i}^{\infty} A_k$. Opazimo, da je $\{B_i\}_{i = 1}^\infty$ naraščajoče zaporedje in potem je $\lim_{i\to\infty}B_i = \bigcup_{k = i}^{\infty} B_i = \underline{\lim}_{i\to\infty}A_i$. Ker je $\mu$ zvezna je potem $\mu(\underline{\lim}_{i\to\infty}A_i) = \mu(\lim_{i\to\infty}B_i) = \lim_{i\to\infty}\mu(B_i)$. Ker je $\{\mu(A_i)\}_{i = 1}^\infty$ zaporedje števil, obstaja $\underline{\lim}_{i\to\infty}\mu(A_i) = \overline{b}$ in potem obstaja podzaporedje $\{A_{i_k}\}_{k=1}^{\infty}$, da je $\lim_{k\to\infty}\mu(A_{i_k}) = \overline{b} = \underline{\lim}_{i\to\infty}\mu(A_i)$. Ker je $\forall i\in\N B_i \subseteq A_i$ je tudi $\mu(B_i) \leq \mu(A_i) \forall i\in\N$ in posledično $\mu(B_{i_k}) \leq \mu(A_[i_k]) \forall k\in\N$. Sledi, da je $$\mu(\underline{\lim}_{i\to\infty}A_i) = \lim_{i\to\infty}\mu(B_i) = \lim_{k\to\infty}\mu(B_{i_k}) \leq \lim_{k\to\infty}\mu(A_{i_k}) = \underline{\lim}_{i\to\infty}\mu(A_i)$$.
+				\item Denimo, da je $A =\lim_{i\to\infty} A_i$. Potem je $\overline{\lim}_{i\to\infty}A_i = \underline{\lim}_{i\to\infty}A_i = \lim_{i\to\infty}A_i = A$. Po prvi točki izreka je $\mu(A) = \mu(\overline{\lim}_{i\to\infty}A_i) \geq \overline{\lim}_{i\to\infty}\mu(A_i)$, hkrati pa je vedno res, da je $\underline{\lim}_{i\to\infty}\mu(A_i) \leq \overline{\lim}_{i\to\infty}\mu(A_i)$. Sledi, da je $$\lim_{i\to\infty}\mu(A_i) = \overline{\lim}_{i\to\infty}\mu(A_i) = \underline{\lim}_{i\to\infty}\mu(A_i) = \mu(A) = \mu(\lim_{i\to\infty}A_i)$$
+			\end{enumerate}
+		\end{proof}
+		\section{Kompletna mera}
+		Naj bo $(X, \Mu, \mu)$ prostor z mero.
+		\begin{definicija}
+			Mera $\mu$ je \pojem{polna} oz. \pojem{kompletna}, če $\forall A\in \Mu$ in $\forall B \subseteq A$ velja: $\mu(A) = 0 \Rightarrow B\in\Mu$.
+		\end{definicija}
+		\begin{izr}
+			Naj bo $\Omega = \{N\in\Mu ;~ \mu(N) = 0\}$ in $\overline{\Mu} = \{A\subseteq X;~ A = E\cup F; E\in \Mu ~\&~ F\subseteq N\in\Omega\}$. Tedaj je $\overline{\Mu}$ $\sigma$-algebra.
+		\end{izr}
+		\begin{proof}
+			\begin{enumerate}
+				\item Ker je $\emptyset = \emptyset \cup \emptyset$ in $\emptyset\in \Mu\cap\Omega$, je $\emptyset\in \overline{\Mu}$
+				\item Naj bo $A\in\overline{\Mu}$ in $A = E\cup F$ za $E\in\Mu$ in $F\subseteq N\in\Omega$. Potem je $A^c = (E\cup F)^c$ in upoštevamo, da je $F^c = N^c \cup (N\setminus F) = N^c \cup (F^c \cap N)$.Posledično je $A^c = E^c \cap F^c = (E^c \cap N^c)\cup (E^c \cap (F^c \cap N))$. Pri tem je $(E^c \cap N^c) \in \Mu$ in $(E^c \cap (F^c \cap N)) \subseteq N \in \Omega$. Posledično je $A^c\in \overline{\Mu}$.
+				\item Naj bo $\{A_i\}_{i = 1}^{\infty}$ zaporedje v $\overline{\Mu}$. Potem $\forall i\in\N A_i = E_i\cup F_i$ za $\{E_i\}_{i =1}^{\infty}$ zaporedje v $\Mu$ in $F_i\subseteq N_i \in \Omega \forall i\in\N$. Posledično je $\bigcup_{i = 1}^{\infty}\bigcup_{i = 1}^{\infty} (E_i \cup F_i) = \bigcup_{i = 1}^{\infty} E_i \cup \bigcup_{i = 1}^{\infty} F_i$. Najprej upoštevamo, da je $\Mu$ \sigalg, torej je $\bigcup_{i = 1}^{\infty} E_i \in \Mu$. Poleg tega, ker je $F_i \subseteq N_i \forall i\in\N$, je $\bigcup_{i = 1}^{\infty} F_i \subseteq \bigcup_{i = 1}^{\infty} N_i$ in ker je $N_i\in\Omega \forall i\in\N$, je $\mu(\bigcup_{i = 1}^{\infty} N_i) \subseteq \sum_{i = 1}^{\infty} \mu(N_i) = 0$, torej je $\mu(\bigcup_{i = 1}^{\infty} N_i) = 0$ oz. $\bigcup_{i = 1}^{\infty} N_i \in \Omega$. Sledi, da je $\bigcup_{i = 1}^{\infty} A_i \in \overline{\Mu}$.
+			\end{enumerate}
+		\end{proof}
+		\begin{izr}
+			Naj bo $\overline{\Mu}$ razširitev $\sigma$-algebre $\Mu$. Definiramo $\map{\bar{\mu}}{\overline{\Mu}}{[0, \infty]}$, za katero velja $\forall A\in \overline{\Mu}; A= E\cup F$ za neka $E\in \Mu, F\subseteq N\in\Omega$: $\bar{\mu}(A) = \mu(E)$. Tedaj je $\bar{\mu}$ mera na $\overline{\Mu}$ in jo imenujemo \pojem{razširitev} mere $\mu$.
+		\end{izr}
+		\begin{proof}
+			Najprej preverimo, da je $\bar{\mu}$ dobro definirana, nato pa še, da je mera. Naj bo $A = E\cup F = E_1\cup F_1$ za $E, E_1\in \Mu$ in $F\subseteq N, F_1 \subseteq N_1, N, N_1 \in \Omega$. $E_1 \subseteq E\cup F \subseteq E\cup N$, torej je $\mu(E_1) \leq \mu(E\cup N) \leq \mu(E) + \mu(N) = \mu(E)$. Po drugi strani pa je $E \subseteq E_1\cup F_1 \subseteq E_1 \cup N_1$ ter zato velja $\mu(E) \leq \mu(E_1\cup N_1) \leq \mu(E_1) + \mu(N_1) = \mu(E_1)$. Posledično je $\mu(E) = \mu(E_1)$, torej je $\bar{\mu}$ dobro definirana. Preverimo še, da je mera.
+			\begin{itemize}
+				\item $\bar{\mu}(\emptyset) = \mu(\emptyset) = 0$
+				\item Naj bo $\{A_i\}_{i = 1}^{\infty}$ zaporedje v $\overline{\Mu}$ in $\forall i \in \N: A_i = E_i\cup F_i$, da je $\{E_i\}_{i = 1}^\infty \subseteq \Mu$ in $F_i \subseteq N_i \in \Omega \forall i\in \N$. Potem je $\bigcap_{i = 1}^\infty A_i = \bigcap_{i = 1}^\infty E_i \cup \bigcap_{i = 1}^\infty F_i$ za $\bigcap_{i = 1}^\infty E_i \in \Mu$ in $\bigcap_{i = 1}^\infty F_i \subseteq \bigcap_{i = 1}^\infty N_i \in \Omega$. Posledično je $\bar{\mu}(\bigcap_{i = 1}^\infty A_i) = \mu(\bigcap_{i = 1}^\infty E_i) = \sum_{i = 1}^\infty \mu(E_i) = \sum_{i = 1}^\infty \bar{\mu}(A_i)$.
+			\end{itemize}
+		\end{proof}
+		\begin{izr}
+			Mera $\bar{\mu}$ je enolična razširitev mere $\mu$ do polne mere na $\overline{\Mu}$.
+		\end{izr}
+		\begin{proof}
+			Najprej bomo pokazali polnost, nato pa še enoličnost. Naj bo $A\in \overline{\Mu}$ taka, da je $\bar{\mu}(A) = 0$ in naj bo $B\subseteq A$. Pišemo $A = E\cup F$ za neka $E\in \Mu$ in $F\subseteq N \in \Omega$. Velja, da je $\bar{\mu}(A) = \mu(E) = 0$. Hkrati je tudi $B\subseteq A = E\cup F \subseteq E\cup N$, torej je $\mu(E\cup N) \leq \mu(E) + \mu(N) = 0$, torej je $\mu(E\cup N) = 0$ oz. $E\cup N \in \Omega$. Posledično lahko zapišemo $B$ kot unijo $\emptyset\in\Mu$ in $B\subseteq (E\cup N) \in \Omega$, torej je $B\in \overline{\Mu}$. Sledi, da je $\bar{\mu}$ polna mera.
+			
+			Denimo sedaj, da je $\nu$ polna mera na $\overline{\Mu}$ in $\nu(H) = \mu(H) \forall H\in \Mu$. Naj bo $A = E\cup F$ za $E\in\Mu$ in $F\subseteq N \in\Omega$. Potem je $\nu(A) = \nu(E\cup F) = \nu(E\cup (F\setminus E))$. Ker je $(F\setminus E) \subseteq N\in\Omega$ in $F\setminus E = \emptyset \cup (F\setminus E)$, je $F\setminus E \in \overline{\Mu}$. Potem je pa $\nu(A) = \nu(E\cup (F\setminus E)) = \nu(E) + \nu(F\setminus E)$ in ker je $F\setminus E \subseteq N\in\Omega$ je $\nu(F\setminus E) = 0$, torej je $\nu(A)= \nu(E) + 0 =\nu(E) = \mu(E) = \bar{\mu}(A)$.
+		\end{proof}
+		\begin{izr}
+			Naj bo $(X, \Mu, \mu)$ prostor z mero. Potem obstaja enolična razširitev mere $\mu$ do polne mere $\bar{\mu}$ na $\overline{\Mu}$. Prostor $(X, \overline{\Mu}, \bar{\mu})$ imenujemo napolnitev prostora $(X, \Mu, \mu)$.
+		\end{izr}
+		\begin{zgled}
+			Naj bo $\Mu = \{\emptyset, X\}$ in $\mu(A) = \begin{cases}
+			0 &;~ A = \emptyset \\
+			1 &;~ A = X
+			\end{cases}$. Potem je $\overline{\Mu} = \Mu$.
+			Če vzamemo enak $\Mu$ in $\acute{\mu}(A) = 0 \forall A\in \Mu$, je potem $\overline{\Mu} = \mathcal{P}(X)$.
+		\end{zgled}
 \end{document}
