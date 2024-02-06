@@ -1,0 +1,179 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+%\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+\newtheorem{izr}{Izrek}
+\newtheorem{posl}{Posledica}[izr]
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{nalogacount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{naloga}{\begin{flushleft}\stepcounter{nalogacount}\textbf{Naloga \arabic{nalogacount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{Rešitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\qed\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\naslov}[1]{\textit{#1}}
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\Zp}{\mth{Z}^{+}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Q}{\mth{Q}}
+\newcommand{\Qu}{\mth{Q}_u}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Domače naloge pri predmetu Izbrana poglavja iz topologije}
+\date{5.~2.~2024}
+\author{Jimmy Zakeršnik}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\thispagestyle{empty}
+	\newpage
+	\begin{naloga}
+		Na primeru $\prod_{t\in\R}(\{0, 1\}, \tau_d)$ pokaži, da poljuben produkt metrizabilnih prostorov ni nujno metrizabilen.
+	\end{naloga}
+	\begin{Rešitev}
+		Pokazali bomo, da prostor $(\prod_{t\in\R}(\{0, 1\}, \tau_D)$, kjer je $\tau_D$ porojena produktna topologija, ni $1$-števen, in posledično ni metrizabilen (saj velja, da metrizabilnost implicira $1$-števnost). Naj bo $X = \prod_{t\in\R}(\{0, 1\}$ in z $\bar{0}$ označimo element iz $X$, za katerega velja: $\forall t \in \R: \bar{0}_t = 0$. Dodatno se spomnimo, da če je $\mathcal{P}$ baza produktne topologije $\tau_D$, potem za $P\in \mathcal{P}$ velja, da obstaja končna družina indeksov $T = \{t_0, t_1, \ldots, t_n\} \subset \R$ in $U_{t_0}, U_{t_1}, \ldots, U_{t_n} \in \tau_d$, taki, da je (z določeno mero zlorabe notacije) $$P = U_{t_0}\times U_{t_1}\times \ldots \times U_{t_n}\times \prod_{t\in(\R\setminus T)}\{0, 1\}$$
+		Naj bo sedaj $\mathcal{U} = \{U_n;|~n\in \N\} \subseteq \tau_D$ poljubna števna družina odprtih okolic od $\bar{0}$. Potem za $\forall n\in\N$ obstaja končna družina indeksov $I_n = \{\lambda_1^n, \ldots, \lambda_{m_n}^n\}\subset \R$, in odprte množice $B_{\lambda_1^n}, \ldots, B_{\lambda_{m_n}^n}\in \tau_d$, da je (z določeno mero zlorabe notacije) $P_n = B_{\lambda_1^n}\times \ldots \times B_{\lambda_{m_n}^n} \times \prod_{t\in(\R\setminus I_n)} \subseteq U_n$ okolica $\bar{0}$ iz baze produktne topologije $\tau_D$.
+		
+		Sestavimo družino indeksov $J = \bigcup_{n\in \N}I_n \subset \R$, ki je števna. Potem je $\R\setminus J \neq \emptyset$, torej obstaja nek $\lambda_0 \in \R\setminus J$. Označimo $W = \prod_{t\in(\R\setminus \{\lambda_0\})} \times \{0\}$. Vidimo, da je $W$ odprta v $\tau_D$, ter da je okolica $\bar{0}$. Hkrati vidimo, da $\forall n\in \N: p_{\lambda_0}(P_n) = \{0, 1\} \nsubseteq p_{\lambda_0}(W) = \{0\}$, in posledično sledi: $\forall n\in \N: U_n \nsubseteq W$. Ker je $\mathcal{U}$ bila poljubna števna družina odprtih okolic sledi, da $(X, \tau_D)$ ni $1$-števna.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Naj bo $X$ kontinuum. Pravimo, da je $X$ povezan z loki, če $\forall x, y\in X$ obstaja lok v $X$ s krajišči v $x$ in $y$. Pokaži, da je kontinuum $X$ povezan z loki $\iff$ X je povezan s potmi.
+	\end{naloga}
+	\begin{Rešitev}
+		\begin{itemize}
+			\item[$\Rightarrow):$] Naj bosta $x, y\in X$ poljubni točki. Po predpostavki obstaja $L$ lok v X s krajiščema v $x$ in $y$. Vemo, da je vsak lok homeomorfen zaprtemu intervalu. Naj bo $I = [0, 1]$ in $\map{\varphi}{I}{L}$ nek homeomorfizem, tak da je $\varphi(0) = x$ in $\varphi(1) = y$. Potem je $\varphi$ pot od $x$ do $y$. Sledi, da je $X$ povezan s potmi.
+			
+			\item[$\Leftarrow):$] Naj bosta $x$ in $y$ poljubni točki iz $X$ in naj bo $\map{p}{I}{X}$ poljubna pot od $x$ do $y$ ($p(0) = x, p(1) = y$). Če je $p$ injektivna, potem je zvezna bijekcija iz kompakta ($I = [0, 1]$) na svojo zalogo vrednosti, ki je Hausdorfov prostor. Po znanem rezultatu iz splošne topologije je potem $p$ homeomorfizem, torej je $p(I)$ lok v $X$ s krajiščema v $x$ in $y$. Denimo, da $p$ ni injektivna in označimo: $$P(z) = \{t\in I |~ p(t) = p(z)\},~ P = \bigcup_{\substack{t\in I \\ \abs{P(t)} > 1}} P(t)$$
+			
+			Za $\forall z_1, z_2 \in I$ opazimo naslednje: \begin{itemize}
+				\item $z_1 \neq z_2 \Rightarrow P(z_1)\cap P(z_2) = \emptyset$
+				\item $P(z_1)$ je zaprta v $I$, torej je tudi kompakt v $I$
+			\end{itemize} 
+			Še več, opazimo, da je $P$ ravno množica vseh točk iz $I$, ki ne ustrezajo pogoju injektivnosti. Z neprazno indeksno množico $\Lambda$ označimo vse tiste $P(z)$, katerih moč je večja od $1$ in zanj izberemo predstavnika $z_\lambda$. Tako je $P= \bigcup_{\lambda \in \lambda} P(z_\lambda)$.
+			
+			Preverimo, da je $P$ tudi kompaktna množica: Naj bo $\{x_n\}_{n\in\N}$ poljubno konvergentno zaporedje v $P$ in naj bo $x = \lim_{n\to\infty}x_n$. Potem $\exists \lambda_0\in \lambda$ in $N\in\N$, taka, da je $\forall n\in \N n\geq N: x_n \in P(z_{\lambda_0})$, in ker je $P(z_{\lambda_0})$ kompakt, je $x\in P(z_{\lambda_0})$. Sledi, da je $x\in P$, torej je $P$ kompaktna. Sedaj bomo skonstruirali lok od $x$ do $y$.
+			
+			Vemo, da je $I$ linearno urejena množica in posledično se ta urejenost podeduje na $P$ oz. na vsak $P(z_\lambda)$. Ker so tako $P$ kot $P(z_\lambda) \forall \lambda \in \Lambda$ kompakti (kot zaprte podmnožice kompakta $I$), vsebujejo svoje zgornje in spodnje meje. Začnemo v $0$ in določimo $x_0^0 = minP$. Označimo $x_0^1 = maxP(x_0^0)$ ter tvorimo interval $I_{n_0} = [x_0^0, x_0^1]$. Nadaljujemo tako, da potujemo desno od $x_0^1$, dokler ne naletimo na naslednji element iz $P$. Označimo ga z $x_1^0$, poiščemo pripadajoči $x_1^1$ ($=maxP(x_1^0)$) ter tvorimo interval $I_{n_1} = [x_1^0, x_1^1]$. Postopek ponavljamo, dokler lahko, in tako dobimo družino intervalov $\mathcal{I} = \{I_n |~ n\in \nu\}$ za katero velja:
+				$$\forall n_i, n_j \in \nu: n_i \neq n_j \Rightarrow I_{n_i}\cap I_{n_j} = \emptyset$$
+			
+			Preverimo, da je $\mathcal{I}$ končna ali števna družina intervalov: Naj bo $n\in \nu$ poljuben indeks in $I_n$ interval iz $\mathcal{I}$. Potem obstaja $q_n \in \Q$, da je $q_n\in I_n$. Za vsak $n\in \nu$ izberemo en tak $q_n$ in potem sledi, da je preslikava $\map{f}{\mathcal{I}}{\Q\cap I}$ s predpisom $f(I_n) = q_n$ injektivna. Sledi, da je $\mathcal{I}$ kvečjemu števna družina, torej smemo vzeti $\nu = \No$.
+			
+			Sedaj označimo $J_0 = [0, x_0^1] = [0, x_0^0]\cup [x_0^0, x_0^1] = [0, x_0^0]\cup I_0$ in za $\forall n \in N: J_n = [x_{n-1}^1, x_n^1] = [x_{n-1}^1, x_n^0] \cup I_n$. Dodatno označimo $\mathcal{J}=\bigcup_{n\in \No}J_n$. Opazimo naslednje: $\mathcal{J}$ ni nujno zaprta. Posebej, limita zaporedja $\{x_n^1\}_{n\in\No}$ ni nujno vsebovana v $\mathcal{J}$. Naj bo $x_P = \lim_{n\to\infty}x_n^1$ in označimo $J_P = [x_P, 1]$.
+			
+			 Sedaj $\forall n\in\N$ definiramo linearne funkcije $\map{f_n}{J_n}{[x_{n-1}^1, x_n^0]}$; $f_n(x_{n-1}^1) = x_{n-1}^1, f_n(x_n^1) = x_n^0$. Te so seveda zvezne bijekcije. Dodatno definiramo linearno funkcijo $\map{f_0}{J_0}{[0, x_0^0]}$; $f_0(0) = 0$ in $f_0(x_0^1) = x_0^0$ ter linearno funkcijo $\map{f_P}{J_P}{[x_P, 1]}$; $f_P(x_P)$, obe očitno zvezni bijekciji.
+			 
+			  Opazimo, da je pot $p$ injektivna na kodomenah teh funkcij. Dodatno, opazimo da je $\bigcup_{n\in \No} J_n \cup J_P = I$ in $\forall k, l\in \No: J_k\cap J_l \neq \emptyset \iff \abs{k - l} \leq 1$. Sedaj definiramo funkcijo $\map{\psi}{Cl(\mathcal{J})}{X}$ s predpisom: $\psi(t) = \begin{cases}
+				(p \circ f_n)(t)&;~t\in J_n \\
+				p(x_P) &;~ t = x_P
+			\end{cases}$
+			
+			Funkcija $\psi$ je (po konstrukciji) injektivna ter zvezna po lemi o lepljenju. Sedaj definiramo $\map{\varphi}{I}{X}$ s predpisom: $\varphi(t) = \begin{cases}
+			\psi(t) &;~ t\in Cl(\mathcal{J}) \\
+			p(t) &;~ t\in J_P
+			\end{cases}$ Vidimo, da je $Cl(\mathcal{J})\cap J_P = \{x_P\}$ in da je p injektivna na $J_P$. Po lemi o lepljenju je potem tudi $\varphi$ zvezna. Dodatno, $\varphi$ je injektivna ter surjektivna na svojo sliko $\varphi(I)$. Ker je $\varphi$ torej zvezna bijekcija iz kompakta v Hausdorfov prostor, je po znanem rezultatu homeomorfizem. Sledi, da je $\varphi(I) \equiv I$ lok v $X$ in $\varphi(1) = p(1) = y$ ter $\varphi(0) = p(0) = x$. Sledi torej, da sta $x, y\in X$ krajišči tega loka. Ker sta bila $x, y \in X$ poljubna, je $X$ povezan z loki.
+		\end{itemize}
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Naj bo $(X, d)$ poljuben kompakten metričen prostor. Naj bo $\{\mathcal{U}_n\}_{n\in\N}$ števna družina odprtih pokritij oblike $\mathcal{U}_n = \{K(x, \frac{1}{n}) |~ x\in X\}$. Ker je $(X, d)$ kompakt za $\forall n \in \N$ obstaja končno podpokritje $\mathcal{V}_n = \{K(x_1^n, \frac{1}{n}), \ldots, K(x_{m_n}^n, \frac{1}{n})\}$. Naj bo $A = \{x_i^n |~ n\in\N \land i\in \{1, \ldots, m_n\}\}$ Pokaži, da je $A$ gosta v $(X, d)$.
+	\end{naloga}
+	\begin{Rešitev}
+		Očitno je, da je $A$ števno neskončna. Naj bo $\tau_d$ topologija, porojena z metriko $d$ ter naj bo $U\in \tau_d$ poljubna odprta množica v $(X, d)$. Za odprto pokritje $\mathcal{U}_n$ obstaja končno podpokritje $\mathcal{V}_n$ ter indeksi $k_1, \ldots, k_l$, da je $U\subseteq \bigcup_{i = 1}^{l}K(x_{k_i}^n, \frac{1}{n})$. Če je kak od teh $x_{k_i}$ v $U$, potem smo končali. Denimo, da za vsak $i\in \{1, \ldots, l\} x_{k_i}\notin U$. Naj bo $x_0\in U$ poljuben. Pokritju $\mathcal{V}_n$ dodamo $K(x_0, \frac{1}{n})$ in dobimo novo končno pokritje $X$. Posledično je $x\in A$ in $A\cap U \neq \emptyset$. Ker je bila $U\in\tau_d$ poljubna, sledi, da je $A$ gosta v $(X, d)$.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Pokaži, da je $\sin\frac{1}{x}$-kontinuum uverižljiv.
+	\end{naloga}
+	\begin{Rešitev}
+		Spomnimo se, da je $\sin\frac{1}{x}$-kontinuum homeomorfen $\{0\}\times [-1, 1] \cup \{\sin\frac{1}{x} |~ x\in (0, 1]\} = X$. Naj bo $\varepsilon > 0$ poljuben. Vemo, da je $\sin\frac{1}{x} = 1 \iff x = \frac{2}{\pi(1 + 4k)}; k\in \Z$ in obstaja nek $k\in \Z$, da je $x_k < \frac{\varepsilon}{4}$. Naj bo $\mathcal{U}$ pokritje $\{0\}\times[-1, 1]$ z odprtimi kvadrati $K_{x_k}(a) = (-x_k, x_k)\times (a - x_k, a + x_k)$. Ker je pokrit prostor kompakt, obstaja končno podpokritje $V_1 = (-x_k, x_k)\times (-1 - x_k, -1 + x_k), \ldots, V_{n-1} = (-x_k, x_k)\times (a_{n-1} - x_k, a_{n-1} + x_k), V_n = (-x_k, x_k)\times (1 - x_k, 1 + x_k)$, za katerega velja $\abs{a_{n-1} - 1} < \frac{3x_k}{2}$. Označimo: $B = \{(x, \sin\frac{1}{x}) |~ x\geq x_k\}$ in vidimo, da je $d(Cl(V_{n-1}), B) \geq 0$. Označimo $d(Cl(V_{n-1}), B) = q$ in vemo, da obstaja $\min\{\varepsilon, q\}$-veriga od $(x_k, \sin\frac{1}{x_k})$ do $(1, \sin1)$, katere člene označimo z $V_{n+1}, \ldots, V_m$. Potem je pa $\{V_1, \ldots, V_n, V_{n+1}, \ldots, V_m\}$-veriga, ki pokrije ves $X$ in katere členi imajo diameter pod $\varepsilon$.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Pokaži, da trioda ni uverižljiv kontinuum.
+	\end{naloga}
+	\begin{Rešitev}
+		Naj bo $T = [-1, 1]\times \{0\} \cup \{0\}\times [0, 1]$ ter označimo $L_1 = [-1, 0]\times \{0\}, L_2 = [0, 1]\times \{0\}$ in $L_3 = \{0\}\times [0, 1]$. Denimo, da obstaja $\frac{1}{8}$-veriga, ki pokrije $T: \{V_1, \ldots, V_n\}; diam(V_i) < \frac{1}{8}$. Potem obstajajo indeksi $m_1, m_2, m_3$, da je $(-1, 0) \in V_{m_1}, (1, 0) \in V_{m_2}$ in $(0, 1) \in V_{m_3}$. Obstaja tudi indeks $m$, da je $(0, 0)\in V_m$. Brez škode za splošnost naj bo $m < m_1 < m_2 < m_3$. Velja, da je $L_1 \cap (Cl(V_m)\setminus V_m) \neq \emptyset$ in enako za $L_2$ in $L_3$. Brez škode za splošnost denimo, da je $L_1 \cap V_{m+1} \neq \emptyset$ in $L_3 \cap V_{m+1} \neq \emptyset$. Potem je $L_1 \cap CL(V_{m+1})\setminus(V_{m+1}\cup V_m) \neq \emptyset$ in enako za $L_3$. Posledično velja tudi $L_1 \cap V_{m+2} \neq \emptyset$ in podobno za $L_3$. Postopek nadaljujemo dokler ne pridemo do $m_1$. Velja torej: $L_1\cap V_{m_1}\neq \emptyset$ in $L_3\cap V_{m_1}\neq \emptyset$. Velja, da je $(-1, 0) \in L_1\cap V_{m_1}$. Naj bo $y\in L_3 \cap V_{m_1}$ poljuben. Tedaj je $d((-1, 0), y) \geq 1$, torej je $diam(V_{m_1}) \geq 1 > \frac{1}{8}$, to pa nas privede v protislovje s predpostavko, da je $diam(V_{m_1}) < \frac{1}{8}$. Sledi, da $T$ ni uverižljiv.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Dokaži, da krožnica $S^1$ ni uverižljiva.
+	\end{naloga}
+	
+	\begin{Rešitev}
+		Zapišemo $S^1$ v polarnih koordinatah: $S^1 = \{(1, \varphi) |~ \varphi \in [0, 2\pi)\}$. Denimo, da obstaja veriga $\mathcal{V} = \{V_1, \ldots, V_m\}$, ki pokrije $S^1$. Brez škode za splošnost naj bo $(1, \pi)\in V_1$. Potem obstajata $\varphi_1\in (0, \pi)$ in $\alpha_1 \in (\pi, 2\pi)$, da je $(1, \varphi_1), (1, \alpha_1) \in Cl(V_1)\setminus V_1$. Posledično je $(1, \varphi_1), (1, \alpha_1) \in V_2$ in obstajata $\varphi_2 \in (0, \varphi_1)$ in $\alpha_2 \in (\alpha_1, 2\pi)$, da je $(1, \varphi_2), (1, \alpha_2) \in Cl(V_2) \setminus V_2$. Proces nadaljujemo in naj bo $i$ tisti indeks, da je $V_i$ prvi člen v $\mathcal{V}$, ki vsebuje $(1, \frac{\pi}{2})$. Naj bo $j$ tisti indeks, da je $V_j$ prvi člen v $\mathcal{V}$, ki vsebuje $(1, \frac{3\pi}{2})$. Brez škode za splošnost naj bo $i \leq j$. Tedaj obstaja tak $\alpha_i < 2\pi$, da je $(1, \alpha_i) \in V_i$. Potem je $d((1, \frac{\pi}{2}),(1, \alpha_i)) \geq 1$, torej je $diam(V_i) \geq 1$. Potem za $\varepsilon < 1$ ne obstaja $\varepsilon$-veriga, torej $S^1$ ni uverižljiv kontinuum.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Naj bo $X$ kontinuum in $\map{f}{X}{X}$ zvezna funkcija brez fiksne točke. Tedaj je $\inf\{d(x, f(x)) |~ x\in X\} = \min\{d(x, f(x)) |~ x\in X\} > 0$.
+	\end{naloga}
+	
+	\begin{Rešitev}
+		Označimo $A = \{d(x, f(x)) |~ x\in X\}$. Če je $\inf(A) = 0$ potem obstaja tako konvergentno zaporedje $\{x_n\}_{n\in\N}$, kjer je $x = \lim_{n\to\infty}x_n$, da je $\lim_{n\to\infty}d(x_n, f(x_n)) = 0$. Sledi, da je $d(x, f(x)) = 0$, torej je $f(x) = x$. To je pa protislovno s tem, da $f$ nima fiksne točke. Posledično je $\inf(A) > 0$ in označimo $r = \inf(A)$. Tedaj obstaja konvergentno zaporedje $\{x_n\}_{n\in\N}; x = \lim_{n\to\infty}x_n$, da je $\lim_{n\to\infty}d(x_n, f(x_n)) = r$. Tedaj je $d(x, f(x)) = r$ in potem je $\inf(A) = \min(A)$.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Naj bo $X$ nedegeneriran nerazcepen kontinuum. Tedaj $X$ ni povezan s potmi.
+	\end{naloga}
+	
+	\begin{Rešitev}
+		Denimo, da je $X$ povezan s potmi. Ker je $X$ nerazcepen kontinuum ima $card(\R)$ paroma disjunktnih kompozantov. Naj bosta $C_1$ in $C_2$ poljubna različna kompozanta od $X$. Potem je $C_1\cap C_2 = \emptyset$. Naj bota $x\in C_1$ in $y\in C_2$ poljubna elementa. Ker je po predpostavki $X$ povezan s potmi obstaja zvezna funkcija $\map{f}{[0, 1]}{X}$, za katero je $f(0) = x$ in $f(1) = y$. Izberemo tako funkcijo $f$ in označimo $A = f([0, 1])$. Tedaj je $A$ kontinuum v $X$ in enako velja za $A\cup C_1$. Dodatno velja: $x, y \in A\cup C_1$. Velja tudi, da je $A\cup C_1$ pravi podkontinuum v $X$, ker ima $X$ neštevno neskončno paroma disjunktnih kompozantov. Po eni strani je potem $y\in A\cup C_1 \subseteq comp(x) = C_1$, po drugi strani pa je $y\in C_2$. Sledi, da je $C_1\cap C_2 \neq \emptyset$. To je pa protislovno s tem, da sta $C_1$ in $C_2$ disjunktna. Sledi, da $X$ ni povezan s potmi.
+	\end{Rešitev}
+	
+	\begin{naloga}
+		Naj bo $X$ kontinuum in $C$ podkontinuum v $X$. Naj bo $A, B$ separacija $X\setminus C$. Dokaži, da sta potem $A\cup C$ in $B\cup C$ podkontinuuma $X$.
+	\end{naloga}
+	
+	\begin{Rešitev}
+		Pokazali bomo, da je $A\cup C$ kontinuum, za $B\cup C$ je dokaz simetričen.Naj bo $(A, B)$ separacija $X\setminus C$ iz predpostavke. Denimo, da sta $A$ in $B$ odprti v $X\setminus C$. Ker je $C$ zaprta v $X$ je $X\setminus C$ odprta v $X$ in postledično sta $A$ in $B$ odprti v $X$. Očitno je tudi $A\cap C = \emptyset$ in $B\cap C = \emptyset$. Preverimo sedaj, da $A\cup C$ ustreza pogojem kontinuuma.
+		\begin{itemize}
+			\item[Metričnost:] $A\cup C$ je očitno metrični prostor - to lastnost podeduje od $X$. 
+			\item[Kompaktnost:] Vemo, da je $B$ odprta v $X$ ter da je $X = (X\setminus C) \cup C = A\cup B\cup C$. Posledično, je $A\cup C = X\setminus B$ zaprta v $X$. Ker je zaprta podmnožica v kompaktu, je potem $A\cup C$ tudi sama kompaktna.
+			\item[Povezanost:] Denimo, da $A\cup C$ ni povezana. Tedaj obstajata $E, F\subseteq A\cup C$ odprti v $A\cup C$, da je $E\cap F = \emptyset$ in $E\cup F = A\cup C$. Ker je $C$ povezana, je nujno v celoti vsebovana v $E$ ali $F$. Brez škode za splošnost denimo, da je $C \subset F$. Potem je $E\subset A$ in posledično je $E$ odprta v $X$. Naj bo sedaj $y\in F\cup B$ poljubna točka. Če je $y\in B$, potem ni problemov, saj je $B$ odprta. Denimo torej, da je $y\in F$. Znotraj $A\cup C$ sta $E$ in $F$ zaprti, torej lahko dobro definiramo razdaljo $r = d(y, E)$. V $F\cup B$ potem vzamemo $K(y, \frac{r}{3})$. Velja: $K(y, \frac{r}{3}) \subseteq F\cup B$, torej je $F\cup B$ odprta v $X$. Potem je pa $(E, F\cup B)$ separacija $X$, kar pa nas privede v protislovje, saj je $X$ povezan. Sledi torej, da je $A\cup C$ povezan.
+		\end{itemize}
+		Sklep: $A\cup C$ je kontinuum.
+	\end{Rešitev}
+\end{document}
