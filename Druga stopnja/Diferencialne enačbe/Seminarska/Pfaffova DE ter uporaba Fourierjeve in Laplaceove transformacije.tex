@@ -1,0 +1,392 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+%\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+%\usepackage{cleveref}
+
+\newtheorem{izr}{Izrek}
+\newtheorem{trd}{Trditev}
+\newtheorem{posl}{Posledica}[izr]
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{primercount}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\refstepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{primer}{\begin{flushleft}\refstepcounter{primercount}\textbf{Primer \arabic{primercount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\refstepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\refstepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\naslov}[1]{\textit{#1}}
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\Zp}{\mth{Z}^{+}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Qu}{\mth{Q}_u}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Pfaffova diferencialna enačba ter uporaba Fourierjeve in Laplaceove transformacije \\ {\large Seminarska naloga pri predmetu Diferencialne enačbe}}
+\date{10.~3.~2024}
+\author{Jimmy Zakeršnik}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\thispagestyle{empty}
+	\newpage
+	\tableofcontents
+	\newpage
+	\section{Uvod}
+		Tekom študija diferencialnih enačb pogosto naletimo na posebne primere, ki od nas zahtevajo dodatno pozornost ali razvoj novega orodja in metod. Lahko se zgodi, da, kljub temu, da vemo, da rešitev obstaja, le te ne znamo eksplicitno izraziti z metodami, ki so nam na voljo. V teh situacijah pogosto posežemo po implicitnem podajanju rešitve. Prvi primer tega se skriva v iskanju prvega integrala dane linearne diferencialne enačbe prvega reda, izkaže pa se, da je to le poseben primer t.~i.~ ">Pfaffove diferencialne enačbe"<. V drugih primerih nas lahko bolj zanima, da sploh najdemo kakšno rešitev, ki zadošča določenim pogojem, in na račun tega lahko uporabimo metode, ki nam v splošnem ne bi bile na voljo. Dva primera tega - uporabo Fourierjeve in Laplaceove transformacije - bosta obravnavana v tej seminarski nalogi, skupaj z obravnavo Pfaffovih diferencialnih enačb v dveh in treh spemenljivkah. Posebej, za motivacijo, navajamo naslednje probleme:
+		
+		\begin{primer}
+			\label{prim:Pfaff1}
+			Najdi rešitev enačbe: $(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$
+		\end{primer}
+		
+		\begin{primer}
+			\label{prim:Fourier1}
+			Naj bo $c > 0$. Poišči rešitev valovne enačbe z eno prostorsko spremenljivko $\frac{\partial^2 u}{\partial t^2} = c^2\frac{\partial^2 u}{\partial x^2}$ na $\R\times (0, \infty)$ pri začetnih pogojih: $\forall x\in \R: u(x, 0) = f(x)~\&~\frac{\partial u}{\partial t}(x, 0) = g(x)$. Pri tem predpostavi, da sta $f\in \mathcal{C}^2(\R)$ in $g\in\mathcal{C}^1(\R)$.
+		\end{primer}
+		
+		\begin{primer}
+			\label{prim:Laplace1}
+			Denimo, da imamo navpično postavljeni žleb po katerem spustimo kroglico. Kakšne oblike mora biti žleb, da bo čas potovanja kroglice po njem do izbrane točke neodvisen od začetne točke, s katere smo kroglico spustili? Pri tem zanemarimo zračni upor in trenje.
+		\end{primer}
+		
+		Pri tem se bomo pri reševanju primera \ref{prim:Pfaff1} zgledovali po \cite{bib:raman}, pri reševanju primera \ref{prim:Laplace1} pa po \cite{bib:Mag}. Primer \ref{prim:Fourier1} in njegova rešitev sta povzeta iz lastnih zapiskov.
+		
+	\section{Pfaffova diferencialna enačba}
+		V tem poglavju si bomo ogledali t.~i.~ Pfaffove diferencialne enačbe, posebej v primeru dveh in treh spremenljivk, ter nekatere metode reševanja. Pri tem se bomo v glavni meri naslanjali na vir \cite{bib:raman}, v manjši meri pa tudi na vir \cite{bib:pfaff}.
+		\subsection{Osnovne definicije in rezultati}
+			Poseben primer Pfaffove enačbe smo spoznali že pri reševanju navadnih linearnih diferencialnih enačb. Rešitev tega posebnega primera smo imenovali prvi integral enačbe. Preden definiramo splošno Pfaffovo enačbo, se spomnimo tega primera.
+			
+			\begin{definicija}
+				Naj bo $y' = f(x, y)$ navadna linearna diferencialna enačba prvega reda.~\pojem{Prvi integral} te diferencialne enačbe je funkcija $F(x, y)$, ki je konstantna vzdolž vsake rešitve.
+			\end{definicija}
+			Torej, če je $F$ prvi integral enačbe $y' = f(x, y)$, za vsako njeno rešitev, $y = y(x)$ z definicijskim območjem $D_y$, obstaja $c\in\R$, da velja: $F(x, y(x)) = c ~\forall x\in D_y$. Ob predpostavki, da je $F$ zvezno parcialno odvedljiva po vseh spremenljivkah in da je vsaj eden od teh parcialnih odvodov različen od $0$, lahko iz enačbe $F(x, y) = c$ po izreku o implicitni funkciji na neki okolici izrazimo $y = y(x)$. Po dodatku k izreku o implicitni funkciji na prej omenjeni okolici velja: $y' = -\frac{F_x}{F_y}$, kjer sta $F_x = \frac{\partial F}{\partial x}$ in $F_y = \frac{\partial F}{\partial y}$ parcialna odvoda po $x$ in $y$. Ko upoštevamo zvezo $y' = \frac{dy}{dx}$ dobimo naslednjo enakost: $$F_x dx + F_y dy = 0$$ Če dodatno vpeljemo oznaki $P = F_x$ in $Q = F_y$, enačba zavzame obliko $P dx + Q dy = 0$. To je ravno Pfaffova enačba v dveh spremenljivkah. Če imamo podano Pfaffovo enačbo v dveh spremenljivkah $P dx + Q dy = 0$, vemo že, da je iskanje rešitve ekvivalentno iskanju vektorskega polja $F$, za katerega velja: $\nabla F = (F_x, F_y) = (P, Q)$, za katerega velja $<\nabla F, (dx, dy)> = 0$, kjer je $<, >$ standardni skalarni produkt. Če vpeljemo oznako $\vec{r} = (x, y)$, dobimo še krajši zapis: $<\nabla F, d\vec{r}> = 0$.
+			
+			Definirajmo sedaj Pfaffovo diferencialno enačbo v večih spremenljivkah.
+			
+			\begin{definicija}
+				Naj bodo $\map{F_i}{\R^n}{\R}$ zvezne funkcije neodvisnih spremenljivk $x_1, x_2, \ldots, x_n$. ~\pojem{Pfaffova diferencialna enačba} je enačba oblike $$\sum_{i = 1}^{n}F_i(x_1, x_2, \ldots, x_n) dx_i = 0$$.
+			\end{definicija}
+			
+			Tudi tukaj vidimo, da lahko reševanje dane enačbe prevedemo na iskanje vektorskega polja $F$ za katerega velja $grad(F) = \nabla F = [F_1, F_2, \ldots, F_n]^\top$ in $<\nabla F , d\vec{r}> = 0$, kjer je $d\vec{r} = [dx_1, dx_2, \ldots, dx_n]^\top$. Vektorska oblika Pfaffove diferencialne enačbe se torej glasi $<\nabla F, d\vec{r}> = 0$. Naravna zahteva je seveda, da je $F$ zvezno parcialno odvedljiv po vseh spremenljivkah. V nadaljevanju bomo za to uporabili krajši zapis - $F\in \mathcal{C}^1$.
+			
+			Posebej, v primeru treh spremenljivk: $$P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$$
+			
+			Kadar obravnavamo Pfaffove diferencialne enačbe, nas tipično zanimajo rešitve oblike $f(x_1, x_2, \ldots, x_n) = c$, kjer je $c$ neka poljubna, tipično realna, konstanta. V primeru treh spremenljivk, te rešitve tvorijo enoparametrično družino ploskev v prostoru ($\R^3$). Če je $R(x, y, z)\neq 0$ in iz enačbe $f(x, y, z) = c$ izrazimo $z = g(x, y)$ lahko preuredimo Pfaffovo diferencialno enačbo v treh spremenljivkah v obliko $dz = -\frac{P(x, y, z)}{R(x, y, z)}dx - \frac{Q(x, y, z)}{R(x, y, z)}dy$. Tako reševanje Pfaffove enačbe prevedemo na reševanje sistema parcialnih diferencialnih enačb prvega reda: $z_x = -\frac{P}{R}$ ter $z_y = -\frac{Q}{R}$. S tem se nam razkrije še ena uporabna vrednost reševanja Pfaffovih diferencialnih enačb v treh spremenljivkah.
+			
+			Že iz iskanja prvega integrala vemo, da za nekatere funkcije $P$ in $Q$, Pfaffova enačba $Pdx + Qdy = 0$ nima direktne rešitve. Potreben pogoj za obstoj direktne rešitve (za točno to enačbo), torej funkcije $u$, da je $\nabla u = (P, Q)$, je, da velja $P_y = Q_x$. V primeru, ko to ne velja, tipično poiščemo t.~i.~ integrirajoči množitelj $\mu(x, y)$, da velja: $(\mu\cdot P)_y = (\mu\cdot Q)_x$ in potem rešimo enačbo $(\mu\cdot P)dx + (\mu\cdot Q)dy = 0$, njeno rešitev pa razglasimo za prvi integral originalne enačbe $Pdx + Qdy = 0$. Opišimo te lastnosti še za splošno Pfaffovo diferencialno enačbo.
+			
+			\begin{definicija}
+				Naj bodo $\forall i\in\{1, 2, \ldots, n\}~ \map{F_i}{\R^n}{\R}$ zvezne funkcije, ki določajo Pfaffovo diferencialno enačbo $\sum_{i = 1}^{n}F_i(x_1, x_2, \ldots, x_n)dx_i = 0$. Če obstaja taka funkcija $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da za njen totalni diferencial $du$ velja $du = <\nabla u, [dx_1, dx_2, \ldots, dx_n]> = \sum_{i = 1}^{n}F_i dx_i$, potem pravimo, da je enačba \pojem{eksaktna}.
+			\end{definicija}
+			
+			\begin{definicija}
+				Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$ \pojem{integrabilna}, če obstajata taki funkciji $\mu(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$ in $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da je $<\nabla u,[dx_1, dx_2, \ldots, dx_n]^\top> = \sum_{i = 1}^n (\mu F_i) dx_i$
+			\end{definicija}
+			
+			To, da je enačba integrabilna, je ravno potreben in zadosten pogoj, da rešitev obstaja. V primeru dveh spremenljivk, je ta pogoj ekvivalenten pogoju $P_y = Q_x$, v primeru treh spremenljivk, pa temu, da velja $$<[P, Q, R]^\top, rot([P, Q, R]^\top)> = 0$$
+			
+			Če je enačba integrabilna, je ena od nam že znanih metod reševanja ta, da poiščemo integrirajoči množitelj. To se lahko zakomplicira, saj je že v primeru dveh spremenljivk iskanje integrirajočega množitelja ekvivalentno reševanju parcialne diferencialne enačbe prvega reda $\mu_y\cdot P + \mu\cdot P_y - \mu_x\cdot Q + \mu\cdot Q_x = 0$ za funkcijo $\mu$. Na srečo obstajajo druge metode, ki jih bomo za primer treh spremenljivk obravnavali v naslednjem podpoglavju. Preden se lotimo le teh, navedimo še definicijo kvazi-homogenih funkcij in par rezultatov v zvezi z njimi, saj bo nam to prišlo prav kasneje.
+			
+			\begin{definicija}
+				Pravimo, da je funkcija $\map{f}{\R^n}{\R}$ \pojem{kvazi-homogena} stopnje (oz. reda) $m\in\Z$, če obstajajo taka neničelna števila $a_1, a_2, \ldots, a_n \in \Z$, da velja: $$f(x_1t^{a_1}, x_2t^{a_2}, \ldots, x_nt^{a_n}) = t^mf(x_1, x_2, \ldots, x_n)$$
+				za vsak $t\in\R$.
+				V tem primeru pravimo, da je število $a_i$ \pojem{dimenzija} spremenljivke $x_i$.
+			\end{definicija}
+			
+			Seveda velja, da so vse homogene funkcije reda $m$ tudi kvazi-homogene reda $m$ ($a_1 = a_2 = \ldots = a_n = 1$). Poglejmo si primer funkcije, ki je kvazi-homogena, ni pa homogena.
+			
+			\begin{zgled}
+				Poglejmo si polinomsko funkcijo s predpisom $f(x, y) = 4x^3y^3 -3x^2y^6 + 2xy^9 - y^{12}$. Vidimo, da velja $f(tx, ty) = 4t^6x^3y^3 -3t^8x^2y^6 + 2t^{10}xy^9 - t^{12}y^{12} \neq f(x, y)$, torej $f$ ni homogena. Če pa vzamemo $a_1 = 3$ in $a_2 = 1$ dobimo: \begin{align*}
+					f(t^3x, ty) &= 4t^{12}x^3y^3 -3t^{12}x^2y^6 +2t^{12}xy^9 - t^{12}y^{12} \\
+					&= t^{12}(4x^3y^3 -3x^2y^6 + 2xy^9 - y^{12}) = t^{12}f(x, y)
+				\end{align*}
+				
+				Funkcija $f$ je torej kvazi-homogena reda $12$, ni pa homogena.
+			\end{zgled}
+			
+			Seveda pri kvazi-homogenih funkcijah nismo omejeni samo na polinome.
+			
+			\begin{zgled}
+				Preverimo, da je funkcija $f(x, y) = \abs{y}\sqrt{x}$ kvazi-homogena funkcija reda $2$ z dimenzijama $2$ in $1$.
+				$$f(t^2x, ty) = \abs{ty}\sqrt{t^2x} = \abs{t}\abs{y}\abs{t}\sqrt{x} = \abs{t}^2\abs{y}\sqrt{x} = t^2\abs{y}\sqrt{x} = t^2f(x, y)$$
+			\end{zgled}
+			Da se bolje seznanimo s konceptom kvazi-homogenih funkcij, bomo navedli in dokazali par trditev.
+			
+			\begin{trd}
+				Naj bo $\map{f}{\R^n}{\R}$ kvazi-homogena funkcija reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$. Za $x_1 \neq 0$ in vse $i\in \{2, 3, \ldots, n\}$ označimo: $b_i = \frac{a_i}{a_1}$ in $y_i = \frac{x_i}{x_1^{b_i}}$. Tedaj je $$f(x_1, x_2, \ldots, x_n) = x_1^{\frac{m}{a_1}}f(1, y_2, \ldots, y_n)$$
+			\end{trd}
+			\begin{proof}
+				Po definiciji vemo, da je $f(x_1t^{a_1}, x_2t^{a_2}, \ldots, x_nt^{a_n}) = t^mf(x_1, x_2, \ldots, x_n)$ za vsak $t\in\R$. Naj bo $x_1 \neq 0$ in $t^{a_1} = \frac{1}{x_1}$ ter s pomočjo slednje enakosti dobimo: $$t^{a_i} = t^{a_1\frac{a_i}{a_1}} = t^{a_1b_i} = (\frac{1}{x_1})^{b_i} = \frac{1}{x_1^{b_i}}$$
+				
+				Ko to vstavimo v začetno enakost, dobimo: $$f(1, x_2x_1^{-b_2}, \ldots, x_nx_1^{-b_n}) = x_1^{-\frac{m}{a_1}} f(x_1, x_2, \ldots, x_n)$$
+				
+				Ko enačbo pomnožimo z $x_1^{\frac{m}{a_1}}$ in upoštevamo oznako $y_i = x_ix_1^{-b_i}$ dobimo ravno enakost iz trditve.
+			\end{proof}
+			
+			\begin{trd}
+				Naj bo $\map{f}{\R^n}{\R}$ $\mathcal{C}^1$ kvazi-homogena funkcija reda $m$ z dimenzijami $a_1, a_2, \ldots, a_n$. Tedaj velja enakost: $$mf(x_1, x_2, \ldots, x_n) = \sum_{i = 2}^{n}a_ix_i\frac{\partial f}{\partial x_i}(x_1, x_2, \ldots, x_n)$$
+			\end{trd}
+			
+			\begin{proof}
+				Po prejšnji trditvi vemo, da za $x_1 \neq 0$ velja: $f(x_1, x_2, \ldots, x_n) = x_1^{\frac{m}{a_1}}f(1, y_2, \ldots, y_n)$. Poračunajmo parcialne odvode od $f$:
+				\begin{align*}
+					\frac{\partial f}{\partial x_1}(x_1, \ldots, x_n) &= \frac{m}{a_1}x_1^\frac{m-a_1}{a_1}f(1, y_2, \ldots, y_n) + x_1^\frac{m}{a_1}\sum_{i = 2}^{n}x_i(-\frac{a_i}{a_1})x_1^\frac{-(a_i + a_1)}{a_1}\frac{\partial f}{\partial y_i}(1, y_2, \ldots, y_n) \\
+					&= \frac{m}{a_1}x_1^\frac{m-a_1}{a_1}f(1, y_2, \ldots, y_n) + \sum_{i = 2}^{n}x_i(-\frac{a_i}{a_1})x_1^\frac{m- a_i - a_1}{a_1}\frac{\partial f}{\partial y_i}(1, y_2, \ldots, y_n)
+				\end{align*}
+				In za $\forall i \in \{2, \ldots, n\}$ je
+				\begin{align*}
+					\frac{\partial f}{\partial x_i}(x_1, \ldots, x_n) &= x_1^{\frac{m}{a_1}}x_1^\frac{-a_i}{a_1}\frac{\partial f}{\partial y_i}(1, y_2, \ldots, y_n) = x_1^\frac{m - a_i}{a_1}\frac{\partial f}{\partial y_i}(1, y_2, \ldots, y_n)
+				\end{align*}
+				
+				Potem je \begin{align*}
+					a_1x_1\frac{\partial f}{\partial x_1}(x_1, \ldots, x_n) &= m x_1^\frac{m}{a_1}f(1, y_2, \ldots, y_n) + \sum_{i = 2}^{n}(-a_i)x_ix_1^\frac{m - a_i}{a_1}\frac{\partial f}{\partial y_i}(1, y_2, \ldots, y_n) \\
+					&= m f(x_1, \ldots, x_n) + \sum_{i = 2}^{n}(-1)(a_ix_i)(x_1^\frac{m - a_i}{a_1}\frac{\partial f}{\partial y_i}(1, y_2, \ldots, y_n)) \\
+					&= m f(x_1, \ldots, x_n) - \sum_{i = 2}^{n}(a_ix_i)\frac{\partial f}{\partial x_i}(x_1, \ldots, x_n)
+					\end{align*}
+				Ko k enačbi prištejemo $\sum_{i = 2}^{n}a_ix_i\frac{\partial f}{\partial x_i}(x_1, \ldots, x_n)$, dobimo ravno enakost iz trditve.
+			\end{proof}
+			
+			\begin{definicija}
+				Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$:\begin{itemize}
+					\item \pojem{homogena} reda $m$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ homogene funkcije reda $m$.
+					\item \pojem{kvazi-homogena} reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ kvazi-homogene funkcije reda $m - a_i$
+				\end{itemize} 
+			\end{definicija}
+			
+		\subsection{Metode reševanja}
+			V tem podpoglavju bomo našteli in demonstrirali nekaj metod reševanja Pfaffovih enačb v treh spremenljivkah. Te metode ločimo gleda na to, če je enačba eksaktna, ali če je le integrabilna (ne pa eksaktna). Metode za eksaktne enačbe med drugimi vsebujejo:
+			\begin{enumerate}
+				\item Metoda ostrega pogleda
+				\item Reševanje sistema parcialnih diferencialnih enačb prvega reda
+				\item Integracija potencialnega polja
+				\item Ločevanje spremenljivk
+			\end{enumerate}
+			Če enačba ni eksaktna, je pa integrabilna, potem nam pogosto koristijo naslednje metode:
+			\begin{enumerate}
+				\item Enačbe z ločljivo spremenljivko
+				\item Homogene enačbe
+				\item Natanijeva metoda
+				\item Mayerjeva metoda
+				\item Bertrandova metoda
+				\item Kvazi-homogene enačbe
+			\end{enumerate}
+			Začnimo z obravnavo metod za eksaktne enačbe:
+				\subsubsection{Metode za eksaktne enačbe}
+					\paragraph{Metoda ostrega pogleda} 
+						Najprej si poglejmo najpreprostejšo metodo - metodo ostrega pogleda. Kot ime metode naimguje, tukaj rešitev ">uganemo"<, kar lahko storimo v nekaterih redkih primerih. 
+					
+						\begin{zgled}
+							\label{zgl:guess}
+							Za Pfaffovo enačbo $xdx + ydy + zdz = 0$ lahko na podlagi simetrije in preprostosti funkcij, ki v njej nastopajo, uganemo, da je $u(x, y, z) = \frac{1}{2}(x^2 + y^2 + z^2)$ iskana funkcija, ki nam da družino rešitev u(x, y, z) = c.
+						\end{zgled}
+					
+					V nadaljevanju predpostavimo, da so funkcije $P, Q$ in $R$ vse $\mathcal{C}^1$ funkcije.
+					\paragraph{Reševanje sistema PDE prvega reda}	
+						Že prej smo omenili, da je reševanje Pfaffove enačbe v treh spremenljivkah ekvivalentno reševanju sistema parcialnih diferencialnih enačb prvega reda. Posledično je naslednja metoda reševanje sistema PDE prvega reda. Denimo torej, da imamo eksaktno Pfaffovo DE v treh spremenljivkah: $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$. Tedaj obstaja $\mathcal{C}^2$ funkcija $u$, za katero velja: $\frac{\partial u}{\partial x} = P, \frac{\partial u}{\partial y} = Q ~\text{in}~ \frac{\partial u}{\partial z} = R$. To funkcijo $u$ torej dobimo kot rešitev sistema: 
+						\begin{align*}
+							u_x(x, y, z) &= P(x, y, z) \\
+							u_y(x, y, z) &= Q(x, y, z) \\
+							u_z(x, y, z) &= R(x, y, z) 
+						\end{align*}
+					
+						\begin{zgled}
+							\label{zgl:PDEr1}
+							Reševanje Pfaffove diferencialne enačbe $yze^{xyz}dx + xze^{xyz}dy + xye^{xyz}dz = 0$ prevedemo na reševanje sistema PDE prvega reda: \begin{align*}
+								u_x(x, y, z) &= yze^{xyz} \\
+								u_y(x, y, z) &= xze^{xyz} \\
+								u_z(x, y, z) &= xye^{xyz} 
+							\end{align*}
+							V vseh treh enačbah nastopa le en odvod po eni spremenljivki, torej lahko vsako posebej tretiramo kot navadno diferencialno enačbo s parametri. Tako hitro vidimo, da funkcija $u(x, y, z) = e^{xyz} + D(y, z)$ zadošča prvi enačbi, $u(x, y, z) = e^{xyz} + C(x, z)$ pa drugi enačbi. Ko slednjo parcialno odvajamo po $x$ dobimo $yze^{xyz} + C_x(x, z) = yze^{xyz}$, torej je $C_x = 0$ oz. $C$ je odvisna le od $z$. Podobno, če prvo enakost parcialno odvajamo po $y$ dobimo enakost $D_y = 0$, torej je tudi $D$ odvisna le od $z$. Ker mora veljati enakost, sledi $C(z) = D(z)$. Sedaj $u(x, y, z) = e^{xyz} + C(z)$ parcialno odvajamo po $z$ in upoštevamo tretjo enačbo v sistemu in s tem vidimo, da je $C_z = 0$, torej je $C$ konstanta. Posledično je $u(x, y, z) = e^{xyz} + C$ iskana funkcija, ki nam da rešitev.
+						\end{zgled}
+					\paragraph{Integracija potencialnega polja}
+						Iz vektorske analize vemo, da, če trojica $(P, Q, R)$ tvori $\mathcal{C}^1$ vektorsko polje $F$, nam eksaktnost enačbe $Pdx + Qdy + Rdz = 0$ pove, da obstaja tako $\mathcal{C}^2$ skalarno polje $u$, da je $\nabla u = F = (P, Q, R)$. Tako lahko uporabimo standardno metodo integriranja potencialnega vektorskega polja, da dobimo potencial $u$, ki določa rešitev dane Pfaffove diferencialne enačbe.
+					
+						\begin{zgled}
+							\label{zgl:intvec}
+							Vrnimo se na zgled \ref{zgl:PDEr1} in enačbo $yze^{xyz}dx + xze^{xyz}dy + xye^{xyz}dz = 0$ rešimo še s to metodo. $F(x, y, z) = (yze^{xyz}, xze^{xyz}, xye^{xyz})$ je očitno $\mathcal{C}^1$ vektorsko polje, rutinski račun pa nam pokaže tudi, da je potencialno. Integriramo $P$ po spremenljivki $x$ in dobimo $u(x, y, z) = \int yze^{xyz}dx = e^{xyz} + C(y, z)$. To sedaj parcialno odvajamo po $y$ in dobimo $xze^{xyz} + C_y(y, z) = Q(x, y, z) = xze^{xyz}$, od tod pa sklepamo, da je $C_y = 0$. Sklepamo, da je potem $C$ odvisna le od $z$ in pišemo $C(y, z) = C(z)$. Sedaj enačbo $u(x, y, z) = e^{xyz} + C(z)$ parcialno odvajamo po $z$ in dobimo enakost $xye^{xyz} + C_z(z) = R(x, y, z) = xye^{xyz}$. Od tod sklepamo, da je $C_z(z) = 0$, torej je $C$ konstanta. Dobimo funkcijo $u(x, y, z) = e^{xyz} + C$.
+						\end{zgled}
+					\paragraph{Ločevanje spremenljivk}
+						Metodo ločevanja spremenljivk uporabimo, kadar lahko dano Pfaffovo diferencialno enačbo $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ zapišemo v obliki $\acute{P}(x)dx + \acute{Q}(y)dy + \acute{R}(z)dz = 0$. V tem primeru funkcijo $u$ dobimo kot naslednjo vsoto integralov: $$u(x, y, z) = \int \acute{P}(x)dx + \int \acute{Q}(y)dy + \int \acute{R}(z)dz$$
+					
+						\begin{zgled}
+							\label{zgl:sepvars}
+							Vrnimo se k zgledu \ref{zgl:guess}, $xdx + ydy + zdz = 0$, in denimo, da nam ne uspe uganiti rešitve. Ker je to enačba z ločenimi spremenljivkami, lahko uporabimo prejšnjo metodo in tako dobimo $u(x, y, z) = \frac{x^2}{2} + \frac{y^2}{2} + \frac{z^2}{2} + C = \frac{1}{2}(x^2 + y^2 + z^2) + C$
+						\end{zgled}
+					
+					\begin{opomba}
+						Vse do sedaj omenjene metode, razen integriranja potencialnega vektorskega polja, lahko posplošimo tudi za reševanje eksaktnih Pfaffovih diferencialnih enačb v več spremenljivkah.
+					\end{opomba}
+				\subsubsection{Metode za integrabilne enačbe, ki niso nujno eksaktne}
+					Poglejmo si sedaj še metode za reševanje Pfaffovih diferencialnih enačb v treh spremenljivkah, ki so integrabilne, ne pa nujno tudi eksaktne.
+					\paragraph{Enačbe z ločljivo spremenljivko}
+						Najprej si poglejmo t.~i.~ enačbe z ločljivo spremenljivko, torej enačbe v katerih lahko eno spremenljivko ločimo od vseh drugih (na primer $f(x, y, z) = g(x, y) + h(z)$). Denimo, da je spremenljivka $z$ ločljiva spremenljivka v enačbi $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$. Tedaj lahko to enačbo preoblikujemo v obliko $\acute{P}(x, y)dx + \acute{Q}(x, y)dy + \acute{R}(z)dz = 0$. Integrabilnost enačbe nam tukaj da pogoj $\frac{\partial \acute{P}}{\partial y} = \frac{\partial \acute{Q}}{\partial x}$, to pa nam pove, da je $\acute{P}(x, y)dx + \acute{Q}(x, y)dy$ totalni diferencial neke funkcije. Označimo to funkcijo z $v$. Torej, $dv = \acute{P}(x, y)dx + \acute{Q}(x, y)dy$ in naša enačba sedaj dobi obliko $dv + \acute{R}(z)dz = 0$. Funkcija $u(x, y, z)$, ki jo iščemo, je potem dobljena kot vsota funkcije $v$ in integrala $\int \acute{R}(z)dz$: $u(x, y, z) = v(x, y) + \int \acute{R}(z)dz$.
+					
+						\begin{zgled}
+							\label{zgl:sepvar}
+							Rešujemo enačbo $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$. Enostavno je videti, da $P_z(x, y, z) = \frac{1}{z} \neq 0 = R_x(x, y, z)$, torej naša enačba ni eksaktna. Preverimo pa lahko, da je integrabilna: \begin{align*}
+							P(Q_z - R_y) &+ Q(R_x - P_z) + R(P_y - Q_x) =\\ 
+							&= \frac{x+y}{z}(\frac{xy+1}{yz^2}-0) + \frac{xy+1}{yz}(0-\frac{x+y}{z^2}) + (z^2 +1)(\frac{1}{z} - \frac{1}{z}) \\
+							&= \frac{(x+y)(xy+1)}{yz^3} - \frac{(xy+1)(x+y)}{yz^3} + 0 = 0
+							\end{align*}
+							Dodatno opazimo, da lahko ločimo spremenljivko $z$ od ostalih s tem, da enačbo pomnožimo z $z$. Preoblikovana enačba se glasi:$$(x+y)dx + \frac{xy+1}{y}dy + z(z^2 +1)dz = 0$$
+						
+							Pri tem vemo, da je $(x+y)dx + \frac{xy+1}{y}dy$ totalni diferencial neke funkcije $v$. Iz enakosti $v_x = (x+y)$ z integriranjem dobimo $v(x, y) = \frac{x^2}{2} + xy + D(y)$, ko to odvajamo po $y$, pa dobimo $x + D_y(y) = x + \frac{1}{y}$. Od tod sklepamo, da je $D_y(y) = \frac{1}{y}$ oz. $D(y) = \ln|y|$. Funkcija $v$ se torej glasi $v(x, y) = \frac{x^2}{2} + xy + \ln|y|$. Poračunajmo še $\int z(z^2 + 1)dz$:
+						
+							$$	\int z(z^2 + 1)dz = \int z^3 + z dz = \frac{z^4}{4} + \frac{z^2}{2} + C $$
+						
+							Sledi torej, da ima iskana funkcija $u$, ki nam da rešitev Pfaffove enačbe, naslednji predpis: $$ u(x, y, z) = \frac{x^2}{2} + xy + \ln|y| + \frac{z^4}{4} + \frac{z^2}{2} + C$$
+						\end{zgled}
+					
+					\paragraph{Homogene enačbe}
+						Denimo, da je Pfaffova diferencialna enačba $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ homogena reda $m$. Sedaj vpeljemo novi spremenljivki $u$ in $v$, da velja $y = xv$ ter $z = xw$. Tedaj dobi naša enačba obliko $x^m(P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw) = 0$ oziroma $P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw = 0$. Dobljena enačba je enačba z ločljivo spremenljivko (specifično, $x$ je ločljiva), ki jo rešimo po prejšnji metodi.
+						
+						\begin{zgled}
+							\label{zgl:homogen}
+							Rešujemo Pfaffovo diferencialno enačbo $x^2yzdx + xy^2zdy + xyz^2dz = 0$. Najprej vidimo, da so funkcije $x^2yz, xy^2z$ in $xyz^2$ vse homogene funkcije reda $4$, torej je dana Pfaffova diferencialna enačba homogena reda $4$. Prepričamo se še, da je integrabilna: \begin{align*}
+								P(Q_z - R_y) &+ Q(R_x - P_z) + R(P_y - Q_x) =\\ 
+								&= x^2yz(xy^2 - xz^2) + xy^2z(yz^2 - x^2y) + xyz^2(x^2z - y^2z) \\
+								&= x^3y^3z - x^3yz^3 + xy^3z^3 - x^3y^3z + x^3yz^3 - xy^3z^3 \\
+								&= 0
+							\end{align*}
+							
+							Sedaj v Pfaffovo diferencialno enačbo vpeljemo $y = xv$ in $z = xw$ (ter posledično $dy = xdv$ in $dz = xdw$) in tako dobimo: $$P(x, xv, xw)dx + xQ(x, xv, xw)dv +xR(x, xv, xw)dw = 0$$ oziroma $$x^4vwdx + x^5v^2wdv + x^5vw^2dw = 0$$
+							Enačbo delimo z $x^4vw$ ter tako dobimo: $$dx + xvdv + xwdw = 0$$ Sedaj delimo enačbo še z $x$ in tako to spremenljivko ločimo od ostalih dveh. Končna oblika preoblikovane enačbe je torej: $$\frac{dx}{x} + vdv + wdw = 0$$ Sedaj se te enačbe lotimo po metodi za enačbe z ločljivo spremenljivko in prepoznamo, da je $vdv + wdw$ totalni diferencial funkcije $f(v, w) = \frac{1}{2}(v^2 + w^2)$. Ko to upoštevamo v naši enačbi dobimo $\frac{dx}{x} + df = 0$, kar nam pa da iskano funkcijo $u(x, v, w) = \ln\abs{x} + \frac{1}{2}(v^2 + w^2)$. Ko se vrnemo na začetne spremenljivke, ima $u$ naslednji predpis: $u(x, y, z) = \ln\abs{x} + \frac{(y^2 + z^2)}{2x^2}$.
+							
+						\end{zgled}
+						
+					\paragraph{Natanijeva metoda}
+						Natanijeva metoda se Pfaffove diferencialne enačbe loti na naslednji način: Najprej se obnašamo, kot da je ena od spremenljivk konstanta in rešimo pripadajočo Pfaffovo diferencialno enačbo. Torej, če vzamemo $z$ za neko fiksno konstanto, potem rešujemo $P(x, y, z)dx + Q(x, y, z)dy = 0$. Denimo, da je $\Phi_1(x, y, z) = c_1$ rešitev te enačbe (kjer je $c_1$ neka konstanta). Tedaj je rešitev originalne enačbe oblike $\Phi(\Phi_1, z) = c_2$ (kjer je $c_2$ neka konstanta). To rešitev lahko preoblikujemo v obliko $\Phi_1(x, y, z) = \psi(z)$. To storimo tako, da najprej fiksiramo eno od spremenljivk (v tem primeru $x$ ali $y$) v enakosti $\Phi_1(x, y, z) = \psi(z)$. Denimo, da smo fiksirali $x$ in to fiksno vrednost označimo z $x_0$. Tedaj nam enakost $\Phi_1(x_0, y, z) = \psi(z)$ da rešitev Pfaffove diferencialne enačbe $Q(x_0, y, z)dy + R(x_0, y, z)dz = 0$ (saj nam enakost $\Phi_1(x, y, z) = \psi(z)$ predstavlja rešitev Pfaffove DE $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$). Enačba $Q(x_0, y, z)dy + R(x_0, y, z)dz = 0$ pa je ravno Pfaffova DE v dveh spremenljivkah in njena rešitev je prvi integral neke navadne diferencialne enačbe prvega reda. Naj bo $K(y, z) = c$ prvi integral te enačbe. Tako $\Phi_1(x_0, y, z) = \psi(z)$ kot tudi $K(y, z) = c$ sta rešitvi pripadajoče navadne diferencialne enačbe prvega reda in po enoličnosti rešitve navadne diferencialne enačbe prvega reda sledi, da ti rešitvi Pfaffove diferencialne enačbe ekvivalentni. Tako lahko eliminiramo spremenljivko $y$ in končno dobimo naš iskani $\psi(z)$. Rešitev enačbe dobimo, ko pridobljeni $\psi(z)$ vstavimo v enakost $\Phi_1(x, y, z) = \psi(z)$.
+						
+						\begin{zgled}
+							\label{zgl:natani}
+							Vrnimo se k enačbi v zgledu \ref{zgl:sepvar} in jo rešimo z Natanijevo metodo. V prvem koraku obravnavamo spremenljivko $z$ kot konstanto in rešujemo enačbo $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy = 0$. Ta enačba je eksaktna in pripadajoča funkcija $\Phi_1$ se glasi: $\Phi_1(x, y, z) = \frac{1}{z}(\frac{x^2}{2} + xy + \ln\abs{y})$. Rešitev te enačbe je torej $\Phi_1(x, y, z) = c_1$. Vrnimo se sedaj v začetno enačbo in tokrat fiksirajmo $x = 0$. Tedaj je $\Phi_1(0, y, z) = \frac{\ln\abs{y}}{z}$ rešitev enačbe $\frac{1}{yz}dy + (z^2 + 1)dz = 0$. Ta enačba je integrabilna z integrirajočim množiteljem $\mu(x, z) = z$, njena rešitev pa je podana s funkcijo $K(y, z) = \ln\abs{y} + \frac{z^2(z^2 + 2)}{4}$. Rešitev se torej glasi $K(y, z)= c$. in iz te enakosti izrazimo $y$: $y(z) = e^{\frac{4c - z^2(z^2 + 2)}{4}}$ Sedaj upoštevamo enakovrednost $K(y, z) = c$ in $\Phi_1(0, y, z) = \psi(z)$ ter s tem dobimo: $$\frac{4c - z^2(z^2 + 2)}{4z} = \psi(z)$$
+							
+							Sedaj, ko imamo $\psi(z)$, ga vstavimo v enakost $\Phi_1(x, y, z) = \psi(z)$ in s tem dobimo iskano rešitev, ki jo pa lahko preoblikujemo v standardno obliko $\Phi(x, y, z) = c_2$. 
+							
+							Storimo še to: 
+							
+							$$\frac{1}{z}(\frac{x^2}{2} + xy + \ln\abs{y}) = \frac{4c - z^2(z^2 + 2)}{4z}$$
+							
+							Vpeljemo oznako $c_2 = 4c$, enačbo pomnožimo z $z$ ter vse nekonstantne člene premaknemo na levo stran. Tako dobimo:
+							
+							$$\frac{x^2}{2} + xy + \ln\abs{y} + \frac{z^4 + 2z^2}{4} = c_2$$
+							
+						\end{zgled}
+						
+					\paragraph{Mayerjeva metoda}
+						Z Mayerjevo metodo reduciramo iskanje rešitve Pfaffove diferencialne enačbe v treh spremenljivkah ($P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$) na iskanje prvega integrala neke navadne diferencialne enačbe prvega reda. Denimo, da je dana Pfaffova DE v treh spremenljivkah integrabilna. Tedaj ima rešitev oblike $f(x, y, z) = c$ za neko primerno funkcijo $f$. Ta rešitev tvori enoparametrično družino ploskev v $\R^3$, presečišča teh ploskve z ravnino $x + ky - z = 0$ pa bodo tvorile neskončno družino krivulj, ki pa bodo rešitve neke Pfaffove diferencialne enačbe v dveh spremenljivkah: $p(x, y, k)dx + q(x, y, k)dy = 0$. To enačbo tipično pridobimo tako, da vstavimo $z = x + ky$ v našo prvotno enačbo in s tem eliminiramo spremenljivko $z$. Denimo sedaj, da je $\Phi(x, y, k) = \acute{c}$ splošna rešitev Pfaffove enačbe $p(x, y, k)dx + q(x, y, k)dy = 0$. Vsaka točka na presečišču med $z$-osjo in dano družino ravnin $x + ky = z$ lahko dobimo tako, da nastavimo $y = 0$ in $x = c (=z)$ in če integralska krivulja $\Phi(x, y, k)$ vsebuje to točko, mora veljati $\Phi(x, y, k) = \Phi(c, 0, k)$ (saj je $\Phi$ vzdolž te krivulje konstantna). Če $k$ variiramo, dobimo torej enoparametrično družino krivulj, ki vsebujejo točko $(c, 0)$, če pa variiramo $c$ s tem dobimo družino krivulj, ki tečejo skozi vsako točko na preseku $z$-osi z ravnino $z = x + ky$. Ko iz slednje enačbe izrazimo $k = \frac{z - x}{y}$ in to vstavimo v $\Phi(x, y, k) = \Phi(c, 0, k)$, se znebimo parametra $k$ in tako dobimo družino ploskev $\Phi(x, y, \frac{z - x}{y}) = \Phi(c, 0, \frac{z - x}{y})$, ki je pa ravno naša iskana rešitev Pfaffove DE v treh spremenljivkah z začetka.
+						
+						\begin{zgled}
+							Rešimo Pfaffovo diferencialno enačbo $xdx + ydy + zdz = 0$. Najprej vidimo, da je enačba res integrabilna, saj njene funkcije $P, Q$ in $R$ določajo potencialno vektorsko polje. V enačbo vstavimo enakost $z = x + ky$ in $dz = dx + kdy$ ter s tem dobimo: $$(2x+ky)dx + (kx+(k^2+1)y)dy = 0$$ Označimo $p(x, y, k) = 2x+ky$ in $q(x, y, k)=kx + (k^2+1)y$. Ker je $p_y = k q_x$, je pdx + qdy totalni diferencial neke funkcije $u$. Poračunajmo $u$: $$u(x, y, k)= x^2 + kxy + \frac{(k^2+1)y^2}{2} $$
+							
+							Zanima nas ravno $u(x, y, k) = u(c, 0, k) = c^2$ oz. $x^2 + kxy + \frac{(k^2+1)y^2}{2} = c^2$. V enačbo sedaj vstavimo $k = \frac{z - x}{y}$ in tako dobimo: $$ x^2 + \frac{xyz - x^2y}{y} + \frac{\frac{(x^2 - 2xz + z^2) + y^2}{y^2}y^2}{2} = c^2$$
+							
+							To enačbo malo uredimo in dobimo $x^2 + xz - x^2 + \frac{x^2 - 2xz + y^2 + z^2}{2} = c^2$ oziroma $\frac{1}{2}(x^2 + y^2 + z^2) = c^2$. To je ravno rešitev naše orginalne enačbe, kar nas seveda ne preseneča.
+								
+						\end{zgled}
+						
+					\paragraph{Bertrandova metoda}
+						Pri Bertrandovi metodi se Pfaffove diferencialne enačbe $Pdx + Qdy + Rdz = 0$ lotimo tako, da najprej rešimo linearno parcialno diferencialno enačbo $(Q_z - R_y)u_x + (R_x - P_z)u_y + (P_y - Q_x)u_z = 0$. Če sta $v$ in $w$ dve neodvisna prva integrala te enačbe, potem seveda velja $(Q_z - R_y)v_x + (R_x - P_z)v_y + (P_y - Q_x)v_z = 0$ in $(Q_z - R_y)w_x + (R_x - P_z)w_y + (P_y - Q_x)w_z = 0$. Ko poleg teh dveh enakosti upoštevamo še pogoj integrabilnosti $P(Q_z - R_y) + Q(R_x - P_z) + R(P_y - Q_x) = 0$, se lahko znebimo faktorjev v oklepajih ter tako dobimo: $\begin{vmatrix}
+							v_x & v_y & v_z \\
+							w_x & w_y & w_z \\
+							P & Q & R
+						\end{vmatrix} = 0$, od tod pa pridobimo dve funkciji, $\lambda(v, w)$ in $\mu(v, w)$, da velja: \begin{align*}
+						P &= \lambda v_x + \mu w_x \\
+						Q &= \lambda v_y + \mu w_y \\
+						R &= \lambda v_z + \mu w_z
+						\end{align*}
+						
+						Ko to vstavimo v našo začetno Pfaffovo diferencialno enačbo, se ta reducira na obliko $\lambda dv + \mu dw = 0$, ki pa je rešljiva Pfaffova diferencialna enačba v dveh spremenljivkah, saj sta $\lambda$ in $\mu$ odvisni le od $v$ in $w$.
+						
+						\begin{zgled}
+							S pomočjo Bertrandove metode rešimo Pfaffovo diferencialno enačbo $ydx + xdy + xydz = 0$.
+%							Enačba nam da naslednjo homogeno PDE reda $1$: $xu_x + yu_y = 0$
+%							Karakteristični sistem za njo se glasi: \begin{align*}
+%								\dot{x} &= x \\
+%								\dot{y} &= y \\
+%								\dot{z} &= 0 \\
+%								\dot{u} &= 0 \\
+%							\end{align*}, njegove rešitve pa so $x(t) = c_1e^t, y(t) = c_2e^t, z(t) = c_3$ in $u(t) = c_4$. Prva integrala se tako glasita $v(x, y, z) = \frac{x}{y}$ in $w(x, y, z) = z$. Sedaj poiščemo funkciji $\lambda$ in $\mu$:
+%							Enakost $P = \lambda v_x + \mu w_x$ nam da pogoj $y = \lambda v_x = \frac{\lambda}{y}$ in enačba $Q = \lambda v_y + \mu w_y$ nam da pogoj $x = \lambda v_y = -\frac{\lambda x}{y^2}$. Tretja enačba, $R = \lambda v_z + \mu w_z$ nam da pogoj $xy = \mu$.
+						\end{zgled}
+%					
+
+% Nekaj sem tu zajebal pri izračunu prvih integralov^
+					\paragraph{Kvazi-homogene enačbe}
+					
+						\begin{zgled}
+							content...
+						\end{zgled}
+					
+	\section{Fourierjeva transformacija}
+	
+		\subsection{Osnovne definicije in rezultati}
+		
+		\subsection{Metoda uporabe}
+		
+		\subsection{Primeri uporabe}
+		
+	\section{Laplaceova transformacija}
+	
+		\subsection{Osnovne definicije in rezultati}
+		
+		\subsection{Metoda uporabe}
+		
+		\subsection{Primeri uporabe}
+		
+	
+	\begin{thebibliography}{99}
+		
+		\bibitem{bib:pfaff} C.~K.~Fong,~\emph{Equations involving differentials: Pfaffian equations}, [ogled 10.~3.~2024], dostopno na \url{https://people.math.carleton.ca/~ckfong/S12.pdf}.
+		
+		\bibitem{bib:Mag} B.~Magajna,~\emph{Uvod v diferencialne enačbe, kompleksno in Fourierjevo analizo}, DMFA -- založništvo, Ljubljana, 2018.
+		
+		\bibitem{bib:raman} K.~R.~Unni,~\emph{Pfaffian differential expressions and equations}, diplomsko delo, v: All graduate theses and dissertations, [ogled 10.~3.~2024], dostopno na \url{https://core.ac.uk/download/pdf/127676355.pdf}.
+		
+		\bibitem{bib:ana4} E.~Zakrajšek,~\emph{Analiza IV}, DMFA -- založništvo, Ljubljana, 1999.
+		
+	\end{thebibliography}
+\end{document}
