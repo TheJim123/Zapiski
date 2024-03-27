@@ -329,11 +329,23 @@
 						\end{zgled}
 						
 					\paragraph{Bertrandova metoda}
-						Pri Bertrandovi metodi se Pfaffove diferencialne enačbe $Pdx + Qdy + Rdz = 0$ lotimo tako, da najprej rešimo linearno parcialno diferencialno enačbo $(Q_z - R_y)u_x + (R_x - P_z)u_y + (P_y - Q_x)u_z = 0$. Če sta $v$ in $w$ dve neodvisna prva integrala te enačbe, potem seveda velja $(Q_z - R_y)v_x + (R_x - P_z)v_y + (P_y - Q_x)v_z = 0$ in $(Q_z - R_y)w_x + (R_x - P_z)w_y + (P_y - Q_x)w_z = 0$. Ko poleg teh dveh enakosti upoštevamo še pogoj integrabilnosti $P(Q_z - R_y) + Q(R_x - P_z) + R(P_y - Q_x) = 0$, se lahko znebimo faktorjev v oklepajih ter tako dobimo: $\begin{vmatrix}
+						Pri Bertrandovi metodi se Pfaffove diferencialne enačbe $Pdx + Qdy + Rdz = 0$, ki ni eksaktna (torej $rot[P, Q, R]^\top \neq 0$), je pa integrabilna, lotimo tako, da najprej rešimo linearno parcialno diferencialno enačbo $(Q_z - R_y)u_x + (R_x - P_z)u_y + (P_y - Q_x)u_z = 0$. Če sta $v$ in $w$ dve neodvisna prva integrala te enačbe, potem seveda velja $(Q_z - R_y)v_x + (R_x - P_z)v_y + (P_y - Q_x)v_z = 0$ in $(Q_z - R_y)w_x + (R_x - P_z)w_y + (P_y - Q_x)w_z = 0$. Ko poleg teh dveh enakosti upoštevamo še pogoj integrabilnosti $P(Q_z - R_y) + Q(R_x - P_z) + R(P_y - Q_x) = 0$ tako dobimo sistem treh enačb. Označimo $A = \begin{bmatrix}
 							v_x & v_y & v_z \\
 							w_x & w_y & w_z \\
 							P & Q & R
-						\end{vmatrix} = 0$, od tod pa pridobimo dve funkciji, $\lambda(v, w)$ in $\mu(v, w)$, da velja: \begin{align*}
+						\end{bmatrix}$. Tedaj se naš sistem enačb glasi: $$\begin{bmatrix}
+							v_x & v_y & v_z \\
+							w_x & w_y & w_z \\
+							P & Q & R
+						\end{bmatrix} \cdot \begin{bmatrix}
+						Q_z - R_y \\
+						R_x - P_z \\
+						P_y - Q_z
+						\end{bmatrix} = 0$$ Ker po predpostavki velja $rot[P, Q, R]^\top \neq 0$, sledi, da ima dana matrika netrivialno jedro, torej ni obrnljiva. Posledično velja: $\begin{vmatrix}
+							v_x & v_y & v_z \\
+							w_x & w_y & w_z \\
+							P & Q & R
+						\end{vmatrix} = 0$, in ker so vrstice linearno odvisne, lahko najdemo dve funkciji, $\lambda(v, w)$ in $\mu(v, w)$, da velja: \begin{align*}
 						P &= \lambda v_x + \mu w_x \\
 						Q &= \lambda v_y + \mu w_y \\
 						R &= \lambda v_z + \mu w_z
@@ -342,19 +354,56 @@
 						Ko to vstavimo v našo začetno Pfaffovo diferencialno enačbo, se ta reducira na obliko $\lambda dv + \mu dw = 0$, ki pa je rešljiva Pfaffova diferencialna enačba v dveh spremenljivkah, saj sta $\lambda$ in $\mu$ odvisni le od $v$ in $w$.
 						
 						\begin{zgled}
-							S pomočjo Bertrandove metode rešimo Pfaffovo diferencialno enačbo $ydx + xdy + xydz = 0$.
-%							Enačba nam da naslednjo homogeno PDE reda $1$: $xu_x + yu_y = 0$
-%							Karakteristični sistem za njo se glasi: \begin{align*}
-%								\dot{x} &= x \\
-%								\dot{y} &= y \\
-%								\dot{z} &= 0 \\
-%								\dot{u} &= 0 \\
-%							\end{align*}, njegove rešitve pa so $x(t) = c_1e^t, y(t) = c_2e^t, z(t) = c_3$ in $u(t) = c_4$. Prva integrala se tako glasita $v(x, y, z) = \frac{x}{y}$ in $w(x, y, z) = z$. Sedaj poiščemo funkciji $\lambda$ in $\mu$:
-%							Enakost $P = \lambda v_x + \mu w_x$ nam da pogoj $y = \lambda v_x = \frac{\lambda}{y}$ in enačba $Q = \lambda v_y + \mu w_y$ nam da pogoj $x = \lambda v_y = -\frac{\lambda x}{y^2}$. Tretja enačba, $R = \lambda v_z + \mu w_z$ nam da pogoj $xy = \mu$.
+							S pomočjo Bertrandove metode rešimo Pfaffovo diferencialno enačbo iz zgleda \ref{zgl:sepvar}: $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$.
+							Zapišimo komponente od $rot[xy, xy, xy]^\top$: \begin{align*}
+								a(x, y, z, u) &= Q_x - R_y = \frac{xy+1}{yz^2} \\
+								b(x, y, z, u) &= R_x - P_z = -\frac{x+y}{z^2} \\
+								c(x, y, z, u) &= P_y - Q_x = 0 \\
+								d(x, y, z, u) &= 0
+							\end{align*}
+							Sedaj s pomočjo funkcij $a, b, c$ in $d$ določimo homogeno linearno PDE prvega reda: $au_x + bu_y + cu_z = d$
+							Posebej: $yu_y + (x-y)u_z = 0$. Enačbo bomo rešili s pomočjo metode karakteristik. Zato najprej parametriziramo spremenljivke $x = x(t), y = y(t), z = z(t), u = u(t) = u(x(t), y(t), z(t))$.
+							Karakteristični sistem za njo se glasi: \begin{align*}
+								\dot{x} &= a(x, y, z, u) = \frac{xy+1}{yz^2} \\
+								\dot{y} &= b(x, y, z, u) = -\frac{x+y}{z^2} \\
+								\dot{z} &= c(x, y, z, u) = 0 \\
+								\dot{u} &= d(x, y, z, u) = 0
+							\end{align*}
+							
+							Rešitve teh enačb se potem glasijo:
+							
+							\begin{align*}
+								x(t) &= \sqrt{\frac{e^{z^2(t+c_1)}-1}{e^{-z^2(t+c_2)}-1}} \\
+								y(t) &= \sqrt{e^{z^2(t+c_1)}-1)(e^{z^2(t+c_2)}-1)} \\
+								z(t) &= c_3 \\
+								u(t) &= c_4
+							\end{align*}
+							
+							Posebej, rešitev je oblike $u(x, y, z) = c_3(z)\cdot(\frac{x^2}{2} + xy - \ln\frac{-1}{y} + 1$, kjer je $c_3\in\mathcal{C}^1$ in od tod dobimo prva integrala $v(x, y, z) = c_3(z)$ in $w(x, y, z) = \frac{x^2}{2} + xy - \ln\frac{-1}{y} + 1$. \begin{align*}
+								det(A) = \begin{vmatrix}
+									v_x & v_y & v_z \\
+									w_x & w_y & w_z \\
+									P & Q & R
+								\end{vmatrix} &= \begin{vmatrix}
+								0 & 0 & c_3'(z) \\
+								x+y & \frac{xy+1}{y} & 0 \\
+								\frac{x+y}{z} & \frac{xy+1}{yz} & (z^2+1)
+								\end{vmatrix} \\
+								&= c_3'(z)((x+y)\frac{xy+1}{yz} - \frac{xy+1}{y}\frac{x+y}{z}) = 0
+							\end{align*}
+							Sedaj poiščimo taki funkciji $\lambda$ in $\mu$, da bo: \begin{align*}
+								P &= \mu(x+y) \\
+								Q &= \mu \frac{xy+1}{y} \\
+								R &= \lambda c_3'(z)
+							\end{align*}
+							
+							Prva enačba nam pove, da je $\mu(x, y, z) = \frac{1}{z}$, kar nam pove tudi druga enačba. Tretja enačba nam določi $\lambda(x, y, z) = \frac{(z^2 +1)}{c_3'(z)}$. Preostane samo še, da s pomočjo $v$ in $w$ izrazimo $\lambda$ in $\mu$, nato pa rešimo enačbo $\lambda(v, w)dv + \mu(v, w)dw = 0$.
+							Opazimo, da sta tako $\lambda$ kot $\mu$ obe v resnici odvisni zgolj od $z$, zato bo parametrizacija neodvisna od $w$, saj je ta neodvisna od $z$. Za parametrizacijo se torej obrnemo na $v(z) = c_3(z)$. Dodatno se omejimo na funkcije $c_3(z)$, ki so bijektivne, ter tako lahko zapišemo $z = c_3^{-1}(v) = f(v)$. Potem je $\lambda(v) = \frac{1}{f(v)}$ in $\mu(v) = \frac{f^2(v) + 1}{c_3'(f(v))}$. S tem smo originalno enačbo prevedli na reševanje enačbe $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$. Nadaljno reševanje problema je odvisno od izbire funkcije $c_3$. Poglejmo si poseben primer, ko je $c_3(z) = z$. Tedaj je $v = z$ in $\lambda(v) = \frac{1}{v}$ in $\mu(v) = v^2 + 1$. Rešujemo Pfaffovo DE $\frac{dv}{v} + (v^2 + 1)dw = 0$. Ta enačba ni eksaktna, zato poiščemo integrirajoči množitelj - ta je kar $\frac{1}{v^2 + 1}$, saj je enačba v resnici enačba z ločljivo spremenljivko. Sedaj rešujemo enačbo $\frac{dv}{v(v^2+1)} + dw = 0$. Funkcija, ki določa rešitev, je torej $g(v, w) = w + \int \frac{dv}{v(v^2 +1)} = w + \ln(v) -\frac{\ln(v^2+1)}{2}$, rešitev pa je $g(v, w) = c$
 						\end{zgled}
-%					
-
-% Nekaj sem tu zajebal pri izračunu prvih integralov^
+						
+						\begin{opomba}
+							Če v funkcijo $g(v, w)$ vstavimo spremenljivke $x,y$ in $z$, dobimo funkcijo, ki se razlikuje od tiste, ki smo jo dobili pri zgledih \ref{zgl:sepvar} in \ref{zgl:natani}. Razlog za to se skriva v tem, kako smo izbrali funkcijo $c_3(z)$.
+						\end{opomba}
 					\paragraph{Kvazi-homogene enačbe}
 					
 						\begin{zgled}

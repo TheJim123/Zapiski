@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  24 MAR 2024 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  27 MAR 2024 22:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -961,26 +961,28 @@ Overfull \hbox (4.11624pt too wide) in paragraph at lines 332--336
 di se Pfa-ffove di-fe-ren-ci-alne ena£be
  []
 
-[12]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-83.
- (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+[12] [13]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
+32.
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-[13] (Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije.aux)
+[14] [15] (Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije.aux
+)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22391 strings out of 474435
- 479899 string characters out of 5740045
+ 22393 strings out of 474435
+ 479957 string characters out of 5740045
  1950190 words of memory out of 5000000
- 44331 multiletter control sequences out of 15000+600000
+ 44333 multiletter control sequences out of 15000+600000
  616026 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,93p,1811b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,93p,1811b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1000,9 +1002,9 @@ al/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Uporabnik/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on "Pfaffova DE ter uporaba Fourierjeve in Laplaceove transforma
-cije.pdf" (13 pages, 350872 bytes).
+cije.pdf" (15 pages, 360095 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 151 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
