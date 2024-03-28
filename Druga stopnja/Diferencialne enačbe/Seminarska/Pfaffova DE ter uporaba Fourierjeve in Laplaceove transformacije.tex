@@ -56,6 +56,7 @@
 \newcommand{\N}{\mth{N}}
 \newcommand{\No}{\mth{N}_0}
 \newcommand{\C}{\mth{C}}
+\newcommand{\Q}{\mth{Q}}
 \newcommand{\Qu}{\mth{Q}_u}
 \newcommand{\pojem}[1]{\emph{#1}}
 \newcommand{\con}{\ensuremath{\mathscr{C}}}
@@ -100,6 +101,7 @@
 			Poseben primer Pfaffove enačbe smo spoznali že pri reševanju navadnih linearnih diferencialnih enačb. Rešitev tega posebnega primera smo imenovali prvi integral enačbe. Preden definiramo splošno Pfaffovo enačbo, se spomnimo tega primera.
 			
 			\begin{definicija}
+				\label{def:1stint}
 				Naj bo $y' = f(x, y)$ navadna linearna diferencialna enačba prvega reda.~\pojem{Prvi integral} te diferencialne enačbe je funkcija $F(x, y)$, ki je konstantna vzdolž vsake rešitve.
 			\end{definicija}
 			Torej, če je $F$ prvi integral enačbe $y' = f(x, y)$, za vsako njeno rešitev, $y = y(x)$ z definicijskim območjem $D_y$, obstaja $c\in\R$, da velja: $F(x, y(x)) = c ~\forall x\in D_y$. Ob predpostavki, da je $F$ zvezno parcialno odvedljiva po vseh spremenljivkah in da je vsaj eden od teh parcialnih odvodov različen od $0$, lahko iz enačbe $F(x, y) = c$ po izreku o implicitni funkciji na neki okolici izrazimo $y = y(x)$. Po dodatku k izreku o implicitni funkciji na prej omenjeni okolici velja: $y' = -\frac{F_x}{F_y}$, kjer sta $F_x = \frac{\partial F}{\partial x}$ in $F_y = \frac{\partial F}{\partial y}$ parcialna odvoda po $x$ in $y$. Ko upoštevamo zvezo $y' = \frac{dy}{dx}$ dobimo naslednjo enakost: $$F_x dx + F_y dy = 0$$ Če dodatno vpeljemo oznaki $P = F_x$ in $Q = F_y$, enačba zavzame obliko $P dx + Q dy = 0$. To je ravno Pfaffova enačba v dveh spremenljivkah. Če imamo podano Pfaffovo enačbo v dveh spremenljivkah $P dx + Q dy = 0$, vemo že, da je iskanje rešitve ekvivalentno iskanju vektorskega polja $F$, za katerega velja: $\nabla F = (F_x, F_y) = (P, Q)$, za katerega velja $<\nabla F, (dx, dy)> = 0$, kjer je $<, >$ standardni skalarni produkt. Če vpeljemo oznako $\vec{r} = (x, y)$, dobimo še krajši zapis: $<\nabla F, d\vec{r}> = 0$.
@@ -107,6 +109,7 @@
 			Definirajmo sedaj Pfaffovo diferencialno enačbo v večih spremenljivkah.
 			
 			\begin{definicija}
+				\label{def:PfaffDE}
 				Naj bodo $\map{F_i}{\R^n}{\R}$ zvezne funkcije neodvisnih spremenljivk $x_1, x_2, \ldots, x_n$. ~\pojem{Pfaffova diferencialna enačba} je enačba oblike $$\sum_{i = 1}^{n}F_i(x_1, x_2, \ldots, x_n) dx_i = 0$$.
 			\end{definicija}
 			
@@ -119,10 +122,12 @@
 			Že iz iskanja prvega integrala vemo, da za nekatere funkcije $P$ in $Q$, Pfaffova enačba $Pdx + Qdy = 0$ nima direktne rešitve. Potreben pogoj za obstoj direktne rešitve (za točno to enačbo), torej funkcije $u$, da je $\nabla u = (P, Q)$, je, da velja $P_y = Q_x$. V primeru, ko to ne velja, tipično poiščemo t.~i.~ integrirajoči množitelj $\mu(x, y)$, da velja: $(\mu\cdot P)_y = (\mu\cdot Q)_x$ in potem rešimo enačbo $(\mu\cdot P)dx + (\mu\cdot Q)dy = 0$, njeno rešitev pa razglasimo za prvi integral originalne enačbe $Pdx + Qdy = 0$. Opišimo te lastnosti še za splošno Pfaffovo diferencialno enačbo.
 			
 			\begin{definicija}
+				\label{def:eksaktna}
 				Naj bodo $\forall i\in\{1, 2, \ldots, n\}~ \map{F_i}{\R^n}{\R}$ zvezne funkcije, ki določajo Pfaffovo diferencialno enačbo $\sum_{i = 1}^{n}F_i(x_1, x_2, \ldots, x_n)dx_i = 0$. Če obstaja taka funkcija $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da za njen totalni diferencial $du$ velja $du = <\nabla u, [dx_1, dx_2, \ldots, dx_n]> = \sum_{i = 1}^{n}F_i dx_i$, potem pravimo, da je enačba \pojem{eksaktna}.
 			\end{definicija}
 			
 			\begin{definicija}
+				\label{def:integrabilna}
 				Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$ \pojem{integrabilna}, če obstajata taki funkciji $\mu(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$ in $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da je $<\nabla u,[dx_1, dx_2, \ldots, dx_n]^\top> = \sum_{i = 1}^n (\mu F_i) dx_i$
 			\end{definicija}
 			
@@ -131,6 +136,7 @@
 			Če je enačba integrabilna, je ena od nam že znanih metod reševanja ta, da poiščemo integrirajoči množitelj. To se lahko zakomplicira, saj je že v primeru dveh spremenljivk iskanje integrirajočega množitelja ekvivalentno reševanju parcialne diferencialne enačbe prvega reda $\mu_y\cdot P + \mu\cdot P_y - \mu_x\cdot Q + \mu\cdot Q_x = 0$ za funkcijo $\mu$. Na srečo obstajajo druge metode, ki jih bomo za primer treh spremenljivk obravnavali v naslednjem podpoglavju. Preden se lotimo le teh, navedimo še definicijo kvazi-homogenih funkcij in par rezultatov v zvezi z njimi, saj bo nam to prišlo prav kasneje.
 			
 			\begin{definicija}
+				\label{def:kvazhomfun}
 				Pravimo, da je funkcija $\map{f}{\R^n}{\R}$ \pojem{kvazi-homogena} stopnje (oz. reda) $m\in\Z$, če obstajajo taka neničelna števila $a_1, a_2, \ldots, a_n \in \Z$, da velja: $$f(x_1t^{a_1}, x_2t^{a_2}, \ldots, x_nt^{a_n}) = t^mf(x_1, x_2, \ldots, x_n)$$
 				za vsak $t\in\R$.
 				V tem primeru pravimo, da je število $a_i$ \pojem{dimenzija} spremenljivke $x_i$.
@@ -156,6 +162,7 @@
 			Da se bolje seznanimo s konceptom kvazi-homogenih funkcij, bomo navedli in dokazali par trditev.
 			
 			\begin{trd}
+				\label{trd:kvazhom1}
 				Naj bo $\map{f}{\R^n}{\R}$ kvazi-homogena funkcija reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$. Za $x_1 \neq 0$ in vse $i\in \{2, 3, \ldots, n\}$ označimo: $b_i = \frac{a_i}{a_1}$ in $y_i = \frac{x_i}{x_1^{b_i}}$. Tedaj je $$f(x_1, x_2, \ldots, x_n) = x_1^{\frac{m}{a_1}}f(1, y_2, \ldots, y_n)$$
 			\end{trd}
 			\begin{proof}
@@ -167,6 +174,7 @@
 			\end{proof}
 			
 			\begin{trd}
+				\label{trd:kvazhom2}
 				Naj bo $\map{f}{\R^n}{\R}$ $\mathcal{C}^1$ kvazi-homogena funkcija reda $m$ z dimenzijami $a_1, a_2, \ldots, a_n$. Tedaj velja enakost: $$mf(x_1, x_2, \ldots, x_n) = \sum_{i = 2}^{n}a_ix_i\frac{\partial f}{\partial x_i}(x_1, x_2, \ldots, x_n)$$
 			\end{trd}
 			
@@ -190,9 +198,10 @@
 			\end{proof}
 			
 			\begin{definicija}
+				\label{def:pfaffKvazhom}
 				Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$:\begin{itemize}
 					\item \pojem{homogena} reda $m$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ homogene funkcije reda $m$.
-					\item \pojem{kvazi-homogena} reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ kvazi-homogene funkcije reda $m - a_i$
+					\item \pojem{kvazi-homogena} reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ kvazi-homogene funkcije reda $m - a_i$ (z dimenzijami $a_i$).
 				\end{itemize} 
 			\end{definicija}
 			
@@ -370,16 +379,9 @@
 								\dot{u} &= d(x, y, z, u) = 0
 							\end{align*}
 							
-							Rešitve teh enačb se potem glasijo:
+							Ker sta $z$ in $u$ neodvisna od $t$, v resnici rešujemo sistem v prvih dveh vrsticah, kar pa lahko lahko rešimo z iskanjem prvega integrala, kar pa je enakovredno reševanju Pfaffove Diferencialne enačbe $(x+y)dx + \frac{xy+1}{y}dy = 0$. Rešitev te enačbe je pa ravno $w(x, y, z) =  \frac{x^2}{2} + xy + \ln\abs{y}$.
 							
-							\begin{align*}
-								x(t) &= \sqrt{\frac{e^{z^2(t+c_1)}-1}{e^{-z^2(t+c_2)}-1}} \\
-								y(t) &= \sqrt{e^{z^2(t+c_1)}-1)(e^{z^2(t+c_2)}-1)} \\
-								z(t) &= c_3 \\
-								u(t) &= c_4
-							\end{align*}
-							
-							Posebej, rešitev je oblike $u(x, y, z) = c_3(z)\cdot(\frac{x^2}{2} + xy - \ln\frac{-1}{y} + 1$, kjer je $c_3\in\mathcal{C}^1$ in od tod dobimo prva integrala $v(x, y, z) = c_3(z)$ in $w(x, y, z) = \frac{x^2}{2} + xy - \ln\frac{-1}{y} + 1$. \begin{align*}
+							Določimo še en, od $w$ neodvisen prvi integral: $v(x, y, z) = c_3(z)$ za neko $\mathcal{C}^1$ funkcijo $c_3$. Sledi, da je rešitev začetne parcialne diferencialne enačbe funkcija pripadajočih prvih integralov. Posebej, izkaže se, da je rešitev oblike $u(x, y, z) = c_3(z) + (\frac{x^2}{2} + xy +\ln\abs{y})$, kjer je $c_3$ lahko poljubna $\mathcal{C}^1$ funkcija. \begin{align*}
 								det(A) = \begin{vmatrix}
 									v_x & v_y & v_z \\
 									w_x & w_y & w_z \\
@@ -398,16 +400,101 @@
 							\end{align*}
 							
 							Prva enačba nam pove, da je $\mu(x, y, z) = \frac{1}{z}$, kar nam pove tudi druga enačba. Tretja enačba nam določi $\lambda(x, y, z) = \frac{(z^2 +1)}{c_3'(z)}$. Preostane samo še, da s pomočjo $v$ in $w$ izrazimo $\lambda$ in $\mu$, nato pa rešimo enačbo $\lambda(v, w)dv + \mu(v, w)dw = 0$.
-							Opazimo, da sta tako $\lambda$ kot $\mu$ obe v resnici odvisni zgolj od $z$, zato bo parametrizacija neodvisna od $w$, saj je ta neodvisna od $z$. Za parametrizacijo se torej obrnemo na $v(z) = c_3(z)$. Dodatno se omejimo na funkcije $c_3(z)$, ki so bijektivne, ter tako lahko zapišemo $z = c_3^{-1}(v) = f(v)$. Potem je $\lambda(v) = \frac{1}{f(v)}$ in $\mu(v) = \frac{f^2(v) + 1}{c_3'(f(v))}$. S tem smo originalno enačbo prevedli na reševanje enačbe $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$. Nadaljno reševanje problema je odvisno od izbire funkcije $c_3$. Poglejmo si poseben primer, ko je $c_3(z) = z$. Tedaj je $v = z$ in $\lambda(v) = \frac{1}{v}$ in $\mu(v) = v^2 + 1$. Rešujemo Pfaffovo DE $\frac{dv}{v} + (v^2 + 1)dw = 0$. Ta enačba ni eksaktna, zato poiščemo integrirajoči množitelj - ta je kar $\frac{1}{v^2 + 1}$, saj je enačba v resnici enačba z ločljivo spremenljivko. Sedaj rešujemo enačbo $\frac{dv}{v(v^2+1)} + dw = 0$. Funkcija, ki določa rešitev, je torej $g(v, w) = w + \int \frac{dv}{v(v^2 +1)} = w + \ln(v) -\frac{\ln(v^2+1)}{2}$, rešitev pa je $g(v, w) = c$
+							Opazimo, da sta tako $\lambda$ kot $\mu$ obe v resnici odvisni zgolj od $z$, zato bo parametrizacija neodvisna od $w$, saj je ta neodvisna od $z$. Za parametrizacijo se torej obrnemo na $v(z) = c_3(z)$. Dodatno se omejimo na funkcije $c_3(z)$, ki so bijektivne in $\mathcal{C}^2$, ter tako lahko zapišemo $z = c_3^{-1}(v) = f(v)$. Potem je $\lambda(v) = \frac{1}{f(v)}$ in $\mu(v) = \frac{f^2(v) + 1}{c_3'(f(v))}$. S tem smo originalno enačbo prevedli na reševanje enačbe $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$. Ta enačba ni nujno eksaktna, je pa integrabilna za integrirajoči množitelj $\mu(v, w) = \frac{c_3'(f(v))}{(f^2(v) + 1)}$. Tedaj je rešitev enačbe podana s funkcijo $g(v, w) = w + \int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv$.
+							Nadaljno reševanje problema je odvisno od izbire funkcije $c_3$. Poglejmo si poseben primer, ko je $c_3(z) = \frac{z^7}{7} + \frac{2z^5}{5} + \frac{z^3}{3} = v$. Tedaj je $c_3'(z) = z^6 + 2z^4 + z^2$. Potem je $\int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv = \int \frac{z^6 + 2z^4 + z^2}{z(z^2 + 1)}dz = \int \frac{(z^3 + z)^2dz}{(z^3 + z)} = \int z^3 + z dz = \frac{z^4}{4} + \frac{z^2}{2} + \acute{C}$. Ko to vstavimo v funkcijo $g$ in razpišemo $w(x, y, z)$, dobimo ravno rešitev, ki smo jo dobili v zgledih \ref{zgl:sepvar} in \ref{zgl:natani}.
 						\end{zgled}
 						
 						\begin{opomba}
-							Če v funkcijo $g(v, w)$ vstavimo spremenljivke $x,y$ in $z$, dobimo funkcijo, ki se razlikuje od tiste, ki smo jo dobili pri zgledih \ref{zgl:sepvar} in \ref{zgl:natani}. Razlog za to se skriva v tem, kako smo izbrali funkcijo $c_3(z)$.
+							Razlog, da je dobljena rešitev enaka kot v ostalih zgledih z isto enačbo, se skriva v tem, kako smo izbrali funkcijo $c_3(z)$. Če bi izbrali kako drugo $c_3$, bi dobili drugo rešitev. ki bi se od te razlikovala le v členih, ki so odvisni od $z$.
 						\end{opomba}
 					\paragraph{Kvazi-homogene enačbe}
-					
+						Za konec tega poglavja si poglejmo še reševanje kvazi-homogenih Pfaffovih diferencialnih enačb v treh spremenljivkah. Za začetek premislimo potrebne pogoje, da je Pfaffova diferencialna enačba $Pdx + Qdy + Rdz = 0$ kvazi-homogena. Denimo, da so $P, Q$ in $R$ naslednje oblike: \begin{align*}
+							P(x, y, z) &= \sum_{i = 1}^{n_1}a_ix^{\alpha_i}y^{\beta_i}z^{\gamma_i} \\
+							Q(x, y, z) &= \sum_{i = j}^{n_2}b_jx^{\lambda_j}y^{\mu_j}z^{\nu_j} \\
+							R(x, y, z) &= \sum_{k = 1}^{n_3}c_kx^{\varepsilon_k}y^{\eta_k}z^{\zeta_k} \\
+						\end{align*}
+						
+						
+						Kjer so $a_i, b_j$ in $c_k$ koeficienti in $\alpha_i, \beta_i, \gamma_i, \lambda_j, \mu_j, \nu_j, \varepsilon_k, \eta_k, \zeta_k\in \Q,~ \forall i\in \{1,\ldots, n_1\}, \forall j\in \{1,\ldots, n_2\}, \forall k\in \{1,\ldots, n_3\}$. 
+						Tedaj ima naša Pfaffova enačba obliko $$(\sum_{i = 1}^{n_1}a_ix^{\alpha_i}y^{\beta_i}z^{\gamma_i})dx + (\sum_{i = j}^{n_2}b_jx^{\lambda_j}y^{\mu_j}z^{\nu_j})dy + (\sum_{k = 1}^{n_3}c_kx^{\varepsilon_k}y^{\eta_k}z^{\zeta_k})dz = 0$$
+						
+						Če sedaj v enačbi $x$ zamenjamo z $xt^p$, $y$ zamenjamo z $yt^q$ ter $z$ zamenjamo z $zt^r$, potem je potenca števila $t$ v vsakem členu naše Pfaffove enačbe določena z: \begin{align*}
+							p\alpha_i + q\beta_i + r\gamma_i~&;~ i\in \{1, \ldots, n_1\} \\
+							p\lambda_j + q\mu_j + r\nu_j~&;~ j\in \{1, \ldots, n_2\} \\
+							p\varepsilon_k + q\eta_k + r\zeta_k~&;~ k\in \{1, \ldots, n_3\}
+						\end{align*}
+						
+						To nam da $n_1 + n_2 + n_3$ linearnih izrazov, ki so odvisni od $p, q$ in $r$. Da bi bila naša Pfaffova enačba kvazi-homogena reda $m$, bi potem morala biti $P$ kvazi-homogena reda $m-p$, $Q$ kvazi-homogena reda $m-q$ in $R$ kvazi-homogena reda $m-r$. To pa pomeni, da bi morala biti potenca števila $t$ v vsakem členu funkcije $P$ enaka $m-p$, potenca $t$ v vsakem členu $Q$ bi morala biti $m-q$, potenca $t$ v vsakem členu $R$ pa natanko $m-r$. Tako dobimo $n_1 + n_2 + n_3$ linearnih enačb v $p, q, r$ in $m$, ki se glasijo: \begin{align*}
+							p(\alpha_i+1) + q\beta_i + r\gamma_i - m = 0~&;~ i\in \{1, \ldots, n_1\} \\
+							p\lambda_j + q(\mu_j+1) + r\nu_j - m= 0~&;~ j\in \{1, \ldots, n_2\} \\
+							p\varepsilon_k + q\eta_k + r(\zeta_k+1) - m=0~&;~ k\in \{1, \ldots, n_3\}
+						\end{align*}
+						
+						Če je Pfaffova enačba, ki jo obravnavamo, kvazi-homogena, morajo biti zgornje enačbe medseboj konsistentne, da obstaja enolična rešitev $p, q, r, m$. Potreben pogoj za to, da je dana Pfaffova enačba kvazi-homogena je torej konsistentnost zgornjih enačb. Premislimo sedaj, kako rešujemo kvazi-homogene Pfaffove diferencialne enačbe.
+						
+						Naj bo $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ kvazi-linearna Pfaffova enačba  reda $m$ z dimenzijami spremenljivk $p, q$ in $r$ (po vrsti za $x, y$ in $z$). Tedaj, po definiciji \ref{def:pfaffKvazhom} velja, da so $P, Q$ in $R$ kvazihomogene funkcije redov $m-p, m-q$ in $m-r$. Če upoštevamo trditev \ref{trd:kvazhom1}, lahko te funkcije zapišemo na naslednji način: \begin{align*}
+							P(x, y, z) &= x^{\frac{m-p}{p}}P(1, yx^{-\frac{q}{p}}, zx^{-\frac{r}{p}}) \\
+							Q(x, y, z) &= x^{\frac{m-q}{p}}Q(1, yx^{-\frac{q}{p}}, zx^{-\frac{r}{p}}) \\
+							R(x, y, z) &= x^{\frac{m-r}{p}}R(1, yx^{-\frac{q}{p}}, zx^{-\frac{r}{p}}) \\
+						\end{align*}
+						Če uvedemo novi spremenljivki $u = yx^{-\frac{q}{p}}$ in $v = zx^{-\frac{r}{p}}$, potem velja $dy = x^{\frac{q}{p}}du + \frac{q}{p}ux^{\frac{q-p}{p}}dx$ in $dz = x^{\frac{r}{p}}dv + \frac{r}{p}vx^{\frac{r-p}{p}}dx$. Ko to vstavimo v našo začetno enačbo dobimo: \begin{align*}
+							x^{\frac{m-p}{p}}P(1, u, v) dx &+ x^{\frac{m-q}{p}}Q(1, u, v)(x^{\frac{q}{p}}du + \frac{q}{p}ux^{\frac{q-p}{p}}dx) \\ 
+							&+ x^{\frac{m-r}{p}}R(1, u, v) (x^{\frac{r}{p}}dv + \frac{r}{p}vx^{\frac{r-p}{p}}dx) = 0
+						\end{align*}
+						Ko združimo člene, ki vsebujejo $dx$, se enačba preoblikuje v obliko: \begin{align*}
+						&x^{\frac{m-p}{p}}(pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v))dx \\ &+ px^{\frac{m}{p}}Q(1, u, v)du + px^{\frac{m}{p}}R(1, u, v)dv  = 0 
+						\end{align*}
+						Sedaj delimo enačbo s faktorjem $x^{\frac{m}{p}}(pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v))$ in s tem ločimo spremenljivko $x$ od $u$ in $v$. Tako pridobljena enačba se glasi: \begin{align*}
+							\frac{x^{\frac{m-p}{p}}}{x^{\frac{m}{p}}}dx &+ \frac{pQ(1, u, v)du}{pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v)} \\ 
+							&+ \frac{pR(1, u, v)dv}{pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v)} = 0
+						\end{align*}
+						Ko uvedemo oznaki $$A(u, v) = \frac{pQ(1, u, v)}{pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v)}$$ ter $$B(u, v) = \frac{pR(1, u, v)}{pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v)}$$ se zgornja enačba glasi: $$ \frac{dx}{x} + A(u, v)du + B(u, v)dv = 0$$
+						
+						Tako enačbo je pa enostavno rešiti z metodo za enačbe z ločljivo spremenljivko.
+						
 						\begin{zgled}
-							content...
+							Poskusimo rešit primer \ref{prim:Pfaff1}. Imamo torej enačbo $(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$. Najprej preverimo, da je enačba sploh integrabilna.
+							\begin{align*}
+								&P(Q_z - R_y) + Q(R_x - P_z) + R(P_y - Q_x) = \\
+								&= (5x^3 + 2y^4 + 2y^2z + 2z^3)(2xy - 2xy)
+								+ (4xy^3 + 2xyz)(y^2 + 2z - 2y^2 - 4z) \\ 
+								&+ (xy^2 + 2xz)(8y^3 + 4yz - 4y^3-2yz) =\\
+								&= 0 - (4xy^5 + 2xy^3z + 8xy^3z +4xyz^2) + (4xy^5 + 8xy^3z + 2xy^3z + 4xyz^2) \\ 
+								&= 0
+							\end{align*}
+							Enačba torej res je integrabilna. Opazimo tudi, da so naše funkcije $P, Q$ in $R$ ravno oblike iz premisleka o potrebnem pogoju za kvazi-homogenost. Preverimo torej, če je naša Pfaffova diferencialna enačba kvazi-homogena.
+							
+							Pripadajoči sistem enačb se glasi: \begin{align*}
+								&4p -m = 0 \\
+								&p +4q -m = 0 \\
+								&p +2q +r -m = 0 \\
+								&p +3r -m = 0 \\
+								&p +4q -m = 0 \\
+								&p +2q +r -m = 0 \\
+								&p +2r -m = 0 \\
+							\end{align*}
+							
+							Če upoštevamo prve $4$ enačbe, ki vse izhajajo iz potenc $t$ v $P$, pogoj konsistentnosti zahteva, da velja: $4p = p+4q = p+2q+r = p+3r$. Prvi dve enakosti nam data $3p = 4q$, druga in tretja pa $2q = r$. Če izberemo $p = 1$ potem dobimo $q = \frac{3}{4}$ in $r = \frac{3}{2}$, dodatno pa je $m=4$. Ker smo našli rešitev so enačbe konsistentne in Pfaffova diferencialna enačba je res kvazi-linearna reda $4$.
+							
+							Po metodi reševanja, ki smo jo prej opisali, sedaj vpeljemo novi spremenljivki $u$ in $v$, za kateri velja $y = ux^{\frac{3}{4}}$ in $z = vx^{\frac{3}{2}}$. Potem je $dy = x^{\frac{3}{4}}du + \frac{3}{4}ux^{-\frac{1}{4}}dx$ in $dz = x^{\frac{3}{2}}dv + \frac{3}{2}vx^{\frac{1}{2}}$. Naša enačba se tako spremeni v \begin{align*}
+								&(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)(x^{\frac{3}{4}}du + \frac{3}{4}ux^{-\frac{1}{4}}dx) \\ &+ (xy^2 + 2xz)(x^{\frac{3}{2}}dv + \frac{3}{2}vx^{\frac{1}{2}}) = 0
+							\end{align*}
+							in poenostavi v $$
+								x^3(5 + 5u^4 + 5u^2v + 5v^2)dx + x^4(4u^3 + 2uv)du + x^4(u^2 + 2v)dv = 0
+							$$
+							
+							Sedaj delimo enačbo z $x^4(5 + 5u^4 + 5u^2v + 5v^2)$ in jo tako transformiramo v obliko: $$
+							\frac{dx}{x} + \frac{(4u^3 + 2uv)du}{(5 + 5u^4 + 5u^2v + 5v^2)} + \frac{(u^2 + 2v)dv}{(5 + 5u^4 + 5u^2v + 5v^2)} = 0$$
+							
+							Tukaj opazimo, da zadnja dva člena v resnici tvorita totalni diferencial. Naj bo $w = 1 + u^4 + u^2v + v^2$. Tedaj je $dw = (4u^3 + 2uv)du + (u^2 + 2v)dv$. Tedaj se naša enačba glasi: $$\frac{dx}{x} + \frac{dw}{5w} = 0$$
+							
+							Enostavno je videti, da je potem $\ln\abs{x} + \frac{1}{5}\ln\abs{w} = C$ rešitev naše Pfaffove diferencialne enačbe. To rešitev se da napisati z bolj elementarnimi funkcijami. \begin{align*}
+								\ln\abs{x} &+ \frac{1}{5}\ln\abs{w} = \ln\abs{x} + \ln(\abs{1 + u^4 + u^2v + v^2}^{\frac{1}{5}}) \\ &= \ln(\abs{x(1 + u^4 + u^2v + v^2)}^{\frac{1}{5}}) = C
+							\end{align*}
+							
+							To bo veljalo natanko tedaj, ko bo $\abs{x(1 + u^4 + u^2v + v^2)}^{\frac{1}{5}} = D$ oz. $\abs{x}^5(1 + u^4 + u^2v + v^2) = E$. Sedaj vstavimo še spremenljivki $y$ in $z$ ter tako dobimo $x^5(1 + \frac{y^4}{x^3} + \frac{y^2z}{x^3} + \frac{z^2}{x^3}) = E$ oziroma $$x^5 + x^2y^4 + x^2y^2z + x^2z^2 = E$$
+							
+							Le to je končna oblika rešitve naše začetne enačbe.
 						\end{zgled}
 					
 	\section{Fourierjeva transformacija}
