@@ -27,6 +27,7 @@
 %\usepackage{cleveref}
 
 \newtheorem{izr}{Izrek}
+\newtheorem{lem}{Lema}
 \newtheorem{trd}{Trditev}
 \newtheorem{posl}{Posledica}[izr]
 
@@ -498,9 +499,181 @@
 						\end{zgled}
 					
 	\section{Fourierjeva transformacija}
-	
+		Sedaj se lotimo drugega pristopa k reševanju diferencialnih enačb. V tem poglavju bomo obravnavali, kako lahko uporabimo t.~i.~ Fourierjeve transformacije, da reševanje neke diferencialne enačbe prevedemo na običajno lažji problem reševanja navadnih enačb. Za začetek spoznajmo, kaj sploh je Fourierjeva transformacija, skupaj z nekaj koristne teoretične osnove, nato pa se lotimo opisa metode in z njo rešimo nekaj zgledov.
 		\subsection{Osnovne definicije in rezultati}
-		
+			Najprej se spomnimo, kaj je Hilbertov prostor.
+			\begin{definicija}
+				\label{def:Banach}
+				Vektorski prostor $X$, opremnljen z normo $\abs{\abs{.}}$ je \pojem{Banachov prostor}, če je za metriko, porojeno iz norme, $d(x, y) = \abs{\abs{x-y}}$ poln metrični prostor.
+			\end{definicija}
+			\begin{opomba}
+				\label{op:hilbspac}
+				\begin{itemize}
+					\item Vektorski prostor $\R^n$ skupaj s standardnim skalarnim produktom, ki porodi Evklidsko normo, je Banachov prostor.
+					\item Naj bo $[a, b]$ poljuben zaprti interval in naj bo $\mathcal{C}([a, b])$ prostor vseh zveznih realnih (ali kompleksnih) funkcij nad $[a, b]$. Definiramo normo s predpisom $\abs{\abs{f}} = (\int_{a}^{b}\abs{f(x)}^2dx)^{\frac{1}{2}} ~\forall f\in \mathcal{C}([a, b])$. Ta prostor ni poln metrični prostor za porojeno metriko. Da se o tem prepričamo, je dovolj obravnavati funkcijsko zaporedje $f_n(x) = \begin{cases}
+						0~&;~x\in[0, \frac{1}{2}-\frac{1}{n}] \\
+						\frac{n}{2}x - \frac{n-2}{4}~&;~x\in[\frac{1}{2}-\frac{1}{n}, \frac{1}{2}+\frac{1}{n}] \\
+						1~&;~x\in[\frac{1}{2}+\frac{1}{n}, 1]
+					\end{cases}$ na intervalu $[0, 1]$. To zaporedje je Cauchyjevo, kandidat za limito $f$ pa je funkcija $f(x)=\begin{cases}
+					0~&;~x\in [0, \frac{1}{2}] \\
+					1~&;~x\in [\frac{1}{2}, 1] \\
+					\end{cases}$, ki pa ni element $\mathcal{C}([0, 1])$.
+					\item prostor $\mathcal{C}([a, b])$ skupaj z normo s predpisom $\abs{\abs{f}} = \max\{\abs{f(x)}~|~x\in[a, b]\} ~\forall f\in \mathcal{C}([a, b])$ je Banachov prostor.
+				\end{itemize}
+			\end{opomba}
+			
+			\begin{definicija}
+				\label{def:mera}
+				Naj bo $K = [a_1, b_1]\times \ldots \times [a_n, b_n]$ kvader v $\R^n$. Za njegovo prostornino razglasimo $V(K) = \prod_{i=1}^{n}\abs{b_i-a_i}$. Naj bo sedaj $A$ poljubna množica v $\R^n$. Pravimo, da ima $A$ \pojem{mero $0$}, če $\forall\varepsilon>0$ obstaja kvečjemu števno pokritje množice $A$ s kvadri, $K_1, K_2, \ldots$, da velja $\sum_{i = 1}^{\infty}V(K_i) < \varepsilon$
+			\end{definicija}
+			
+			\begin{opomba}
+				Vse števne in končne množice v $\R^n$ imajo mero $0$.
+			\end{opomba}
+			
+			\begin{definicija}
+				\label{def:eqsp}
+				Naj bo $A$ poljubna podmnožica v $\R$ in $f$ ter $g$ realni ali kompleksni funkciji na $A$. Pravimo, da sta $f$ in $g$ \pojem{enaki skoraj povsod} na $A$, če ima množica točk, v katerih se funkcijske vrednosti razlikujejo $\{x\in A~|~ f(x) \neq g(x)\}$ mero $0$. Tedaj pišemo $f = g~ s.p.$
+			\end{definicija}
+			
+			\begin{opomba}
+				Relacija enakosti skoraj povsod je ekvivalenčna relacija
+			\end{opomba}
+			
+			\begin{definicija}
+				Naj bo $A$ poljuben interval kar cel $\R$. Tedaj definiramo množico, ki vsebuje ekvivalenčne razrede realnih ali kompleksnih funkcij nad $A$, glede na enakost skoraj povsod, za katere velja, da je $\int_{A}\abs{f(x)}dx < \infty$. To množico imenujemo \pojem{množica absolutno integrabilnih funkcij} na $A$ in jo označimo z $L^1(A)$. Torej: $L^1(A) = \{[f]_{=~ s.p.}~|~f~\textit{funkcija na}~A~\land \int_{A}\abs{f(x)}dx ~\text{obstaja in je končen}\}$.
+			\end{definicija}
+			
+			Nas bodo posebej zanimale absolutno integrabilne funkcije na celi realni osi: $L^1(\R) = \{[f]_{=~s.p.}~|~\map{f}{\R}{\R}~(\textit{ali}~\C) \land \int_{-\infty}^{\infty}\abs{f(x)}dx <\infty\}$. Tudi ta prostor je, za po točkah definirani operaciji $+$ in $\cdot$ vektorski prostor. Še več, če ga opremimo z normo s predpisom $\abs{\abs{f}}_1 = \int_{-\infty}^{\infty}\abs{f(x)}dx$, postane $L^1(\R)$ Banachov prostor.
+			
+			\begin{definicija}
+				Naj bo $A$ poljuben interval kar cel $\R$. Množico zveznih in omejenih funkcij funkcij na $A$ označimo z $\mathcal{C}_b(A)$.
+			\end{definicija}
+			
+			Posebej nas bo zanimala množica $\mathcal{C}_b(\R)$, ki skupaj s po točkah definiranima $+$ in $\cdot$, ter normo s predpisom $\abs{\abs{f}}_\infty = \sup_{x\in \R}\abs{f(x)}~\forall f\in\mathcal{C}_b(\R)$ tvori Banachov prostor.
+			
+			\begin{definicija}
+				\label{def:FourierT}
+				Preslikavo $\map{\mathcal{F}}{L^1(\R)}{\mathcal{C}_b(\R)}$, s predpisom $\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}e^{iyt}f(t)dt~\forall y\in\R$, imenujemo \pojem{Fourierjeva transformacija}. Za vsak $f\in L^1(\R)$ pravimo $\mathcal{F}(f)$ \pojem{Fourierjeva transformiranka funkcije} $f$, in jo tipično označimo kar z $\hat{f}$.
+			\end{definicija}
+			
+			Preden se lotimo obravnave lastnosti Fourierjeve transformacije, se spomnimo dveh rezultatov, ki nam bosta pri tem pomagala.
+			
+			\begin{definicija}
+				Funkcija $\map{f}{[a, b]}{\R}$ je \pojem{odsekoma zvezno odvedljiva}, če je odsekoma zvezna na $[a, b]$ in je zvezno odvedljiva na $[a, b]$, razen v končno mnogo točkah, v katerih obstajata leva in desna limita odvoda.
+			\end{definicija}
+			
+			\begin{lem}[Riemman-Lebesguova lema]
+				\label{lem:R-L}
+				Naj bo $f$ odsekoma zvezna $L^1$ funkcija na nekem končnem ali neskončnem intervalu $I$ Potem velja: $\lim_{\lambda\to\infty}\int_I f(t)cos(\lambda t)dt = 0$, $\lim_{\lambda\to\infty}\int_I f(t)sin(\lambda t)dt = 0$ in $\lim_{\lambda\to\infty}\int_I f(t)e^{i\lambda t}dt = 0$
+			\end{lem}
+			
+			\begin{izr}
+				\label{izr:omzvlinop}
+				Naj bosta $X$ in $Y$ realna ali kompleksna normirana vektorska prostora ter naj bo $\map{A}{X}{Y}$ linearni operator. Tedaj velja: $A$ je omejen $\iff~A$ je zvezen.
+			\end{izr}
+			Sedaj se pa lotimo lastnosti Fourierjeve transformacije.
+			\begin{trd}
+				\label{trd:propFourierT}
+				Naj bosta $f, g\in L^1(\R)$ poljubni. Za fourierjevo transformacijo veljajo naslednje trditve: \begin{enumerate}
+					\item $\mathcal{F}$ je zvezni linearni operator.
+					\item Za vsak $a\in\R\setminus\{0\}$ je $\mathcal{F}(f(at))(y) = \frac{1}{\abs{a}}\mathcal{F}(f(t))(\frac{y}{a})~\forall y\in\R$.
+					\item $\mathcal{F}(\bar{f})(y) = \overline{\mathcal{F}(f)(-y)}~\forall y\in\R$.
+					\item Za vsak $a\in\R$ je $\mathcal{F}(f(t-a))(y)= e^{iay}\mathcal{F}(f(t))(y)~\forall y\in\R$.
+					\item Za vsak $a\in\R$ je $\mathcal{F}(e^{iat}f(t))(y) = \mathcal{F}(f(t))(y+a)~\forall y\in\R$.
+					\item $\forall f\in L^1(\R)$ je funkcija $\mathcal{F}(f)$ enakomerno zvezna na $\R$.
+					\item $\lim_{y\to\infty}\mathcal{F}(f)(y) = 0$
+				\end{enumerate}
+			\end{trd}
+			\begin{proof}
+				\begin{enumerate}
+					\item To, da je $\mathcal{F}$ linearni operator sledi direktno iz linearnosti določenega integrala. Dokažimo torej, da je $\mathcal{F}$ zvezen. Upoštevajoč, da sta $L^1(\R)$ in $\mathcal{C}_b(\R)$ normirana vektorska prostora nad $\R$ ali $\C$, se skličemo na izrek \ref{izr:omzvlinop} in vidimo, da je dovolj pokazati, da je $\mathcal{F}$ omejen. Naj bosta torej $f\in L^1(\R)$ in $y\in \R$ poljubna elementa ter računamo $\abs{\mathcal{F}(f)(y)} = \abs{\int_{-\infty}^\infty f(t)e^{iyt}dt}\leq \int_{-\infty}^{\infty}\abs{f(t)}\abs{e^{iyt}}dt = \int_{-\infty}^{\infty}\abs{f(t)}dt = \abs{\abs{f}}_1$. Torej, pokazali smo, da poljubna $f\in L^1(\R)$ in $y\in \R$ velja $\abs{\mathcal{F}(f)(y)} \leq \abs{\abs{f}}_1$, to pa pomeni, da neenakost velja tudi, če bi na levi strani vzeli supremum po vseh $y\in\R$. Torej: $\abs{\abs{\mathcal{F}(f)}}_\infty = \sup_{y\in\R}\abs{\mathcal{F}(f)(y)} \leq 1\cdot \abs{\abs{f}}_1$. Ker to velja za poljuben $f\in L^1(\R)$, sledi, da je $\mathcal{F}$ omejen linearni operator, torej je po izreku \ref{izr:omzvlinop} $\mathcal{F}$ zvezen.
+					\item Naj bo $a$ poljubno neničelno realno število. Tedaj je $\mathcal{F}(f(at))(y) = \int_{-\infty}^\infty f(at)e^{iyt}dt$. Denimo, da je $a>0$ in vpeljemo novo spremenljivko $u = at, du = a dt$ ter tako dobimo: \begin{align*}\mathcal{F}(f(at))(y) &= \int_{-\infty}^\infty f(u)e^{iy\frac{u}{a}}\frac{1}{a}du = \frac{1}{a}\int_{-\infty}^\infty f(u)e^{i\frac{y}{a}u}du \\ &= \frac{1}{a}\mathcal{F}(f(t))(\frac{y}{a})\end{align*} Za $a<0$ je dokaz simetričen.
+					\item Naj bo $y\in\R$ poljuben. \begin{align*}
+						\mathcal{F}(\bar{f})(y) &= \int_{-\infty}^\infty \overline{f(t)}e^{iyt}dt = \int_{-\infty}^\infty \overline{f(t)}\cdot\overline{e^{-iyt}}dt \\ &= \int_{-\infty}^\infty \overline{f(t)e^{i(-y)t}}dt = \overline{\int_{-\infty}^\infty f(t)e^{i(-y)t}dt} = \overline{\mathcal{F}(f)(-y)}
+					\end{align*}
+					\item Naj bosta $a$ in $y$ poljubni realni števili. Tedaj je $$\mathcal{F}(f(t-a))(y) = \int_{-\infty}^{\infty}f(t-a)e^{ity}dt$$ Sedaj vpeljemo novo spremenljivko $u = t-a, du = dt$, ter tako dobimo:\begin{align*}
+						\mathcal{F}(f(t-a))(y) &= \int_{-\infty}^{\infty}f(u)e^{i(u+a)y}du = e^{iay}\int_{-\infty}^{\infty}f(u)e^{iuy}du \\ &= e^{iay}\mathcal{F}(f(t))(y)
+					\end{align*}
+					\item Naj bosta $a, y\in\R$ poljubna. Tedaj velja: \begin{align*}
+						\mathcal{F}(e^{iat}f(t))(y) &= \int_{-\infty}^{\infty}e^{iat}f(t)e^{ity}dt =\int_{-\infty}^{\infty}f(t)e^{it(y+a)}dt \\
+						&= \mathcal{F}(f(t))(y+a)
+					\end{align*}
+					\item Naj bo $f\in L^1(\R)$ poljubna funkcija. Tedaj $\forall y, h\in \R$ velja \begin{align*}
+					\abs{\hat{f}(y+h) - \hat{f}(y)} &= \abs{\int_{-\infty}^{\infty}f(t)(e^{it(y+h)}- e^{ity})dt} \\ &= \abs{\int_{-\infty}^{\infty}e^{ity}f(t)(e^{ith}-1)dt} = (*)
+					\end{align*}
+					Sedaj se spomnimo, da je $\forall x \in\R \abs{e^{ix}} = 1$ in $\abs{e^{ix} - 1} \leq 2$. Dodatno, ker je $f\in L^1(\R)$, Za vsak $\varepsilon>0$ obstaja tak $M>0$, da je $\int_{-\infty}^{-M}\abs{f(t)}dt < \frac{\varepsilon}{6}$ in da je $\int_{M}^{\infty}\abs{f(t)}dt < \frac{\varepsilon}{6}$. Naj bo torej $\varepsilon>0$ in izberemo tak $M>0$, da bosta veljali prejšnji oceni. Tedaj velja: \begin{align*}
+						(*) &= \abs{\int_{-\infty}^{-M}e^{ity}f(t)(e^{ith}-1)dt + \int_{-M}^{M}e^{ity}f(t)(e^{ith}-1)dt \\ 
+							&+ \int_{M}^{\infty}e^{ity}f(t)(e^{ith}-1)dt} \\
+						&\leq \abs{\int_{-\infty}^{-M}e^{ity}f(t)(e^{ith}-1)dt} + \abs{\int_{-M}^{M}e^{ity}f(t)(e^{ith}-1)dt} \\
+						&+ \abs{\int_{M}^{\infty}e^{ity}f(t)(e^{ith}-1)dt} \\
+						&\leq \int_{-\infty}^{-M}\abs{e^{ity}f(t)(e^{ith}-1)}dt + \int_{-M}^{M}\abs{e^{ity}f(t)(e^{ith}-1)}dt \\
+						&+ \int_{M}^{\infty}\abs{e^{ity}f(t)(e^{ith}-1)}dt \\
+						&< \frac{2\varepsilon}{3} + \int_{-M}^{M}\abs{f(t)}\abs{(e^{ith}-1)}dt
+					\end{align*}
+					Ker je funkcija $th\mapsto e^{ith}$ zvezna, obstaja tak $\delta_0 > 0$, da velja sklep: 
+					$$\abs{th} < \delta_0 \Rightarrow \abs{e^{ith} - 1} < \frac{\varepsilon}{3\abs{\abs{f}}_1}$$
+					Vzemimo $\delta = \frac{\delta_0}{M}$. Potem velja: Če je $\abs{h} < \delta$, je $\abs{t}\abs{h}\leq M\abs{h} < \delta_0$ in posledično lahko ocenimo: \begin{align*}
+						\int_{-M}^{M}\abs{f(t)}\abs{(e^{ith}-1)}dt &< \int_{-M}^{M}\abs{f(t)}\frac{\varepsilon}{3\abs{\abs{f}}_1}dt = \frac{\varepsilon}{3\abs{\abs{f}}_1}\int_{-M}^{M}\abs{f(t)}dt \\
+						&< \frac{\varepsilon}{3\abs{\abs{f}}_1}\int_{-\infty}^{\infty}\abs{f(t)}dt < \frac{\varepsilon}{3\abs{\abs{f}}_1}\abs{\abs{f}}_1 = \frac{\varepsilon}{3}
+					\end{align*}
+					
+					Povzemimo: Za dani $\varepsilon$ smo našli tak $\delta> 0$, da $\forall y\in\R$ velja: $$\abs{h} < \delta \Rightarrow \abs{\bar{f}(y+h)-\bar{f}(y)} < \varepsilon$$
+					Sledi, da je $\bar{f}$ enakomerno zvezna na $\R$.
+					\item To je direktna posledica (Riemman-Lebesgueve) leme \ref{lem:R-L}.
+				\end{enumerate}
+			\end{proof}
+			
+			Sedaj, ko poznamo nekaj bolj osnovnih lastnosti Fourierjeve transformacije, si oglejmo glavno lastnost, ki nas bo zanimala v zvezi z reševanjem diferencialnih enačb. Preden navedemo glavni rezultat, dokažimo še eno lemo.
+			
+			\begin{lem}
+				\label{lem:limfx}
+				Naj bo $\map{f}{[0, \infty)}{\R}$ odvedljiva povsod, razen morda v končno mnogo točkah in naj bo njen odvod, $f'$, integrabilna funkcija. Dodatno naj velja $\int_0^\infty f(x)dx < \infty$ in $\int_0^\infty f'(x)dx < \infty$. Predpostavimo še, da je $\forall x\in [o,\infty) f(x) = \int_{0}^{x} f'(t)dt + f(0)$. Tedaj je $\lim_{x\to\infty}f(x) = 0$
+			\end{lem}
+			\begin{proof}
+				Ker je $f'$ integrabilna, je $\forall x\in [0, \infty): \abs{f(x)} = \abs{\int_{0}^{x} f'(t)dt + f(0)} \leq \int_{0}^{\infty} \abs{f'(t)}dt + \abs{f(0)} < \infty$. Posledično sklepamo, da $\lim_{x\to\infty}f(x)$ obstaja. Denimo sedaj, da je $\lim_{x\to\infty}f(x) = c > 0$. Potem obstaja tak $x_0 \in [0, \infty)$, da je za vsak $x\geq x_0 f(x) \geq \frac{c}{2}$. Sledi potem, da je $\int_{x_0}^{x_0 + 2n}f(x)dx \geq 2n\frac{c}{2} = nc$. Ko pošljemo $n$ proti $\infty$ pa gre ta izraz proti $\infty$, torej je $\int_{x_0}^{\infty}f(x)dx > \infty$, to pa je protislovno s predpostavko, da je $f$ integrabilna na $[0, \infty)$. Sledi potem, da je $\lim_{x\to\infty}f(x) = 0$.
+			\end{proof}
+			
+			\begin{izr}
+				\label{izr:FourierTodv1}
+				Naj bo $f$ poljubna absolutno integrabilna funkcija na $\R$ z lastnostjo, da njen odvod, $f'$, obstaja povsod, razen morda v končno mnogo točkah, ter je tudi sama absolutno integrabilna funkcija na $\R$. Denimo še, da je $\forall x\in \R f(x) = \int_0^x f'(t)dt + f(0)$. Tedaj je $\mathcal{F}(f')(y) = (-iy)\mathcal{F}(f)(y)$. Dodatno, denimo, da je $f$ $k$-krat odvedljiva na $\R$ ter, da so $f$ in vsi njeni odvodi absolutno integrabilni na $\R$ ter da je vsak od teh (razen $k$-tega odvoda) integral svojega odvoda. Potem je $\mathcal{F}(f^{(k)})(y) = (-iy)^k\mathcal{F}(f)(y)$.
+			\end{izr}
+			\begin{proof}
+				Trditev bomo pokazali samo za prvi odvod, saj gre pri višjih odvodih le za zaporedno uporabo tega rezultata. Denimo torej, da je $f, f'\in L^1(\R)$, kjer $f'$ obstaja povsod na $\R$, razen morda v končno točkah in naj velja $\forall x\in \R f(x) = \int_0^x f'(t)dt + f(0)$. Potem je: \begin{align*}
+					\mathcal{F}(f')(y) &=  \int_{-\infty}^{\infty}f'(t)e^{iyt}dt = \lim_{A\to\infty}\int_{-A}^{0}f'(t)e^{iyt}dt + \lim_{B\to\infty}\int_{0}^{B}f'(t)e^{iyt}dt \\
+					&= \lim_{A\to\infty}(f(t)e^{ity} |_{-A}^0 - iy\int_{-A}^{0}f(t)e^{iyt}dt) +\\ 
+					&+ \lim_{B\to\infty}(f(t)e^{ity}-iy|_0^{B}\int_{0}^{B}f(t)e^{iyt}dt) \\
+					&= \lim_{A\to\infty}(f(t)e^{ity} |_{-A}^0) - iy\int_{-\infty}^{0}f(t)e^{iyt}dt + \lim_{B\to\infty}(f(t)e^{ity}|_0^{B}) \\ &- iy\int_{0}^{\infty}f(t)e^{iyt}dt \\
+					&=\lim_{A\to\infty}(f(t)e^{ity} |_{-A}^0) + \lim_{B\to\infty}(f(t)e^{ity}|_0^{B})- iy\int_{-\infty}^{\infty}f(t)e^{iyt}dt 
+				\end{align*}
+				Vidimo, da smo blizu končnega rezultata. Preostane nam le še obravnava limit.\begin{align*}
+					\lim_{A\to\infty}(f(t)e^{ity} |_{-A}^0) &+ \lim_{B\to\infty}(f(t)e^{ity}|_0^{B}) \\
+					&=  f(0) - \lim_{A\to\infty}(f(-A)e^{-iAy}) + \lim_{B\to\infty}(f(B)e^{iBy})- f(0) \\
+				\end{align*}
+				Sedaj upoštevamo prejšnjo lemo \ref{lem:limfx} in vidimo, da je potem $$\lim_{A\to\infty}(f(-A)e^{-iAy}) = 0 = \lim_{B\to\infty}(f(B)e^{iBy})$$
+				
+				Sledi, da je $\mathcal{F}(f')(y) = (-iy)\int_{-\infty}^{\infty}f(t)e^{ity}dt = (-iy)\mathcal{F}(f)(y)$.
+			\end{proof}
+			
+			\begin{izr}
+				\label{izr:odvFourierT}
+				Naj bosta funkciji $f(t)$ in $tf(t)$ obe absolutno integrabilni na $\R$. Tedaj je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)~\forall y\in\R$.
+			\end{izr}
+			\begin{proof}
+				Naj bo $y\in \R$ poljuben. Direktno izračunajmo odvod $\bar{f}$: \begin{align*}
+				\lim_{h\to0}(\frac{\bar{f}(y+h) - \bar{f}(y)}{h}) &= \lim_{h\to 0}(\frac{1}{h}\mathcal{F}(e^{iht}f(t))(y) - \mathcal{F}(f(t)(y))) \\
+				&= \lim_{h\to 0}(\mathcal{F}(f(t)\frac{(e^{ith}-1)}{h})(y)) = (*)
+				\end{align*}
+				Sedaj opazimo, da je $\lim_{h\to 0}\frac{e^{ith}-1}{h} = \frac{d}{dx}(e^{itx})(x=0) = ite^{0} = it$. To pomeni, da je $\lim_{h\to 0}f(t)\frac{e^{ith}-1}{h} = itf(t)$ in ker je po predpostavki $tf(t)$ absolutno integrabilna, integral $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})dt$ obstaja in posledično obstaja tudi integral $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})e^{ity}dt$, ki je po eni strani enak $\int_{-\infty}^\infty itf(t)e^{ity}dt = \mathcal{F}(itf(t))(y)$, po drugi strani pa lahko limito in integral zaradi absolutne integrabilnosti zamenjamo in dobimo ravno $(*)$. Po tem sledi, da je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)$.
+			\end{proof}
+			
+			\begin{posl}
+				\label{posl:nodvFT}
+				Naj bodo funkcije $f, tf, t^2f, \ldots, t^nf$ vse absolutno integrabilne na $\R$. Tedaj je $\frac{d^n}{dy^n}\mathcal{F}(f(t))(y) = \mathcal{F}((it)^nf(t))(y) \forall y\in \R$.
+			\end{posl}
+			\begin{proof}
+				Rezultat dobimo z zaporedno uporabo izreka \ref{izr:odvFourierT}.
+			\end{proof}
 		\subsection{Metoda uporabe}
 		
 		\subsection{Primeri uporabe}
