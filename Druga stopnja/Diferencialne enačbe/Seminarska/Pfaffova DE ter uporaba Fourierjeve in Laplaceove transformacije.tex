@@ -499,7 +499,7 @@
 						\end{zgled}
 					
 	\section{Fourierjeva transformacija}
-		Sedaj se lotimo drugega pristopa k reševanju diferencialnih enačb. V tem poglavju bomo obravnavali, kako lahko uporabimo t.~i.~ Fourierjeve transformacije, da reševanje neke diferencialne enačbe prevedemo na običajno lažji problem reševanja navadnih enačb. Za začetek spoznajmo, kaj sploh je Fourierjeva transformacija, skupaj z nekaj koristne teoretične osnove, nato pa se lotimo opisa metode in z njo rešimo nekaj zgledov.
+		Sedaj se lotimo drugega pristopa k reševanju diferencialnih enačb. V tem poglavju bomo obravnavali, kako lahko uporabimo t.~i.~ Fourierjeve transformacije, da reševanje neke diferencialne enačbe prevedemo na običajno lažji problem reševanja navadnih enačb. Za začetek spoznajmo, kaj sploh je Fourierjeva transformacija, skupaj z nekaj koristne teoretične osnove, nato pa se lotimo opisa metode in z njo rešimo nekaj zgledov. V tem poglavju se bomo pretežno sklicevali na učbenik \cite{bib:ana4}.
 		\subsection{Osnovne definicije in rezultati}
 			Najprej se spomnimo, kaj je Hilbertov prostor.
 			\begin{definicija}
@@ -565,14 +565,14 @@
 			
 			\begin{lem}[Riemman-Lebesguova lema]
 				\label{lem:R-L}
-				Naj bo $f$ odsekoma zvezna $L^1$ funkcija na nekem končnem ali neskončnem intervalu $I$ Potem velja: $\lim_{\lambda\to\infty}\int_I f(t)cos(\lambda t)dt = 0$, $\lim_{\lambda\to\infty}\int_I f(t)sin(\lambda t)dt = 0$ in $\lim_{\lambda\to\infty}\int_I f(t)e^{i\lambda t}dt = 0$
+				Naj bo $f$ absolutno integrabilna ($L^1$) funkcija na nekem končnem ali neskončnem intervalu $I$ Potem velja: $$\lim_{\lambda\to\infty}\int_I f(t)cos(\lambda t)dt = 0, \lim_{\lambda\to\infty}\int_I f(t)sin(\lambda t)dt = 0$$ in posledično tudi $$\lim_{\lambda\to\infty}\int_I f(t)e^{i\lambda t}dt = 0$$
 			\end{lem}
 			
 			\begin{izr}
 				\label{izr:omzvlinop}
 				Naj bosta $X$ in $Y$ realna ali kompleksna normirana vektorska prostora ter naj bo $\map{A}{X}{Y}$ linearni operator. Tedaj velja: $A$ je omejen $\iff~A$ je zvezen.
 			\end{izr}
-			Sedaj se pa lotimo lastnosti Fourierjeve transformacije.
+			Sedaj se lotimo lastnosti Fourierjeve transformacije.
 			\begin{trd}
 				\label{trd:propFourierT}
 				Naj bosta $f, g\in L^1(\R)$ poljubni. Za fourierjevo transformacijo veljajo naslednje trditve: \begin{enumerate}
@@ -628,7 +628,7 @@
 			
 			\begin{lem}
 				\label{lem:limfx}
-				Naj bo $\map{f}{[0, \infty)}{\R}$ odvedljiva povsod, razen morda v končno mnogo točkah in naj bo njen odvod, $f'$, integrabilna funkcija. Dodatno naj velja $\int_0^\infty f(x)dx < \infty$ in $\int_0^\infty f'(x)dx < \infty$. Predpostavimo še, da je $\forall x\in [o,\infty) f(x) = \int_{0}^{x} f'(t)dt + f(0)$. Tedaj je $\lim_{x\to\infty}f(x) = 0$
+				Naj bo $\map{f}{[0, \infty)}{\R}$ odvedljiva povsod, razen morda v končno mnogo točkah in naj bo njen odvod, $f'$, integrabilna funkcija. Naj velja tudi $\int_0^\infty f(x)dx < \infty$ in $\int_0^\infty f'(x)dx < \infty$. Dodatno predpostavimo: $$f(x) = \int_{0}^{x} f'(t)dt + f(0) ~\forall x\in [0,\infty)$$ Tedaj je $\lim_{x\to\infty}f(x) = 0$
 			\end{lem}
 			\begin{proof}
 				Ker je $f'$ integrabilna, je $\forall x\in [0, \infty): \abs{f(x)} = \abs{\int_{0}^{x} f'(t)dt + f(0)} \leq \int_{0}^{\infty} \abs{f'(t)}dt + \abs{f(0)} < \infty$. Posledično sklepamo, da $\lim_{x\to\infty}f(x)$ obstaja. Denimo sedaj, da je $\lim_{x\to\infty}f(x) = c > 0$. Potem obstaja tak $x_0 \in [0, \infty)$, da je za vsak $x\geq x_0 f(x) \geq \frac{c}{2}$. Sledi potem, da je $\int_{x_0}^{x_0 + 2n}f(x)dx \geq 2n\frac{c}{2} = nc$. Ko pošljemo $n$ proti $\infty$ pa gre ta izraz proti $\infty$, torej je $\int_{x_0}^{\infty}f(x)dx > \infty$, to pa je protislovno s predpostavko, da je $f$ integrabilna na $[0, \infty)$. Sledi potem, da je $\lim_{x\to\infty}f(x) = 0$.
@@ -636,10 +636,10 @@
 			
 			\begin{izr}
 				\label{izr:FourierTodv1}
-				Naj bo $f$ poljubna absolutno integrabilna funkcija na $\R$ z lastnostjo, da njen odvod, $f'$, obstaja povsod, razen morda v končno mnogo točkah, ter je tudi sama absolutno integrabilna funkcija na $\R$. Denimo še, da je $\forall x\in \R f(x) = \int_0^x f'(t)dt + f(0)$. Tedaj je $\mathcal{F}(f')(y) = (-iy)\mathcal{F}(f)(y)$. Dodatno, denimo, da je $f$ $k$-krat odvedljiva na $\R$ ter, da so $f$ in vsi njeni odvodi absolutno integrabilni na $\R$ ter da je vsak od teh (razen $k$-tega odvoda) integral svojega odvoda. Potem je $\mathcal{F}(f^{(k)})(y) = (-iy)^k\mathcal{F}(f)(y)$.
+				Naj bo $f$ poljubna absolutno integrabilna funkcija na $\R$ z lastnostjo, da njen odvod, $f'$, obstaja povsod, razen morda v končno mnogo točkah, ter je tudi sama absolutno integrabilna funkcija na $\R$. Denimo še, da $\forall x\in \R$ velja $f(x) = \int_0^x f'(t)dt + f(0)$. Tedaj je $\mathcal{F}(f')(y) = (-iy)\mathcal{F}(f)(y)$.
 			\end{izr}
 			\begin{proof}
-				Trditev bomo pokazali samo za prvi odvod, saj gre pri višjih odvodih le za zaporedno uporabo tega rezultata. Denimo torej, da je $f, f'\in L^1(\R)$, kjer $f'$ obstaja povsod na $\R$, razen morda v končno točkah in naj velja $\forall x\in \R f(x) = \int_0^x f'(t)dt + f(0)$. Potem je: \begin{align*}
+				 Denimo torej, da je $f, f'\in L^1(\R)$, kjer $f'$ obstaja povsod na $\R$, razen morda v končno točkah in naj velja $\forall x\in \R f(x) = \int_0^x f'(t)dt + f(0)$. Potem je: \begin{align*}
 					\mathcal{F}(f')(y) &=  \int_{-\infty}^{\infty}f'(t)e^{iyt}dt = \lim_{A\to\infty}\int_{-A}^{0}f'(t)e^{iyt}dt + \lim_{B\to\infty}\int_{0}^{B}f'(t)e^{iyt}dt \\
 					&= \lim_{A\to\infty}(f(t)e^{ity} |_{-A}^0 - iy\int_{-A}^{0}f(t)e^{iyt}dt) +\\ 
 					&+ \lim_{B\to\infty}(f(t)e^{ity}-iy|_0^{B}\int_{0}^{B}f(t)e^{iyt}dt) \\
@@ -655,6 +655,13 @@
 				Sledi, da je $\mathcal{F}(f')(y) = (-iy)\int_{-\infty}^{\infty}f(t)e^{ity}dt = (-iy)\mathcal{F}(f)(y)$.
 			\end{proof}
 			
+			\begin{posl}
+				\label{posl:FTodvN}
+				Denimo, da je $f$ $k$-krat odvedljiva na $\R$ ter, da so $f$ in vsi njeni odvodi absolutno integrabilni na $\R$ ter da je vsak od teh (razen $k$-tega odvoda) integral svojega odvoda $\big(\forall x\in\R, \forall i\in \{1, \ldots, k\}: f^{(i-1)}(x) = \int_{0}^{x}f^{(i)}(t)dt + f^{(i-1)}(0)\big)$. Potem je $\mathcal{F}(f^{(k)})(y) = (-iy)^k\mathcal{F}(f)(y)$.
+			\end{posl}
+			\begin{proof}
+				Zaporedna uporaba izreka \ref{izr:FourierTodv1}.
+			\end{proof}
 			\begin{izr}
 				\label{izr:odvFourierT}
 				Naj bosta funkciji $f(t)$ in $tf(t)$ obe absolutno integrabilni na $\R$. Tedaj je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)~\forall y\in\R$.
@@ -664,16 +671,154 @@
 				\lim_{h\to0}(\frac{\bar{f}(y+h) - \bar{f}(y)}{h}) &= \lim_{h\to 0}(\frac{1}{h}\mathcal{F}(e^{iht}f(t))(y) - \mathcal{F}(f(t)(y))) \\
 				&= \lim_{h\to 0}(\mathcal{F}(f(t)\frac{(e^{ith}-1)}{h})(y)) = (*)
 				\end{align*}
-				Sedaj opazimo, da je $\lim_{h\to 0}\frac{e^{ith}-1}{h} = \frac{d}{dx}(e^{itx})(x=0) = ite^{0} = it$. To pomeni, da je $\lim_{h\to 0}f(t)\frac{e^{ith}-1}{h} = itf(t)$ in ker je po predpostavki $tf(t)$ absolutno integrabilna, integral $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})dt$ obstaja in posledično obstaja tudi integral $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})e^{ity}dt$, ki je po eni strani enak $\int_{-\infty}^\infty itf(t)e^{ity}dt = \mathcal{F}(itf(t))(y)$, po drugi strani pa lahko limito in integral zaradi absolutne integrabilnosti zamenjamo in dobimo ravno $(*)$. Po tem sledi, da je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)$.
+				Sedaj opazimo, da je $\lim_{h\to 0}\frac{e^{ith}-1}{h} = \frac{d}{dx}(e^{itx})(x=0) = ite^{0} = it$. To pomeni, da je $\lim_{h\to 0}f(t)\frac{e^{ith}-1}{h} = itf(t)$ in ker je po predpostavki $tf(t)$ absolutno integrabilna, integral $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})dt$ obstaja in posledično obstaja tudi integral $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})e^{ity}dt$. To pa pomeni, da lahko zamenjamo limito in integral. Ko to storimo, dobimo ravno $(*)$. Po drugi strani, pa je $\int_{-\infty}^\infty (\lim_{h\to 0}f(t)\frac{(e^{ith}-1)}{h})e^{ity}dt=\int_{-\infty}^\infty itf(t)e^{ity}dt = \mathcal{F}(itf(t))(y)$. Sledi, da je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)$.
 			\end{proof}
 			
 			\begin{posl}
 				\label{posl:nodvFT}
-				Naj bodo funkcije $f, tf, t^2f, \ldots, t^nf$ vse absolutno integrabilne na $\R$. Tedaj je $\frac{d^n}{dy^n}\mathcal{F}(f(t))(y) = \mathcal{F}((it)^nf(t))(y) \forall y\in \R$.
+				Naj bodo funkcije $f(t), tf(t), t^2f(t), \ldots, t^nf(t)$ vse absolutno integrabilne na $\R$. Tedaj je $\frac{d^n}{dy^n}\mathcal{F}(f(t))(y) = \mathcal{F}((it)^nf(t))(y) \forall y\in \R$.
 			\end{posl}
 			\begin{proof}
 				Rezultat dobimo z zaporedno uporabo izreka \ref{izr:odvFourierT}.
 			\end{proof}
+			
+			Sedaj, ko razmeroma dobro poznamo lastnosti Fourierjeve transformacije, se lahko vprašamo naslednje: \begin{enumerate}
+				\item Ali obstaja inverzna transformacija? Če da, kdaj oz. pod katerimi pogoji?
+				\item Ali obstaja kakšna zveza med produktom funkcij in fourierjevo transformacijo?
+			\end{enumerate}
+			
+			\begin{definicija}
+				\label{def:dinijev}
+				Za $f\in L^1(\R)$ pravimo, da v točki $t\in\R$ zadošča \pojem{Dinijevem pogoju}, če obstaja tak $a>0$, da obstaja integral $\int_{0}^a \abs{\frac{f(t+u) + f(t-u) - 2f(t)}{u}}du$.
+			\end{definicija}
+			
+			\begin{opomba}
+				Opazimo, da če je funkcija $f$ zvezna in v točki $t$ obstajata levi ter desni odvod, je Dinijev pogoj izpolnjen. Posebej, zvezno odvedljive funkcije zadoščajo Dinijevem pogoju na celem $\R$.
+			\end{opomba}
+			
+			\begin{izr}
+				\label{izr:invFourierT}
+				Če $f\in L^1(\R)$ v točki $t\in\R$ zadošča Dinijevem pogoju (za nek $a>0$), potem velja: $$f(t) = \lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}\mathcal{F}(f)(x)e^{-itx} dx$$
+			\end{izr}
+			
+			\begin{proof}
+				Naj bo $f$ poljubna funkcija iz $L^1(\R)$, ki zadošča Dinijevem pogoju za izbrana fiksna $t\in\R$ in $a>0$ Označimo $F(x) = \mathcal{F}(f)(x)$ in upoštevamo, da je $F(x)$ zvezna in omejena funkcija na $\R$. Posledično, za vsak $R>0$ integral $\frac{1}{2\pi}\int_{-R}^{R}F(x)e^{-itx}dx = S(R, t)$ obstaja. Pa ga poračunajmo: $$
+					S(R, t) = \frac{1}{2\pi}\int_{-R}^{R}F(x)e^{-itx}dx = \frac{1}{2\pi}\int_{-R}^{R}(\int_{-\infty}^{\infty}f(u)e^{ixu}du)e^{-itx}dx = (*)
+				$$
+				Zaradi enakomerne konvergence integrala $\int_{-\infty}^{\infty}f(u)(\int_{-R}^{R}e^{i(u-t)x}dx) du$ lahko vrstni uporabimo Fubinijev izrek in zamenjamo vrstni red integriranja. Sledi: $$
+					(*) = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(u)(\int_{-R}^{R}\cos((u-t)x) + i\sin((u-t)x) dx) du 
+				$$
+				tukaj upoštevamo, da je $\sin$ liha funkcija ter da jo integriramo po simetričnem območju $[-R, R]$. Njen integral bo potem enak $0$, kar pomeni, da je: \begin{align*}
+					(*) &= \frac{1}{2\pi}\int_{-\infty}^{\infty}f(u)(\int_{-R}^{R}\cos((u-t)x)dx) du = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(u)\big[\frac{\sin((u-t)x)}{u-t}|_{-R}^{R}\big]du \\
+					&= \frac{1}{2\pi}\int_{-\infty}^{\infty}f(u)\frac{2\sin((u-t)R)}{u-t}du = \\
+					&= \frac{1}{\pi}\big(\int_{-\infty}^{t}f(u)\frac{\sin((u-t)R)}{u-t}du + \int_{t}^{\infty}f(u)\frac{\sin((u-t)R)}{u-t}du\big) = (\boxdot)
+				\end{align*}
+				
+				V levi integral sedaj uvedemo novo spremenljivko $x = t-u, dx = -du$, v desnega pa $x = u-t, dx = du$. Tako dobimo: $$
+				(\boxdot) = \frac{1}{\pi}\big(\int_{0}^{\infty}f(t-x)\frac{\sin(Rx)}{x}dx + \int_{0}^{\infty}f(t+x)\frac{\sin(Rx)}{x}dx\big)
+				$$
+				
+				Sedaj upoštevamo znan rezultat iz analize: Vemo, da je $\int_{0}^{\infty}\frac{\sin(z)}{z}dz = \frac{\pi}{2}$. Z uvedbo nove spremenljivke $z = Rx, dz = Rdx$, je potem tudi $\int_{0}^{\infty}\frac{\sin(Rx)}{x}dx = \frac{\pi}{2}$. Posledično lahko zapišemo $f(t) = \frac{2}{\pi}\int_{0}^{\infty}f(t)\frac{\sin(Rx)}{x}dx$.
+				
+				Sedaj, upoštevajoč prejšnjo enakost in $(\boxdot) = \frac{2}{\pi}\int_{0}^{\infty}\frac{f(t-x) + f(t+x)}{2}\frac{\sin(Rx)}{x}dx$, poračunajmo $S(R, t) - f(t)$: \begin{align*}
+					S(R, t) - f(t) &= \frac{2}{\pi}\int_{0}^{\infty}\big(\frac{f(t-x) + f(t+x)}{2} - f(t)\big)\frac{\sin(Rx)}{x}dx \\
+					&= \frac{2}{\pi}\int_{0}^{\infty}\big(\frac{f(t-x) + f(t+x)-2f(t)}{2}\big)\frac{\sin(Rx)}{x}dx
+				\end{align*}
+				Označimo $g(t, x) = \frac{f(t-x) + f(t+x)-2f(t)}{2}$ in se spomnimo, da $f$ za naša fiksirana $t$ in $a>0$ zadošča Dinijevem pogoju, torej obstaja integral $\int_{0}^{a}\abs{\frac{g(t, x)}{x}}dx$. Sledi, da je za ta izbrani $a>0$ $S(R, t) - f(t) =\int_{0}^{a}\frac{g(t, x)}{x}\sin(Rx)dx + \int_{a}^{\infty}\frac{g(t, x)}{x}\sin(Rx)dx$. Izberimo sedaj poljuben $\varepsilon>0$. Po (Riemman-Lebesguevi) lemi \ref{lem:R-L} obstaja tak $R_1 > 0$, da bo za vse $R > R_1$ veljalo $\abs{\frac{g(t, x)}{x}\sin(Rx)} < \frac{\varepsilon\pi}{4a}$. Posledično za vse $R>R_0$ velja: \begin{align*} 
+					\abs{\int_{0}^{a}\frac{g(t, x)}{x}\sin(Rx)dx} &\leq \int_{0}^{a}\abs{\frac{g(t, x)}{x}\sin(Rx)}dx \\
+					&< \int_{0}^{a}\frac{\varepsilon\pi}{4a}dx = \frac{\varepsilon\pi}{4}
+				\end{align*} 
+					Velja tudi: \begin{align*}
+						\abs{\int_{a}^{\infty}\frac{g(t, x)}{x}\sin(Rx)dx} &= \abs{\int_{a}^{\infty}\frac{f(t+x) + f(t-x)}{2x}\sin(Rx)dx - \int_{a}^{\infty}f(t)\frac{\sin(Rx)}{x}dx} \\
+						&\leq \abs{\int_{a}^{\infty}\frac{f(t+x) + f(t-x)}{2x}\sin(Rx)dx} + \abs{\int_{a}^{\infty}f(t)\frac{\sin(Rx)}{x}dx}
+					\end{align*}
+					Ker je funkcija $x \mapsto f(t+x)$ absolutno integrabilna na $\R$, je funkcija $x\mapsto\frac{f(t+x)}{x}$ absolutno integrabilna na $[a, \infty)$ in posledično enak sklep (ker je $L^1([a, \infty)$ vektorski prostor) velja tudi za funkcijo $x\mapsto\frac{f(t+x) + f(t-x)}{2x}$. Po lemi \ref{lem:R-L} je \begin{align*}
+						&\lim_{R\to\infty}\big(\int_{a}^{\infty}\frac{f(t+x) + f(t-x)}{2x}\sin(Rx)dx\big) \\ &= \int_{a}^{\infty}\big(\lim_{R\to\infty}\frac{f(t+x) + f(t-x)}{2x}\sin(Rx)dx\big) = 0
+					\end{align*} Posledično obstaja tak $R_2 >0$, da za vsak $R>R_2$ velja: $$\abs{\int_{a}^{\infty}\frac{f(t+x) + f(t-x)}{2x}\sin(Rx)dx} < \frac{\varepsilon\pi}{8}$$
+					
+					Na koncu opazimo še, da je $\abs{\int_{a}^{\infty}f(t)\frac{\sin(Rx)}{x}dx} = \abs{f(t)}\abs{\int_{a}^{\infty}\frac{\sin(Rx)}{x}dx}$. V integral vpeljemo novo spremenljivko: $y = Rx, dy = Rdx$. Tedaj velja: $$\abs{f(t)}\abs{\int_{a}^{\infty}\frac{\sin(Rx)}{x}dx} = \abs{f(t)}\abs{\int_{Ra}^{\infty}\frac{\sin(y)}{y}dy}$$
+					Ker je $a>0$ fiksno število in vemo, da je funkcija $y\mapsto \frac{\sin(y)}{y}$ absolutno integrabilna na $[a, \infty)$, obstaja tak $R_3 > 0$, da za vsak $R>R_3$ velja: $$\abs{\int_{Ra}^{\infty}\frac{\sin(y)}{y}dy} < \frac{\varepsilon\pi}{8\abs{f(t)}}$$
+					
+					Označimo $R_0 = \max\{R_1, R_2, R_3\}$. Tedaj za vsak $R>R_0$ velja: \begin{align*}
+						\abs{S(R, t) - f(t)} &= \frac{2}{\pi}\abs{\int_{0}^{a}\frac{g(t, x)}{x}\sin(Rx)dx + \int_{a}^{\infty}\frac{g(t, x)}{x}\sin(Rx)dx} \\
+						&\leq \frac{2}{\pi}\big(\abs{\int_{0}^{a}\frac{g(t, x)}{x}\sin(Rx)dx} + \abs{\int_{a}^{\infty}\frac{g(t, x)}{x}\sin(Rx)dx}\big) \\
+						&< \frac{2}{\pi}\big(\frac{\varepsilon\pi}{4} + \abs{\int_{a}^{\infty}\frac{f(t+x) + f(t-x)}{2x}\sin(Rx)dx}\big) \\ 
+						&+ \frac{2}{\pi}\abs{\int_{a}^{\infty}f(t)\frac{\sin(Rx)}{x}dx} \\
+						&< \frac{\varepsilon}{2} + \frac{2}{\pi}\frac{\varepsilon\pi}{8} + \frac{2}{\pi}\abs{f(t)}\frac{\varepsilon\pi}{8\abs{f(t)}} \\
+						&= \frac{\varepsilon}{2} + \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \varepsilon
+					\end{align*}
+					
+					Velja torej: $f(t) = \lim_{R\to\infty}S(R, t) = \lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}F(x)e^{-itx}dx$.
+			\end{proof}
+			
+			Prej smo opazili, da zvezno odvedljive funkcije zadoščajo Dinijevem pogoju. Po izreku \ref{izr:invFourierT} potem velja, da je Fourierjeva transformacija obrnljiva na $\mathcal{C}^1(\R)\subset L^1(\R)$. Še več, če je $f\in\mathcal{C}^2(\R)$ in so $f, f', f''\in L^1(\R)$, potem je $\forall t\in\R: f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(x)e^{-itx}dx$. S tem smo odgovorili na prvo vprašanje. Odgovorimo sedaj še na drugo.
+			
+			\begin{definicija}
+				\label{def:konvolucija}
+				Naj bosta $f, g\in L^1(\R)$. Funkcijo $(f*g)$ s predpisom $(f*g)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt \forall x\in\R$ imenujemo \pojem{konvolucija} $f$ in $g$.
+			\end{definicija}
+			
+			\begin{trd}
+				\label{trd:konvolucija}
+				Naj bodo $f, g, h\in L^1(\R)$ poljubne. Velja: \begin{enumerate}
+					\item $f*g \in L^1(\R)$
+					\item $\forall a\in \R: (af)*g = a(f*g)$
+					\item $(f+g)*h = f*h + g*h$
+					\item $(f*g)*h = f*(g*h)$
+					\item $f*g= g*f$
+				\end{enumerate} 
+			\end{trd}
+			
+			\begin{proof}
+				\begin{enumerate}
+					\item Velja: $\int_{-\infty}^{\infty}\abs{(f*g)(x)}dx \leq \int_{-\infty}^{\infty}\big(\int_{-\infty}^{\infty}\abs{f(t)}\abs{g(x-t)}dt\big)dx$. Sedaj upoštevamo, da je funkcija $x\mapsto g(x-t)$ absolutno integrabilna za vsak $t\in\R$. Potem lahko zamenjamo vrstni red integriranja in velja: $$\int_{-\infty}^{\infty}\big(\int_{-\infty}^{\infty}\abs{f(t)}\abs{g(x-t)}dt\big)dx = \int_{-\infty}^{\infty}\abs{f(t)}\big(\int_{-\infty}^{\infty}\abs{g(x-t)}dx\big)dt = \abs{\abs{f}}_1\abs{\abs{g}}_1$$
+					Velja torej: $\int_{-\infty}^{\infty}\abs{(f*g)(x)}dx \leq \abs{\abs{f}}_1\abs{\abs{g}}_1 < \infty$, torej je $(f*g)\in L^1(\R)$.
+					\item Naj bo $a\in\R$. Tedaj je $$((af)*g)(x) = \int_{-\infty}^{\infty}af(t)g(x-t)dt = a\int_{-\infty}^{\infty}f(t)g(x-t)dt = a(f*g)(x)$$
+					\item Kratek račun pokaže: \begin{align*}
+						((f+g)*h)(x) &= \int_{-\infty}^{\infty}(f(t)+ g(t))h(x-t)dt = \\
+						&= \int_{-\infty}^{\infty}f(t)h(x-t)dt + \int_{-\infty}^{\infty}g(t)h(x-t)dt \\
+						&= (f*h)(x) + (g*h)(x)
+					\end{align*}
+					\item 
+					\begin{align*}
+						(f*(g*h))(x) &= \int_{-\infty}^{\infty}f(t)(g*h)(x-t)dt \\
+						&= \int_{-\infty}^{\infty}f(t)\big(\int_{-\infty}^{\infty}g(s)h(x-t-s)ds\big)dt = (*)
+					\end{align*}
+					Če uvedemo novo spremenljivko $y = t+s, dy = ds$, potem se integral $(*)$ spremeni v $$
+					(*) =\int_{-\infty}^{\infty}\big(\int_{-\infty}^{\infty}f(t)g(y-t)h(x-y)dy\big)dt
+					$$
+					Ker je $f*g \in L^1(\R)$, lahko zamenjamo vrstni red integriranja. Potem je \begin{align*} 
+					(*) &= \int_{-\infty}^{\infty}\big(\int_{-\infty}^{\infty}f(t)g(y-t)h(x-y)dt\big)dy \\
+					&= \int_{-\infty}^{\infty}\big(\int_{-\infty}^{\infty}f(t)g(y-t)dt\big)h(x-y)dy \\
+					&= \int_{-\infty}^{\infty}(f*g)(y)h(x-y)dy = ((f*g)*h)(x)
+					\end{align*}
+					\item V $(f*g)(x)$ vpeljemo novo spremenljivko $u = x-t, du = -dt$. Tedaj je \begin{align*}
+						(f*g)(x) &= \int_{-\infty}^{\infty}f(t)g(x-t)dt = -\int_{\infty}^{-\infty}f(x-u)g(u)du \\
+						&=\int_{-\infty}^{\infty}g(u)f(x-u)du = (g*f)(x)
+					\end{align*}
+				\end{enumerate}
+			\end{proof}
+			
+			\begin{izr}
+				\label{izr:konvFT}
+				Naj bosta $f$ in $g$ absolutno integrabilni funkciji na $\R$. Tedaj velja: $$\mathcal{F}(f*g)(y) = \mathcal{F}(f)(y)\cdot\mathcal{F}(g)(y)$$
+			\end{izr}
+			\begin{proof}
+				Po definiciji je $$\mathcal{F}(f*g)(y) = \int_{-\infty}^{\infty}e^{ixy}(f*g)(x)dx = \int_{-\infty}^{\infty}e^{ixy}\big(\int_{-\infty}^{\infty}f(t)g(x-t)dt\big)dx$$
+				Ker integral $\int_{-\infty}^{\infty}e^{ixy}g(x-t)dx$ enakomerno konvergira, lahko po Fubinijevem izreku zamenjamo vrstni red integracije in tako dobimo: $$
+				\mathcal{F}(f*g)(y) = \int_{-\infty}^{\infty}f(t)\big(\int_{-\infty}^{\infty}e^{ixy}g(x-t)dx\big)dt
+				$$
+				Sedaj vpeljemo novo spremenljivko: $s = x-t, ds = dx$ in tako dobimo: \begin{align*}
+					\mathcal{F}(f*g)(y) &= \int_{-\infty}^{\infty}f(t)\big(\int_{-\infty}^{\infty}e^{i(s+t)y}g(s)ds\big)dt \\
+					&= \int_{-\infty}^{\infty}e^{ity}f(t)\big(\int_{-\infty}^{\infty}e^{isy}g(s)ds\big)dt \\
+					&= \int_{-\infty}^{\infty}e^{ity}f(t)dt \cdot\int_{-\infty}^{\infty}e^{isy}g(s)ds \\
+					&= \mathcal{F}(f)(y)\cdot\mathcal{F}(g)(y)
+				\end{align*}
+				
+			\end{proof}
+			
+			S tem smo pa tudi odgovorili na drugo zastavljeno vprašanje. Sedaj, ko smo spoznali Fourierjevo transformacijo, se lahko lotimo premisleka, kako jih lahko uporabimo pri reševanju diferencialnih enačb.
+			
 		\subsection{Metoda uporabe}
 		
 		\subsection{Primeri uporabe}
