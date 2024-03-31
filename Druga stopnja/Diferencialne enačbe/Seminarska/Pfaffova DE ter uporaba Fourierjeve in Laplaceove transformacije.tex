@@ -563,17 +563,22 @@
 				Preslikavo $\map{\mathcal{F}}{L^1(\R)}{\mathcal{C}_b(\R)}$, s predpisom $\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}e^{iyt}f(t)dt~\forall y\in\R$, imenujemo \pojem{Fourierjeva transformacija}. Za vsak $f\in L^1(\R)$ pravimo $\mathcal{F}(f)$ \pojem{Fourierjeva transformiranka funkcije} $f$, in jo tipično označimo kar z $\hat{f}$.
 			\end{definicija}
 			
+			\begin{opomba}
+				\label{opomb:FTAlt}
+				Fourierjevo transformacijo lahko definiramo tudi s predpisom: $$\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}f(t)e^{-2\pi ity} dt$$. Vse lastnosti, ki jih bomo navedli v nadaljevanju, veljajo tudi za to definicijo, ko upoštevamo, da je razlika v resnici le v uvedbo nove spremenljivke. V različnih situacijah nam lahko bolj pride prav ena ali druga definicija.
+			\end{opomba}
+			
 			\begin{zgled}
 				\label{zgl:Fourier1} 
-				Določimo Fourierjevo transformiranko funkcije $\chi_{[-1, 1]}(t) = \begin{cases}
-					1~&;~ t\in [-1, 1] \\
+				Določimo Fourierjevo transformiranko funkcije $\chi_{[-a, a]}(t) = \begin{cases}
+					1~&;~ t\in [-a, a] \\
 					0~&;~\text{sicer}
 				\end{cases}$.
 				
 				\begin{align*}
-					\mathcal{F}(\chi_{[-1, 1]})(y) &= \int_{-\infty}^{\infty}\chi_{[-1, 1]}(t)e^{ity}dt = \int_{-1}^{1}e^{ity}dt = \frac{1}{iy}e^{ity}\big|_{-1}^{1}\\
-					&= \frac{-i}{y}(\cos(ty) + i\sin(ty))\big|_{-1}^{1} = \frac{1}{y}(\sin(ty)-i\cos(ty))\big|_{-1}^{1} \\
-					&= \frac{2\sin(y)}{y}
+					\mathcal{F}(\chi_{[-a, a]})(y) &= \int_{-\infty}^{\infty}\chi_{[-a, a]}(t)e^{ity}dt = \int_{-a}^{a}e^{ity}dt = \frac{1}{iy}e^{ity}\big|_{-a}^{a}\\
+					&= \frac{-i}{y}(\cos(ty) + i\sin(ty))\big|_{-a}^{a} = \frac{1}{y}(\sin(ty)-i\cos(ty))\big|_{-a}^{a} \\
+					&= \frac{2\sin(ay)}{y}
 				\end{align*}
 			\end{zgled}
 			
@@ -808,6 +813,7 @@
 					
 					Velja torej: $f(t) = \lim_{R\to\infty}S(R, t) = \lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}F(x)e^{-itx}dx$.
 			\end{proof}
+			
 			\begin{opomba}
 				\label{opomb:FTinvC2}
 				Že prej smo opazili, da zvezno odvedljive funkcije zadoščajo Dinijevem pogoju. Po izreku \ref{izr:invFourierT} potem velja, da je Fourierjeva transformacija obrnljiva na $\mathcal{C}^1(\R)\subset L^1(\R)$. Velja tudi, da če je $f\in\mathcal{C}^2(\R)$ in so $f, f', f''\in L^1(\R)$, potem je $\forall t\in\R: f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(x)e^{-itx}dx$. To lastnost bomo uporabili malo kasneje.
@@ -903,7 +909,7 @@
 			\end{opomba}
 			
 			\begin{zgled}
-				Funkcija $\chi_{[-1, 1]}$ je dvakrat zvezno odvedljiva in absolutno integrabilna na $\R$. Njena odvoda sta oba ničelni funkciji, torej tudi absolutno integrabilna na $\R$. Potem lahko s pomočjo Fourierjeve transformacije in Parsevalove enakosti določimo $\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy$. Po zgledu \ref{zgl:Fourier1} namreč vemo, da je $\mathcal{F}(\chi_{[-1, 1]})(y) = \frac{2\sin(y)}{y}$. Ko upoštevamo Parsevalovo enakost, na desni strani dobimo $4\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy$, na levi pa $\int_{-1}^{1}1^2dt = 2$. Sledi, da je $\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy = \frac{1}{2}$.
+				Funkcija $\chi_{[-a, a]}$ je dvakrat zvezno odvedljiva in absolutno integrabilna na $\R$. Njena odvoda sta oba ničelni funkciji, torej tudi absolutno integrabilna na $\R$. Potem lahko s pomočjo Fourierjeve transformacije in Parsevalove enakosti določimo $\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy$. Po zgledu \ref{zgl:Fourier1} namreč vemo, da je $\mathcal{F}(\chi_{[-a, a]})(y) = \frac{2\sin(ay)}{y}$. Ko za $a=1$ upoštevamo Parsevalovo enakost, na desni strani dobimo $4\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy$, na levi pa $\int_{-1}^{1}1^2dt = 2$. Sledi rezultat: $$\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy = \frac{1}{2}$$
 			\end{zgled}
 			
 			Kot zanimivost omenimo še, da se da Fourierjevo transformacijo definirati tudi na $L^1(\R^n)$ (za poljuben $n\in\N$). Lastnosti te transformacije so večinoma naravne analogije lastnosti transformacije za $n = 1$. Te posplošene transformacije v tej nalogi ne bomo obravnavali, več o njej pa lahko bralec najde v \cite{bib:Mag}.
@@ -1009,7 +1015,37 @@
 			\end{align*}
 			Torej je $\frac{1}{k}u_t(x, t) = u_{xx}(x, t)$ oziroma $u_t(x, t) = ku_{xx}(x, t)$.
 		\end{zgled}
+		Za konec tega poglavja si oglejmo še, kako se s pomočjo Fourierjeve transformacije reši primer \ref{prim:Fourier1}.
 		
+		\begin{zgled}
+			\label{zgl:FourierTPDEWave}
+			Naloga se glasi: 
+			Naj bo $c > 0$. Poišči rešitev valovne enačbe z eno prostorsko spremenljivko $\frac{\partial^2 u}{\partial t^2} = c^2\frac{\partial^2 u}{\partial x^2}$ na $\R\times (0, \infty)$ pri začetnih pogojih: $\forall x\in \R: u(x, 0) = f(x)~\&~\frac{\partial u}{\partial t}(x, 0) = g(x)$. Pri tem predpostavi, da sta $f\in \mathcal{C}^2(\R)$ in $g\in\mathcal{C}^1(\R)$.
+			
+			V tej nalogi bomo uporabili ekvivalentno definicijo Fourierjeve transformacije, ki smo jo navedli v opombi \ref{opomb:FTAlt}.
+			
+			Najprej enačbo transformiramo in tako dobimo: $$U_{tt}(y, t) = c^2(2\pi iy)^2U(y, t) $$ pri pogojih $U(y, 0) = \mathcal{F}(f(x))(y)$ in $U_t(y, 0) = \mathcal{F}(g(x))(y)$. Tej enačbi priredimo karakteristični polinom $p(\lambda)=\lambda^2 + 4\pi^2c^2y^2$, katerega ničli sta $\lambda_{1, 2} = \pm 2i\pi cy$. Potem je rešitev te NDE drugega reda kar $$U(y, t)= A(y)e^{2\pi i cyt} + B(y)e^{-2\pi icyt}$$
+			Sedaj upoštevamo prvi začetni pogoj: $U(y, 0) = A(y) + B(y) = \mathcal{F}(f(x))(y) = \bar{f}(y)$. Drugi začetni pogoj nam da: $U_t(y, 0) = 2\pi icy(A(y) - B(y)) = \mathcal{F}(g(x))(y)=\bar{g}(y)$. Sedaj izrazimo funkciji $A$ in $B$ na naslednji način: $$A(y) = \frac{2\pi icy\bar{f}(y) +\bar{g}(y)}{4\pi icy}, B(y) = \frac{2\pi icy\bar{f}(y) -\bar{g}(y)}{4\pi icy}$$
+			Potem ima funkcija $U$ obliko: \begin{align*}
+				U(y, t) &=  \frac{2\pi icy\bar{f}(y) +\bar{g}(y)}{4\pi icy}e^{2\pi icyt} + \frac{2\pi icy\bar{f}(y) -\bar{g}(y)}{4\pi icy}e^{-2\pi icyt} \\
+				&= \frac{1}{4\pi icy}\big(2\pi icy\bar{f}(y)(e^{2\pi icty} + e^{-2\pi icty}) + \bar{g}(y)(e^{2\pi icty} - e^{-2\pi icty})\big)
+				\end{align*}
+				
+				V prvem členu upoštevamo ekvivalentno formulacijo lastnosti $4$ iz trditve \ref{trd:propFourierT} za verzijo Fourierjeve transformacije, ki jo trenutno uporabljamo: $$\mathcal{F}(f(t-a))(y) = e^{2\pi iay}\mathcal{F}(f(t))(y) ~\forall a\in\R$$ V drugem členu upoštevamo analog rezultata iz zgleda \ref{zgl:Fourier1}, ki bi ga dobili z alternativno definicijo: $$\mathcal{F}(\chi_{[-a, a]})(y) = \frac{\sin(2\pi ay)}{\pi y}$$
+				
+				Potem se prvi člen preoblikuje v $\frac{1}{2}(\mathcal{F}(f(x-ct))(y) + \mathcal{F}(f(x + ct))(y))$, drugi člen pa se preoblikuje v $\frac{1}{2c}\bar{g}(y)\cdot\mathcal{F}(\chi_{[-ct, ct]})$. Izračunajmo $(g*\chi_{[-ct, ct]})(x)$: \begin{align*}
+					(g*\chi_{[-ct, ct]})(x) &= \int_{-\infty}^{\infty}g(u)\chi_{[-ct, ct]}(x-u)du = \int_{-\infty}^{\infty}g(u)\chi_{[x-ct, x+ct]}(u)du \\
+					&= \int_{x-xt}^{x+ct}g(u)du
+				\end{align*}
+				
+				Potem lahko zapišemo $\mathcal{F}(g*\chi_{[-ct, ct]})(y) = \bar{g}\cdot\mathcal{F}(\chi_{[-ct, ct]})(y)$. Naša funkcija $U$ se sedaj glasi: \begin{align*}
+					\mathcal{F}(u(x, t))(y) &= U(y, t) = \mathcal{F}(\frac{(f(x-ct) + f(x+ct))}{2})(y) + \mathcal{F}(\frac{(g*\chi_{[-ct, ct]}(x))}{2c})(y) \\
+					&= \mathcal{F}(\frac{(f(x-ct) + f(x+ct))}{2} + \frac{1}{2c}\int_{x-xt}^{x+ct}g(u)du)(y)
+				\end{align*}
+				Od tod sledi:
+				$$u(x, t) = \frac{f(x-ct) + f(x+ct)}{2} + \frac{1}{2c}\int_{x-xt}^{x+ct}g(u)du$$
+				Ta rešitev je znana kot D'Alembertova formula.
+		\end{zgled}
 	\section{Laplaceova transformacija}
 	
 		\subsection{Osnovne definicije in rezultati}

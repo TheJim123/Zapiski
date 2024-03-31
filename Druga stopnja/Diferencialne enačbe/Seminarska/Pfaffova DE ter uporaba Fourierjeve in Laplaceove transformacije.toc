@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {3.1}Osnovne definicije in rezultati}{18}{}%
 \contentsline {subsection}{\numberline {3.2}Metoda uporabe}{31}{}%
 \contentsline {subsection}{\numberline {3.3}Primeri uporabe}{31}{}%
-\contentsline {section}{\numberline {4}Laplaceova transformacija}{35}{}%
-\contentsline {subsection}{\numberline {4.1}Osnovne definicije in rezultati}{35}{}%
-\contentsline {subsection}{\numberline {4.2}Metoda uporabe}{35}{}%
-\contentsline {subsection}{\numberline {4.3}Primeri uporabe}{35}{}%
+\contentsline {section}{\numberline {4}Laplaceova transformacija}{36}{}%
+\contentsline {subsection}{\numberline {4.1}Osnovne definicije in rezultati}{36}{}%
+\contentsline {subsection}{\numberline {4.2}Metoda uporabe}{36}{}%
+\contentsline {subsection}{\numberline {4.3}Primeri uporabe}{36}{}%
