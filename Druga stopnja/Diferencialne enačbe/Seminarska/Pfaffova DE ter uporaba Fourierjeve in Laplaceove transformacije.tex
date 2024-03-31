@@ -541,10 +541,16 @@
 			\end{opomba}
 			
 			\begin{definicija}
-				Naj bo $A$ poljuben interval kar cel $\R$. Tedaj definiramo množico, ki vsebuje ekvivalenčne razrede realnih ali kompleksnih funkcij nad $A$, glede na enakost skoraj povsod, za katere velja, da je $\int_{A}\abs{f(x)}dx < \infty$. To množico imenujemo \pojem{množica absolutno integrabilnih funkcij} na $A$ in jo označimo z $L^1(A)$. Torej: $L^1(A) = \{[f]_{=~ s.p.}~|~f~\textit{funkcija na}~A~\land \int_{A}\abs{f(x)}dx ~\text{obstaja in je končen}\}$.
+				\label{def:Lp}
+				Naj bo $A$ poljuben interval ali kar cel $\R$ in naj bo $p\in[1, \infty)$. Tedaj definiramo množico, ki vsebuje ekvivalenčne razrede realnih ali kompleksnih funkcij nad $A$, glede na enakost skoraj povsod, za katere velja, da je $\int_{A}\abs{f(x)}^p dx < \infty$. To množico označimo z $L^p(A)$. Torej: $L^p(A) = \{[f]_{=~ s.p.}~|~f~\textit{funkcija na}~A~\land \int_{A}\abs{f(x)}^p dx ~\text{obstaja in je končen}\}$. Posebej, množico $L^1(A)$ imenujemo \pojem{množica absolutno integrabilnih funkcij} na $A$, množico $L^2(A)$ pa \pojem{množica kvadratno integrabilnih funkcij} na $A$.
 			\end{definicija}
 			
-			Nas bodo posebej zanimale absolutno integrabilne funkcije na celi realni osi: $L^1(\R) = \{[f]_{=~s.p.}~|~\map{f}{\R}{\R}~(\textit{ali}~\C) \land \int_{-\infty}^{\infty}\abs{f(x)}dx <\infty\}$. Tudi ta prostor je, za po točkah definirani operaciji $+$ in $\cdot$ vektorski prostor. Še več, če ga opremimo z normo s predpisom $\abs{\abs{f}}_1 = \int_{-\infty}^{\infty}\abs{f(x)}dx$, postane $L^1(\R)$ Banachov prostor.
+			\begin{opomba}
+				\label{opomb:Lp}
+				Naj bo $A$ poljuben interval ali kar cel $\R$ in naj bo $p\in[1, \infty)$. Tedaj je $L^p(A)$, za seštevanje in množenje s skalarjem definirano po točkah, vektorski prostor in preslikava $\map{\abs{\abs{.}}_p}{L^p(A)}{[0,\infty)}$ s predpisom $\abs{\abs{f}}_p = \big(\int_{A} \abs{f(x)}^p dx\big)^{\frac{1}{p}}~\forall f\in L^p(A)$ je norma na njem. Še več, $(L^p(A), \abs{\abs{.}}_p)$ je Banachov prostor.
+			\end{opomba}
+			
+			Nas bodo posebej zanimale absolutno integrabilne funkcije na celi realni osi: $L^1(\R) = \{[f]_{=~s.p.}~|~\map{f}{\R}{\R}~(\textit{ali}~\C) \land \int_{-\infty}^{\infty}\abs{f(x)}dx <\infty\}$. Tudi ta prostor je, za po točkah definirani operaciji $+$ in $\cdot$  ter normo s predpisom $\abs{\abs{f}}_1 = \int_{-\infty}^{\infty}\abs{f(x)}dx ~\forall f\in L^1(\R)$ Banachov prostor.
 			
 			\begin{definicija}
 				Naj bo $A$ poljuben interval kar cel $\R$. Množico zveznih in omejenih funkcij funkcij na $A$ označimo z $\mathcal{C}_b(A)$.
@@ -556,6 +562,32 @@
 				\label{def:FourierT}
 				Preslikavo $\map{\mathcal{F}}{L^1(\R)}{\mathcal{C}_b(\R)}$, s predpisom $\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}e^{iyt}f(t)dt~\forall y\in\R$, imenujemo \pojem{Fourierjeva transformacija}. Za vsak $f\in L^1(\R)$ pravimo $\mathcal{F}(f)$ \pojem{Fourierjeva transformiranka funkcije} $f$, in jo tipično označimo kar z $\hat{f}$.
 			\end{definicija}
+			
+			\begin{zgled}
+				\label{zgl:Fourier1} 
+				Določimo Fourierjevo transformiranko funkcije $\chi_{[-1, 1]}(t) = \begin{cases}
+					1~&;~ t\in [-1, 1] \\
+					0~&;~\text{sicer}
+				\end{cases}$.
+				
+				\begin{align*}
+					\mathcal{F}(\chi_{[-1, 1]})(y) &= \int_{-\infty}^{\infty}\chi_{[-1, 1]}(t)e^{ity}dt = \int_{-1}^{1}e^{ity}dt = \frac{1}{iy}e^{ity}\big|_{-1}^{1}\\
+					&= \frac{-i}{y}(\cos(ty) + i\sin(ty))\big|_{-1}^{1} = \frac{1}{y}(\sin(ty)-i\cos(ty))\big|_{-1}^{1} \\
+					&= \frac{2\sin(y)}{y}
+				\end{align*}
+			\end{zgled}
+			
+			\begin{zgled}
+				\label{zgl:Fourier2} 
+				Poračunajmo Fourierjevo transformiranko funkcije $f(t) = e^{-\frac{t^2}{2}}$.
+				\begin{align*}
+					\mathcal{F}(f)(y) &= \int_{-\infty}^{\infty}e^{-\frac{t^2}{2}}e^{ity}dt = \int_{-\infty}^{\infty}e^{-\frac{t^2 - 2ity}{2}}dt = \int_{-\infty}^{\infty}e^{-\frac{(t-iy)^2 - (iy)^2}{2}}dt \\ 
+					&= \int_{-\infty}^{\infty}e^{-\frac{(t-iy)^2 + y^2}{2}}dt = e^{-\frac{y^2}{2}}\int_{-\infty}^{\infty}e^{-\frac{(t-iy)^2}{2}}dt
+				\end{align*}
+				Sedaj v presotali integral vpeljemo zamenjavo spremenljivke $u = t-iy, du = dt$ in s tem dobimo integral $\int_{-\infty}^{\infty}e^{-\frac{u^2}{2}}du$. Na tej točki se spomnimo znanega rezultata iz analize: $$\int_{-\infty}^{\infty}e^{-\frac{x^2}{2}}dx = \sqrt{2\pi} $$ Sledi, da je $\mathcal{F}(f)(y) = \mathcal{F}(e^{-\frac{t^2}{2}})(y) = \sqrt{2\pi}e^{-\frac{y^2}{2}} = \sqrt{2\pi}f(y)$.
+				
+				Drugače povedano, funkcija $e^{-\frac{t^2}{2}}$ je lastna funkcija Fourierjeve transformacije za lastno vrednost $\sqrt{2\pi}$.
+			\end{zgled}
 			
 			Preden se lotimo obravnave lastnosti Fourierjeve transformacije, se spomnimo dveh rezultatov, ki nam bosta pri tem pomagala.
 			
@@ -654,7 +686,9 @@
 				
 				Sledi, da je $\mathcal{F}(f')(y) = (-iy)\int_{-\infty}^{\infty}f(t)e^{ity}dt = (-iy)\mathcal{F}(f)(y)$.
 			\end{proof}
-			
+			\begin{opomba}
+				Če je funkcija $f$ iz izreka \ref{izr:FourierTodv1} zvezno odvedljiva, potem avtomatsko zadošča pogoju, da je integral lastnega odvoda.
+			\end{opomba}
 			\begin{posl}
 				\label{posl:FTodvN}
 				Denimo, da je $f$ $k$-krat odvedljiva na $\R$ ter, da so $f$ in vsi njeni odvodi absolutno integrabilni na $\R$ ter da je vsak od teh (razen $k$-tega odvoda) integral svojega odvoda $\big(\forall x\in\R, \forall i\in \{1, \ldots, k\}: f^{(i-1)}(x) = \int_{0}^{x}f^{(i)}(t)dt + f^{(i-1)}(0)\big)$. Potem je $\mathcal{F}(f^{(k)})(y) = (-iy)^k\mathcal{F}(f)(y)$.
@@ -662,6 +696,30 @@
 			\begin{proof}
 				Zaporedna uporaba izreka \ref{izr:FourierTodv1}.
 			\end{proof}
+			
+			\begin{trd}
+				\label{trd:FTL1}
+				Za Fourierjevo transformacijo velja naslednje: \begin{enumerate}
+				\item Naj bo $f$ poljubna $\mathcal{C}^1(\R)$ funkcija, za katero velja, da sta $f, f'\in L^1(\R)$. Tedaj je $\mathcal{F}(f) \in L^2(\R)$.
+				\item Naj bo $f$ poljubna $\mathcal{C}^2(\R)$ funkcija, za katero velja, da so $f, f', f''\in L^1(\R)$. Tedaj je $\mathcal{F}(f) \in L^1(\R)$.
+			\end{enumerate}
+			\end{trd}
+			\begin{proof}
+				\begin{enumerate}
+					\item Označimo $F(y) = \mathcal{F}(f)(y)$. Ker je $f\in L^1(\R)$, po šesti točki trditve \ref{trd:propFourierT} velja, da je $F$ zvezna funkcija na $\R$, kar pomeni, da je integrabilna na vsakem končnem intervalu. Ker je $f$ zvezno odvedljiva na $\R$ in sta $f, f'\in L^1(\R)$, po izreku \ref{izr:FourierTodv1} velja enakost $F(y) = -\frac{\mathcal{F}(f')(y)}{iy}$. Od tod pa sledi, da je \begin{align*}
+						\abs{F(y)} &= \abs{\frac{-1}{iy}}\abs{\int_{-\infty}^{\infty}f'(t)e^{ity}dt} \\
+						&\leq \frac{1}{\abs{y}}\int_{-\infty}^{\infty}\abs{f'(t)}\abs{e^{ity}}dt \leq \frac{1}{\abs{y}}\int_{-\infty}^{\infty}\abs{f'(t)}dt \\
+						&= \frac{1}{\abs{y}}\abs{\abs{f'}}_1
+					\end{align*} Označimo $M = \abs{\abs{f'}}_1$. Tedaj velja ocena: $$\abs{F(y)}^2 \leq \frac{M^2}{y^2} $$ 
+					Izberimo sedaj poljuben $N> 0$ Ker je zvezna, je $\abs{F}^2$ integrabilna na intervalu $[-N, N]$. Z uporabo prejšnje ocene preverimo, da je integrabilna na $[N, \infty)$: $$\int_{N}^{\infty}\abs{F(y)}^2 dy \leq \int_{N}^{\infty}\frac{M^2}{y^2}dy = M^2 [\frac{-1}{y}|_{N}^{\infty}] = \frac{M^2}{N} < \infty$$
+					
+					Na enak način pokažemo konvergenco integrala na $(-\infty, -N]$, torej je $F$ kvadratno integrabilna na $\R$.
+					\item Kot prej označimo $F(y) = \mathcal{F}(f)(y)$. Ker je $f\in\mathcal{C}^2(\R)$ in $f, f', f''\in L^1(\R)$, po posledici \ref{posl:FTodvN} velja: $F(y) = -\frac{\mathcal{F}(f'')(y)}{y^2}$ in posledično (na enak način kot v prvi točki dokaza) vidimo, da je $\abs{F(y)}\leq\frac{\abs{\abs{f''}}_1}{y^2}$. Vpeljemo oznako $M=\abs{\abs{f''}}_1$. Tedaj se prejšnja ocena glasi: $\abs{F(y)}\leq\frac{M}{y^2}$.
+					Sedaj izberemo poljuben $N>0$. Ker je $F$ zvezna funkcija na $\R$, je tudi $\abs{F}$, torej je $\abs{F}$ integrabilna na intervalu $[-N, N]$. Izven tega intervala uporabimo prejšnjo oceno in tako vidimo: $$\int_{N}^{\infty}\abs{F(y)}dy \leq \int_{N}^{\infty}\frac{M}{y^2}dy = M[\frac{-1}{y}|_{N}^{\infty}] = \frac{M}{N} < \infty$$
+					Za $(-\infty, -N]$ pokažemo integrabilnost na enak način. Sledi, da je $F\in L^1(\R)$.
+				\end{enumerate}
+			\end{proof}
+			
 			\begin{izr}
 				\label{izr:odvFourierT}
 				Naj bosta funkciji $f(t)$ in $tf(t)$ obe absolutno integrabilni na $\R$. Tedaj je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)~\forall y\in\R$.
@@ -750,12 +808,15 @@
 					
 					Velja torej: $f(t) = \lim_{R\to\infty}S(R, t) = \lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}F(x)e^{-itx}dx$.
 			\end{proof}
-			
-			Prej smo opazili, da zvezno odvedljive funkcije zadoščajo Dinijevem pogoju. Po izreku \ref{izr:invFourierT} potem velja, da je Fourierjeva transformacija obrnljiva na $\mathcal{C}^1(\R)\subset L^1(\R)$. Še več, če je $f\in\mathcal{C}^2(\R)$ in so $f, f', f''\in L^1(\R)$, potem je $\forall t\in\R: f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(x)e^{-itx}dx$. S tem smo odgovorili na prvo vprašanje. Odgovorimo sedaj še na drugo.
+			\begin{opomba}
+				\label{opomb:FTinvC2}
+				Že prej smo opazili, da zvezno odvedljive funkcije zadoščajo Dinijevem pogoju. Po izreku \ref{izr:invFourierT} potem velja, da je Fourierjeva transformacija obrnljiva na $\mathcal{C}^1(\R)\subset L^1(\R)$. Velja tudi, da če je $f\in\mathcal{C}^2(\R)$ in so $f, f', f''\in L^1(\R)$, potem je $\forall t\in\R: f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(x)e^{-itx}dx$. To lastnost bomo uporabili malo kasneje.
+			\end{opomba}
+			 S tem smo odgovorili na prvo vprašanje. Odgovorimo sedaj še na drugo.
 			
 			\begin{definicija}
 				\label{def:konvolucija}
-				Naj bosta $f, g\in L^1(\R)$. Funkcijo $(f*g)$ s predpisom $(f*g)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt \forall x\in\R$ imenujemo \pojem{konvolucija} $f$ in $g$.
+				Naj bosta $f, g\in L^1(\R)$. Funkcijo $(f*g)$ s predpisom $(f*g)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt ~\forall x\in\R$ imenujemo \pojem{konvolucija} $f$ in $g$.
 			\end{definicija}
 			
 			\begin{trd}
@@ -817,11 +878,137 @@
 				
 			\end{proof}
 			
-			S tem smo pa tudi odgovorili na drugo zastavljeno vprašanje. Sedaj, ko smo spoznali Fourierjevo transformacijo, se lahko lotimo premisleka, kako jih lahko uporabimo pri reševanju diferencialnih enačb.
+			S tem smo pa tudi odgovorili na drugo zastavljeno vprašanje. Sedaj, ko smo spoznali Fourierjevo transformacijo, dokažimo še t.i.~ Parsevalovo enakost, nato pa se lahko lotimo premisleka o uporabi Fourierjeve transformacije pri reševanju diferencialnih enačb.
+			
+			\begin{izr}[Parsevalova enakost]
+				\label{izr:Parseval}
+				Naj bo $f$ poljubna $\mathcal{C}^2(\R)$funkcija, za katero velja, da so $f, f', f''\in L^1(\R)$. Tedaj je $$\int_{-\infty}^{\infty}\abs{f(x)}^2dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}\abs{\mathcal{F}(f)(y)}^2dy$$
+			\end{izr}
+			
+			\begin{proof}
+				Po trditvi \ref{trd:FTL1} vemo, da je $F$ kvadratno integrabilna na $\R$. Dodatno vemo, glede na predpostavke, da velja inverzna formula $f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(y)e^{-ixy}dy$. Potem velja: $$\int_{-\infty}^{\infty}\abs{f(x)}^2dx = \int_{-\infty}^{\infty}f(x)\overline{f(x)}dx = (*)$$ in upoštevajoč inverzno formulo je potem $$(*) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\overline{f(x)}\big(\int_{-\infty}^{\infty}F(y)e^{-ixy}dy\big)dx $$
+				
+				Zaradi konvergence integrala $\int_{-\infty}^{\infty}\overline{f(x)}e^{-ixy}dx$ lahko uporabimo Fubinijev izrek in zamenjamo vrstni red integracije. Tako je 
+				\begin{align*}	
+					(*) &= \frac{1}{2\pi}\int_{-\infty}^{\infty}F(y)\big(\int_{-\infty}^{\infty}\overline{f(x)}e^{-ixy}dx\big)dy \\
+					&=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(y)\big(\overline{\int_{-\infty}^{\infty}f(x)e^{ixy}dx}\big)dy \\
+					&=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(y)\overline{F(y)}dy \\
+					&=\frac{1}{2\pi}\int_{-\infty}^{\infty}\abs{F(y)}^2dy
+				\end{align*}
+			\end{proof}
+			
+			\begin{opomba}
+				\label{opomb:Parseval}
+				V resnici bi lahko pri izreku \ref{izr:Parseval} zahtevali še manj. Dovolj bi bilo, da sta $f, \mathcal{F}(f) \in L^1(\R)$ in da $f$ zadošča Dinijevem pogoju na celem $\R$. Dokaz se ob teh predpostavkah bistveno ne spremeni.
+			\end{opomba}
+			
+			\begin{zgled}
+				Funkcija $\chi_{[-1, 1]}$ je dvakrat zvezno odvedljiva in absolutno integrabilna na $\R$. Njena odvoda sta oba ničelni funkciji, torej tudi absolutno integrabilna na $\R$. Potem lahko s pomočjo Fourierjeve transformacije in Parsevalove enakosti določimo $\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy$. Po zgledu \ref{zgl:Fourier1} namreč vemo, da je $\mathcal{F}(\chi_{[-1, 1]})(y) = \frac{2\sin(y)}{y}$. Ko upoštevamo Parsevalovo enakost, na desni strani dobimo $4\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy$, na levi pa $\int_{-1}^{1}1^2dt = 2$. Sledi, da je $\int_{-\infty}^{\infty}\frac{\sin^2(y)}{y^2}dy = \frac{1}{2}$.
+			\end{zgled}
+			
+			Kot zanimivost omenimo še, da se da Fourierjevo transformacijo definirati tudi na $L^1(\R^n)$ (za poljuben $n\in\N$). Lastnosti te transformacije so večinoma naravne analogije lastnosti transformacije za $n = 1$. Te posplošene transformacije v tej nalogi ne bomo obravnavali, več o njej pa lahko bralec najde v \cite{bib:Mag}.
 			
 		\subsection{Metoda uporabe}
-		
+			Ideja uporabe Fourierjeve transformacije pri reševanju diferencialnih enačb je naslednja:
+			Naj bo dana Cauchyjeva naloga, kjer ob danih začetnih (ali robnih) pogojih iščemo funkcijo $y(x)$, ki zadošča enačbi $f(x, y(x), y'(x), \ldots, y^{(n)(x)})=0$ in naj ta enačba vsebuje koeficiente, ki so glede na $x$ konstantni, ali pa polinomski. Tedaj lahko $y(x$) te enačbe poiščemo tako, da enačbo transformiramo (glede na $x$). Naj bo $Y(\eta)=\mathcal{F}(y(x))(\eta)$. Tedaj se, s pomočjo lastnosti Fourierjeve transformacije, enačba $f(x, y(x), y'(x), \ldots, y^{(n)}(x)) = 0$ spremeni v enačbo, ki je bodisi navadna, bodisi navadna diferencialna enačba nižjega reda, za funkcijo $Y(\eta)$. Pri transformiranju seveda tudi poskrbimo, da se preslikajo začetni (ali robni) pogoji Ko dobimo rešitev $Y(\eta)$ te preprostejše enačbe, z inverzno Fourierjevo transformacijo dobimo rešitev originalne Cauchyjeve naloge.
+			
+			Kadar rešujemo parcialne diferencialne enačbe lahko še vedno uporabimo Fourierjevo transformacijo, a moramo pri tem biti pazljivi: Klasična Fourierjeva transformacija sprejme le funkcije ene spremenljivke. Torej, če v enačbi nastopa funkcija večih spremenljivk, izberemo eno, ostale pa ">fiksiramo"<. S pomočjo Fourierjeve transformacije se nam tudi tukaj rešitev prenese na problem, ki je tipično lažje rešljiv, inverzna Fourierjeva transformacija pa nam da rešitev originalne naloge. Kot bomo videli na primeru toplotne enačbe na neskončnem nosilcu, nam ta pristop še vedno lahko, seveda ob določenih predpostavkah, da rešitev.
+			
+			Tipična omejitev pri uporabi Fourierjeve transformacije je ta, da bodo dobljene rešitve $L^1$ ali $L^2$ funkcije, kar pomeni, da lahko spregledamo kako bolj ">skromno"< rešitev.
+			
+			Oglejmo si nekaj primerov uporabe.
 		\subsection{Primeri uporabe}
+		
+		\begin{zgled}
+			\label{zgl:DEFT1}
+			S pomočjo Fourierjeve transformacije rešimo diferencialno enačbo $xy'' + 2y' + xy = 0$. Enačbo transformiramo in tako dobimo: $$\mathcal{F}(xy''(x) + 2y'(x) + xy(x)) = 0$$ oziroma $$\mathcal{F}(xy''(x))(\eta) + 2\mathcal{F}(y'(x))(\eta) + \mathcal{F}(xy(x))(\eta) = 0$$
+			
+			Upoštevamo lastnosti Fourierjeve transformacije ter poračunajmo člene v enačbi: \begin{align*}
+				\mathcal{F}(xy''(x))(\eta) &= (-i)\frac{d}{d\eta}(\mathcal{F}(y''(x))(\eta)) = (-i)\frac{d}{d\eta}((-i\eta)^2Y(\eta)) \\
+				&= i\frac{d}{d\eta}(\eta^2Y(\eta)) = i(2\eta Y(\eta) + \eta^2Y'(\eta))
+			\end{align*}
+			Podobno vidimo, da je $\mathcal{F}(xy(x))(\eta) = (-i)Y'(\eta)$ in $\mathcal{F}(y'(x))(\eta) = (-i)\eta Y(\eta)$.
+			
+			Naša enačba se torej glasi: $$
+				2i\eta Y(\eta) + i\eta^2 Y'(\eta) - 2i\eta Y(\eta) -iY'(\eta) = 0
+			$$
+			
+			oziroma
+			$$
+			(\eta^2 - 1)Y'(\eta) = 0
+			$$
+			
+			To je pa homogena navadna diferencialna enačba prvega reda. Določimo še njeno rešitev: 
+			\begin{align*}
+				dY &= (\eta^2 - 1)d\eta \\
+				Y & = \frac{\eta^3}{3} - \eta + C
+			\end{align*}
+			
+			Denimo sedaj, da $y(x)$ zadošča pogojem, da obstaja inverzna Fourierjeva transformacija. Izkaže se, da je njen izračun malce zapleten. Rešitev se izkaže, da je $y(x) = C\delta(x) - i\delta'(x) - \frac{i}{3}\delta^{(3)}(x)$, kjer je $\delta(x)$ t.~i.~ \pojem{Diracova delta funkcija}.
+		\end{zgled}
+		
+		Ta zgled nam služi v poduk: S Fourierjevo transformacijo si poenostavimo en del problema, lahko pa si s tem močno zakompliciramo drugi del - povratek preko inverzne transformacije.
+		
+		Lotimo se sedaj primera reševanja linearne parcialne diferencialne enačbe prvega reda:
+		\begin{zgled}
+			\label{zgl:PDE1FT}
+			S pomočjo Fourierjeve transformacije rešimo enačbo $tu_x(x, t) + u_t(x, t) = 0$, pri začetnem pogoju $u(x, 0) = f(x)$.
+			
+			Najprej enačbo transformiramo po spremenljivki $x$. Označimo: $U(y, t) = \mathcal{F}(u(x, t))(y)$.
+			Premislimo na tej točki, kako s pomočjo $U$ izraziti transformiranko od $u_t(x, t)$.
+			$\mathcal{F}(u_t)(y) = \int_{-\infty}^{\infty}\frac{\partial u}{\partial t}(x, t)e^{ixy}dx$. To lahko obravnavamo kot integral s parametrom $t$ in, ob predpostavki da rešitev zadošča pogojem, lahko zamenjamo integriranje in parcialno odvajanje po $t$. Torej pišemo: $\mathcal{F}(u_t(x, t))(y) = \frac{\partial }{\partial t}U(y, t) = U_t(y, t)$. Velja še: $\mathcal{F}(tu_x(x, t))(y) = t\mathcal{F}(u_x(x, t))(y) = -iytU(y, t)$. Sedaj zapišimo transformirano enačbo: 
+			$$ 
+			U_t(y, t) - iytU(y, t) = 0
+			$$
+			
+			Tukaj pa gre, v resnici, za navadno diferencialno enačbo prvega reda. Poračunajmo rešitev.
+			
+			\begin{align*}
+				U_t(y, t) &= iytU(y, t) \\
+				\frac{dU}{U} &= iyt dt \\
+				\ln\abs{U} &= \frac{iyt^2}{2} + C(y) \\
+				U(y, t) &= D(y)e^{\frac{iyt^2}{2}}
+			\end{align*}
+			Sedaj upoštevamo začetni pogoj: $U(y, 0) = \mathcal{F}(u(x, 0))(y) = \mathcal{F}(f(x))(y)$. Velja torej: $U(y, t) = \mathcal{F}(f(x))(y)\cdot e^{iy\frac{t^2}{2}}$. Sedaj se spomnimo lastnosti $4$ iz trditve \ref{trd:propFourierT}, ki nam pove: $\mathcal{F}(f(x-a))(y) = e^{iay}\mathcal{F}(f(x))(y)$. Ko to upoštevamo v naši enačbi za $a = \frac{t^2}{2}$, dobimo: $\mathcal{F}(u(x, t))(y)=\mathcal{F}(f(x-\frac{t^2}{2}))(y)$. Sklepamo potem, da je rešitev ravno: $u(x, t) = f(x-\frac{t^2}{2})$.
+		\end{zgled}
+		
+		V tem zgledu smo v resnici rešili celo družino enačb, ki jo določa izbira začetnega pogoja, saj nikoli dejansko nismo potrebovali vedeti predpisa funkcije $f$.
+		
+		Poglejmo si sedaj še toplotno enačbo na neskončnem nosilcu.
+		
+		\begin{zgled}
+			S pomočjo Fourierjeve transformacije reši toplotno enačbo $$u_t = ku_{xx}$$ na $\R\times[0, \infty)$ pri začetnem pogoju $u(x, 0) = f(x)$.
+			
+			Najprej predpostavimo, da delamo s funkcijami, nad katerimi je Fourierjeva transformacija bijektivna (s tem se rešimo skrbi, da inverzna fourierjeva transformacija morda ne bi obstajala). Ko enačbo transformiramo, dobimo: $$ U_t(y, t) = k(-iy)^2U(y, t)$$
+			oziroma $$
+			U_t = -ky^2U
+			$$
+			Rešimo to enačbo: \begin{align*}
+				U_t &= -ky^2U \\
+				\frac{dU}{U} &= -ky^2dt \\
+				\ln(U) &= -ky^2t + C(y)\\
+				U(y, t) &= D(y)e^{-ky^2t} \\
+			\end{align*}
+			Ponovno upoštevamo začetni pogoj: $\mathcal{F}(f(x))(y) = \mathcal{F}(u(x, 0))(y) = U(y, 0) = D(y)$
+			Sledi torej, da je $U(y, t) = \mathcal{F}(f(x))(y)e^{-ky^2t}$. Če nam uspe poračunati inverzno Fourierjevo transformacijo funkcije $e^{-ky^2t}$, ki jo označimo z $E(x, t)$ potem lahko funkcijo $u(x, t)$ zapišemo kot konvolucijo $E$ in $f$. Poskusimo:
+			
+			\begin{align*}
+				\mathcal{F}^{-1}(e^{-ky^2t})(x)&= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-ky^2t - ixy}dy \\
+				&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-kt(y^2 + \frac{ixy}{kt})}dy \\
+				&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-kt((y + \frac{ix}{2kt})^2 + \frac{x^2}{4k^2t^2})}dy \\
+				&=\frac{e^{\frac{-x^2}{4kt}}}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-kt(y + \frac{ix}{2kt})^2}dy =(*)\\
+			\end{align*}
+			Sedaj vpeljemo novo spremenljivko $u = y + \frac{ix}{2kt}, du = dy$ in tako dobimo: $$(*) = \frac{e^{\frac{-x^2}{4kt}}}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-ktu^2}du$$
+			
+			Tukaj upoštevamo znan rezultat iz analize: $\int_{-\infty}^{\infty}e^{-au^2}du = \sqrt{\frac{\pi}{a}}$. Potem, ob predpostavki, da je $k\geq 0$, dobimo: $$(*) = \frac{e^{\frac{-x^2}{4kt}}}{\sqrt{2\pi}}\sqrt{\frac{\pi}{kt}} = \frac{e^{\frac{-x^2}{4kt}}}{\sqrt{2kt}} = E(x, t)$$
+			
+			Ker je $U(y, t) = \mathcal{F}(f)(y)\cdot\mathcal{F}(E(x, t))(y)$, trdimo, da je: $$u(x, t)=(f*E)(x, t)= \frac{1}{\sqrt{2kt}}\int_{-\infty}^{\infty} f(s)e^{\frac{-(x-s)^2}{4kt}}ds$$. Kratek račun nam pokaže, da imamo tudi prav: \begin{align*}
+				\frac{1}{k}u_t(x, t) &= \frac{-1}{2kt}u(x, t) + \frac{1}{\sqrt{2kt}^5}\int_{-\infty}^{\infty}f(s)(x-s)^2e^{-\frac{(x-s)^2}{4kt}}ds \\
+				u_x(x, t)&= \frac{-1}{\sqrt{2kt}^3}\int_{-\infty}^{\infty}f(s)(x-s)e^{-\frac{(x-s)^2}{4kt}}ds \\
+				u_{xx}(x, t)&= \frac{-1}{2kt}u(x, t) +\frac{1}{\sqrt{2kt}^5}\int_{-\infty}^{\infty}f(s)(x-s)^2e^{-\frac{(x-s)^2}{4kt}}ds \\
+			\end{align*}
+			Torej je $\frac{1}{k}u_t(x, t) = u_{xx}(x, t)$ oziroma $u_t(x, t) = ku_{xx}(x, t)$.
+		\end{zgled}
 		
 	\section{Laplaceova transformacija}
 	

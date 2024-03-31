@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  30 MAR 2024 19:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  31 MAR 2024 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -972,18 +972,18 @@ OT1/lmr/m/n/10 1\OML/lmm/m/it/10 ; [] ; n[]\OMS/lmsy/m/n/10 g\OML/lmm/m/it/10 ;
  \OMS/lmsy/m/n/10 8\OML/lmm/m/it/10 j \OMS/lmsy/m/n/10 2
  []
 
-[15] [16] [17] [18] [19] [20] [21] [22] [23]
-Overfull \hbox (5.84262pt too wide) detected at line 715
+[15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25]
+Overfull \hbox (5.84262pt too wide) detected at line 773
 []
  []
 
-[24]
-Overfull \hbox (28.33151pt too wide) detected at line 734
+[26]
+Overfull \hbox (28.33151pt too wide) detected at line 792
 []
  []
 
-[25]
-Overfull \hbox (9.84511pt too wide) detected at line 774
+[27]
+Overfull \hbox (9.84511pt too wide) detected at line 835
 [][] [] [][]\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 f\OT1/lmr/m/n/10 (\OML/lmm/m/it/
 10 t\OT1/lmr/m/n/10 )\OMS/lmsy/m/n/10 jj\OML/lmm/m/it/10 g\OT1/lmr/m/n/10 (\OML
 /lmm/m/it/10 x \OMS/lmsy/m/n/10 ^^@ \OML/lmm/m/it/10 t\OT1/lmr/m/n/10 )\OMS/lms
@@ -995,24 +995,25 @@ x[]dt \OT1/lmr/m/n/10 = \OMS/lmsy/m/n/10 jj\OML/lmm/m/it/10 f\OMS/lmsy/m/n/10 j
 j[]jj\OML/lmm/m/it/10 g\OMS/lmsy/m/n/10 jj[]
  []
 
-[26] [27]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
-37.
+[28] [29] [30] [31] [32] [33]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+024.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-[28] (Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije.aux)
+[34] [35] (Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije.aux
+)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22437 strings out of 474435
- 480607 string characters out of 5740045
+ 22447 strings out of 474435
+ 480731 string characters out of 5740045
  1950190 words of memory out of 5000000
- 44376 multiletter control sequences out of 15000+600000
+ 44386 multiletter control sequences out of 15000+600000
  624562 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,14n,93p,1811b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1038,9 +1039,9 @@ ers/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm7.pfb>
 Output written on "Pfaffova DE ter uporaba Fourierjeve in Laplaceove transforma
-cije.pdf" (28 pages, 448808 bytes).
+cije.pdf" (35 pages, 475941 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
+ 224 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
