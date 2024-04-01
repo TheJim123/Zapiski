@@ -560,7 +560,7 @@
 			
 			\begin{definicija}
 				\label{def:FourierT}
-				Preslikavo $\map{\mathcal{F}}{L^1(\R)}{\mathcal{C}_b(\R)}$, s predpisom $\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}e^{iyt}f(t)dt~\forall y\in\R$, imenujemo \pojem{Fourierjeva transformacija}. Za vsak $f\in L^1(\R)$ pravimo $\mathcal{F}(f)$ \pojem{Fourierjeva transformiranka funkcije} $f$, in jo tipično označimo kar z $\hat{f}$.
+				Preslikavo $\map{\mathcal{F}}{L^1(\R)}{\mathcal{C}_b(\R)}$, s predpisom $$\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}e^{iyt}f(t)dt~\forall y\in\R$$ imenujemo \pojem{Fourierjeva transformacija}. Za vsak $f\in L^1(\R)$ pravimo $\mathcal{F}(f)$ \pojem{Fourierjeva transformiranka funkcije} $f$, in jo tipično označimo kar z $\hat{f}$.
 			\end{definicija}
 			
 			\begin{opomba}
@@ -1062,7 +1062,7 @@
 		
 			\begin{definicija}
 				\label{def:Funkexpnarast}
-				Naj bo $a\geq 0$. Za funkcijo $\map{f}{[a, \infty)}{\R}$, za katero obstajata taka $k\in \R$ in $M > 0$, da je $\abs{f(t)}\leq Me^{kt}~\forall t\in [a, \infty)$, pravimo, da je \pojem{funkcija eksponentnega naraščanja} za $M$ in $k$ na $[a,\infty)$.
+				Naj bo $a\geq 0$. Za odsekoma zvezno funkcijo $\map{f}{[a, \infty)}{\R}$, za katero obstajata taka $k\in \R$ in $M > 0$, da je $\abs{f(t)}\leq Me^{kt}~\forall t\in [a, \infty)$, pravimo, da je \pojem{funkcija eksponentnega naraščanja} za $M$ in $k$ na $[a,\infty)$.
 			\end{definicija}
 			
 			\begin{definicija}
@@ -1070,7 +1070,16 @@
 				Naj bo $\map{f}{[0, \infty)}{\R}$ poljubna funkcija. \pojem{Laplaceova transformiranka} $F$, funkcije $f$ je definirana s predpisom: $$F(z) = \mathcal{L}(f(t))(z) = \int_{0}^{\infty}f(t)e^{-zt}dt$$ tam, kjer integral obstaja.
 			\end{definicija}
 			
-			Dopolnimo definicijo z zadostnim pogojem, kdaj bo transformiranka obstajala:
+			\begin{opomba}
+				Vzemimo poljubno $L^1(\R)$ funkcijo $\map{f}{\R}{\R}$, za katero je $f(t) = 0 ~\forall t<0$. Tedaj ima njena Fourierjeva transformiranka predpis: $$\mathcal{F}(f)(z) = \int_{-\infty}^{\infty}f(t)e^{itz}dt = \mathcal{F}(f)(z) = \int_{0}^{\infty}f(t)e^{itz}dt$$
+				
+				Če pišemo z=x + iy je potem $\abs{f(t)e^{itz}} = \abs{f(t)e^{itx}e^{-ty}}\leq\abs{f(t)}e^{-ty} \leq \abs{f(t)}$, če je $y\geq 0$. Fourierjeva transformacija bo torej obstajala za vse $z$ z nenegativnim imaginarnim delom. Še več, če je $Im(z) > a \geq 0$, bo Fourierjeva transformacija obstajala tudi za vse funkcije eksponentnega naraščanja za $M$ in $a$. Namreč, če je funkcija $f$ funkcija eksponentnega naraščanja za neka $M>0$ in $a\in\R$, potem je $\abs{f(t)e^{itz}}\leq \abs{f(t)}e^{-ty} \leq Me^{t(a - y)}$. Da bi vrsta konvergirala, mora biti $a-y < 0$ oz. $a < y = Im(z)$.
+				Če namesto $z$ vstavimo v $\bar{f}$ spremenljivko $iz$, dobimo: $\bar{f}(iz) = \int_{0}^{\infty}f(t)e^{-tz}dt$, kar je ravno Laplaceova transformiranka funkcije $f_{|[0,\infty)}$.
+				
+				Sklep: Laplaceovo transformacijo lahko izpeljemo iz Fourierjeve. Pogoji, ki smo jih obravnavali v tej opombi, bodo ravno pogoji, za obstoj Laplaceove transformacije, v naslednjem izreku.
+			\end{opomba}
+			
+			Dopolnimo definicijo z izrekom, ki nam pove, kdaj bo transformiranka obstajala:
 			
 			\begin{izr}
 				\label{izr:ZadPogojLT}
@@ -1082,9 +1091,122 @@
 			\end{izr}
 			
 			\begin{proof}
-				bbbbbb
+				Naj bo funkcija $f$ kot v formulaciji izreka in naj bodo $M, N, k$ omenjene konstante. Potem je $\int_{0}^{\infty}f(t)e^{-zt}dt = \int_{0}^{N}f(t)e^{-zt}dt  + \int_{N}^{\infty}f(t)e^{-zt}dt $. Prvi integral obstaja za vse $z\in\C$ po prvi predpostavki. Pokažimo sedaj, da drugi integral konvergira za $Re(z) > k$.
+				
+				\begin{align*}
+					\abs{\int_{N}^{\infty}f(t)e^{-zt}dt} &\leq \int_{N}^{\infty}\abs{f(t)}\abs{e^{-zt}}dt \leq \int_{N}^{\infty}Me^{kt}\abs{e^{-(x+iy)t}}dt \\
+					&\leq M\int_{N}^{\infty}e^{(k-x)t}dt = M\int_{N}^{\infty}e^{-t(x-k)}dt
+				\end{align*}
+				Slednji integral pa obstaja, če je $k<x = Re(z)$.
 			\end{proof}
-		
+			Preden nadaljujemo, omenimo pomembno definicijo in izrek v zvezi z njo iz kompleksne analize.
+			\begin{definicija}
+				\label{def:holomorf}
+				Naj bo $D\subset\C$ neprazna odprta množica in $\map{f}{D}{\C}$ funkcija. Naj bo $a\in D$ neka točka. Če obstaja limita $\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}$, jo imenujemo \pojem{kompleksen odvod} funkcije $f$ v točki $a$ in jo označimo z $f'(a)$. Če kompleksen odvod funkcije $f$ obstaja $\forall a\in D$ pravimo, da je $f$ \pojem{holomorfna} na $D$.
+			\end{definicija}
+			\begin{izr}[Goursat]
+				\label{izr:Goursat}
+				Naj bo $D$ neprazna odprta množica v $\C$ in $\map{f}{D}{\C}$ holomorfna funkcija na $D$. Tedaj je $f$ analitična na $D$.
+			\end{izr}
+			Ker še nismo spoznali kompleksne analize, bomo dokaz tega izreka izpustili.
+			\begin{izr}
+				\label{izr:abscisaLT}
+				Naj bo $f$ kosoma zvezna funkcija na $[0, \infty)$ in naj za nek $z_0\in\C$ obstaja $\mathcal{L}(f)(z_0)$. Potem $\mathcal{L}(f)(z)$ obstaja za vse $z\in\C$ za katere je $Re(z) \geq Re(z_0)$
+			\end{izr}
+			
+			\begin{proof}
+				Denimo, da je $f$ zvezna na $[0, \infty)$ (sicer lahko enak argument uporabimo na tistem kosu njenega definicijskega območja, ki je neskončen) ter naj bo $z_0\in\C$ taki, da obstaja $\mathcal{L}(f)(z_0)$. Definiramo funkcijo $g(t) = \int_{0}^{t}f(s)e^{-z_0s}ds$. Ker je $f$ zvezna, je integrabilna na vsakem končnem intervalu, torej je tudi $g$ zvezna in velja $\lim_{t\to\infty}g(t) = \mathcal{L}(f)(z_0)$. Sledi, da je $g$ omejena na $[0,\infty)$ in po osnovnem izreku analize velja: $g'(t)=f(t)e^{-z_0t}~\forall t\in [0,\infty)$. Potem je: \begin{align*}
+					\mathcal{L}(f)(z) &= \int_{0}^{\infty}f(t)e^{-zt}dt = \int_{0}^{\infty}e^{-(z-z_0)t}\underline{f(t)e^{-z_0t}}dt \\
+					&= \int_{0}^{\infty}e^{-(z-z_0)t}g'(t)dt = (*)
+				\end{align*}
+				Na tej točki integriramo per partes in tako dobimo:
+				\begin{align*}
+					(*) &= \underbrace{e^{-(z-z_0)t}g(t)\big|_{0}^{\infty}}_{=0} + (z-z_0)\int_{0}^{\infty}e^{-(z-z_0)t}g(t)dt \\
+					&=(z-z_0)\int_{0}^{\infty}e^{-(z-z_0)t}g(t)dt = (z-z_0)G(z)
+				\end{align*}
+				Ker je $g$ zvezna in omejena na $[0, \infty)$, integral $G(z)$ obstaja, če je $Re(z-z_0) > 0$ oziroma, če je $Re(z) > Re(z_0)$.
+				
+				Sedaj poračunajmo $\frac{d}{dz}G(z)$. Vemo: Če integral $\int_{0}^{\infty}\frac{d}{dz}(g(t)e^{-(z-z_0)t})dt$ konvergira enakomerno, potem lahko zamenjamo vrstni red integracije in odvajanja in tako dobimo: $\frac{d}{dz}G(z) =\int_{0}^{\infty}\frac{d}{dz}(g(t)e^{-(z-z_0)t})dt= \int_{0}^{\infty}g(t)(-t)e^{-(z-z_0)t}dt$.
+				
+				Spomnimo se: Ker je $g$ omejena na $[0, \infty)$ obstaja tak $M> 0$, da je $\abs{g(t)} \leq M~\forall t\in [0, \infty)$. 
+				
+				Dodatno, funkcija $te^{-at}$ je tudi omejena na $[0, \infty)$ za vsak $a>0$. Izberimo $\varepsilon>0$ in denimo, da je $Re(z)-Re(z_0)<\varepsilon$. Tedaj je: \begin{align*}
+					\abs{\int_{0}^{\infty}g(t)(-t)e^{-(z-z_0)t}dt} &\leq \int_{0}^{\infty}\abs{t}\abs{g(t)}e^{-\varepsilon t}dt \leq M\int_{0}^{\infty}\underbrace{\abs{t}e^{-\frac{\varepsilon}{2}t}}_{\leq N}\cdot e^{-\frac{\varepsilon}{2}t}dt \\
+					&\leq MN \int_{0}^{\infty}e^{-\frac{\varepsilon}{2}t}dt = \frac{2MN}{\varepsilon}
+				\end{align*}
+				Zgornja ocena je neodvisna od $z$, torej integral enakomerno konvergira in $G$ je holomorfna na območju $D=\{z\in\C~|~Re(z)>RE(z_0)\}$. Ker je produkt holomorfnih funkcij z isto domeno tudi sama holomorfna funkcija, je potem tudi $\mathcal{L}(f)(z) = (z-z_0)G(z)$ holomorfna na $D$. Po Goursatovem izreku \ref{izr:Goursat}, je pa potem na $D$ tudi analitična.
+			\end{proof}
+			
+			\begin{definicija}
+				\label{def:abscisaLT}
+				Številu $\sigma(f) = \inf\{Re(z)~|~\mathcal{L}(f)(z)~\text{obstaja}\}$ pravimo \pojem{abscisa konvergence}.
+			\end{definicija}
+			\begin{zgled}
+				\label{zgl:LaplaceT1}
+				Poračunajmo Laplaceovo transformiranko funkcije s predpisom $1(x) = 1 \forall x\in[0,\infty)$.
+				
+				$$\mathcal{L}(1)(z) = \int_{0}^{\infty}e^{-zt}dt = \frac{1}{z}$$ za vse $z\in\C$ za katere je $Re(z) > 0$. Še več, če transformiramo funkcijo $f(t) = e^{t\alpha}$ hitro vidimo, da je $\mathcal{L}(e^{t\alpha})(z) = \frac{1}{z-\alpha}$ za vse $z\in \{z\in\C~|~Re(z) > \alpha\}$.
+			\end{zgled}
+			\begin{opomba}
+				\label{opomb:expandfLT}
+				Od zdaj naprej razširimo vsako funkcijo $\map{f}{[0,\infty)}{\C}$ na $\R$ tako, da ji v negativnih $t$ določimo vrednost $0$.
+			\end{opomba}
+			\begin{trd}
+				\label{trd:propLaplaceT}
+				Za Laplaceovo transformacijo veljajo naslednje lastnosti: \begin{enumerate}
+					\item Laplaceova transformacija je linearna transformacija
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj je: $$\forall \alpha\in\C:~\mathcal{L}(f(t)e^{\alpha t})(z) = \mathcal{L}(f)(z-\alpha)$$
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj (ob razširitvi $f$ iz opombe \ref{opomb:expandfLT}) je $\mathcal{L}(f(t-k))(z) = e^{-kz}\mathcal{L}(f(t))(z)~\forall k > 0$.
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj za vsak $k>0$ velja: $$\mathcal{F}(f(tk))(z) = \frac{1}{k}\mathcal{L}(f(t))(\frac{z}{k})$$
+					\item Če $\mathcal{L}(tf(t))(z)$ in $\mathcal{L}(f(t))(z)$ obstajata, potem je $\frac{d}{dz}(\mathcal{L}(f(t))(z)) = -\mathcal{L}(tf(t))(z)$. Dodatno, če obstajajo $\mathcal{L}(t^kf(t))(z),~\forall k\in\No$, velja: $$\frac{d^k}{dz^k}(\mathcal{L}(f(t))(z)) = (-1)^k\mathcal{L}(t^kf(t))(z)$$
+				\end{enumerate}
+			\end{trd}
+			
+			\begin{proof}
+				\begin{enumerate}
+					\item Naj bosta $f$ in $g$ poljubni funkciji, za kateri obstajata Laplaceovi transformiranki, z abcisama konvergence $\sigma(f)$ in $\sigma(g)$. Naj bosta $\alpha$ in $\beta$ poljubni števili iz $\C$. Tedaj je: \begin{align*}
+						\mathcal{L}(\alpha f(t) + \beta g(t))(z) &= \int_{0}^{\infty}(\alpha f(t) + \beta g(t))e^{-zt}dt \\
+						&= \alpha\int_{0}^{\infty}f(t)e^{-zt}dt + \beta\int_{0}^{\infty}g(t)e^{-zt}dt \\
+						&= \alpha\mathcal{L}(f(t))(z) + \beta\mathcal{L}(g(t))(z)
+					\end{align*}
+					Ta vrsta konvergira za $\forall z\in\{w\in\C~|~Re(w) > \max\{\sigma(f), \sigma(g)\}\}$.
+					\item Naj bo $\alpha\in\C$ poljuben in naj za funkcijo $f$ obstaja Laplaceova transformiranka. Tedaj je: 		\begin{align*}
+						\mathcal{L}(f(t)e^{\alpha t})(z) &= \int_{0}^{\infty}f(t)e^{-(z-\alpha)t}dt = \mathcal{L}(f(t))(z-\alpha)
+					\end{align*}
+					Zgornja vrsta konvergira za $z\in\C$, za katere je $Re(z) > \sigma(f) + Re(\alpha)$.
+					\item Naj bo $k>0$ in $f$ poljubna funkcija, za katero obstaja Laplaceova transformiranka. Tedaj ob vpeljavi nove spremenljivke $u = t-k, du = dt$ velja: \begin{align*}
+						\mathcal{L}(f(t-k))(z) &= \int_{0}^{\infty}f(t-k)e^{-zt}dt = \int_{0}^{\infty}f(u)e^{-z(u+k)}du \\
+						&= e^{-zk}\mathcal{L}(f(t))(z)
+					\end{align*}
+					Ta vrsta konvergira za vse $z\in\C$ za katere je $Re(z) > \sigma(f)$.
+					\item Naj bo $k>0$ poljubno izbran in $f$ poljubna funkcija, za katero obstaja Laplaceova transformacija. Tedaj, ob vpeljavi nove spremenljivke $u = kt, du = kdt$ velja:
+					\begin{align*}
+						\mathcal{F}(f(tk))(z) &= \int_0^\infty f(kt)e^{-zt}dt = \frac{1}{k}\int_{0}^{\infty}f(u)e^{-z\frac{u}{k}}du = \frac{1}{k}\int_{0}^{\infty}f(u)e^{-\frac{z}{k}u}du \\
+						&=\frac{1}{k}\mathcal{L}(f(u))(\frac{z}{k})
+					\end{align*}
+					Ta vrsta konvergira za vse $z\in\C$ za katere je $Re(z) > k\sigma(f)$.
+					\item Vemo: Če $\mathcal{L}(tf(t))(z)$ in $\mathcal{L}(f(t))(z)$ obstajata, potem velja:\begin{align*}
+						-\mathcal{L}(tf(t))(z) &=\int_0^\infty (-t)f(t)e^{-tz}dt = \int_0^\infty\frac{d}{dz}(f(t)e^{-tz})dt \\
+						&=\frac{d}{dz}(\int_{0}^{\infty}f(t)e^{-zt}dt)=\frac{d}{dz}(\mathcal{L}(f(t))(z))
+					\end{align*}
+					Dokaz za višje odvode je zaporedna uporaba tega rezultata.
+					Vrsta konvergira za vse $z\in\C$ za katere je $Re(z) > \max\{\sigma(f), \sigma(tf), \ldots, \sigma(t^{k}f)\}$.
+				\end{enumerate}
+			\end{proof}
+			
+			\begin{izr}
+				\label{izr:LTodv}
+				Naj bo $f$ zvezno odvedljiva in naj za nek $z_0\in\C$ obstajata $\mathcal{L}(f(t))(z_0)$ in $\mathcal{L}(f'(t))(z_0)$. Tedaj za vse $z\in\C$, ki zadoščajo pogoju $Re(z) > Re(z_0)$, velja: $$\mathcal{L}(f'(t))(z) = z\mathcal{L}(f(t))(z) - f(0)$$
+				Dodatno, če je $f$ $n$-krat zvezno odvedljiva in za nek $z_0\in\C$ obstajajo $\mathcal{L}(f^{(k)}(t))(z_0)$ za vsak $k\in\{0, 1, \ldots, n\}$, tedaj velja: $$\mathcal{L}(f^{(n)}(t))(z) = z^n\mathcal{L}(f(t))(z) - z^{n-1}f(0) - \ldots -zf^{(n-2)}(0) -  f^{(n-1)}(0)$$
+			\end{izr}
+			
+			\begin{proof}
+				Izrek bomo pokazali samo za primer s prvim odvodom, saj izrek za višje odvode dokažemo z zaporedno uporabo tega rezultata. Naj bo $z\in\C$ poljuben tak, da je $Re(z) > Re(z_0)$. Uporabili bomo integracijo per partes: \begin{align*}
+					\mathcal{L}(f'(t))(z) &= \int_{0}^{\infty}f'(t)e^{-zt}dt = [f(t)e^{-zt} \big|_{0}^{\infty}] + z\int_{0}^{\infty}f(t)e^{-zt}dt \\
+					&= (0 - f(0)) + z\mathcal{L}(f(t))(z) = z\mathcal{L}(f(t))(z) - f(0)
+				\end{align*}
+				Pri tem smo upoštevali, da je $\lim_{t\to\infty}f(t)e^{-zt} = 0$, ker sicer $\mathcal{L}(f)(z)$.
+			\end{proof}
 		\subsection{Metoda uporabe}
 		
 		\subsection{Primeri uporabe}

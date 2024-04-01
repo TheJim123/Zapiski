@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  1 APR 2024 14:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  1 APR 2024 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1000,26 +1000,53 @@ Overfull \hbox (10.16661pt too wide) detected at line 1051
 []
  []
 
-[36]
+[36] [37] [38]
+Overfull \hbox (23.39456pt too wide) in paragraph at lines 1161--1161
+[]\T1/lmr/m/it/10 ƒe $\OMS/lmsy/m/n/10 L\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 tf\OT
+1/lmr/m/n/10 (\OML/lmm/m/it/10 t\OT1/lmr/m/n/10 ))(\OML/lmm/m/it/10 z\OT1/lmr/m
+/n/10 )$ \T1/lmr/m/it/10 in $\OMS/lmsy/m/n/10 L\OT1/lmr/m/n/10 (\OML/lmm/m/it/1
+0 f\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 t\OT1/lmr/m/n/10 ))(\OML/lmm/m/it/10 z\OT1
+/lmr/m/n/10 )$ \T1/lmr/m/it/10 ob-sta-jata, po-tem je $[]\OT1/lmr/m/n/10 (\OMS/
+lmsy/m/n/10 L\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 f\OT1/lmr/m/n/10 (\OML/lmm/m/it/
+10 t\OT1/lmr/m/n/10 ))(\OML/lmm/m/it/10 z\OT1/lmr/m/n/10 )) = \OMS/lmsy/m/n/10 
+^^@L\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 tf\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 t\OT1
+/lmr/m/n/10 ))(\OML/lmm/m/it/10 z\OT1/lmr/m/n/10 )$\T1/lmr/m/it/10 .
+ []
+
+[39]
+Overfull \hbox (6.89278pt too wide) detected at line 1186
+[]
+ []
+
+
+Overfull \hbox (4.54533pt too wide) in paragraph at lines 1199--1200
+\T1/lmr/m/it/10 Dodatno, £e je $\OML/lmm/m/it/10 f$ $n$\T1/lmr/m/it/10 -krat zv
+e-zno od-ve-dljiva in za nek $\OML/lmm/m/it/10 z[] \OMS/lmsy/m/n/10 2 \U/msb/m/
+n/10 C$ \T1/lmr/m/it/10 ob-sta-jajo $\OMS/lmsy/m/n/10 L\OT1/lmr/m/n/10 (\OML/lm
+m/m/it/10 f[]\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 t\OT1/lmr/m/n/10 ))(\OML/lmm/m/i
+t/10 z[]\OT1/lmr/m/n/10 )$
+ []
+
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-095.
- (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+217.
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-[37] (Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije.aux)
+[40] [41] (Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije.aux
+)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22453 strings out of 474435
- 480832 string characters out of 5740045
+ 22461 strings out of 474435
+ 480950 string characters out of 5740045
  1950190 words of memory out of 5000000
- 44392 multiletter control sequences out of 15000+600000
+ 44400 multiletter control sequences out of 15000+600000
  624562 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,93p,1811b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,19n,93p,1811b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1042,9 +1069,9 @@ ers/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm7.pfb>
 Output written on "Pfaffova DE ter uporaba Fourierjeve in Laplaceove transforma
-cije.pdf" (37 pages, 487531 bytes).
+cije.pdf" (41 pages, 505090 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
+ 245 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
