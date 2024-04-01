@@ -1056,7 +1056,7 @@
 		
 		Sedaj, ko smo končali z obravnavo Fourierjeve transformacije, se lotimo Laplaceove, ki ji je po predpisu sorodna.
 	\section{Laplaceova transformacija}
-		Kot smo prej napovedali, se bomo sedaj spoznali z t.~i.~ Laplaceovo transformacijo. Le to uporabljamo pri reševanju diferencialnih enačb iz enakih razlogov kot Fourierjevo - Običajno transformiranje enačbe problem poenostavi na navadno enačbo ali pa na diferencialno enačbo nižjega reda. Tudi tukaj je uporabnost omejena s tem, ali znamo poračunati Laplacev inverz rešitve transformiranega problema. Ena izmed prednosti Laplaceove transformacije je ta, da slika v kompleksne funkcije, kar pomeni, da lahko uporabimo pristope iz kompleksne analize in reševanja diferencialnih enačb v $\C$. Kot v prejšnjem poglavju, bomo tudi v tem najprej navedli osnovno teorijo v zvezi z Laplaceovo transformacijo, nato pa se bomo lotili metode in primerov uporabe.
+		Kot smo prej napovedali, se bomo sedaj spoznali z t.~i.~ Laplaceovo transformacijo. Le to uporabljamo pri reševanju diferencialnih enačb iz enakih razlogov kot Fourierjevo - Običajno transformiranje enačbe problem poenostavi na navadno enačbo ali pa na diferencialno enačbo nižjega reda. Tudi tukaj je uporabnost omejena s tem, ali znamo poračunati Laplacev inverz rešitve transformiranega problema. Ena izmed prednosti Laplaceove transformacije je ta, da slika v kompleksne funkcije, kar pomeni, da lahko uporabimo pristope iz kompleksne analize in reševanja diferencialnih enačb v $\C$. Kot v prejšnjem poglavju, bomo tudi v tem najprej navedli osnovno teorijo v zvezi z Laplaceovo transformacijo, nato pa se bomo lotili metode in primerov uporabe. Pri tem bomo levji delež črpali iz \cite{bib:Mag}.
 		
 		\subsection{Osnovne definicije in rezultati}
 		
@@ -1207,6 +1207,66 @@
 				\end{align*}
 				Pri tem smo upoštevali, da je $\lim_{t\to\infty}f(t)e^{-zt} = 0$, ker sicer $\mathcal{L}(f)(z)$.
 			\end{proof}
+			
+			Sedaj bomo navedli in dokazali še inverzno formulo, ter analog lastnosti Fourierjeve transformacije konvolucije dveh funkcij.
+			
+			\begin{izr}
+				\label{izr:InvLT}
+				Naj bo $f$ zvezna in odsekoma zvezno odvedljiva funkcija eksponentnega naraščanja na $[0, \infty)$. Denimo tudi, da za nek $z_0\in\C$ obstaja $\mathcal{L}(f)(z_0)$. Tedaj za poljuben $a>Re(z_0)$ v točkah $t \in [0, \infty)$ v katerih je $f$ zvezna in zvezno odvedljiva velja formula: $$\lim_{R\to\infty}\frac{1}{2\pi i}\int_{a-iR}^{a+iR}e^{zt}\mathcal{L}(f)(z)dz = \begin{cases}
+				f(t)~&;~ t\geq 0 \\
+				0~&;~ t < 0
+				\end{cases}$$
+			\end{izr}
+			
+			\begin{proof}
+				Označimo $F(z) = \mathcal{L}(f)(z)$ in naj bo $z_0\in\C$ tak, da $F(z_0)$ obstaja. Sedaj definiramo še $f_a(t) = \begin{cases}
+					e^{-at}f(t)~&;~ t\geq 0 \\
+					0~&;~ t<0
+				\end{cases}$.
+				Naj bo $a>Re(z_0)$ poljuben. Tedaj je: \begin{align*}
+					F(a+iy) &= \int_{0}^{\infty}f(t)e^{-(a+iy)t}dt = \int_{-\infty}^{\infty}f_a(t)e^{i(-y)t}dt = \mathcal{F}(f_a(t))(-y)
+				\end{align*}
+				Zadnja enakost velja, ker je funkcija $f_a(t)$, kot že vemo, absolutno integrabilna na $\R$. Opazimo tudi, da funkcija $f_a$ zadošča pogojem za uporabo inverzne Fourierjeve transformacije. Velja torej: \begin{align*}
+					f_a(t) &= \lim_{R\to\infty}\frac{1}{2\pi}\underbrace{\int_{-R}^{R}F(a-iy)e^{-ity}dy}_{u = -y} \\
+					&= \lim_{R\to\infty}\frac{1}{2\pi}\underbrace{\int_{-R}^{R}F(a+iu)e^{itu}du}_{z = a+iu} \\
+					&= \lim_{R\to\infty}\frac{1}{2\pi i}\int_{a-iR}^{a+iR}F(z)e^{t(z-a)}dz
+				\end{align*}
+				Sedaj enačbo pomnožimo na obeh straneh z $e^{at}$ in tako dobimo: $$
+					\lim_{R\to\infty}\frac{1}{2\pi i}\int_{a-iR}^{a+iR}F(z)e^{tz}dz = f_a(t)e^{at} = \begin{cases}
+					f(t)~&;~ t\geq 0 \\
+					0~&;~ t < 0
+				\end{cases}$$
+			\end{proof}
+			
+			
+			\begin{definicija}
+				\label{def:konvLT}
+				Konvolucija funkcij $\map{f}{[0,\infty)}{\C}$ in $\map{g}{[0,\infty)}{\C}$ je funkcija $(f*g)$ s predpisom $$(f*g)(x) = \int_{0}^{x} f(t)g(x-t)dt$$
+			\end{definicija}
+			\begin{opomba}
+				Če upoštevamo razširitev funkcij iz opombe \ref{opomb:expandfLT}, opazimo, da bi lahko konvolucijo $(f*g)$ razširjenih funkcij $\map{f}{[0,\infty)}{\C}$ in $\map{g}{[0,\infty)}{\C}$ računali kot v prejšnjem poglavju, Tedaj bi dobili: $(f*g)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt = \begin{cases}
+					\int_{0}^{x}f(t)g(x-t)dt~;&~ x\geq 0 \\
+					0~;&~ x<0
+				\end{cases}$.
+			\end{opomba}
+			
+			\begin{izr}
+				\label{izr:KonvLT}
+				Naj bosta funkciji $\map{f}{[0,\infty)}{\C}$ in $\map{g}{[0,\infty)}{\C}$ funkciji eksponentnega naraščanja za $M$ in $k$ (od obeh vzamemo večjo konstanto, da zadošča obema). Potem za vsak $z\in\C$, ki zadošča pogoju $Re(z) > k$, velja: $$\mathcal{L}(f*g)(z) = \mathcal{L}(f)(z)\cdot\mathcal{L}(g)(z)$$
+			\end{izr}
+			
+			\begin{proof}
+				Dokaz sloni na uporabi Fubinijevega izreka. \begin{align*}
+					\mathcal{L}(f*g)(z) &= \int_{0}^{\infty}(f*g)(t)e^{-zt}dt = \int_{0}^{\infty}e^{-zt}(\int_{0}^{t}f(s)g(t-s)ds)dt = (*)
+				\end{align*}
+				Na tej točki uporabimo Fubinijev izrek in zamenjamo vrstni red integracije. Pazimo, da se nam pri tem območje integracije po $s$ iz $[0, t]$ spremeni v $[0, \infty)$, območje integracije po $t$ pa iz $[0, \infty)$ v $[s, \infty)$. Dobimo torej: \begin{align*}
+					(*) &= \int_{0}^{\infty}(\int_{s}^{\infty}f(s)g(t-s)e^{-zt}dt)ds =\int_{0}^{\infty}(\int_{s}^{\infty}f(s)g(t-s)e^{-z(t-s) - zs}dt)ds \\
+					&= \int_{0}^{\infty}f(s)e^{-zs}\underbrace{(\int_{s}^{\infty}g(t-s)e^{-z(t-s)}dt)}_{=\mathcal{L}(g)(z)}ds = \mathcal{L}(g)(z)\cdot \int_{0}^{\infty}f(s)e^{-zs}ds \\
+					&= \mathcal{L}(f)(z)\cdot\mathcal{L}(g)(z)
+				\end{align*}
+			\end{proof}
+			
+			Sedaj, ko poznamo tudi Laplaceovo transformacijo, se lotimo še tega, kako jo uporabljamo za reševanje diferencialnih enačb.
 		\subsection{Metoda uporabe}
 		
 		\subsection{Primeri uporabe}

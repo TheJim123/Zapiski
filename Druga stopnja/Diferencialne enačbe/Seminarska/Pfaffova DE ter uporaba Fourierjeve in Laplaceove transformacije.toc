@@ -21,5 +21,5 @@
 \contentsline {subsection}{\numberline {3.3}Primeri uporabe}{31}{}%
 \contentsline {section}{\numberline {4}Laplaceova transformacija}{36}{}%
 \contentsline {subsection}{\numberline {4.1}Osnovne definicije in rezultati}{36}{}%
-\contentsline {subsection}{\numberline {4.2}Metoda uporabe}{41}{}%
-\contentsline {subsection}{\numberline {4.3}Primeri uporabe}{41}{}%
+\contentsline {subsection}{\numberline {4.2}Metoda uporabe}{42}{}%
+\contentsline {subsection}{\numberline {4.3}Primeri uporabe}{42}{}%
