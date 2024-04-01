@@ -499,7 +499,7 @@
 						\end{zgled}
 					
 	\section{Fourierjeva transformacija}
-		Sedaj se lotimo drugega pristopa k reševanju diferencialnih enačb. V tem poglavju bomo obravnavali, kako lahko uporabimo t.~i.~ Fourierjeve transformacije, da reševanje neke diferencialne enačbe prevedemo na običajno lažji problem reševanja navadnih enačb. Za začetek spoznajmo, kaj sploh je Fourierjeva transformacija, skupaj z nekaj koristne teoretične osnove, nato pa se lotimo opisa metode in z njo rešimo nekaj zgledov. V tem poglavju se bomo pretežno sklicevali na učbenik \cite{bib:ana4}.
+		Sedaj se lotimo drugega pristopa k reševanju diferencialnih enačb. V tem poglavju bomo obravnavali, kako lahko uporabimo t.~i.~ Fourierjeve transformacije, da reševanje neke diferencialne enačbe prevedemo na običajno lažji problem reševanja navadnih enačb ali navadnih diferencialnih enačb nižjega reda. Za začetek spoznajmo, kaj sploh je Fourierjeva transformacija, skupaj z nekaj koristne teoretične osnove, nato pa se lotimo opisa metode in z njo rešimo nekaj zgledov. V tem poglavju se bomo pretežno sklicevali na učbenik \cite{bib:ana4}.
 		\subsection{Osnovne definicije in rezultati}
 			Najprej se spomnimo, kaj je Hilbertov prostor.
 			\begin{definicija}
@@ -950,10 +950,17 @@
 				Y & = \frac{\eta^3}{3} - \eta + C
 			\end{align*}
 			
-			Denimo sedaj, da $y(x)$ zadošča pogojem, da obstaja inverzna Fourierjeva transformacija. Izkaže se, da je njen izračun malce zapleten. Rešitev se izkaže, da je $y(x) = C\delta(x) - i\delta'(x) - \frac{i}{3}\delta^{(3)}(x)$, kjer je $\delta(x)$ t.~i.~ \pojem{Diracova delta funkcija}.
+			Denimo sedaj, da $y(x)$ zadošča pogojem, da obstaja inverzna Fourierjeva transformacija. Pojavi se vprašanje, kaj točno je Fourierjev inverz konstante. Če bi vedeli to, bi lahko potenčne funkcije, in s tem poljuben polinom, izrazili s pomočjo odvodov te funkcije. Na našo srečo odgovor obstaja - t.~i.~ \pojem{Diracova delta funkcija s polom v $0$}. Le ta je definirana kot limita $\delta(x) = \lim_{\varepsilon\to 0}\delta_\varepsilon(x)$, kjer so $\delta_\varepsilon$ gladke ($\mathcal{C}^{\infty}(\R)$) nenegativne funkcije z nosilcem $[-\varepsilon, \varepsilon]$, za katere velja: $\int_{-\infty}^{\infty}\delta_\varepsilon(x)dx = \int_{-\varepsilon}^{\varepsilon}\delta_\varepsilon(x)dx = 1$. Za te funkcije namreč velja, da je za poljubno zvezno funkcijo $f$ (definirano na nekem intervalu, ki vsebuje $0$, ali celem $\R$), $\int_{-\infty}^{\infty}f(x)\delta_\varepsilon(x)dx = \int_{-\varepsilon}^{\varepsilon}f(x)\delta_\varepsilon(x)dx$. Sedaj upoštevamo izrek o povprečni vrednosti: $\exists x_\varepsilon \in (-\varepsilon, \varepsilon)$, da je $\int_{-\varepsilon}^{\varepsilon}f(x)\delta_\varepsilon(x)dx = f(x_\varepsilon)\int_{-\varepsilon}^{\varepsilon}\delta_\varepsilon(x)dx = f(x_\varepsilon)$. Potem pa za $\delta_0(x)$ velja: $$\int_{-\infty}^{\infty}f(x)\delta_{0}(x)dx = \lim_{\varepsilon\to 0}\int_{-\varepsilon}^{\varepsilon}f(x)\delta_{\varepsilon}(x)dx = \lim_{\varepsilon\to 0}f(x_\varepsilon) = 0$$
+			Posledično je $\mathcal{F}(\delta_{0})(y) = \int_{-\infty}^{\infty}\delta_{0}(t)e^{ity}dt = e^{0} = 1$. Upoštevajoč lastnosti Fourierjeve transformacije je potem rešitev naše naloge:
+			$$y(x) = C\delta_0(x) - i\delta_0'(x) - \frac{i}{3}\delta_0^{(3)}(x)$$
 		\end{zgled}
 		
-		Ta zgled nam služi v poduk: S Fourierjevo transformacijo si poenostavimo en del problema, lahko pa si s tem močno zakompliciramo drugi del - povratek preko inverzne transformacije.
+		Ta zgled nam služi v poduk: S Fourierjevo transformacijo si poenostavimo en del problema, lahko pa si s tem otežimo drugi del - povratek preko inverzne transformacije. V tem primeru, je na srečo nekdo že našel rešitev.
+		
+		\begin{opomba}
+			\label{opomb:Diracdelta}
+			Diracova delta funkcija lahko ima pol v poljubni točki na realni osi. Z $\delta_a$ označimo Diracovo delta funkcijo s polom v $a\in\R$. Diracova delta funkcija v resnici ni funkcija v pravem pomenu besede, lahko pa jo razumemo kot linearen funkcional, ki funkciji $f$ priredi njeno vrednost v polu $a$, torej: $\delta_a: f \mapsto f(a)$. Diracov delta s polom v $0$ ima tudi pomembno vlogo pri določanju integralskega jedra toplotne enačbe.
+		\end{opomba}
 		
 		Lotimo se sedaj primera reševanja linearne parcialne diferencialne enačbe prvega reda:
 		\begin{zgled}
@@ -1046,9 +1053,37 @@
 				$$u(x, t) = \frac{f(x-ct) + f(x+ct)}{2} + \frac{1}{2c}\int_{x-xt}^{x+ct}g(u)du$$
 				Ta rešitev je znana kot D'Alembertova formula.
 		\end{zgled}
+		
+		Sedaj, ko smo končali z obravnavo Fourierjeve transformacije, se lotimo Laplaceove, ki ji je po predpisu sorodna.
 	\section{Laplaceova transformacija}
-	
+		Kot smo prej napovedali, se bomo sedaj spoznali z t.~i.~ Laplaceovo transformacijo. Le to uporabljamo pri reševanju diferencialnih enačb iz enakih razlogov kot Fourierjevo - Običajno transformiranje enačbe problem poenostavi na navadno enačbo ali pa na diferencialno enačbo nižjega reda. Tudi tukaj je uporabnost omejena s tem, ali znamo poračunati Laplacev inverz rešitve transformiranega problema. Ena izmed prednosti Laplaceove transformacije je ta, da slika v kompleksne funkcije, kar pomeni, da lahko uporabimo pristope iz kompleksne analize in reševanja diferencialnih enačb v $\C$. Kot v prejšnjem poglavju, bomo tudi v tem najprej navedli osnovno teorijo v zvezi z Laplaceovo transformacijo, nato pa se bomo lotili metode in primerov uporabe.
+		
 		\subsection{Osnovne definicije in rezultati}
+		
+			\begin{definicija}
+				\label{def:Funkexpnarast}
+				Naj bo $a\geq 0$. Za funkcijo $\map{f}{[a, \infty)}{\R}$, za katero obstajata taka $k\in \R$ in $M > 0$, da je $\abs{f(t)}\leq Me^{kt}~\forall t\in [a, \infty)$, pravimo, da je \pojem{funkcija eksponentnega naraščanja} za $M$ in $k$ na $[a,\infty)$.
+			\end{definicija}
+			
+			\begin{definicija}
+				\label{def:LaplaceT}
+				Naj bo $\map{f}{[0, \infty)}{\R}$ poljubna funkcija. \pojem{Laplaceova transformiranka} $F$, funkcije $f$ je definirana s predpisom: $$F(z) = \mathcal{L}(f(t))(z) = \int_{0}^{\infty}f(t)e^{-zt}dt$$ tam, kjer integral obstaja.
+			\end{definicija}
+			
+			Dopolnimo definicijo z zadostnim pogojem, kdaj bo transformiranka obstajala:
+			
+			\begin{izr}
+				\label{izr:ZadPogojLT}
+				Denimo, da za funkcijo $\map{f}{[0, \infty)}{\R}$ obstajajo taka števila $M, N > 0, k\in \R$, da velja: \begin{enumerate}
+					\item Funkcija $f$ je integrabilna na $[0, N]$ (posledično je tudi $f(t)e^{-zt}$).
+					\item Funkcija $f$ je funkcija eksponentnega naraščanja za $M$ in $k$ na $[N, \infty)$ (torej $\abs{f(t)}\leq Me^{kt}~\forall t\geq N$).
+				\end{enumerate}
+				Potem $\mathcal{L}(f(t))(z)$ obstaja za vse $z\in\C$ za katere je $Re(z) > k$.
+			\end{izr}
+			
+			\begin{proof}
+				bbbbbb
+			\end{proof}
 		
 		\subsection{Metoda uporabe}
 		
