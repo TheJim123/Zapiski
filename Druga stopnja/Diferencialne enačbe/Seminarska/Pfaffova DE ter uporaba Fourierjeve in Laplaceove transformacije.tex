@@ -1158,7 +1158,7 @@
 					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj je: $$\forall \alpha\in\C:~\mathcal{L}(f(t)e^{\alpha t})(z) = \mathcal{L}(f)(z-\alpha)$$
 					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj (ob razširitvi $f$ iz opombe \ref{opomb:expandfLT}) je $\mathcal{L}(f(t-k))(z) = e^{-kz}\mathcal{L}(f(t))(z)~\forall k > 0$.
 					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj za vsak $k>0$ velja: $$\mathcal{F}(f(tk))(z) = \frac{1}{k}\mathcal{L}(f(t))(\frac{z}{k})$$
-					\item Če $\mathcal{L}(tf(t))(z)$ in $\mathcal{L}(f(t))(z)$ obstajata, potem je $\frac{d}{dz}(\mathcal{L}(f(t))(z)) = -\mathcal{L}(tf(t))(z)$. Dodatno, če obstajajo $\mathcal{L}(t^kf(t))(z),~\forall k\in\No$, velja: $$\frac{d^k}{dz^k}(\mathcal{L}(f(t))(z)) = (-1)^k\mathcal{L}(t^kf(t))(z)$$
+					\item Če $\mathcal{L}(tf(t))(z)$ in $\mathcal{L}(f(t))(z)$ obstajata za nek $z_0\in\C$, potem je $\frac{d}{dz}(\mathcal{L}(f(t))(z)) = -\mathcal{L}(tf(t))(z)$. Dodatno, če obstajajo $\mathcal{L}(t^kf(t))(z),~\forall k\in\No$, velja: $$\frac{d^k}{dz^k}(\mathcal{L}(f(t))(z)) = (-1)^k\mathcal{L}(t^kf(t))(z)$$
 				\end{enumerate}
 			\end{trd}
 			
@@ -1193,6 +1193,19 @@
 					Vrsta konvergira za vse $z\in\C$ za katere je $Re(z) > \max\{\sigma(f), \sigma(tf), \ldots, \sigma(t^{k}f)\}$.
 				\end{enumerate}
 			\end{proof}
+			
+			\begin{zgled}
+				\label{zgl:potencialLT}
+				Poračunajmo Laplaceovo transformiranko potenčne funkcije $t^n$, za poljuben $n\in\N$: $$\mathcal{L}(t^n)(z)=\int_{0}^{\infty}t^n e^{-zt}dt = (*)$$
+				
+				Vpeljemo spremenljivko $tz = u, zdt = du$ in tako dobimo: $$(*)= \int_{0}^{\infty}\frac{u^n}{z^n}e^{-u}\frac{1}{z}dt = z^{-(n+1)}\int_{0}^{\infty}u^n e^{-u}du = z^{-(n+1)}\Gamma(n+1)$$
+				Kjer je $\Gamma$ ravno Eulerjeva $\Gamma$-funkcija. Še več, ta enakost velja za vsa kompleksna števila $n$, za katera je $Re(n) > -1$. Tak integral konverira za vse $z\in\C$, za katere je $Re(z) > 0$.
+			\end{zgled}
+			
+			\begin{opomba}
+				\label{opomb:lfLT}
+				Upoštevajoč rezultat iz zgleda \ref{zgl:potencialLT} sedaj znamo določiti Laplaceovo transformiranko poljubne polinomske funkcije. Opazimo tudi, da je $\mathcal{L}(t^{-\frac{1}{2}})(z) = \sqrt{\pi}z^{-\frac{1}{2}}$, kar pomeni, da je $t^{-\frac{1}{2}}$ lastna funkcija Laplaceove transformacije.
+			\end{opomba}
 			
 			\begin{izr}
 				\label{izr:LTodv}
@@ -1266,12 +1279,129 @@
 				\end{align*}
 			\end{proof}
 			
+			\begin{zgled}
+				\label{zgl:trigLT}
+				Naj bo $c$ poljubna nenegativna konstanta. Določi Laplaceovo transformiranko funkcije $f(t)= \sin(ct)$.
+				Uporabili bomo integracijo per partes.
+				\begin{align*}
+					\mathcal{L}(\sin(ct))(z) &= \underbrace{\int_{0}^{\infty}\sin(ct)e^{-zt}dt}_{u =\sin(ct), dv = e^{-zt}} = \underbrace{\frac{-\sin(ct)e^{-zt}}{z} \big|_{0}^{\infty}}_{=0} + \int_{0}^{\infty}\frac{c\cos(ct)e^{-zt}}{z}dt \\
+					&= c\underbrace{\int_{0}^{\infty}\frac{\cos(ct)e^{-zt}}{z}dt}_{u = \frac{\cos(ct)}{z}, dv = e^{-zt}} = c \big[\underbrace{\frac{-\cos(ct)e^{-zt}}{z^2}\big|_{0}^{\infty}}_{=\frac{1}{z^2}} - \int_{0}^{\infty}\frac{c\sin(ct)e^{-zt}}{z^2}dt\big] \\
+					&= \frac{c}{z^2}(1 - c\mathcal{L}(\sin(ct))(z))
+				\end{align*}
+				
+				Sedaj iz te enačbe izrazimo $\mathcal{L}(\sin(ct))(z)$ in dobimo: $$\mathcal{L}(\sin(ct))(z) = \frac{c}{z^2 + c^2} $$
+				
+				Na enak način pokažemo tudi, da je $\mathcal{L}(\cos(ct))(z) = \frac{z}{z^2 + c^2}$
+			\end{zgled}
+			
+			\begin{zgled}
+				\label{zgl:diracLT}
+				Za Diracovo funkcijo $\delta_{0}$ velja, enako kot pri Fourierjevi transformaciji, da je njena Laplaceova transformiranka enaka konstantni funkciji $1$. To lahko pokažemo tako, da poračunamo Laplaceovo transformacijo funkcije $f_\varepsilon(x) = \begin{cases}
+				\frac{1}{\varepsilon}~&;~ x\in [0, \varepsilon] \\
+				0~&;~ \text{sicer}
+				\end{cases}$. Velja namreč, da je $\mathcal{L}(f_\varepsilon)(z) = \frac{1 - e^{-\varepsilon z}}{\varepsilon z}$. Ko pošljemo $\varepsilon$ proti $0$, konvergirajo funkcije $f_\varepsilon$ proti $\delta_{0}$, transformiranke pa proti konstanti $1$. Zato za Diracov $\delta_{0}$ razglasimo: $\mathcal{L}(\delta_{0})(z) = 1$.
+			\end{zgled}
+			
 			Sedaj, ko poznamo tudi Laplaceovo transformacijo, se lotimo še tega, kako jo uporabljamo za reševanje diferencialnih enačb.
 		\subsection{Metoda uporabe}
-		
+			Pri reševanju diferencialnih enačb z Laplaceovo transformacijo bomo uporabili enako strategijo, kot pri Fourierjevi: Dano enačbo bomo najprej transformirali glede na (eno izbrano) neodvisno spremenljivko. To nam bo načeloma problem poenostavilo do te mere, da lahko iz transformirane enačbe izrazimo transformiranko rešitve. Nato bomo rešitev začetne naloge poiskali bodisi tako, da najdemo funkcijo, katere Laplaceova transformiranka je enaka transformiranki rešitve, bodisi bomo uporabili inverzno transformacijo. 
+			
+			Prednost pri uporabi te transformacije je ta, da je transformiranka $\mathcal{L}(f)$ kompleksna funkcija, torej si lahko pri njeni obravnavi pomagamo z obsežnim orodjem iz kompleksne analize. Na primer, zaradi Goursatovega izreka \ref{izr:Goursat} vemo, da je transformiranka $\mathcal{L}(f)$ analitična funkcija. Problem, ki se tukaj pojavi je ta, da trenutno še nismo dobro seznanjeni s kompleksno analizo, torej trenutno ne znamo konkretno izkoristiti te prednosti Laplaceove transformacije. Kljub temu lahko rešimo nekaj problemov:
+			
+			
 		\subsection{Primeri uporabe}
 		
-	
+			Za uvod si poglejmo primer uporabe na navadni diferencialni enačbi drugega reda.
+			
+			\begin{zgled}
+				\label{zgl:LT1}
+				S pomočjo Laplaceove transformacije reši enačbo $y'' + y' + y = 0$ pri pogojih $y(0) = 0$ in $y'(0) = 1$.
+				
+				Najprej enačbo transformiramo ter, upoštevajoč oznako $Y(z) = \mathcal{L}(y(x))(z)$, tako dobimo: $$
+				z^2Y(z) - zy(0) - y'(0) + zY(z) - y(0) + Y(z) = 0$$
+				Sedaj upoštevamo začetna pogoja in tako dobimo enačbo $Y(z)(z^2 + z + 1) - 1 = 0$ oziroma $Y(z)= \frac{1}{(z^2 + z + 1)} = \frac{1}{(z+\frac{1-i\sqrt{3}}{2})(z + \frac{1 + i\sqrt{3}}{2})}$. Na tej točki lahko ta ulomek bodisi razbijemo na vsoto ulomkov, ter nato poskusimo uporabiti inverzno transformacijo na vsakem členu posebej, ali pa prepoznamo, da je $Y(z)$ produkt dveh Laplaceovih transformirank: $\mathcal{L}(e^{-\frac{1-i\sqrt{3}}{2}x})(z) = \frac{1}{(z+\frac{1-i\sqrt{3}}{2})}$ in $\mathcal{L}(e^{-\frac{1+i\sqrt{3}}{2}x})(z) = \frac{1}{(z+\frac{1+i\sqrt{3}}{2})}$.
+				Poračunajmo konvolucijo funkcij $e^{-\frac{1+i\sqrt{3}}{2}x}$ in $e^{-\frac{1-i\sqrt{3}}{2}x}$ za $x\geq 0$: \begin{align*}
+					y(x)=(e^{-\frac{1+i\sqrt{3}}{2}t}*e^{-\frac{1-i\sqrt{3}}{2}t})(x) &= \int_{0}^{x}e^{-\frac{1-i\sqrt{3}}{2}t}e^{-\frac{1+i\sqrt{3}}{2}(x-t)}dt \\
+					&= e^{-\frac{1+i\sqrt{3}}{2}x}\int_{0}^{x}e^{(\frac{1+i\sqrt{3}}{2}-\frac{1-i\sqrt{3}}{2})t}dt \\
+					&= e^{-\frac{1+i\sqrt{3}}{2}x}\int_{0}^{x}e^{i\sqrt{3}t}dt \\
+					&= e^{-\frac{1+i\sqrt{3}}{2}x}[\frac{1}{i\sqrt{3}}e^{i\sqrt{3}t}] \big|_{0}^{x}\\
+					&= \frac{1}{i\sqrt{3}}e^{-\frac{1 + i\sqrt{3}}{2}x}(e^{i\sqrt{3}x}-1) \\
+					&= \frac{1}{i\sqrt{3}}(e^{(i\sqrt{3}-\frac{1 + i\sqrt{3}}{2})x}-e^{-\frac{1 + i\sqrt{3}}{2}x}) \\
+					&= \frac{1}{i\sqrt{3}}e^{-\frac{1 - i\sqrt{3}}{2}x}-\frac{1}{i\sqrt{3}}e^{-\frac{1 + i\sqrt{3}}{2}x}
+				\end{align*}
+				
+				Preverimo, če je ta funkcija $y$ res rešitev naše diferencialne enačbe. Velja: \begin{align*}
+					y(0) &= \frac{1}{i\sqrt{3}}(1-1) = 0 \\
+					y'(x) &= \frac{1}{i\sqrt{3}}(\frac{-1+i\sqrt{3}}{2}e^{\frac{-1 + i\sqrt{3}}{2}x}+\frac{1 + i\sqrt{3}}{2}e^{-\frac{1 + i\sqrt{3}}{2}x}) \\
+					y'(0) &= \frac{1}{i\sqrt{3}}(\frac{-1+i\sqrt{3}}{2}+\frac{1 + i\sqrt{3}}{2}) = \frac{i\sqrt{3}}{i\sqrt{3}}= 1 \\
+					y''(x) &= \frac{1}{i\sqrt{3}}((\frac{-1+i\sqrt{3}}{2})^2e^{\frac{-1 + i\sqrt{3}}{2}x}-(\frac{1 + i\sqrt{3}}{2})^2e^{-\frac{1 + i\sqrt{3}}{2}x})
+				\end{align*}
+				Tedaj je \begin{align*}
+					y'' + y' + y &= \frac{1}{i\sqrt{3}}(e^{\frac{-1 + i\sqrt{3}}{2}x}(\frac{-1-i\sqrt{3}}{2} + \frac{-1 + i\sqrt{3}}{2} + 1)) \\
+					&- \frac{1}{i\sqrt{3}}(e^{-\frac{1 + i\sqrt{3}}{2}x}(\frac{-1 + i\sqrt{3}}{2} - \frac{1 + i\sqrt{3}}{2} + 1)) \\
+					&= \frac{1}{i\sqrt{3}}(e^{\frac{-1 + i\sqrt{3}}{2}x}(\frac{-2}{2} + 1))- \frac{1}{i\sqrt{3}}(e^{-\frac{1 + i\sqrt{3}}{2}x}(\frac{-2}{2} + 1)) \\
+					&= 0
+				\end{align*}
+				Torej je $y(x) = \frac{1}{i\sqrt{3}}e^{-\frac{1 - i\sqrt{3}}{2}x}-\frac{1}{i\sqrt{3}}e^{-\frac{1 + i\sqrt{3}}{2}x}$ res rešitev dane Cauchyjeve naloge.
+			\end{zgled}
+			
+			Izkaže se, da je Laplaceova transformacija izjemno uporabna za reševanje navadnih diferencialnih enačb drugega reda s konstantnimi koeficienti. Naj bo $y'' + ay' + by = f(x)$ Cauchyjeva naloga z začetnima pogojema $y(0) = y_0, y'(0) = v_0$. Ko enačbo transformiramo, dobimo: $\mathcal{L}(y)(z)(z^2 + az + b) - y_0(a+z) - v_0 = \mathcal{L}(f)(z)$. Nato izrazimo $\mathcal{L}(y)(z)$ in dobimo: \begin{equation}
+				\label{eq:NDEr2LT}
+				\mathcal{L}(y)(z)= \frac{\mathcal{L}(f)(z) +(z+a)y_0 + v_0}{(z^2 + az + b)}
+			\end{equation}
+			
+			Torej lahko v resnici samo poračunamo transformiranko $\mathcal{L}(f)$, jo vstavimo v zgornjo enačbo in, upoštevajoč začetna pogoja, dobimo transformiranko naše rešitve. Na tej točki se nam pogosto splača dobljeni ulomek razbiti na parcialne ulomke. Poglejmo si en tak primer.
+			
+			\begin{zgled}
+				\label{zgl:NDEr2LT}
+				S pomočjo Laplaceove transformacije reši Cauchyjevo nalogo $y'' + 2y' + 5y = 3e^{-x}\sin(x)$ pri pogojih $y(0) = 0, y'(0)=3$.
+				
+				Najprej upoštevamo lastnost $2$ v trditvi \ref{trd:propLaplaceT} in rezultat iz zgleda \ref{zgl:trigLT}, ter tako dobimo, da je $\mathcal{L}(3e^{-x}\sin(x)) = \frac{3}{(z+1)^2 + 1}$. Sedaj to vstavimo v formulo \ref{eq:NDEr2LT} in tako dobimo: $$
+				\mathcal{L}(y(x))(z) = \frac{\frac{3}{(z+1)^2 + 1} + 3}{z^2 + 2z + 5} = 3\frac{z^2 + 2z + 3}{(z^2 + 2z + 5)(z^2 + 2z + 2)}$$
+				Dobljeni ulomek bomo razbili na parcialne ulomke: $$
+				\frac{z^2 + 2z + 3}{(z^2 + 2z + 5)(z^2 + 2z + 2)} = \frac{Az + B}{z^2 + 2z + 2} + \frac{Cz + D}{z^2 + 2z + 5}
+				$$
+				Za neke $A, B, C$ in $D$, ki jih določimo na standarden način. Izkaže se: $A = C = 0$ in $B = \frac{1}{3}$ ter $D = \frac{2}{3}$. Potem je: \begin{align*}
+					\mathcal{L}(y(x))(z) &= \frac{1}{z^2 + 2z + 2} + \frac{2}{z^2 + 2z + 5} \\
+					&= \underbrace{\frac{1}{(z+1)^2 + 1}}_{c = 1} + \underbrace{\frac{2}{(z+1)^2 + 4}}_{c=2} \\
+					&= \mathcal{L}(e^{-x}\sin(x))(z) + \mathcal{L}(e^{-x}\sin(2x))(z)
+				\end{align*}
+				
+				Sledi: $y(x) = e^{-x}\sin(x) + e^{-x}\sin(2x)$ je rešitev naše Cauchyjeve naloge.
+			\end{zgled}
+			
+			Laplaceovo transformacijo lahko uporabimo tudi za integralske enačbe. Naj bosta dani funkciji $f$ in $h$ (obe na $[0, \infty)$). Iščemo funkcijo $y$ na $[0, \infty)$, tako, da bo  $\forall x\in [0, \infty)$ veljalo: $$f(x) = y(x) + \int_{0}^{x}y(t)h(x-t)dt$$ V tej enačbi v integralu prepoznamo konvolucijo $y*h$, kar nam da idejo, da bi uporabili Laplaceovo transformacijo. V primeru, ko enačbo transformiramo, lahko izrazimo $\mathcal{L}(y)$ kot: $$ 
+				\mathcal{L}(y(x))(z) = \frac{\mathcal{L}(f(x))(z)}{1 + \mathcal{L}(h(x))(z)}
+			$$
+			Izkaže se, da je primer \ref{prim:Laplace1} ravno primer, kjer nam bo ta pogled prišel prav. Pa ga rešimo.
+			
+			\begin{zgled}
+				Kot piše v primeru \ref{prim:Laplace1}, želimo določiti obliko žleba da bo čas potovanja kroglice po njem do izbrane končne točke neodvisen od izbire začetne točke. Pri tem zanemarimo trenje in zračni upor.
+				
+				Prvi korak rešitve je, da si postavimo koordinatni sistem, recimo $(u, v)$. Najlažje nam bo, če ga postavimo tako, da bo izbrana končna točka ravno v njegovem izhodišču. Dodatno si olajšamo delo tako, da zahtevamo, da žleb leži v odseku koordinatne ravnine, ki jo določa prvi kvadrant tega koordinatnega sistema. Sedaj označimo koordinati začetne točke z $(x, y)$, ločni element naše krivulje(žleba) pa z $ds$. Ko se kroglica spusti po žlebu od točke $(x, y)$ do $(u, v)$, se ji višina spremeni za $y-v$. Na hitrost bomo gledali kot na spremembo ločne razdalje kroglice od izhodišča. Torej, če kroglico spustimo po žlebu, se ta s časom (ko se $t$ veča) približuje izhodišču (ločna razdalja pada). Hitrost bo torej imela negativen predznak. Po zakonu o ohranitvi energije je potem njena hitrost enaka: $\frac{ds}{dt} = -\sqrt{2g(y-v)}$. Ta izraz razumemo kot diferencialno enačbo in jo rešimo za $t$ in pri tem razumemo $u = u(v)$ kot parametrizacijo naše krivulje: \begin{align*}
+					dt &= \frac{-ds}{\sqrt{2g(y-v)}} \\
+					t &= \underbrace{\int_{0}^{y}\frac{ds}{\sqrt{2g(y-v)}}}_{s~\text{je odvisna od}~u~\text{in}~v} = \underbrace{\int_{0}^{y}\frac{\frac{ds}{dv}}{\sqrt{2g(y-v)}}dv}_{\frac{ds}{dv} = \sqrt{1 + (\frac{du}{dv})^2}} \\ 
+					&= \int_{0}^{y}\frac{\sqrt{1 + (\frac{du}{dv}(v))^2}}{\sqrt{2g(y-v)}}dv
+				\end{align*}
+				Slednji integral lahko razumemo kot konvolucijo funkcij $$h(v) = \frac{1}{\sqrt{v}}~\text{in}~e(v) = \sqrt{\frac{1 + (\frac{du}{dv}(v))^2}{2g}}$$
+				Na trenutni enačbi, $t = (h*e)(v)$, uporabimo Laplaceovo transformacijo. Ob predpostavki, da je $t$ konstanta, dobimo: $$t\mathcal{L}(1)(z)=\mathcal{L}(h)(z)\cdot\mathcal{L}(e)(z) $$
+				
+				Po opombi \ref{opomb:lfLT} velja, da je $\mathcal{L}(h)(z) = \sqrt{\frac{\pi}{z}}$. Hkrati vemo iz zgleda \ref{zgl:LaplaceT1}, da je $\mathcal{L}(1)(z) = \frac{1}{z}$. Posledično sklepamo, da je: $$\mathcal{L}(e)(z) = \frac{t}{\sqrt{\pi z}}$$
+				Po opombi \ref{opomb:lfLT} je potem $e(v)=\frac{t}{\pi\sqrt{v}}$. Od tod dobimo enačbo $ \sqrt{1 + (\frac{du}{dv}(v))^2} = \frac{t}{\pi}\sqrt{\frac{2g}{v}}$, iz nje pa: \begin{equation}
+					\label{eq:Laplace1}
+					\frac{du}{dv} = \sqrt{\frac{2gt^2}{\pi^2v}-1}
+				\end{equation}
+				Sedaj bomo naredili dvoje: Najprej bomo zapisali konstante v ulomku pod korenom v enačbi \ref{eq:Laplace1} v eno konstanto, da si olajšamo delo - $b = \frac{2gt^2}{\pi^2}$ -, nato pa bomo vpeljali parameter $\varphi$ preko zveze $v = b\sin^2(\varphi)$. Potem je $dv = 2b\sin(\varphi)\cos(\varphi)d\varphi$ in enačba \ref{eq:Laplace1} se poenostavi v obliko: $$du = \sqrt{\frac{b}{v}-1}dv = 2b\sqrt{\frac{1}{\sin^2(\varphi)}-1}\sin(\varphi)\cos(\varphi)d\varphi = 2b\cos^2(\varphi)d\varphi$$
+				
+				Sedaj to integriramo in tako dobimo parametrizacijo $u(\varphi)$ naše iskane krivulje: \begin{align*}
+					u(\varphi) = 2b\int \cos^2(\varphi)d\varphi = \frac{b}{2}(2\varphi + \sin(2\varphi)) + C
+				\end{align*}
+				
+				Pri $\varphi = 0$ je $v(\varphi) = b\sin^2(\varphi)$ enak $0$. Ker želimo, da gre krivulja skozi izhodišče izberimo $C = 0$ (da bo potem tudi $u(0) = 0$). Parametrizacijo $v(\varphi)$ lahko izrazimo tudi s kosinusom dvojnega kota: $v(\varphi) = \frac{b}{2}(1- \cos(2\varphi))$. Ker se nam v tej situaciji v obeh parametrizacijah pojavljajo sami dvakratniki $\varphi$, uvedemo novi oznaki: $\theta = 2\varphi$ in $a = \frac{b}{2}$. Tedaj se parametrizaciji $u$ in $v$ glasita: $$u(\theta)= a(\theta + \sin(\theta)), v(\theta) = a(1-\cos(\theta)) $$
+				Opazimo: To je ravno parametrizacija cikloide.
+				
+				Rešitev našega problema je torej kar cikloida.
+			\end{zgled}
 	\begin{thebibliography}{99}
 		
 		\bibitem{bib:pfaff} C.~K.~Fong,~\emph{Equations involving differentials: Pfaffian equations}, [ogled 10.~3.~2024], dostopno na \url{https://people.math.carleton.ca/~ckfong/S12.pdf}.
