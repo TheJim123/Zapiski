@@ -1,0 +1,419 @@
+\documentclass[t, 10pt]{beamer} % [t] pomeni poravnavo na vrh slida
+
+% \usepackage{etex} % vključi ta paket, če ti javi napako, da imaš naloženih preveč paketov.
+
+% standardni paketi
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+
+\usepackage{amsfonts,url, amsthm}
+\usepackage{palatino}
+\usepackage{graphicx, tikz, array}
+\usepackage{stmaryrd}
+
+\renewcommand\textbullet{\ensuremath{\bullet}}  % to get rid of font warnings
+
+% podatki
+\title{Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije}
+\author{Jimmy Zakeršnik}
+\institute{Fakulteta za naravoslovje in matematiko}
+
+% tvoj izbran stil predstavitve
+\usefonttheme{professionalfonts}
+\mode<presentation>
+{
+	\usetheme{Berlin}
+	\usecolortheme{default}
+	\useoutertheme{infolines}
+	\useinnertheme[shadows]{rounded}
+}
+%\setbeamertemplate{footline}{}            % pri nekaterih temah je potrebno odstraniti
+%\setbeamertemplate{navigation symbols}{}  % nogo, v tem primeru to odkomentiraj
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Pplus}[1]{\mth{#1}^{+}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Q}{\mth{Q}}
+\newcommand{\Qo}{\mth{Q}_0}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}~: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+\newcommand{\Gen}[1]{\ensuremath{\left<{#1}\right>}}
+
+%  ukaz za počrnitev enega slida. Nariše črn pravokotnik višine #1 na dno.
+\newcommand{\fillblack}[1]{
+	\begin{tikzpicture}[remember picture, overlay]
+		\node [shift={(0 cm,0cm)}]  at (current page.south west)
+		{%
+			\begin{tikzpicture}[remember picture, overlay] at (current page.south west)
+				\draw [fill=black] (0, 0) -- (0,#1 \paperheight) --
+				(\paperwidth,#1 \paperheight) -- (\paperwidth,0) -- cycle ;
+			\end{tikzpicture}
+		};
+		\draw (current page.north west) rectangle (current page.south east);
+	\end{tikzpicture}
+}
+
+% Projektor, ki sveti na tablo je zoprn, ker zavzema prostor za pisanje.
+% Praktična rešitev je, da se platno spusti samo do table, spodnji del
+% predstavitve pa naredimo popolnoma črn. Tako projektor na tablo ne projecira
+% svetlobe in je pisanje nemoteno s strani predstavitve, ki je cela nad tablo.
+
+% Za to da dobite spodaj zatemnjen slide, je potrebno na konec frame-a dodati
+% ukaz \fillblack{delež}, kjer je delež številka med 0 in 1, ki pove, kakšen
+% delež slida želite imeti zapolnjen s črnim pravokotnikom. Spodaj so 4 slidi,
+% ki imajo začrnjenih: 33%, 50%, 33% in 20%.  Za šolske table v 2.02 in 2.03 je
+% 33% ravno prav, da lahko pišete po celi tabli.
+
+% Črni pravokotnik ne zavzema prostora na slidu -- preprosto nariše se čez
+% spodnjo tretjino (ali kolikor pač želite). To pomeni, da se pokrijve tudi ves
+% tekst spodaj. Za to je na začetku dokumenta tudi nastavljena vertikalna
+% poravnava na ``zgoraj'', z razliko od običajne sredinske (to je tisti [t]).
+% Tako se ves tekst obdrži na vidnem delu slida, dokler je to možno. Tretji
+% slide spodaj demonstrira, kaj se zgodi v primeru preveč besedila.
+
+% Kod demonstrira zadnji slide, je vseeno, kjer napišemo ukaz, toda ponavadi ga
+% napišemo na dnu, da se izognemo morebitnim nevšečnostim ali neželenemu
+% spacingu. Pri nekaterih temah se izriše tudi noga, ki se izriše na koncu
+% slida, torej po tem ko je naš pravokotnik že narisan, kar zna biti moteče.
+% To se na primer zgodi tudi pri standardni temi Warsaw. Rešitev je, da nogo
+% odstranimo (saj bi bila itak prekrita). V preambuli so zakomentirani ukazi,
+% kako to naredimo.
+
+\begin{document}
+	
+	\begin{frame}
+		\maketitle
+		%\fillblack{0.3}
+	\end{frame}
+	
+	\begin{frame}{Napovednik}
+		\begin{enumerate}
+			\item Motivacijski problemi
+			\item Pfaffova DE
+			\item Fourierjeva transformacija
+			\item Laplaceova transformacija
+			\item Literatura
+		\end{enumerate}
+		
+		%\fillblack{0.3}
+	\end{frame}
+	
+	\begin{frame}{Motivacijski problemi}
+		Za motivacijo si zastavimo naslednje probleme:
+		\begin{enumerate}
+			\item Reši enačbo $(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$
+			\item Za $c>0$ najdi rešitev PDE $\frac{\partial^2 u}{\partial t^2}(x, t) = c^2\frac{\partial^2 u}{\partial x^2}(x, t)$ na $\R\times (0, \infty)$ pri pogojih $\forall x\in \R: u(x, 0) = f(x)~\&~\frac{\partial u}{\partial t}(x, 0) = g(x)$. Pri tem predpostavi, da sta funkciji $f, g \in \mathcal{C}^1(\R)$.
+			\item Denimo, da imamo navpično postavljeni žleb po katerem spustimo kroglico. Kakšne oblike mora biti žleb, da bo čas potovanja kroglice po njem do izbrane točke neodvisen od začetne točke, s katere smo kroglico spustili? Pri tem zanemarimo zračni upor in trenje.
+		\end{enumerate}
+		
+		%\fillblack{0.3}
+	\end{frame}
+	
+	\begin{frame}{Pfaffova DE - uvod}
+		
+		\begin{block}{Definicija}<1->
+			Naj bodo $\map{F_i}{\R^n}{\R}$ zvezne funkcije neodvisnih spremenljivk $x_1, x_2, \ldots, x_n$. ~\pojem{Pfaffova diferencialna enačba} je enačba oblike $$\sum_{i = 1}^{n}F_i(x_1, x_2, \ldots, x_n) dx_i = 0$$
+		\end{block}
+		
+		%\fillblack{0.3}
+	\end{frame}
+	
+	\begin{frame}{Pfaffova DE - uvod}
+		
+		\begin{block}{Definicija}<1->
+			Naj bodo $\forall i\in\{1, 2, \ldots, n\}~ \map{F_i}{\R^n}{\R}$ zvezne funkcije, ki določajo Pfaffovo diferencialno enačbo $\sum_{i = 1}^{n}F_i(x_1, x_2, \ldots, x_n)dx_i = 0$. Če obstaja taka funkcija $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da za njen totalni diferencial $du$ velja $du = <\nabla u, [dx_1, dx_2, \ldots, dx_n]> = \sum_{i = 1}^{n}F_i dx_i$, potem pravimo, da je enačba \pojem{eksaktna}.
+		\end{block}
+		\begin{block}{Definicija}<2->
+			Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$ \pojem{integrabilna}, če obstajata taki funkciji $\mu(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$ in $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da je $<\nabla u,[dx_1, dx_2, \ldots, dx_n]^\top> = \sum_{i = 1}^n (\mu F_i) dx_i$
+		\end{block}
+		
+		%\fillblack{0.3}
+	\end{frame}
+	
+	\begin{frame}{Kvazi-homogene funkcije}
+		\begin{block}{Definicija}<1->
+			Pravimo, da je funkcija $\map{f}{\R^n}{\R}$ \pojem{kvazi-homogena} stopnje (oz. reda) $m\in\Z$, če obstajajo taka neničelna števila $a_1, a_2, \ldots, a_n \in \Z$, da velja: $$f(x_1t^{a_1}, x_2t^{a_2}, \ldots, x_nt^{a_n}) = t^mf(x_1, x_2, \ldots, x_n)$$
+			za vsak $t\in\R$.
+			V tem primeru pravimo, da je število $a_i$ \pojem{dimenzija} spremenljivke $x_i$.
+		\end{block}
+		\begin{block}{Zgled}
+			Funkcija $$f(x, y) = 4x^3y^3 -3x^2y^6 + 2xy^9 - y^{12}$$ je kvazi-homogena reda $12$ z dimenzijama $3$ ter $1$.
+		\end{block}
+		%\fillblack{0.3}
+	\end{frame}
+	
+	\begin{frame}{Kvazi-homogene funkcije}
+		
+		\begin{block}{Trditev}<1->
+			Naj bo $\map{f}{\R^n}{\R}$ kvazi-homogena funkcija reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$. Za $x_1 \neq 0$ in vse $i\in \{2, 3, \ldots, n\}$ označimo: $b_i = \frac{a_i}{a_1}$ in $y_i = \frac{x_i}{x_1^{b_i}}$. Tedaj je $$f(x_1, x_2, \ldots, x_n) = x_1^{\frac{m}{a_1}}f(1, y_2, \ldots, y_n)$$
+		\end{block}
+		
+		\begin{block}{Trditev}<2->
+			Naj bo $\map{f}{\R^n}{\R}$ kvazi-homogena $\mathcal{C}^1$ funkcija reda $m$ z dimenzijami $a_1, a_2, \ldots, a_n$. Tedaj velja enakost: $$mf(x_1, x_2, \ldots, x_n) = \sum_{i = 2}^{n}a_ix_i\frac{\partial f}{\partial x_i}(x_1, x_2, \ldots, x_n)$$
+		\end{block}
+		  %\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Kvazi-homogene Pfaffove DE}
+			\begin{block}{Definicija}
+				Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$:\begin{itemize}
+					\item \pojem{homogena} reda $m$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ homogene funkcije reda $m$.
+					\item \pojem{kvazi-homogena} reda $m$, z dimenzijami $a_1, a_2, \ldots, a_n$, če so za vsak $i\in\{1, 2, \ldots, n\}$ fukncije $F_i$ kvazi-homogene funkcije reda $m - a_i$ (z dimenzijami $a_i$).
+				\end{itemize} 
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Metode reševanja}
+			Za eksplicitne enačbe:\begin{itemize}
+				\item Metoda ostrega pogleda
+				\item Reševanje sistema PDE prvega reda
+				\item Integracija potencialnega polja
+				\item Enačbe z ločljivimi spremenljivkami
+			\end{itemize}
+			
+			Za integrabilne enačbe:\begin{itemize}
+				\item Enačbe z ločljivo spremenljivko
+				\item Homogene enačbe
+				\item Natanijeva metoda
+				\item Mayerjeva metoda
+				\item Bertrandova metoda
+				\item Kvazi-homogene enačbe
+			\end{itemize}
+		%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Metoda ostrega pogleda}
+			\begin{block}{Opis}<1->
+					Najprej si poglejmo najpreprostejšo metodo - metodo ostrega pogleda. Kot ime metode naimguje, tukaj rešitev ">uganemo"<, kar lahko storimo v nekaterih redkih primerih. 
+			\end{block}
+			\begin{block}{Zgled}<2->
+					Za Pfaffovo enačbo $xdx + ydy + zdz = 0$ lahko na podlagi simetrije in preprostosti funkcij, ki v njej nastopajo, uganemo, da je $u(x, y, z) = \frac{1}{2}(x^2 + y^2 + z^2)$ iskana funkcija, ki nam da družino rešitev $u(x, y, z) = c$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Reševanje sistema PDE prvega reda}
+			\begin{block}{Opis}<1->
+				Funkcijo $u$, ki določa rešitev, dobimo kot rešitev sistema: 
+				\begin{align*}
+					u_x(x, y, z) &= P(x, y, z) \\
+					u_y(x, y, z) &= Q(x, y, z) \\
+					u_z(x, y, z) &= R(x, y, z) 
+				\end{align*}
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Rešitev enačbe $yze^{xyz}dx + xze^{xyz}dy + xye^{xyz}dz = 0$ s to metodo je podana s funkcijo $u(x, y, z) = e^{xyz} + C$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Integracija potencialnega polja}
+			\begin{block}{Opis}<1->
+				Iz vektorske analize vemo, da, če trojica $(P, Q, R)$ tvori $\mathcal{C}^1$ vektorsko polje $F$, nam eksaktnost enačbe $Pdx + Qdy + Rdz = 0$ pove, da obstaja tako $\mathcal{C}^2$ skalarno polje $u$, da je $\nabla u = F = (P, Q, R)$. Tako lahko uporabimo standardno metodo integriranja potencialnega vektorskega polja, da dobimo potencial $u$, ki določa rešitev dane Pfaffove diferencialne enačbe.
+			\end{block}
+			\begin{block}{Zgled}<2->
+					Rešitev enačbe $yze^{xyz}dx + xze^{xyz}dy + xye^{xyz}dz = 0$ s to metodo je podana s funkcijo $u(x, y, z) = e^{xyz} + C$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Enačbe z ločljivimi spremenljivkami}
+			\begin{block}{Opis}<1->
+					Metodo ločevanja spremenljivk uporabimo, kadar lahko dano Pfaffovo diferencialno enačbo $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ zapišemo v obliki $\acute{P}(x)dx + \acute{Q}(y)dy + \acute{R}(z)dz = 0$. V tem primeru funkcijo $u$ dobimo kot naslednjo vsoto integralov: $$u(x, y, z) = \int \acute{P}(x)dx + \int \acute{Q}(y)dy + \int \acute{R}(z)dz$$
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Pfaffova DE $xdx + ydy + zdz = 0$ je enačba z (že) ločenimi spremenljivkami. Ko uporabimo to metodo dobimo funkcijo $u(x, y, z) = \frac{x^2}{2} + \frac{y^2}{2} + \frac{z^2}{2} + C = \frac{1}{2}(x^2 + y^2 + z^2) + C$, ki določa rešitev.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Integrabilne enačbe z ločljivo spremenljivko}
+			\begin{block}{Opis}<1->
+				Denimo, da je spremenljivka $z$ ločljiva spremenljivka v enačbi $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$. Tedaj lahko to enačbo preoblikujemo v obliko $\acute{P}(x, y)dx + \acute{Q}(x, y)dy + \acute{R}(z)dz = 0$. Integrabilnost enačbe nam tukaj da pogoj $\frac{\partial \acute{P}}{\partial y} = \frac{\partial \acute{Q}}{\partial x}$, to pa nam pove, da je $\acute{P}(x, y)dx + \acute{Q}(x, y)dy$ totalni diferencial neke funkcije. Označimo to funkcijo z $v$. Torej, $dv = \acute{P}(x, y)dx + \acute{Q}(x, y)dy$ in naša enačba sedaj dobi obliko $dv + \acute{R}(z)dz = 0$. Funkcija $u(x, y, z)$, ki jo iščemo, je potem dobljena kot vsota funkcije $v$ in integrala $\int \acute{R}(z)dz$: $u(x, y, z) = v(x, y) + \int \acute{R}(z)dz$.
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Pfaffova DE $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$ ni eksaktna, je pa integrabilna. Ko ločimo spremenljivko $z$, s to metodo dobimo rešitev, ki je določena s funkcijo $u(x, y, z) = \frac{x^2}{2} + xy + \ln|y| + \frac{z^4}{4} + \frac{z^2}{2} + C$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Homogene enačbe}
+			\begin{block}{Opis}<1->
+					Denimo, da je Pfaffova diferencialna enačba $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ homogena reda $m$. Sedaj vpeljemo novi spremenljivki $u$ in $v$, da velja $y = xv$ ter $z = xw$. Tedaj dobi naša enačba obliko $x^m(P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw) = 0$ oziroma $P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw = 0$. Dobljena enačba je enačba z ločljivo spremenljivko (specifično, $x$ je ločljiva), ki jo rešimo po prejšnji metodi.
+			\end{block}
+			\begin{block}{Zgled}<2->
+				 Ta metoda nam za Pfaffovo DE $x^2yzdx + xy^2zdy + xyz^2dz = 0$ da rešitev, ki jo določa funkcija $u(x, y, z) = \ln\abs{x} + \frac{(y^2 + z^2)}{2x^2}$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Natanijeva metoda}
+			\begin{block}{Opis}<1->
+				\begin{enumerate}
+					\item Eno spremenljivko (npr. $z$) fiksiramo v konstanto, rešimo pripadajočo Pfaffovo DE - $\Phi_1(x, y, z) = c_1$
+					\item rešitev originalne enačbe je oblike $\Phi_1(x, y, z) = \psi(z)$
+					\item Fiksiramo eno od preostalih spremenljivk (npr. $x$)- rešimo pripadajočo Pfaffovo DE $K(y, z) = c$
+					\item Iz $\Phi_1$ in $K$ izrazimo nefiksirano spremenljivko - dobimo $\psi(z)$
+				\end{enumerate}
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Za Pfaffovo DE $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$ nam ta metoda da $\Phi_1(x, y, z) =\frac{1}{z}(\frac{x^2}{2} + xy + \ln\abs{y})$ in $K(y, z) = \ln\abs{y} + \frac{z^2(z^2 + 2)}{4}=c$. Izrazimo $y(z) = e^{\frac{4c - z^2(z^2 + 2)}{4}}$ in nato dobimo $\psi(z) = \frac{4c - z^2(z^2 + 2)}{4z}$. Na koncu dobimo rešitev $\frac{x^2}{2} + xy + \ln\abs{y} + \frac{z^4 + 2z^2}{4} = c_2$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Mayerjeva metoda}
+			\begin{block}{Opis}<1->
+			\begin{enumerate}
+				\item Z nastavkom (npr. $z = x + ky$) iz naše prvotne enačbe eliminiramo spremenljivko $z$. Dobimo Pfaffovo DE v $2$ spremenljivkah z rešitvijo $\Phi(x, y, k) = \acute{c}$.
+				\item $k = \frac{z - x}{y}$ vstavimo v $\Phi(x, y, k) = \Phi(c, 0, k) = d$ in eliminiramo $k$ .
+				\item Naša rešitev je $\Phi(x, y, \frac{z - x}{y}) = d$.
+			\end{enumerate}
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Ta metoda nam za Pfaffovo DE $xdx + ydy + zdz = 0$ da rešitev $\frac{1}{2}(x^2 + y^2 + z^2) = c^2$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Bertrandova metoda}
+			\begin{block}{Opis}<1->
+				\begin{enumerate}
+					\item Rešimo linearno PDE $(Q_z - R_y)u_x + (R_x - P_z)u_y + (P_y - Q_x)u_z = 0$ za $u$, dobimo prva integrala $v$ in $w$.
+					\item Poiščemo funkciji, $\lambda(v, w)$ in $\mu(v, w)$, za kateri velja: 
+						$P = \lambda v_x + \mu w_x, Q = \lambda v_y + \mu w_y$ in $R = \lambda v_z + \mu w_z$.
+					\item To vstavimo v originalno enačbo in jo reduciramo na (rešljivo) Pfaffovo DE v dveh spremenjivkah.
+				\end{enumerate}
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Bertrandova metoda nam za Pfaffovo DE $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$ da $\mu(x, y, z) = \frac{1}{z}$ in $\lambda(x, y, z) = \frac{(z^2 +1)}{c_3'(z)}$ za poljubno $\mathcal{C}^1$ funkcijo $c_3(z)$. Označimo $f(v) = c_3^{-1}(v)$, dobimo Pfaffovo DE $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$, rešitev pa je podana s funkcijo $g(v, w) = w + \int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv$. Za $c_3(z) = \frac{z^7}{7} + \frac{2z^5}{5} + \frac{z^3}{3}$ dobimo ravno rešitev, ki smo jo dobili s prejšnjima metodama.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Kvazi-homogene enačbe}
+			\begin{block}{Zadosten pogoj}<1->
+				Denimo, da so $P, Q$ in $R$ naslednje oblike: 
+					$P(x, y, z) = \sum_{i = 1}^{n_1}a_ix^{\alpha_i}y^{\beta_i}z^{\gamma_i},
+					Q(x, y, z) = \sum_{i = j}^{n_2}b_jx^{\lambda_j}y^{\mu_j}z^{\nu_j}$ in
+					$R(x, y, z) = \sum_{k = 1}^{n_3}c_kx^{\varepsilon_k}y^{\eta_k}z^{\zeta_k}$, kjer so $a_i, b_j$ in $c_k$ koeficienti in $\alpha_i, \beta_i, \gamma_i, \lambda_j, \mu_j, \nu_j, \varepsilon_k, \eta_k, \zeta_k\in \Q,~ \forall i\in \{1,\ldots, n_1\}, \forall j\in \{1,\ldots, n_2\}, \forall k\in \{1,\ldots, n_3\}$.
+				
+				Pfaffova DE je kvazi-homogena reda $m$, če je sistem $n_1 + n_2 + n_3$ enačb \begin{align*}
+					p(\alpha_i+1) + q\beta_i + r\gamma_i - m = 0~&;~ i\in \{1, \ldots, n_1\} \\
+					p\lambda_j + q(\mu_j+1) + r\nu_j - m= 0~&;~ j\in \{1, \ldots, n_2\} \\
+					p\varepsilon_k + q\eta_k + r(\zeta_k+1) - m=0~&;~ k\in \{1, \ldots, n_3\}
+				\end{align*} usklajen.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Kvazi-homogene enačbe}
+			\begin{block}{Opis}<1->
+				\begin{enumerate}
+					\item Po trditvi zapišemo
+						$P(x, y, z) = x^{\frac{m-p}{p}}P(1, yx^{-\frac{q}{p}}, zx^{-\frac{r}{p}}),
+						Q(x, y, z) = x^{\frac{m-q}{p}}Q(1, yx^{-\frac{q}{p}}, zx^{-\frac{r}{p}})$ in
+						$R(x, y, z) = x^{\frac{m-r}{p}}R(1, yx^{-\frac{q}{p}}, zx^{-\frac{r}{p}})$.
+					\item Uvedemo $u = yx^{-\frac{q}{p}}$ in $v = zx^{-\frac{r}{p}}$ ter $A(u, v) = \frac{pQ(1, u, v)}{pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v)}$ in $B(u, v) = \frac{pR(1, u, v)}{pP(1, u, v) + quQ(1, u, v) + rvR(1, u, v)}$.
+					\item Enačba se reducira v Pfaffovo DE z ločljivo spremenljivko: $\frac{dx}{x} + A(u, v)du + B(u, v)dv = 0$
+				\end{enumerate}
+			\end{block}
+			
+			\begin{block}{Zgled}<2->
+				Pfaffova DE $(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$ je kvazi-homogena reda $4$. Opisana metoda nam da rešitev $x^5 + x^2y^4 + x^2y^2z + x^2z^2 = E$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Matrike}
+			\begin{block}{Izrek}
+				Naj bo $R$ komutativen polkolobar in $M$ prost $R$-polmodul ranga $r$. Naj bo $T$ neka prosta baza $M$. Potem so za šibko bazo $S$ naslednje trditve ekvivalentne: \begin{enumerate}
+					\item $S$ je prosta baza $M$
+					\item $\abs{S}=r$
+					\item prehodna matrika med $T$ in $S$ je enolično določena in obrnljiva
+				\end{enumerate}
+			\end{block}
+			\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Matrike}
+			\begin{block}{Definicija}<1->
+				Naj bo $R$ polkolobar in $M = R^n$ polmodul nad $R$. Naj bo $A\in M_n(R)$ matrika, ki pripada endomorfizmu \map{h}{M}{M}. Pravimo, da je $\lambda\in R$ \pojem{lastna vrednost} matrike $A$, če obstaja tak $v\in M\setminus\{\theta\}$, da velja $A* v = \lambda \cdot v$. Takemu vektorju $v$, če obstaja, pravimo \pojem{lastni vektor} matrike $A$ za $\lambda$.
+			\end{block}
+			\begin{block}{Izrek}<2->
+				Naj bo $R$ komutativen dioid in $A\in M_n(R)$. Potem je $\lambda$ lastna vrednost matrike $A$ natanko tedaj, ko so stolpci matrike $\bar{A}(\lambda) = \begin{bmatrix}
+					A & \lambda\cdot I_n \\
+					I_n & I_n
+				\end{bmatrix}$ linearno odvisni. 
+			\end{block}
+			\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Pideterminanta in karakteristični pipolinom}
+			\begin{block}{Definicija}
+				Naj bo $R$ nek polkolobar in $X\in M_n(R)$. Urejeni dvojici podani s predpisom \begin{align*}
+					pdt(X) &= \big(\bigoplus_{\substack{\pi\in P^{+}(n) \\ \sigma\in P(n)}}\sigma(\bar{\pi}(X)), \bigoplus_{\substack{\pi\in P^{-}(n) \\ \sigma\in P(n)}}\sigma(\bar{\pi}(X))\big) \\ &= (\llbracket det^{+}(X) \rrbracket, \llbracket det^{-}(X) \rrbracket) = (pdt^{+}(X), pdt^{-}(X))
+				\end{align*} pravimo~\pojem{pideterminanta} matrike $X$.
+			\end{block}
+			\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Pideterminanta in karakteristični pipolinom}
+			\begin{block}{Definicija}
+				Naj bo $R$ nek polkolobar in $X\in M_n(R)$. \pojem{Karakteristični pipolinom} matrike $X$ v spremenljivki $\lambda$ je urejena dvojica polinomov, podana s predpisom \begin{align*}
+					pp_X(\lambda) &= (\llbracket p_X^{+}(\lambda)\rrbracket, \llbracket p_X^{-}(\lambda)\rrbracket) \\ &= (pp_X^{+}(\lambda), pp_X^{-}(\lambda))
+				\end{align*}
+				Pri tem polinoma $p_X^{+}(\lambda)$ in $p_X^{-}(\lambda)$ dobimo tako, da se pretvarjamo, da delamo nad poljem in zapišemo pripadajoči karakteristični polinom $p_X(\lambda) = p_X^{+}(\lambda) \ominus p_X^{-}(\lambda)$.
+			\end{block}
+			\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Posplošeni Cayley-Hamiltonov izrek}
+			\begin{block}{Izrek}
+				Naj bo $R$ poljuben polkolobar in $X\in M_n(R)$ neka kvadratna matrika nad $R$. Potem je $pp_{X}^{+}(X) =pp_{X}^{-}(X)$.
+			\end{block}
+			\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Literatura}
+			\begin{enumerate}
+				\item C.~K.~Fong,~\emph{Equations involving differentials: Pfaffian equations}, [ogled 10.~3.~2024], dostopno na \url{https://people.math.carleton.ca/~ckfong/S12.pdf}.
+				
+				\item B.~Magajna,~\emph{Uvod v diferencialne enačbe, kompleksno in Fourierjevo analizo}, DMFA -- založništvo, Ljubljana, 2018.
+				
+				\item K.~R.~Unni,~\emph{Pfaffian differential expressions and equations}, diplomsko delo, v: All graduate theses and dissertations, [ogled 10.~3.~2024], dostopno na \url{https://core.ac.uk/download/pdf/127676355.pdf}.
+				
+				\item E.~Zakrajšek,~\emph{Analiza IV}, DMFA -- založništvo, Ljubljana, 1999.
+			\end{enumerate}
+			%\fillblack{0.3}
+		\end{frame}
+		
+	\end{document}
