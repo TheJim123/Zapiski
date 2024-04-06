@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  5 APR 2024 16:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  6 APR 2024 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -188,8 +188,8 @@ alc.code.tex)
 loat.code.tex
 \c@pgfmathroundto@lastzeros=\count288
 )))
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
-File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\size8.clo
+File: size8.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 )
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfc
 ore.sty
@@ -1018,23 +1018,23 @@ LaTeX Font Info:    ... okay on input line 109.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(9.99756pt, 344.20024pt, 9.99756pt)
+* h-part:(L,W,R)=(8.49792pt, 347.19951pt, 8.49792pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=344.20024pt
+* \textwidth=347.19951pt
 * \textheight=244.6939pt
-* \oddsidemargin=-62.27243pt
-* \evensidemargin=-62.27243pt
+* \oddsidemargin=-63.77206pt
+* \evensidemargin=-63.77206pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
-* \topskip=10.0pt
+* \topskip=9.0pt
 * \footskip=14.22636pt
-* \marginparwidth=3.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=7.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1099,73 +1099,15 @@ Dictionary: translator-numbers-dictionary, Language: English
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/translator\translat
 or-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-) (SeminarskaBeamer.nav)
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 109--109
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 109--109
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 114--114
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 114--114
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[1
+) (SeminarskaBeamer.nav) [1
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
-Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 126--126
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 126--126
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[2
+Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2
 
 ]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 137--137
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 137--137
- [][][][]  
- []
-
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
 37.
+
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1188,9 +1130,9 @@ LaTeX Font Info:    Trying to load font information for OMX+lmex on input line
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 137.
+(Font)              <8> on input line 137.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 137.
+(Font)              <6> on input line 137.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 137.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 137
@@ -1209,840 +1151,171 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
 37.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd)
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
 [3
 
 {C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
 {C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.
 enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mat
 hsy.enc}]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 146--146
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 146--146
- [][][][]  
- []
-
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 146.
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[4
+ [4
 
 {C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.
-enc}]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 158--158
- [][]  \T1/phv/m/n/5 ([])  
- []
+enc}] [5
 
+] [6
 
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 158--158
- [][][][]  
- []
+] [7
 
+] [8
 
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [9
 
+] [10
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [11
 
-[5
+] [12
 
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [13
 
+] [14
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [15
 
-[6
+] [16
 
 ]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 170--170
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 170--170
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[7
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 182--182
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 182--182
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[8
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[9
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 192--192
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 192--192
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[10
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 211--211
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 211--211
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[11
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 221--221
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 221--221
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[12
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[13
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 236--236
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 236--236
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[14
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[15
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 246--246
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 246--246
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[16
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
 [17
 
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 256--256
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [18
 
+] [19
 
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 256--256
- [][][][]  
- []
+] [20
 
+] [21
 
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [22
 
+] [23
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [24
 
-[18
+] [25
 
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [26
 
+] [27
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [28
 
-[19
+] [29
+
+] [30
+
+] [31
 
 ]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 266--266
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 266--266
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[20
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[21
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 276--276
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 276--276
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[22
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[23
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 291--291
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 291--291
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[24
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[25
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 305--305
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 305--305
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[26
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[27
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 320--320
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 320--320
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[28
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[29
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 336--336
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 336--336
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[30
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 354--354
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 354--354
- [][][][]  
- []
-
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[31
-
-]
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
 [32
 
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 365--365
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [33
 
+] [34
 
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 365--365
- [][][][]  
- []
+] [35
 
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ) in font nullfont!
+] [36
 
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [37
 
+] [38
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [39
 
-[33
+] [40
+
+] [41
+
+] [42
+
+] [43
+
+] [44
+
+] [45
+
+] [46
 
 ]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 378--378
- [][]  \T1/phv/m/n/5 ([])  
- []
+[47
 
+] [48
 
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 378--378
- [][][][]  
- []
+] [49
 
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ) in font nullfont!
+] [50
 
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+] [51
 
+] [52
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [53
 
-[34
+] [54
+
+] [55
+
+] [56
+
+] [57
+
+] [58
+
+] [59
+
+] [60
+
+] [61
 
 ]
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ) in font nullfont!
 
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
+LaTeX Warning: Reference `opomb:expandfLT' on page 62 undefined on input line 5
+52.
 
+[62
 
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
+] [63
 
-[35
+] [64
+
+] [65
+
+] [66
+
+] [67
+
+] [68
+
+] [69
+
+] [70
+
+] [71
+
+] [72
+
+] [73
 
 ]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 387--387
- [][]  \T1/phv/m/n/5 ([])  
- []
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 64
+4.
 
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 387--387
- [][][][]  
- []
-
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ) in font nullfont!
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[36
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 397--397
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 397--397
- [][][][]  
- []
-
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ) in font nullfont!
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[37
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 404--404
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 404--404
- [][][][]  
- []
-
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ( in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no ) in font nullfont!
-
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[38
-
-]
-Overfull \hbox (9.87708pt too wide) in paragraph at lines 417--417
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) in paragraph at lines 417--417
- [][][][]  
- []
-
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 41
-7.
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (9.87708pt too wide) has occurred while \output is active
- [][]  \T1/phv/m/n/5 ([])  
- []
-
-
-Overfull \hbox (22.48659pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[39
+[74
 
 ]
 \tf@nav=\write6
@@ -2059,37 +1332,46 @@ Overfull \hbox (22.48659pt too wide) has occurred while \output is active
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `SeminarskaBeamer.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 26707 strings out of 474435
- 534623 string characters out of 5740045
+ 26759 strings out of 474435
+ 534436 string characters out of 5740045
  1949190 words of memory out of 5000000
- 48389 multiletter control sequences out of 15000+600000
- 588935 words of font info for 70 fonts, out of 8000000 for 9000
+ 48367 multiletter control sequences out of 15000+600000
+ 590790 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,18n,123p,777b,884s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex1
-0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
-mmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-lm/lmmi5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/lm/lmmi7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmr5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/lm/lmsy5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/Uporabnik/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb><C:/Users/Upora
-bnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users
-/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C
-:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8
-a.pfb>
-Output written on SeminarskaBeamer.pdf (39 pages, 450982 bytes).
+ 128i,16n,123p,777b,789s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{opomb:expandfLT} has been referenced but does not e
+xist, replaced by a fixed one
+
+<C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.
+pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmm
+i5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
+lmmi6.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+lm/lmmi8.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmr5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/lm/lmr6.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/lm/lmr8.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/lm/lmsy5.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/lm/lmsy6.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/font
+s/type1/public/lm/lmsy8.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/Uporabnik/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/Uporab
+nik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/
+Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:
+/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
+pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/
+uhvro8a.pfb>
+Output written on SeminarskaBeamer.pdf (74 pages, 714383 bytes).
 PDF statistics:
- 1171 PDF objects out of 1200 (max. 8388607)
- 79 named destinations out of 1000 (max. 500000)
+ 2126 PDF objects out of 2487 (max. 8388607)
+ 150 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-\documentclass[t, 10pt]{beamer} % [t] pomeni poravnavo na vrh slida
+\documentclass[t, 8pt]{beamer} % [t] pomeni poravnavo na vrh slida
 
 % \usepackage{etex} % vključi ta paket, če ti javi napako, da imaš naloženih preveč paketov.
 
@@ -16,9 +16,9 @@
 \renewcommand\textbullet{\ensuremath{\bullet}}  % to get rid of font warnings
 
 % podatki
-\title{Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije}
+\title[Pfaffove DE in uporaba FT ter LT]{Pfaffova DE ter uporaba Fourierjeve in Laplaceove transformacije}
 \author{Jimmy Zakeršnik}
-\institute{Fakulteta za naravoslovje in matematiko}
+\institute[FNM]{Fakulteta za naravoslovje in matematiko}
 
 % tvoj izbran stil predstavitve
 \usefonttheme{professionalfonts}
@@ -353,54 +353,281 @@
 			%\fillblack{0.3}
 		\end{frame}
 		
-		\begin{frame}{Matrike}
-			\begin{block}{Izrek}
-				Naj bo $R$ komutativen polkolobar in $M$ prost $R$-polmodul ranga $r$. Naj bo $T$ neka prosta baza $M$. Potem so za šibko bazo $S$ naslednje trditve ekvivalentne: \begin{enumerate}
-					\item $S$ je prosta baza $M$
-					\item $\abs{S}=r$
-					\item prehodna matrika med $T$ in $S$ je enolično določena in obrnljiva
+		\begin{frame}{Fourierjeva transformacija - Uvod}
+			
+			\begin{block}{Definicija}<1->
+				Množico ekvivalenčnih razredov realnih ali kompleksnih funkcij nad $\R$, glede na enakost skoraj povsod, za katere velja, da je $\int_{\R}\abs{f(x)} dx < \infty$ označimo z $L^1(\R)$ in imenujemo \pojem{množica absolutno integrabilnih funkcij} na $\R$.
+			\end{block}
+			\begin{block}{Definicija}<2->
+					Preslikavo $\map{\mathcal{F}}{L^1(\R)}{\mathcal{C}_b(\R)}$, s predpisom $$\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}e^{iyt}f(t)dt~\forall y\in\R$$ imenujemo \pojem{Fourierjeva transformacija}. Za vsak $f\in L^1(\R)$ pravimo $\mathcal{F}(f)$ \pojem{Fourierjeva transformiranka funkcije} $f$, in jo tipično označimo kar z $\hat{f}$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Fourierjeva transformacija - uvod}
+			\begin{block}{Opomba}<1->
+				Fourierjevo transformacijo lahko definiramo tudi s predpisom: $$\mathcal{F}(f)(y) = \int_{-\infty}^{\infty}f(t)e^{-2\pi ity} dt$$ Vse lastnosti, ki jih bomo navedli v nadaljevanju, veljajo tudi za to definicijo, ko upoštevamo, da je razlika v resnici le v uvedbi nove spremenljivke. V različnih situacijah nam lahko bolj pride prav ena ali druga definicija.
+			\end{block}
+			\begin{block}{Zgled}<2->
+				\begin{itemize}
+					\item Fourierjeva transformiranka funkcije $\chi_{[-a, a]}(t) = \begin{cases}
+						1~&;~ t\in [-a, a] \\
+						0~&;~\text{sicer}
+					\end{cases}$ je $\mathcal{F}(\chi_{[-a, a]})(y) = \frac{2\sin(ay)}{y}$.
+					\item $\mathcal{F}(e^{-\frac{t^2}{2}})(y)=\sqrt{2\pi}e^{-\frac{y^2}{2}}$
+				\end{itemize}
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Pomožni rezultati}
+			\begin{block}{Lema}<1->
+				Naj bo $f$ absolutno integrabilna ($L^1$) funkcija na nekem končnem ali neskončnem intervalu $I$ Potem velja: $$\lim_{\lambda\to\infty}\int_I f(t)cos(\lambda t)dt = 0, \lim_{\lambda\to\infty}\int_I f(t)sin(\lambda t)dt = 0$$ in posledično tudi $$\lim_{\lambda\to\infty}\int_I f(t)e^{i\lambda t}dt = 0$$
+			\end{block}
+			\begin{block}{Lema}<2->
+				Naj bo $\map{f}{[0, \infty)}{\R}$ odvedljiva povsod, razen morda v končno mnogo točkah in naj bo njen odvod, $f'$, integrabilna funkcija. Naj velja tudi $\int_0^\infty f(x)dx < \infty$ in $\int_0^\infty f'(x)dx < \infty$. Dodatno predpostavimo: $$f(x) = \int_{0}^{x} f'(t)dt + f(0) ~\forall x\in [0,\infty)$$ Tedaj je $\lim_{x\to\infty}f(x) = 0$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Lastnosti FT}
+			\begin{block}{Trditev}<1->
+				Naj bosta $f, g\in L^1(\R)$ poljubni. Za fourierjevo transformacijo veljajo naslednje trditve: \begin{enumerate}
+					\item $\mathcal{F}$ je zvezni linearni operator.
+					\item Za vsak $a\in\R\setminus\{0\}$ je $\mathcal{F}(f(at))(y) = \frac{1}{\abs{a}}\mathcal{F}(f(t))(\frac{y}{a})~\forall y\in\R$.
+					\item $\mathcal{F}(\bar{f})(y) = \overline{\mathcal{F}(f)(-y)}~\forall y\in\R$.
+					\item Za vsak $a\in\R$ je $\mathcal{F}(f(t-a))(y)= e^{iay}\mathcal{F}(f(t))(y)~\forall y\in\R$.
+					\item Za vsak $a\in\R$ je $\mathcal{F}(e^{iat}f(t))(y) = \mathcal{F}(f(t))(y+a)~\forall y\in\R$.
+					\item $\forall f\in L^1(\R)$ je funkcija $\mathcal{F}(f)$ enakomerno zvezna na $\R$.
+					\item $\lim_{y\to\infty}\mathcal{F}(f)(y) = 0$
 				\end{enumerate}
 			\end{block}
-			\fillblack{0.3}
+			%\fillblack{0.3}
 		\end{frame}
 		
-		\begin{frame}{Matrike}
+		\begin{frame}{Lastnosti FT}
+			\begin{block}{Izrek}<1->
+				Naj bo $f$ poljubna absolutno integrabilna funkcija na $\R$ z lastnostjo, da njen odvod, $f'$, obstaja povsod, razen morda v končno mnogo točkah, ter je tudi sama absolutno integrabilna funkcija na $\R$. Denimo še, da $\forall x\in \R$ velja $f(x) = \int_0^x f'(t)dt + f(0)$. Tedaj je $\mathcal{F}(f')(y) = (-iy)\mathcal{F}(f)(y)$.
+			\end{block}
+			\begin{block}{Posledica}<2->
+				Denimo, da je $f$ $k$-krat odvedljiva na $\R$ ter, da so $f$ in vsi njeni odvodi absolutno integrabilni na $\R$ ter da je vsak od teh (razen $k$-tega odvoda) integral svojega odvoda $\big(\forall x\in\R, \forall i\in \{1, \ldots, k\}: f^{(i-1)}(x) = \int_{0}^{x}f^{(i)}(t)dt + f^{(i-1)}(0)\big)$. Potem je: $$\mathcal{F}(f^{(k)})(y) = (-iy)^k\mathcal{F}(f)(y)$$
+			\end{block}
+			\begin{block}{Trditev}<3->
+				\begin{enumerate}
+					\item Naj bo $f$ poljubna $\mathcal{C}^1(\R)$ funkcija, za katero velja, da sta $f, f'\in L^1(\R)$. Tedaj je $\mathcal{F}(f) \in L^2(\R)$.
+					\item Naj bo $f$ poljubna $\mathcal{C}^2(\R)$ funkcija, za katero velja, da so $f, f', f''\in L^1(\R)$. Tedaj je $\mathcal{F}(f) \in L^1(\R)$.
+				\end{enumerate}
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Odvod FT}
+			\begin{block}{Izrek}<1->
+				Naj bosta funkciji $f(t)$ in $tf(t)$ obe absolutno integrabilni na $\R$. Tedaj je $\frac{d}{dy}\mathcal{F}(f)(y) = \mathcal{F}(itf)(y)~\forall y\in\R$.
+			\end{block}
+			\begin{block}{Posledica}<2->
+				Naj bodo funkcije $f(t), tf(t), t^2f(t), \ldots, t^nf(t)$ vse absolutno integrabilne na $\R$. Tedaj je $\frac{d^n}{dy^n}\mathcal{F}(f(t))(y) = \mathcal{F}((it)^nf(t))(y) \forall y\in \R$.
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Inverzna FT}
 			\begin{block}{Definicija}<1->
-				Naj bo $R$ polkolobar in $M = R^n$ polmodul nad $R$. Naj bo $A\in M_n(R)$ matrika, ki pripada endomorfizmu \map{h}{M}{M}. Pravimo, da je $\lambda\in R$ \pojem{lastna vrednost} matrike $A$, če obstaja tak $v\in M\setminus\{\theta\}$, da velja $A* v = \lambda \cdot v$. Takemu vektorju $v$, če obstaja, pravimo \pojem{lastni vektor} matrike $A$ za $\lambda$.
+				Za $f\in L^1(\R)$ pravimo, da v točki $t\in\R$ zadošča \pojem{Dinijevem pogoju}, če obstaja tak $a>0$, da obstaja integral $\int_{0}^a \abs{\frac{f(t+u) + f(t-u) - 2f(t)}{u}}du$.
 			\end{block}
 			\begin{block}{Izrek}<2->
-				Naj bo $R$ komutativen dioid in $A\in M_n(R)$. Potem je $\lambda$ lastna vrednost matrike $A$ natanko tedaj, ko so stolpci matrike $\bar{A}(\lambda) = \begin{bmatrix}
-					A & \lambda\cdot I_n \\
-					I_n & I_n
-				\end{bmatrix}$ linearno odvisni. 
+					Če $f\in L^1(\R)$ v točki $t\in\R$ zadošča Dinijevem pogoju (za nek $a>0$), potem velja: $$f(t) = \lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}\mathcal{F}(f)(x)e^{-itx} dx$$
 			\end{block}
-			\fillblack{0.3}
 		\end{frame}
 		
-		\begin{frame}{Pideterminanta in karakteristični pipolinom}
-			\begin{block}{Definicija}
-				Naj bo $R$ nek polkolobar in $X\in M_n(R)$. Urejeni dvojici podani s predpisom \begin{align*}
-					pdt(X) &= \big(\bigoplus_{\substack{\pi\in P^{+}(n) \\ \sigma\in P(n)}}\sigma(\bar{\pi}(X)), \bigoplus_{\substack{\pi\in P^{-}(n) \\ \sigma\in P(n)}}\sigma(\bar{\pi}(X))\big) \\ &= (\llbracket det^{+}(X) \rrbracket, \llbracket det^{-}(X) \rrbracket) = (pdt^{+}(X), pdt^{-}(X))
-				\end{align*} pravimo~\pojem{pideterminanta} matrike $X$.
+		\begin{frame}{Konvolucija}
+			\begin{block}{Definicija}<1->
+				Naj bosta $f, g\in L^1(\R)$. Funkcijo $(f*g)$ s predpisom $(f*g)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt ~\forall x\in\R$ imenujemo \pojem{konvolucija} $f$ in $g$.
 			\end{block}
-			\fillblack{0.3}
+			\begin{block}{Trditev}<2->
+				Naj bodo $f, g, h\in L^1(\R)$ poljubne. Velja: \begin{enumerate}
+					\item $f*g \in L^1(\R)$
+					\item $\forall a\in \R: (af)*g = a(f*g)$
+					\item $(f+g)*h = f*h + g*h$
+					\item $(f*g)*h = f*(g*h)$
+					\item $f*g= g*f$
+				\end{enumerate} 
+			\end{block}
+			\begin{block}{Izrek}<3->
+				Naj bosta $f$ in $g$ absolutno integrabilni funkciji na $\R$. Tedaj velja: $$\mathcal{F}(f*g)(y) = \mathcal{F}(f)(y)\cdot\mathcal{F}(g)(y)$$
+			\end{block}
 		\end{frame}
 		
-		\begin{frame}{Pideterminanta in karakteristični pipolinom}
-			\begin{block}{Definicija}
-				Naj bo $R$ nek polkolobar in $X\in M_n(R)$. \pojem{Karakteristični pipolinom} matrike $X$ v spremenljivki $\lambda$ je urejena dvojica polinomov, podana s predpisom \begin{align*}
-					pp_X(\lambda) &= (\llbracket p_X^{+}(\lambda)\rrbracket, \llbracket p_X^{-}(\lambda)\rrbracket) \\ &= (pp_X^{+}(\lambda), pp_X^{-}(\lambda))
-				\end{align*}
-				Pri tem polinoma $p_X^{+}(\lambda)$ in $p_X^{-}(\lambda)$ dobimo tako, da se pretvarjamo, da delamo nad poljem in zapišemo pripadajoči karakteristični polinom $p_X(\lambda) = p_X^{+}(\lambda) \ominus p_X^{-}(\lambda)$.
-			\end{block}
-			\fillblack{0.3}
-		\end{frame}
-		
-		\begin{frame}{Posplošeni Cayley-Hamiltonov izrek}
+		\begin{frame}{Parsevalova enakost}
 			\begin{block}{Izrek}
-				Naj bo $R$ poljuben polkolobar in $X\in M_n(R)$ neka kvadratna matrika nad $R$. Potem je $pp_{X}^{+}(X) =pp_{X}^{-}(X)$.
+				Naj bo $f$ poljubna $\mathcal{C}^2(\R)$funkcija, za katero velja, da so $f, f', f''\in L^1(\R)$. Tedaj je $$\int_{-\infty}^{\infty}\abs{f(x)}^2dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}\abs{\mathcal{F}(f)(y)}^2dy$$
 			\end{block}
-			\fillblack{0.3}
+			\begin{block}{Zanimivost}
+				Fourierjevo transformacijo se da definirati tudi na $L^1(\R^n)$ (za poljuben $n\in\N$). Lastnosti te transformacije so večinoma naravne analogije lastnosti transformacije za $n = 1$.
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Metoda uporabe}
+			\begin{block}{Opis - NDE}
+				NDE $y^{(n)} = f(x, y, y', \ldots, y^{(n-1)})$ transformiramo s Fourierjevo transformacijo in iz nje izrazimo Fourierjevo transformiranko $Y(\eta)$. Nato poiščemo funkcijo, ki jo FT transformira v $Y$, bodisi preko znanih transformacij, bodisi preko inverzne FT.
+			\end{block}
+			\begin{block}{Opis - PDE}
+				PDE v dveh spremenljivkah transformiramo s FT glede na izbrano spremenljivko (tipično $x$) in iz transformirane enačbe izrazimo transformiranko iskane funkcije $U(\eta, y)$. Nato poiščemo funkcijo, ki jo FT transformira v $U$, bodisi preko znanih transformacij, bodisi preko inverzne FT.
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Primeri uporabe}
+			\begin{block}{Zgled 1}
+				S pomočjo Fourierjeve transformacije rešimo diferencialno enačbo $xy'' + 2y' + xy = 0$.
+				Rešitev: $$y(x) = C\delta_0(x) - i\delta_0'(x) - \frac{i}{3}\delta_0^{(3)}(x)$$ kjer je $\delta_0$ Diracova $\delta$ funkcija s polom v $0$.
+			\end{block}
+			\begin{block}{Zgled 2}
+				S pomočjo Fourierjeve transformacije rešimo enačbo $tu_x(x, t) + u_t(x, t) = 0$, pri začetnem pogoju $u(x, 0) = f(x)$. Rešitev: $$u(x, t) = f(x-\frac{t^2}{2})$$
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Primeri uporabe}
+			\begin{block}{Zgled 3}
+				S pomočjo Fourierjeve transformacije reši toplotno enačbo $u_t = ku_{xx}$ na $\R\times[0, \infty)$ pri začetnem pogoju $u(x, 0) = f(x)$. Rešitev: $$u(x, t)=\frac{1}{\sqrt{2kt}}\int_{-\infty}^{\infty} f(s)e^{\frac{-(x-s)^2}{4kt}}ds$$
+			\end{block}
+			\begin{block}{Zgled 4}
+				Naj bo $c > 0$. Poišči rešitev valovne enačbe z eno prostorsko spremenljivko $\frac{\partial^2 u}{\partial t^2} = c^2\frac{\partial^2 u}{\partial x^2}$ na $\R\times (0, \infty)$ pri začetnih pogojih: $\forall x\in \R: u(x, 0) = f(x)~\&~\frac{\partial u}{\partial t}(x, 0) = g(x)$. Pri tem predpostavi, da sta $f\in \mathcal{C}^2(\R)$ in $g\in\mathcal{C}^1(\R)$.
+				
+				Rešitev: $$u(x, t) = \frac{f(x-ct) + f(x+ct)}{2} + \frac{1}{2c}\int_{x-xt}^{x+ct}g(u)du$$
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Laplaceova transformacija - uvod}
+			\begin{block}{Definicija}<1->
+				Naj bo $a\geq 0$. Za odsekoma zvezno funkcijo $\map{f}{[a, \infty)}{\R}$, za katero obstajata taka $k\in \R$ in $M > 0$, da je $\abs{f(t)}\leq Me^{kt}~\forall t\in [a, \infty)$, pravimo, da je \pojem{funkcija eksponentnega naraščanja} za $M$ in $k$ na $[a,\infty)$.
+			\end{block}
+			\begin{block}{Definicija}<2->
+				Naj bo $\map{f}{[0, \infty)}{\R}$ poljubna funkcija. \pojem{Laplaceova transformiranka} $F$, funkcije $f$ je definirana s predpisom: $$F(z) = \mathcal{L}(f(t))(z) = \int_{0}^{\infty}f(t)e^{-zt}dt$$ tam, kjer integral obstaja.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Pomožni rezultati}
+			\begin{block}{Definicija}<1->
+				Naj bo $D\subset\C$ neprazna odprta množica in $\map{f}{D}{\C}$ funkcija. Naj bo $a\in D$ neka točka. Če obstaja limita $\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}$, jo imenujemo \pojem{kompleksen odvod} funkcije $f$ v točki $a$ in jo označimo z $f'(a)$. Če kompleksen odvod funkcije $f$ obstaja $\forall a\in D$ pravimo, da je $f$ \pojem{holomorfna} na $D$.
+			\end{block}
+			
+			\begin{block}{Goursatov izrek}<2->
+				Naj bo $D$ neprazna odprta množica v $\C$ in $\map{f}{D}{\C}$ holomorfna funkcija na $D$. Tedaj je $f$ analitična na $D$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Lastnosti LT}
+			\begin{block}{Izrek}<1->
+				Denimo, da za funkcijo $\map{f}{[0, \infty)}{\R}$ obstajajo taka števila $M, N > 0, k\in \R$, da velja: \begin{enumerate}
+					\item Funkcija $f$ je integrabilna na $[0, N]$ (posledično je tudi $f(t)e^{-zt}$).
+					\item Funkcija $f$ je funkcija eksponentnega naraščanja za $M$ in $k$ na $[N, \infty)$ (torej $\abs{f(t)}\leq Me^{kt}~\forall t\geq N$).
+				\end{enumerate}
+				Potem $\mathcal{L}(f(t))(z)$ obstaja za vse $z\in\C$ za katere je $Re(z) > k$.
+			\end{block}
+			
+			\begin{block}{Izrek}<2->
+				Naj bo $f$ kosoma zvezna funkcija na $[0, \infty)$ in naj za nek $z_0\in\C$ obstaja $\mathcal{L}(f)(z_0)$. Potem $\mathcal{L}(f)(z)$ obstaja za vse $z\in\C$ za katere je $Re(z) \geq Re(z_0)$
+			\end{block}
+			
+			\begin{block}{Definicija}<3->
+				Številu $\sigma(f) = \inf\{Re(z)~|~\mathcal{L}(f)(z)~\text{obstaja}\}$ pravimo \pojem{abscisa konvergence}.
+			\end{block}
+			\begin{block}{Opomba}<4->
+				Po potrebi razširimo vsako funkcijo $\map{f}{[0,\infty)}{\C}$ na $\R$ tako, da ji za $t<0$ določimo vrednost $0$.
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Lastnosti LT}
+			\begin{block}{Trditev}<1->
+				Za Laplaceovo transformacijo veljajo naslednje lastnosti: \begin{enumerate}
+					\item Laplaceova transformacija je linearna transformacija
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj je: $$\forall \alpha\in\C:~\mathcal{L}(f(t)e^{\alpha t})(z) = \mathcal{L}(f)(z-\alpha)$$
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj (ob razširitvi $f$ iz opombe \ref{opomb:expandfLT}) je $\mathcal{L}(f(t-k))(z) = e^{-kz}\mathcal{L}(f(t))(z)~\forall k > 0$.
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj za vsak $k>0$ velja: $$\mathcal{F}(f(tk))(z) = \frac{1}{k}\mathcal{L}(f(t))(\frac{z}{k})$$
+					\item Če $\mathcal{L}(tf(t))(z)$ in $\mathcal{L}(f(t))(z)$ obstajata za nek $z_0\in\C$, potem je $\frac{d}{dz}(\mathcal{L}(f(t))(z)) = -\mathcal{L}(tf(t))(z)$. Dodatno, če obstajajo $\mathcal{L}(t^kf(t))(z),~\forall k\in\No$, velja: $$\frac{d^k}{dz^k}(\mathcal{L}(f(t))(z)) = (-1)^k\mathcal{L}(t^kf(t))(z)$$
+				\end{enumerate}
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Lastnosti LT}
+			\begin{block}{Zgled}<1->
+				\begin{enumerate}
+				\item $\mathcal{L}(1)(z) = \int_{0}^{\infty}e^{-zt}dt = \frac{1}{z}$ za vse $z\in\C$ za katere je $Re(z) > 0$. \item Za $f(t) = e^{t\alpha}$ hitro vidimo, da je $\mathcal{L}(e^{t\alpha})(z) = \frac{1}{z-\alpha}$ za vse $z\in \{z\in\C~|~Re(z) > \alpha\}$.
+				\end{enumerate}
+			\end{block}
+			\begin{block}{Zgled}<2->
+				Za vse $n\in\C$, za katere je $Re(n)>-1$ velja: $\mathcal{L}(t^n)(z)=z^{-(n+1)}\Gamma(n+1)$ za vse $z\in\C$, za katere je $Re(z) > 0$.
+			\end{block}
+			\begin{block}{Zgled}<3->
+				$\mathcal{L}(t^{-\frac{1}{2}})(z) = \sqrt{\pi}z^{-\frac{1}{2}}$
+			\end{block}
+			%\fillblack{0.3}
+		\end{frame}
+		
+		\begin{frame}{Lastnosti LT}
+			\begin{block}{Izrek}<1->
+				Naj bo $f$ zvezno odvedljiva in naj za nek $z_0\in\C$ obstajata $\mathcal{L}(f(t))(z_0)$ in $\mathcal{L}(f'(t))(z_0)$. Tedaj za vse $z\in\C$, ki zadoščajo pogoju $Re(z) > Re(z_0)$, velja: $$\mathcal{L}(f'(t))(z) = z\mathcal{L}(f(t))(z) - f(0)$$
+				Dodatno, če je $f$ $n$-krat zvezno odvedljiva in za nek $z_0\in\C$ obstajajo $\mathcal{L}(f^{(k)}(t))(z_0)$ za vsak $k\in\{0, 1, \ldots, n\}$, tedaj velja: $$\mathcal{L}(f^{(n)}(t))(z) = z^n\mathcal{L}(f(t))(z) - z^{n-1}f(0) - \ldots -zf^{(n-2)}(0) -  f^{(n-1)}(0)$$
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Inverzna LT}
+			\begin{block}{Izrek}<1->
+				Naj bo $f$ zvezna in odsekoma zvezno odvedljiva funkcija eksponentnega naraščanja na $[0, \infty)$. Denimo tudi, da za nek $z_0\in\C$ obstaja $\mathcal{L}(f)(z_0)$. Tedaj za poljuben $a>Re(z_0)$ v točkah $t \in [0, \infty)$ v katerih je $f$ zvezna in zvezno odvedljiva velja formula: $$\lim_{R\to\infty}\frac{1}{2\pi i}\int_{a-iR}^{a+iR}e^{zt}\mathcal{L}(f)(z)dz = \begin{cases}
+					f(t)~&;~ t\geq 0 \\
+					0~&;~ t < 0
+				\end{cases}$$
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Konvolucija}
+			\begin{block}{Definicija}<1->
+				Konvolucija funkcij $\map{f}{[0,\infty)}{\C}$ in $\map{g}{[0,\infty)}{\C}$ je funkcija $(f*g)$ s predpisom $$(f*g)(x) = \int_{0}^{x} f(t)g(x-t)dt$$
+			\end{block}
+			\begin{block}{Izrek}<2->
+				Naj bosta funkciji $\map{f}{[0,\infty)}{\C}$ in $\map{g}{[0,\infty)}{\C}$ funkciji eksponentnega naraščanja za $M$ in $k$ (od obeh vzamemo večjo konstanto, da zadošča obema). Potem za vsak $z\in\C$, ki zadošča pogoju $Re(z) > k$, velja: $$\mathcal{L}(f*g)(z) = \mathcal{L}(f)(z)\cdot\mathcal{L}(g)(z)$$
+			\end{block}
+			\begin{block}{Zgled}<3->
+				Naj bo $c$ poljubna nenegativna konstanta. Velja: \begin{itemize}
+					\item $\mathcal{L}(\sin(ct))(z) = \frac{c}{z^2 + c^2}$
+					\item $\mathcal{L}(\cos(ct))(z) = \frac{z}{z^2 + c^2}$
+				\end{itemize}
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Metoda uporabe}
+			\begin{block}{Opis}
+				Strategija uporabe je enaka kot pri Fourierjevi transformaciji.
+			\end{block}
+			\begin{block}{Za LNDE $2.$ reda}
+				Naj bo $y'' + ay' + by = f(x)$ Cauchyjeva naloga z začetnima pogojema $y(0) = y_0, y'(0) = v_0$. Tedaj je $\mathcal{L}(y)(z)= \frac{\mathcal{L}(f)(z) +(z+a)y_0 + v_0}{(z^2 + az + b)}$.
+			\end{block}
+			\begin{block}{Primerjava uporabe LT in FT}
+				\begin{itemize}
+					\item Prednosti LT: Močna orodja v kompleksni analizi (npr. Goursatov izrek)
+					\item Prednosti FT: Trenutno poznamo realno analizo bolje kot pa kompleksno
+				\end{itemize}
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Primeri uporabe}
+			\begin{block}{Zgled 1}
+				S pomočjo Laplaceove transformacije reši enačbo $y'' + y' + y = 0$ pri pogojih $y(0) = 0$ in $y'(0) = 1$.
+				Rešitev: $$y(x) = \frac{1}{i\sqrt{3}}e^{-\frac{1 - i\sqrt{3}}{2}x}-\frac{1}{i\sqrt{3}}e^{-\frac{1 + i\sqrt{3}}{2}x}$$
+			\end{block}
+			\begin{block}{Zgled 2}
+				S pomočjo Laplaceove transformacije reši Cauchyjevo nalogo $y'' + 2y' + 5y = 3e^{-x}\sin(x)$ pri pogojih $y(0) = 0, y'(0)=3$. Rešitev: $$y(x) = e^{-x}\sin(x) + e^{-x}\sin(2x)$$
+			\end{block}
+		\end{frame}
+		
+		\begin{frame}{Abelov problem o tautohroni}
+			\begin{block}{Zgled 3}
+					Denimo, da imamo navpično postavljeni žleb po katerem spustimo kroglico. Kakšne oblike mora biti žleb, da bo čas potovanja kroglice po njem do izbrane točke neodvisen od začetne točke, s katere smo kroglico spustili? Pri tem zanemarimo zračni upor in trenje.
+					
+					Rešitev: $$u(\theta)= a(\theta + \sin(\theta)), v(\theta) = a(1-\cos(\theta))$$ To je ravno parametrizacija cikloide.
+			\end{block}
 		\end{frame}
 		
 		\begin{frame}{Literatura}
