@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  6 APR 2024 19:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.10)  9 APR 2024 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1280,13 +1280,14 @@ enc}] [5
 ] [61
 
 ]
-
-LaTeX Warning: Reference `opomb:expandfLT' on page 62 undefined on input line 5
-52.
-
 [62
 
-] [63
+]
+
+LaTeX Warning: Reference `opomb:expandfLT' on page 63 undefined on input line 5
+55.
+
+[63
 
 ] [64
 
@@ -1308,14 +1309,16 @@ LaTeX Warning: Reference `opomb:expandfLT' on page 62 undefined on input line 5
 
 ] [73
 
+] [74
+
 ]
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 64
-4.
+7.
 
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-[74
+[75
 
 ]
 \tf@nav=\write6
@@ -1340,8 +1343,8 @@ Package rerunfilecheck Info: File `SeminarskaBeamer.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 26759 strings out of 474435
- 534436 string characters out of 5740045
+ 26761 strings out of 474435
+ 534455 string characters out of 5740045
  1949190 words of memory out of 5000000
  48367 multiletter control sequences out of 15000+600000
  590790 words of font info for 72 fonts, out of 8000000 for 9000
@@ -1369,9 +1372,9 @@ Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:
 /Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
 pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/
 uhvro8a.pfb>
-Output written on SeminarskaBeamer.pdf (74 pages, 714383 bytes).
+Output written on SeminarskaBeamer.pdf (75 pages, 722089 bytes).
 PDF statistics:
- 2126 PDF objects out of 2487 (max. 8388607)
- 150 named destinations out of 1000 (max. 500000)
+ 2153 PDF objects out of 2487 (max. 8388607)
+ 152 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -153,6 +153,9 @@
 		\begin{block}{Definicija}<2->
 			Pravimo, da je Pfaffova diferencialna enačba $\sum_{i = 1}^n F_i dx_i = 0$ \pojem{integrabilna}, če obstajata taki funkciji $\mu(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$ in $u(x_1, x_2, \ldots, x_n)\in \mathcal{C}^1$, da je $<\nabla u,[dx_1, dx_2, \ldots, dx_n]^\top> = \sum_{i = 1}^n (\mu F_i) dx_i$
 		\end{block}
+		\begin{block}{Opomba}<3->
+			Za Pfaffove DE v treh spremenljivkah velja: $$ Pdx + Qdy + Rdz = 0~\text{je integrabilna}~\iff <[P, Q, R], rot[P, Q, R]> = 0$$
+		\end{block}
 		
 		%\fillblack{0.3}
 	\end{frame}
@@ -267,7 +270,7 @@
 		
 		\begin{frame}{Homogene enačbe}
 			\begin{block}{Opis}<1->
-					Denimo, da je Pfaffova diferencialna enačba $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ homogena reda $m$. Sedaj vpeljemo novi spremenljivki $u$ in $v$, da velja $y = xv$ ter $z = xw$. Tedaj dobi naša enačba obliko $x^m(P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw) = 0$ oziroma $P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw = 0$. Dobljena enačba je enačba z ločljivo spremenljivko (specifično, $x$ je ločljiva), ki jo rešimo po prejšnji metodi.
+					Denimo, da je Pfaffova diferencialna enačba $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ homogena reda $m$. Sedaj vpeljemo novi spremenljivki $w$ in $v$, da velja $y = xv$ ter $z = xw$. Tedaj dobi naša enačba obliko $x^m(P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw) = 0$ oziroma $P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw = 0$. Dobljena enačba je enačba z ločljivo spremenljivko (specifično, $x$ je ločljiva), ki jo rešimo po prejšnji metodi.
 			\end{block}
 			\begin{block}{Zgled}<2->
 				 Ta metoda nam za Pfaffovo DE $x^2yzdx + xy^2zdy + xyz^2dz = 0$ da rešitev, ki jo določa funkcija $u(x, y, z) = \ln\abs{x} + \frac{(y^2 + z^2)}{2x^2}$.
@@ -314,7 +317,7 @@
 				\end{enumerate}
 			\end{block}
 			\begin{block}{Zgled}<2->
-				Bertrandova metoda nam za Pfaffovo DE $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$ da $\mu(x, y, z) = \frac{1}{z}$ in $\lambda(x, y, z) = \frac{(z^2 +1)}{c_3'(z)}$ za poljubno $\mathcal{C}^1$ funkcijo $c_3(z)$. Označimo $f(v) = c_3^{-1}(v)$, dobimo Pfaffovo DE $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$, rešitev pa je podana s funkcijo $g(v, w) = w + \int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv$. Za $c_3(z) = \frac{z^7}{7} + \frac{2z^5}{5} + \frac{z^3}{3}$ dobimo ravno rešitev, ki smo jo dobili s prejšnjima metodama.
+				Bertrandova metoda nam za Pfaffovo DE $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$ da $\mu(x, y, z) = \frac{1}{z}$ in $\lambda(x, y, z) = \frac{(z^2 +1)}{c_3'(z)}$ za poljubno $\mathcal{C}^1$ funkcijo $c_3(z)$. Označimo $f(v) = c_3^{-1}(v)$, dobimo Pfaffovo DE $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$, rešitev pa je (ko upoštevamo $v = c_3(z), f(v) = z$) podana s funkcijo $g(z, w) = w + \int \frac{c_3'(z)^2}{z(z^2 + 1)}dz$. Za $c_3(z) = \frac{z^4}{4} + \frac{z^2}{2}$ dobimo ravno rešitev, ki smo jo dobili s prejšnjima metodama.
 			\end{block}
 			%\fillblack{0.3}
 		\end{frame}
@@ -545,7 +548,7 @@
 					\item Laplaceova transformacija je linearna transformacija
 					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj je: $$\forall \alpha\in\C:~\mathcal{L}(f(t)e^{\alpha t})(z) = \mathcal{L}(f)(z-\alpha)$$
 					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj (ob razširitvi $f$ iz opombe \ref{opomb:expandfLT}) je $\mathcal{L}(f(t-k))(z) = e^{-kz}\mathcal{L}(f(t))(z)~\forall k > 0$.
-					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj za vsak $k>0$ velja: $$\mathcal{F}(f(tk))(z) = \frac{1}{k}\mathcal{L}(f(t))(\frac{z}{k})$$
+					\item Naj za funkcijo $f$ obstaja Laplaceova transformacija. Tedaj za vsak $k>0$ velja: $$\mathcal{L}(f(tk))(z) = \frac{1}{k}\mathcal{L}(f(t))(\frac{z}{k})$$
 					\item Če $\mathcal{L}(tf(t))(z)$ in $\mathcal{L}(f(t))(z)$ obstajata za nek $z_0\in\C$, potem je $\frac{d}{dz}(\mathcal{L}(f(t))(z)) = -\mathcal{L}(tf(t))(z)$. Dodatno, če obstajajo $\mathcal{L}(t^kf(t))(z),~\forall k\in\No$, velja: $$\frac{d^k}{dz^k}(\mathcal{L}(f(t))(z)) = (-1)^k\mathcal{L}(t^kf(t))(z)$$
 				\end{enumerate}
 			\end{block}

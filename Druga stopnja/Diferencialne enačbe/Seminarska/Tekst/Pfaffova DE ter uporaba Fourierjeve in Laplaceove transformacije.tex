@@ -278,8 +278,8 @@
 							\label{zgl:sepvar}
 							Rešujemo enačbo $\frac{(x+y)}{z}dx + \frac{xy+1}{yz}dy + (z^2 + 1)dz = 0$. Enostavno je videti, da $P_z(x, y, z) = \frac{1}{z} \neq 0 = R_x(x, y, z)$, torej naša enačba ni eksaktna. Preverimo pa lahko, da je integrabilna: \begin{align*}
 							P(Q_z - R_y) &+ Q(R_x - P_z) + R(P_y - Q_x) =\\ 
-							&= \frac{x+y}{z}(\frac{xy+1}{yz^2}-0) + \frac{xy+1}{yz}(0-\frac{x+y}{z^2}) + (z^2 +1)(\frac{1}{z} - \frac{1}{z}) \\
-							&= \frac{(x+y)(xy+1)}{yz^3} - \frac{(xy+1)(x+y)}{yz^3} + 0 = 0
+							&= \frac{x+y}{z}(-\frac{xy+1}{yz^2}-0) + \frac{xy+1}{yz}(0+\frac{x+y}{z^2}) + (z^2 +1)(\frac{1}{z} - \frac{1}{z}) \\
+							&= -\frac{(x+y)(xy+1)}{yz^3} + \frac{(xy+1)(x+y)}{yz^3} + 0 = 0
 							\end{align*}
 							Dodatno opazimo, da lahko ločimo spremenljivko $z$ od ostalih s tem, da enačbo pomnožimo z $z$. Preoblikovana enačba se glasi:$$(x+y)dx + \frac{xy+1}{y}dy + z(z^2 +1)dz = 0$$
 						
@@ -291,7 +291,7 @@
 						\end{zgled}
 					
 					\paragraph{Homogene enačbe}
-						Denimo, da je Pfaffova diferencialna enačba $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ homogena reda $m$. Sedaj vpeljemo novi spremenljivki $u$ in $v$, da velja $y = xv$ ter $z = xw$. Tedaj dobi naša enačba obliko $x^m(P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw) = 0$ oziroma $P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw = 0$. Dobljena enačba je enačba z ločljivo spremenljivko (specifično, $x$ je ločljiva), ki jo rešimo po prejšnji metodi.
+						Denimo, da je Pfaffova diferencialna enačba $P(x, y, z)dx + Q(x, y, z)dy + R(x, y, z)dz = 0$ homogena reda $m$. Sedaj vpeljemo novi spremenljivki $w$ in $v$, da velja $y = xv$ ter $z = xw$. Tedaj dobi naša enačba obliko $x^m(P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw) = 0$ oziroma $P(1, v, w)dx + xQ(1, v, w)dv + xR(1, v, w)dw = 0$. Dobljena enačba je enačba z ločljivo spremenljivko (specifično, $x$ je ločljiva), ki jo rešimo po prejšnji metodi.
 						
 						\begin{zgled}
 							\label{zgl:homogen}
@@ -401,8 +401,8 @@
 							\end{align*}
 							
 							Prva enačba nam pove, da je $\mu(x, y, z) = \frac{1}{z}$, kar nam pove tudi druga enačba. Tretja enačba nam določi $\lambda(x, y, z) = \frac{(z^2 +1)}{c_3'(z)}$. Preostane samo še, da s pomočjo $v$ in $w$ izrazimo $\lambda$ in $\mu$, nato pa rešimo enačbo $\lambda(v, w)dv + \mu(v, w)dw = 0$.
-							Opazimo, da sta tako $\lambda$ kot $\mu$ obe v resnici odvisni zgolj od $z$, zato bo parametrizacija neodvisna od $w$, saj je ta neodvisna od $z$. Za parametrizacijo se torej obrnemo na $v(z) = c_3(z)$. Dodatno se omejimo na funkcije $c_3(z)$, ki so bijektivne in $\mathcal{C}^2$, ter tako lahko zapišemo $z = c_3^{-1}(v) = f(v)$. Potem je $\lambda(v) = \frac{1}{f(v)}$ in $\mu(v) = \frac{f^2(v) + 1}{c_3'(f(v))}$. S tem smo originalno enačbo prevedli na reševanje enačbe $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$. Ta enačba ni nujno eksaktna, je pa integrabilna za integrirajoči množitelj $\mu(v, w) = \frac{c_3'(f(v))}{(f^2(v) + 1)}$. Tedaj je rešitev enačbe podana s funkcijo $g(v, w) = w + \int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv$.
-							Nadaljno reševanje problema je odvisno od izbire funkcije $c_3$. Poglejmo si poseben primer, ko je $c_3(z) = \frac{z^7}{7} + \frac{2z^5}{5} + \frac{z^3}{3} = v$. Tedaj je $c_3'(z) = z^6 + 2z^4 + z^2$. Potem je $\int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv = \int \frac{z^6 + 2z^4 + z^2}{z(z^2 + 1)}dz = \int \frac{(z^3 + z)^2dz}{(z^3 + z)} = \int z^3 + z dz = \frac{z^4}{4} + \frac{z^2}{2} + \acute{C}$. Ko to vstavimo v funkcijo $g$ in razpišemo $w(x, y, z)$, dobimo ravno rešitev, ki smo jo dobili v zgledih \ref{zgl:sepvar} in \ref{zgl:natani}.
+							Opazimo, da sta tako $\lambda$ kot $\mu$ obe v resnici odvisni zgolj od $z$, zato bo parametrizacija neodvisna od $w$, saj je ta neodvisna od $z$. Za parametrizacijo se torej obrnemo na $v(z) = c_3(z)$. Dodatno se omejimo na funkcije $c_3(z)$, ki so bijektivne in $\mathcal{C}^2$, ter tako lahko zapišemo $z = c_3^{-1}(v) = f(v)$. Potem je $\lambda(v) = \frac{1}{f(v)}$ in $\mu(v) = \frac{f^2(v) + 1}{c_3'(f(v))}$. S tem smo originalno enačbo prevedli na reševanje enačbe $\frac{dv}{f(v)} + \frac{f^2(v)+1}{c_3'(f(v))}dw = 0$. Ta enačba ni nujno eksaktna, je pa integrabilna za integrirajoči množitelj $\mu(v, w) = \frac{c_3'(f(v))}{(f^2(v) + 1)}$. Tedaj je rešitev enačbe podana s funkcijo $g(v, w) = w + \int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv$. Že tukaj lahko upoštevamo zvezo $v = c_3(z), f(v)=c_3^{-1}(v) = z$ in tako prevedemo integral na integracijo po $z$. Tako dobimo: $g(z, w) = w + \int \frac{c_3'(z)^2}{z(z^2 + 1)}dz$
+							Nadaljno reševanje problema je odvisno od izbire funkcije $c_3$. Poglejmo si poseben primer, ko je $c_3(z) = \frac{z^4}{4} + \frac{z^2}{2}= v$. Tedaj je $c_3'(z) = z^3 + z = z(z^2 + 1)$. Potem je $\int \frac{c_3'(f(v))}{f(v)(f^2(v) + 1)}dv = \int \frac{z^2(z^2 + 1)^2}{z(z^2 + 1)}dz = \int (z^3 + z)dz= \frac{z^4}{4} + \frac{z^2}{2} + \acute{C}$. Ko to vstavimo v funkcijo $g$ in razpišemo $w(x, y, z)$, dobimo ravno rešitev, ki smo jo dobili v zgledih \ref{zgl:sepvar} in \ref{zgl:natani}.
 						\end{zgled}
 						
 						\begin{opomba}
@@ -1180,7 +1180,7 @@
 					Ta vrsta konvergira za vse $z\in\C$ za katere je $Re(z) > \sigma(f)$.
 					\item Naj bo $k>0$ poljubno izbran in $f$ poljubna funkcija, za katero obstaja Laplaceova transformacija. Tedaj, ob vpeljavi nove spremenljivke $u = kt, du = kdt$ velja:
 					\begin{align*}
-						\mathcal{F}(f(tk))(z) &= \int_0^\infty f(kt)e^{-zt}dt = \frac{1}{k}\int_{0}^{\infty}f(u)e^{-z\frac{u}{k}}du = \frac{1}{k}\int_{0}^{\infty}f(u)e^{-\frac{z}{k}u}du \\
+						\mathcal{L}(f(tk))(z) &= \int_0^\infty f(kt)e^{-zt}dt = \frac{1}{k}\int_{0}^{\infty}f(u)e^{-z\frac{u}{k}}du = \frac{1}{k}\int_{0}^{\infty}f(u)e^{-\frac{z}{k}u}du \\
 						&=\frac{1}{k}\mathcal{L}(f(u))(\frac{z}{k})
 					\end{align*}
 					Ta vrsta konvergira za vse $z\in\C$ za katere je $Re(z) > k\sigma(f)$.
