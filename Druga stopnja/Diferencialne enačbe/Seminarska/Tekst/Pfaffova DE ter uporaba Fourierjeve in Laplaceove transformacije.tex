@@ -67,7 +67,7 @@
 \newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
 
 \title{Pfaffova diferencialna enačba ter uporaba Fourierjeve in Laplaceove transformacije \\ {\large Seminarska naloga pri predmetu Diferencialne enačbe}}
-\date{5.~4.~2024}
+\date{9.~4.~2024}
 \author{Jimmy Zakeršnik}
 %===============================================================================
 \begin{document}
@@ -81,7 +81,7 @@
 		
 		\begin{primer}
 			\label{prim:Pfaff1}
-			Najdi rešitev enačbe: $(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$
+			Najdi rešitev enačbe: $(5x^3 + 2y^4 + 2y^2z + 2z^2)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$
 		\end{primer}
 		
 		\begin{primer}
@@ -454,10 +454,10 @@
 						Tako enačbo je pa enostavno rešiti z metodo za enačbe z ločljivo spremenljivko.
 						
 						\begin{zgled}
-							Poskusimo rešit primer \ref{prim:Pfaff1}. Imamo torej enačbo $(5x^3 + 2y^4 + 2y^2z + 2z^3)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$. Najprej preverimo, da je enačba sploh integrabilna.
+							Poskusimo rešit primer \ref{prim:Pfaff1}. Imamo torej enačbo $(5x^3 + 2y^4 + 2y^2z + 2z^2)dx + (4xy^3 + 2xyz)dy + (xy^2 + 2xz)dz = 0$. Najprej preverimo, da je enačba sploh integrabilna.
 							\begin{align*}
 								&P(Q_z - R_y) + Q(R_x - P_z) + R(P_y - Q_x) = \\
-								&= (5x^3 + 2y^4 + 2y^2z + 2z^3)(2xy - 2xy)
+								&= (5x^3 + 2y^4 + 2y^2z + 2z^2)(2xy - 2xy)
 								+ (4xy^3 + 2xyz)(y^2 + 2z - 2y^2 - 4z) \\ 
 								&+ (xy^2 + 2xz)(8y^3 + 4yz - 4y^3-2yz) =\\
 								&= 0 - (4xy^5 + 2xy^3z + 8xy^3z +4xyz^2) + (4xy^5 + 8xy^3z + 2xy^3z + 4xyz^2) \\ 
@@ -469,7 +469,7 @@
 								&4p -m = 0 \\
 								&p +4q -m = 0 \\
 								&p +2q +r -m = 0 \\
-								&p +3r -m = 0 \\
+								&p +2r -m = 0 \\
 								&p +4q -m = 0 \\
 								&p +2q +r -m = 0 \\
 								&p +2r -m = 0 \\
