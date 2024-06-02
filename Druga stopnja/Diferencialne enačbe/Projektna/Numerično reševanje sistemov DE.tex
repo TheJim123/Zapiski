@@ -92,7 +92,7 @@
 \newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
 
 \title{Numerično reševanje sistemov diferencialnih enačb \\ {\large Projektna naloga pri predmetu Diferencialne enačbe}}
-\date{18.~5.~2024}
+\date{2.~6.~2024}
 \author{Jimmy Zakeršnik}
 %===============================================================================
 \begin{document}
@@ -102,7 +102,7 @@
 	\tableofcontents
 	\newpage
 	\section{Uvod}
-	Tekom študija diferencialnih enačb lahko hitro naletimo na posebne primere, katerih splošne rešitve bodisi ne znamo izraziti eksplicitno, bodisi te rešitve sploh ne znamo poračunati (morda z izjemo nekaterih posebnih primerov). V nekaterih od teh primerov lahko posežemo po raznih metodah, ki nam dajo neko partikularno rešitev, v nekaterih pa tudi to (s trenutnimi metodami) ni možno. V slednji situaciji pridejo prav numerične metode za reševanje diferencialnih enačb, ki se neznani analitični rešitvi vsaj približajo. Seveda imajo nekatere metode višji red konvergence in v danem času ali danem številu korakov vrnejo rezultat, ki je boljši približek dejanske rešitve, kot pa druge. V tej nalogi bomo obravnavali Eulerjevo metodo in metodo Runge-Kutta reda $4$, ki se uporabljajo za reševanje sistemov diferencialnih enačb. Dodatno bomo pokazali, kako lahko s tema metodama rešujemo diferencialne enačbe višjih redov, preko pretvorbe v sistem diferencialnih enačb. Informacije bomo primarno črpali iz vira \cite{bib:Matlab}.
+	Tekom študija diferencialnih enačb lahko hitro naletimo na posebne primere, katerih splošne rešitve bodisi ne znamo izraziti eksplicitno, bodisi te rešitve sploh ne znamo poračunati (morda z izjemo nekaterih posebnih primerov). V nekaterih od teh primerov lahko posežemo po raznih metodah, ki nam dajo neko partikularno rešitev, v nekaterih pa tudi to (s trenutnimi metodami) ni možno. V slednji situaciji pridejo prav numerične metode za reševanje diferencialnih enačb, ki se neznani analitični rešitvi vsaj približajo. Seveda imajo nekatere metode višji red konvergence in v danem času ali danem številu korakov vrnejo rezultat, ki je boljši približek dejanske rešitve, kot pa druge. V tej nalogi bomo obravnavali Eulerjevo metodo in metodo Runge-Kutta reda $4$, ki se uporabljajo za reševanje sistemov diferencialnih enačb. Dodatno bomo pokazali, kako lahko s tema metodama rešujemo diferencialne enačbe višjih redov, preko pretvorbe v sistem diferencialnih enačb. Informacije bomo primarno črpali iz vira \cite{bib:Matlab}. Na koncu bomo omenjeni metodi primerjali na podlagi grafov rešitev.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	\section{Eulerjeva metoda}
 		V tem poglavju bomo na kratko opisali Eulerjevo metodo za reševanje sistemov diferencialnih enačb (krajše: SDE). Za lažjo predstavo bomo to najprej storili na primeru sistema \begin{align*}
@@ -384,6 +384,8 @@
 					y_1 &= y_0 + \frac{d}{6}(g_1 + 2g_2 + 2g_3 + g4)= \underline{3'196}
 				\end{align*}
 			\end{resitev}
+			
+		\section{Primerjava metod}
 			
 		Sedaj, ko smo oba primera rešili z obema metodama, bomo še s pomočjo grafov primerjali rešitve. Začnimo z rešitvami prve naloge:
 		

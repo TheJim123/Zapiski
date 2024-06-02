@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.18)  26 MAY 2024 18:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.18)  2 JUN 2024 19:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1041,29 +1041,29 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 <Prim1x.jpg, id=47, 379.4175pt x 294.34969pt>
 File: Prim1x.jpg Graphic file (type jpg)
 <use Prim1x.jpg>
-Package pdftex.def Info: Prim1x.jpg  used on input line 392.
+Package pdftex.def Info: Prim1x.jpg  used on input line 394.
 (pdftex.def)             Requested size: 284.56242pt x 220.7617pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 393.
+(Font)              <9> on input line 395.
 <Prim1y.jpg, id=48, 381.67593pt x 299.61937pt>
 File: Prim1y.jpg Graphic file (type jpg)
 <use Prim1y.jpg>
-Package pdftex.def Info: Prim1y.jpg  used on input line 400.
+Package pdftex.def Info: Prim1y.jpg  used on input line 402.
 (pdftex.def)             Requested size: 286.25624pt x 224.71397pt.
  [10 <./Prim1x.jpg>]
 <Prim1z.jpg, id=56, 385.44pt x 294.34969pt>
 File: Prim1z.jpg Graphic file (type jpg)
 <use Prim1z.jpg>
-Package pdftex.def Info: Prim1z.jpg  used on input line 408.
+Package pdftex.def Info: Prim1z.jpg  used on input line 410.
 (pdftex.def)             Requested size: 289.07928pt x 220.7617pt.
  [11 <./Prim1y.jpg> <./Prim1z.jpg>]
 <Prim2x.jpg, id=60, 374.14781pt x 289.08pt>
 File: Prim2x.jpg Graphic file (type jpg)
 <use Prim2x.jpg>
-Package pdftex.def Info: Prim2x.jpg  used on input line 420.
+Package pdftex.def Info: Prim2x.jpg  used on input line 422.
 (pdftex.def)             Requested size: 280.61015pt x 216.80946pt.
 
-Underfull \hbox (badness 2486) in paragraph at lines 429--430
+Underfull \hbox (badness 2486) in paragraph at lines 431--432
 []\T1/lmr/m/n/10 J. Ma-thews in K. Fink, |   []   |   []   |   []   |   []   | 
   []
  []
@@ -1081,7 +1081,7 @@ Here is how much of TeX's memory you used:
  47826 multiletter control sequences out of 15000+600000
  625413 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,93p,1119b,1675s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,9n,93p,1188b,1675s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -1099,7 +1099,7 @@ ams/MiKTeX/fonts/type1/public/lm/lmri9.pfb><C:/Users/Uporabnik/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/L
 ocal/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
-Output written on "Numerično reševanje sistemov DE.pdf" (12 pages, 399170 byt
+Output written on "Numerično reševanje sistemov DE.pdf" (12 pages, 399426 byt
 es).
 PDF statistics:
  138 PDF objects out of 1000 (max. 8388607)
