@@ -1,0 +1,106 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+%\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx, float}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{ulem}
+\usepackage{cancel}
+%\usepackage{algorithm2e}
+%\usepackage{color, listings}
+%\usepackage{cleveref}
+
+\newtheorem{izr}{Izrek}
+\newtheorem{lem}{Lema}
+\newtheorem{trd}{Trditev}
+\newtheorem{posl}{Posledica}[izr]
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{primercount}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\refstepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{primer}{\begin{flushleft}\refstepcounter{primercount}\textbf{Primer \arabic{primercount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\refstepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\refstepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\naslov}[1]{\textit{#1}}
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\Zp}{\mth{Z}^{+}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Q}{\mth{Q}}
+\newcommand{\Qu}{\mth{Q}_u}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\title{Uporaba MEX principa v igri Nim in uvod v igro Hackenbush\\ {\large Seminarska naloga pri predmetu Diskretna matematika $2$}}
+\date{10.~6.~2024}
+\author{Jimmy Zakeršnik}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\thispagestyle{empty}
+	\newpage
+	\tableofcontents
+	\newpage
+	\section{Uvod}
+	V tem delu bomo povzeli nekaj osnovnih lastnosti nepristranskih kombinatoričnih iger, pokazali, da je vsaka končna vsota pozicij poljubnih nepristranskih iger ekvivalentna neki poziciji v igri Nim, ter demonstrirali uporabo MEX principa pri določanju te ">vrednosti"<. Nato bomo premislili še lastnosti igre Nim, če v njej dopuščamo neskončne kupčke. Na koncu, bomo opisali pristransko igro Hackenbush in uvedli nekaj osnovnih pojmov za nadaljni študij pristranskih iger.
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\section{Osnovni pojmi in rezultati}
+	Preden predstavimo glavne vsebine tega dela, se spomnimo nekaj pomembnih definicij in rezultatov.
+	\begin{definicija}
+		Kombinatorična igra je \pojem{normalna}, če v njej zmaga tisti igralec, ki je zadnji izvedel dopustno potezo (oz. izgubi tisti igralec, ki prvi ne more izvesti dopustne poteze). Če poleg tega za dano igro velja, da so množice dopustnih potez vsakega igralca v vsaki poziciji enake, pravimo, da je igra \pojem{nepristranska}, sicer pa, da je \pojem{pristranska}.
+	\end{definicija}
+	
+	Definirajmo sedaj še znane nepristranske igre, ki nas bodo zanimale.
+	
+	\begin{definicija}
+		\begin{itemize}
+			\item[Reži] V igri Reži igralca Lea in Drago režeta mrežasto ploščo velikosti $m\times n$, ki je v skrajno spodnjem levem kvadratku pritrjena na stojalo. Ko je igralec na vrsti, izbere bodisi nek stolpec in ga s tem odreže (odstrani) skupaj z vsemi stolpci, ki so desno od njega, bodisi izbere neko vrstico in jo s tem odreže skupaj z vsemi vrsticami, ki so nad izbrano. Pri tem ne more izbrati stolpca oz. vrstice, ki vsebuje kvadratek, ki je pritrjen na stojalo. Zmaga tisti igralec, ki zadnji opravi dopusten rez.
+			\item[Grizii] V igri Reži igralca Lea in Drago grizeta mrežasti kolač velikosti $m\times n$, ki ima v skrajno spodnjem levem kvadratku strup. Ko je igralec na vrsti, izbere nek kvadratek (razen tistega s strupom) in s tem odreže vse kvadratke, ki so desno ali nad izbranim, vključno z njim. Zmaga tisti igralec, ki zadnji opravi dopusten griz.
+			\item[Pobiranje opek] V igri Nim igralca Lea in Drago pobirata opeke s kupa $k$-tih opek. Ko je na vrsti, igralec pobere eno ali pa dve opeki. Zmaga tisti, ki je zadnji pobral kako opeko.
+			\item[Nim] V igri Nim igralca Lea in Drago pobirata kamenčke s $k$-tih kupov. Ko je na vrsti, igralec izbere kup in z njega pobere poljubno število kamenčkov (najmanj enega, največ vse na kupu). Zmaga tisti igralec, ki je zadnji pobral kamenček.
+		\end{itemize}
+	\end{definicija}
+	
+	
+\end{document}
