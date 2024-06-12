@@ -1,0 +1,5 @@
+\babel@toc {slovene}{}\relax 
+\contentsline {section}{\numberline {1}Uvod}{3}{}%
+\contentsline {section}{\numberline {2}Osnovni pojmi in rezultati}{3}{}%
+\contentsline {section}{\numberline {3}Izrek Sprague-Grundy in uporaba MEX principa}{4}{}%
+\contentsline {section}{\numberline {4}Hackenbush in uvod v pristranske igre}{7}{}%

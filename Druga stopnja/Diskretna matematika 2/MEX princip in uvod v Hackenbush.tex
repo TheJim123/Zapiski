@@ -91,16 +91,181 @@
 		Kombinatorična igra je \pojem{normalna}, če v njej zmaga tisti igralec, ki je zadnji izvedel dopustno potezo (oz. izgubi tisti igralec, ki prvi ne more izvesti dopustne poteze). Če poleg tega za dano igro velja, da so množice dopustnih potez vsakega igralca v vsaki poziciji enake, pravimo, da je igra \pojem{nepristranska}, sicer pa, da je \pojem{pristranska}.
 	\end{definicija}
 	
-	Definirajmo sedaj še znane nepristranske igre, ki nas bodo zanimale.
+	Navedimo nekaj znanih nepristranskih iger, ki nas bodo zanimale.
 	
 	\begin{definicija}
+		\label{def:impartialgames}
 		\begin{itemize}
-			\item[Reži] V igri Reži igralca Lea in Drago režeta mrežasto ploščo velikosti $m\times n$, ki je v skrajno spodnjem levem kvadratku pritrjena na stojalo. Ko je igralec na vrsti, izbere bodisi nek stolpec in ga s tem odreže (odstrani) skupaj z vsemi stolpci, ki so desno od njega, bodisi izbere neko vrstico in jo s tem odreže skupaj z vsemi vrsticami, ki so nad izbrano. Pri tem ne more izbrati stolpca oz. vrstice, ki vsebuje kvadratek, ki je pritrjen na stojalo. Zmaga tisti igralec, ki zadnji opravi dopusten rez.
-			\item[Grizii] V igri Reži igralca Lea in Drago grizeta mrežasti kolač velikosti $m\times n$, ki ima v skrajno spodnjem levem kvadratku strup. Ko je igralec na vrsti, izbere nek kvadratek (razen tistega s strupom) in s tem odreže vse kvadratke, ki so desno ali nad izbranim, vključno z njim. Zmaga tisti igralec, ki zadnji opravi dopusten griz.
-			\item[Pobiranje opek] V igri Nim igralca Lea in Drago pobirata opeke s kupa $k$-tih opek. Ko je na vrsti, igralec pobere eno ali pa dve opeki. Zmaga tisti, ki je zadnji pobral kako opeko.
-			\item[Nim] V igri Nim igralca Lea in Drago pobirata kamenčke s $k$-tih kupov. Ko je na vrsti, igralec izbere kup in z njega pobere poljubno število kamenčkov (najmanj enega, največ vse na kupu). Zmaga tisti igralec, ki je zadnji pobral kamenček.
+			\item V igri \pojem{Reži} igralca Lea in Drago režeta mrežasto ploščo velikosti $m\times n$, ki je v skrajno spodnjem levem kvadratku pritrjena na stojalo. Ko je igralec na vrsti, izbere bodisi nek stolpec in ga s tem odreže (odstrani) skupaj z vsemi stolpci, ki so desno od njega, bodisi izbere neko vrstico in jo s tem odreže skupaj z vsemi vrsticami, ki so nad izbrano. Pri tem ne more izbrati stolpca oz. vrstice, ki vsebuje kvadratek, ki je pritrjen na stojalo. Zmaga tisti igralec, ki zadnji opravi dopusten rez.
+			
+			\item V igri \pojem{Pobiranje opek} igralca Lea in Drago pobirata opeke s kupa $k$-tih opek. Ko je na vrsti, igralec pobere eno ali pa dve opeki. Zmaga tisti, ki je zadnji pobral kako opeko.
+			
+			\item V igri \pojem{Nim} igralca Lea in Drago pobirata kamenčke s $k$-tih kupov. Ko je na vrsti, igralec izbere kup in z njega pobere poljubno število kamenčkov (najmanj enega, največ vse na kupu). Zmaga tisti igralec, ki je zadnji pobral kamenček.
 		\end{itemize}
 	\end{definicija}
+	\begin{definicija}
+		Naj bodo $a_1, \ldots, a_n$ poljubna nenegativna cela števila.
+		\begin{itemize}
+			\item \pojem{Nim-vsota} nenegativnih celih števil $a_1, \ldots, a_n$, z oznako $a_1 \oplus \ldots \oplus a_n$, je vsota vseh potenc $2^j$, za katere velja, da se v dvojiškem razcepu $a_1, \ldots, a_n$ pojavijo liho krat.
+			\item \pojem{MEX} množice $\{a_1, \ldots, a_n\}$ je najmanjše nenegativno celo število, ki ni vsebovano v $\{a_1, \ldots, a_n\}$.
+		\end{itemize}
+		
+	\end{definicija}
+	\begin{opomba}
+		Pozicijo igre Nim, v kateri imamo $n$ kupčkov z $a_1, \ldots, a_n$ kamenčki, bomo označili z $*a_1 + \ldots + *a_n$.
+	\end{opomba}
+	
+	\begin{definicija}
+		Naj bo $*a_1 + \ldots + *a_n$ neka pozicija v igri Nim. Če se v dvojiških razcepih števil $a_1, \ldots, a_n$ vsaka potenca števila $2$ pojavi sodo mnogo krat, pravimo, da je ta pozicija \pojem{uravnotežena}, sicer je pa \pojem{neuravnotežena}
+	\end{definicija}
+	
+	Neuravnoteženo pozicijo $*a_1 + \ldots + *a_n$ v igri Nim ">uravnotežimo"< na naslednji način: Naj bo $2^m$ največja potenca števila $2$, za katero v poziciji nastopi liho mnogo podkupčkov te velikosti. Naj bo $*a_i$ kupček, ki vsebuje podkupček moči $2^m$. Najprej iz kupčka začasno vzamemo vsak podkupček moči $2^m$ ali manj. Nato za vsak $j < m$, če je v igri ostalo liho mnogo podkupčkov moči $2^j$, na izbrani kup vrnemo $2^j$ kamenčkov.
+	
+	\begin{izr}\label{izr:MEX} Veljajo naslednje trditve:
+		\begin{enumerate}
+			\item V igri Nim je vsaka uravnotežena pozicija tipa $P$, vsaka neuravnotežena pozicija pa tipa $N$.
+			\item Za poljubna števila $a_1, \ldots, a_n \in \No$ velja: $*a_1+ \ldots+ *a_n = *(a_1\oplus \ldots\oplus a_n)$ (pri tem $*k$ predstavlja kupček s $k$ kamenčki v igri Nim).
+			\item (Princip MEX) Naj bo $\alpha = \{\alpha_1, \ldots, \alpha_n\}$ poljubna pozicija v poljubni nepristranski igri in denimo, obstajajo $a_1, \ldots, a_n\in\No$ da je $\alpha_i \equiv *a_i~\forall i \in \{1, \ldots, n\}$. Tedaj je $\alpha \equiv *MEX(\{a_1, \ldots, a_n\})$.
+		\end{enumerate}
+	\end{izr}
+	
+	Na podlagi prve točke izreka \ref{izr:MEX} lahko tudi formuliramo zmagovalno strategiji za igralca: Če je začetna pozicija uravnotežena, bo imel drugi igralec zmagal, če bo po vsaki potezi prvega igralca uravnotežil novo pozicijo. Če je pa začetna pozicija neuravnotežena, bo zmagal prvi igralec, če bo začetno pozicijo uravnotežil, nato pa sledil prej opisani strategiji drugega igralca za igro, ki se začne v uravnoteženi poziciji.
+	
+	\section{Izrek Sprague-Grundy in uporaba MEX principa}
+	Sedaj, ko smo navedli osnovne pojme in rezultate, bomo pokazali, da je vsaka pozicija poljubne nepristranske igre ekvivalentna neki poziciji v igri Nim.
+	\begin{izr}[Sprague-Grundy]
+		Za poljubno pozicijo $\alpha$ poljubne nepristranske igre obstaja $b\in\No$, da je $\alpha\equiv *b$.
+	\end{izr}
+	\begin{proof}
+		Naj bo $\alpha$ poljubna pozicija v poljubni nepristranski igri. Dokaz bo potekal preko indukcije po globini pozicije (v drevesu igre). Pri tem se seveda držimo predpostavke, da je globina vsake pozicije končna (oz. igra se bo vedno končala, ne glede na potek). Če je globina $\alpha$ enaka $0$, potem se nahajamo v končni poziciji in v tej noben igralec ne more narediti dopustne poteze. Sledi, da je $\alpha \equiv *0$. Denimo sedaj, da je globina $\alpha$ enaka $k>0$ ter da za vsako pozicijo z manjšo globino izrek velja. Potem lahko zapišemo $\alpha = \{\alpha_1, \ldots, \alpha_n\}$. Za vsak $i\in \{1, \ldots, n\}$ ima pozicija $\alpha_i$ manjšo globino od $\alpha$, torej obstaja tak $a_i\in\No$, da je $\alpha_i\equiv a_i$. Po tretji točki izreka \ref{izr:MEX} je potem $\alpha \equiv *MEX(\{a_1, \ldots, a_n\})$. 
+	\end{proof}
+	
+	\begin{opomba}
+		Od sedaj naprej bomo vsaki poziciji oblike $*b$ pravili \pojem{nimber}.
+	\end{opomba}
+	
+	S pomočjo tega izreka, se lahko sedaj lotimo še drugih nepristranskih iger. Še več, obravnavamo lahko poljubno vsoto pozicij, tudi iz različnih nepristranskih iger. To storimo tako, da najprej določimo nimber vsaki posamezni poziciji, nato pa igro obravnavamo kot igro Nim. Da bo ideja bolj jasna, si jo poglejmo na primeru igre Reži.
+	
+	\begin{primer}
+		Vsako pozicijo igre reži označimo z $C_{m, n}$, kjer je $m$ število vrstic in $n$ število stolpcev (plošča je pritrjena v kvadratu, ki je v prvem stolpcu in prvi vrstici). S pomočjo MEX principa določimo nimberje nekaterim preprostim pozicijam:
+		\begin{align*}
+			C_{1, 1} &= \{~\} \equiv *0 \\
+			C_{1, 2} &= \{C_{1, 1}\} \equiv \{*0\} \equiv *1 \\
+			C_{2, 1} &= \{C_{1, 1}\} \equiv \{*0\} \equiv *1 \\
+			C_{1, 3} &= \{C_{1, 1}, C_{1, 2}\} \equiv \{*0, *1\} \equiv *2 \\
+			C_{2, 2} &= \{C_{2, 1}, C_{1, 2}\} \equiv \{*1, *1\} \equiv *0 \\
+			C_{2, 3} &= \{C_{2, 1}, C_{2, 2}, C_{1, 3}\} \equiv \{*1, *0, *2\} \equiv *3 \\
+		\end{align*}	
+	\end{primer}
+	
+	Za igro reži velja še naslednji izrek:
+	\begin{izr}
+		\label{izr:Reži}
+		Za poljubna $m, n\in\N$ v igri Reži velja: $C_{m, n} \equiv *(m-1) + *(n-1)$.
+	\end{izr}
+	Dokaz bomo izpustili, saj gre za preprosto indukcijo po vsoti $m+n$ in uporabo MEX principa.
+	Preden gremo na primer, kjer seštejemo pozicije iz različnih iger, pokažimo še naslednji izrek o igri Pobiranje opek.
+	
+	\begin{izr}
+		\label{izr:Pobiranje}
+		Naj bo $n = 3l + k$, kjer so $n, k\in \N$ in $k\in \{0, 1, 2\}$. Potem za pozicijo igre Pobiranje opek z $n$ opekami, $P_n$ velja: $P_n \equiv *k$.
+	\end{izr}
+	\begin{proof}
+		Izrek bomo dokazali z indukcijo po $n$. Najprej premislimo, da velja za $n\in \{0, 1\}$.
+		Če je $n = 0$, smo v končni poziciji, torej je $P_0 \equiv *0$. S pomočjo MEX principa potem vidimo, da je $P_1 = \{P_0\}\equiv\{*0\}\equiv *1$. Naj bo sedaj $n \geq 2$ in predpostavimo, da izrek velja za vse pozicije igre z manj kot $n$ opekami. Velja: $P_n = \{P_{n-1}, P_{n-2}\}$. Po predpostavki iz formulacije izreka je $n = 3l + k$. Ko to upoštevamo, obravnavamo možnosti glede na vrednost $k$:
+		\begin{align*}
+			k = 0 &; ~P_n = \{P_{3(l-1)+2}, P_{3(l-1)+1}\} \equiv \{*2, *1\}\equiv *0 \\
+			k = 1 &; ~P_n = \{P_{3l}, P_{3(l-1)+2}\} \equiv \{*0, *2\}\equiv *1 \\
+			k = 2 &; ~P_n = \{P_{3l + 1}, P_{3l}\} \equiv \{*1, *0\}\equiv *2 
+		\end{align*}
+		Torej je res $P_n\equiv *k$.
+	\end{proof}
+	
+	Sedaj s pomočjo dokazanih rezultatov obravnavajmo pozicijo, sestavljeno iz pozicij različnih iger.
+	\begin{primer}
+		Obravnavamo pozicijo $C_{2, 3} + P_7 + (*3 + *4)$. Najprej s pomočjo izreka \ref{izr:Reži} vidimo, da je $C_{2, 3}\equiv *1 + *2 \equiv *(1\oplus 2) \equiv *3$. Nato s pomočjo izreka \ref{izr:Pobiranje} vidimo, da je $P_7 \equiv *1$. Na koncu še poračunamo $*3 + *4 = *(3\oplus 4) \equiv *7$. Naša začetna pozicija je torej ekvivalentna poziciji $*3 + *1 + *7$ v igri Nim. Hitro vidimo, da je ta pozicija neuravnotežena, kar pomeni, da je tipa $N$. Po zmagovalni stretegiji za igro Nim bo potem prvi igralec kupček $*7$ spremenil v $*2$. To lahko v originalni poziciji doseže tako, da iz kupčka s $4$ kamenčki odstrani $3$. Nova pozicija bo torej $C_{2, 3} + P_7 + (*3 + *1)$.
+	\end{primer}
+	
+	Za konec tega razdelka premislimo še igro Nim, v kateri dopuščamo kupčke z neskončno mnogo kamni: $*\infty$. Dodamo naslednje pravilo: Kadar igralec izbere kupček z neskončno kamni, ga lahko zmanjša na poljuben končno velik kupček. V skladu s tem vpeljemo oznako $*\infty = \{*0, *1, *2, \ldots\}$.
+	
+	Očitno je, da je pozicija $*\infty$ tipa $N$; zmagovalna strategija je ta, da prvi igralec pobere vse kamenčke. Vidimo tudi, da je pozicija $*\infty + *\infty$ tipa $P$: Denimo, da prvi igralec v svoji potezi zmanjša enega od neskončnih kupčkov na $*n$, za nek $n\in\N$. Potem drugi igralec zmanjša drugi kupček na isto velikost. Tako preidemo v uravnoteženo pozicijo igre Nim, v kateri je na vrsti prvi igralec. Sedaj drugi igralec sledi običajni zmagovalni strategiji. 
+	
+	\begin{trd}
+		V igri Neskončen Nim je pozicija $*\infty + \ldots + *\infty$:\begin{itemize}
+			\item tipa $P$, če je število členov sodo
+			\item tipa $N$, če je število členov liho
+		\end{itemize}
+	\end{trd}
+	\begin{proof}
+		Denimo najprej, da je členov sodo mnogo in določimo zmagovalno strategijo za drugega igralca. Če prvi igralec zmanjša nek neskončni kupček v končnega, drugi igralec posnema to potezo na nekem drugem neskončnem kupčku. Če prvi igralec zmanjša kakega izmed končnih kupčkov, npr. moči $n$, ki so nastali po nekaj korakih igre, potem pa drugi igralec naredi enako na drugem kupčku moči $n$. Ttak kupček bo zagotovo obstajal, saj je izbrani kup nastal iz neskončnega, drugi igralec pa je posnemal prvega. Na ta način bo slej kot prej igra prišla v pozicijo, v kateri bodo vsi kupčki končni in vsak kupček v tej pozicij bo imel par, ki je enake velikosti. Taka pozicija je pa ravno uravnotežena pozicija v igri Nim, torej tipa P. Seveda bo v tej poziciji začel prvi igralec, torej ima drugi igralec zmagovalno strategijo, ki ji sledi do konca.
+		
+		Denimo sedaj, da je število členov liho. Tedaj je $*\infty + *\infty + \ldots + *\infty \equiv *\infty + (*\infty + \ldots + *\infty)$. V oklepaju je sodo mnogo členov, torej je tam pozicija tipa $P$. Potem je naša začetna pozicija ekvivalentna poziciji $*\infty + *0 \equiv *\infty$, tip te pozicije pa je seveda $N$.	
+	\end{proof}
 	
 	
+	Na podlagi prejšnjih premislekov sklepamo, da je v nadaljevanju zadostno, če obravnavamo samo še pozicije oblike $*a_1 + \ldots + *a_n + *\infty$ (če imamo poleg končnih kupčkov še liho mnogo neskončnih, je to ekvivalentno poziciji v kateri bi poleg končnih imeli le enega neskončnega, če jih imamo sodo, pa je to ekvivalentno pozicij, v kateri imamo le končne kupe). Hitro vidimo, da je taka pozicija tipa $N$.
+	
+	Zmagovalna strategija prvega igralca je naslednja: Če je naša trenutna pozicija $*a_1 + \ldots + *a_n + *\infty$ in je $b = a_1 \oplus \ldots \oplus a_n$, potem prvi igralec zmanjša $*\infty$ na $*b$ in s tem preide v uravnoteženo pozicijo običajne igre Nim. Sedaj sledi zmagovalni strategiji kot drugi igralec v običajni igri Nim, ki se začne v uravnoteženi poziciji.
+	
+	\section{Hackenbush in uvod v pristranske igre}
+	Za začetek navedimo opišimo igro Hackenbush
+	\begin{definicija}
+		V igri \pojem{Hackenbush} imamo graf, katerega pobarvane so pobarvane z zeleno ali modro barvo. Graf je z nekaterimi povezavami pritrjen na tla. Ko je na vrsti, Drago izbere in izbriše eno modro povezavo, Lea pa eno zeleno. Čim kaka komponenta več ni povezana s tlemi, se jo v celoti izbriše. Zmaga igralec, ki zadnji uspešno odstrani povezavo.
+	\end{definicija}
+	
+	Hitro lahko vidimo, da je ta igra pristranska, izkaže pa se tudi, da za pristranske igre igra podobno vlogo kot igra Nim za nepristranske.
+	
+	Za začetek z $\bullet 0$ označimo pozicijo v igri, v kateri ni nobenih povezav. Na podlagi znanih rezultatov o $\equiv$ vidimo, da velja naslednja trditev:
+	
+	\begin{trd}
+		Za poljubno pozicijo $\alpha$ v igri Hackenbush velja: $$\alpha \equiv\bullet 0 \iff \alpha ~\text{je tipa}~ P$$
+	\end{trd}
+	
+	\begin{definicija}
+		Naj bo $\alpha$ poljubna pozicija v igri Hackenbush. Negacija pozicije $\alpha$, z oznako $-\alpha$, je pozicija z enakim grafom kot $\alpha$, v katerem so barve povezav zamenjane. Torej, če je povezava v $\alpha$ modra, potem je v $-\alpha$ zelena in obratno.
+	\end{definicija}
+	
+	Za negacije pozicij v igri Hackenbush veljajo naslednje trditve:
+	
+	\begin{trd}
+		\label{trd:hackenbush}
+		Naj bosta $\alpha$ in $\beta$ poljubni poziciji igre Hackenbush. Tedaj velja: \begin{enumerate}
+			\item $-(-\alpha)\equiv \alpha$
+			\item $\alpha + (-\alpha)\equiv \bullet 0$
+			\item $\beta + (-\alpha) \equiv \bullet 0 \Rightarrow \alpha \equiv \beta$
+		\end{enumerate}
+	\end{trd}
+	\begin{proof}
+		Prva točka sledi direktno iz definicije negacije. Da pokažemo drugo točko, je dovolj da pokažemo, da je $\alpha + (-\alpha)$ tipa $P$. Zmagovalna strategija drugega igralca je strategija simetrije: Če prvi igralec izbriše povezavo v $\alpha$, potem drugi igralec izbriše istoležno povezavo v $-\alpha$. S tem se ohranja simetričnost pozicije, hkrati pa zagotovi, da bo drugi igralec imel zadnjo potezo (saj je $\bullet 0$ očitno simetrična pozicija).
+		Dokažimo sedaj še tretjo točko: $$ \beta + (-\alpha) \equiv \bullet 0 \Rightarrow \beta + (-\alpha) + \alpha \equiv \alpha$$ oziroma $\beta + \bullet 0 \equiv \alpha$. Sledi, da je $\beta\equiv\alpha$.
+	\end{proof}
+	
+	Vemo že, da je seštevanje pozicij komutativno in asociativno. Poleg tega ima v igri Hackenbush tudi enoto in vsaka pozicija v igri Hackenbush ima tudi svoj inverzni element - negacijo. Pozicije igre Hackenbush s seštevanjem pozicij torej ima strukturo Abelove grupe.
+	
+	\begin{definicija}
+		Za vsako naravno število $n\in\N$ definiramo Hackenbush pozicijo $\bullet n$ kot pozicijo, ki je sestavljena iz natanko $n$ paroma disjunktnih zelenih povezav in $\bullet(-n)$ kot pozicijo, ki je sestavljena iz natanko $n$ paroma disjunktnih modrih povezav.
+	\end{definicija}
+	Hiter premislek nam pokaže naslednjo relacijo med negacijo in $\bullet$.
+	\begin{izr}
+		Za poljubna $m, n \in \Z$ velja: \begin{enumerate}
+			\item $-(\bullet n)\equiv \bullet(-n)$
+			\item $(\bullet m) + (\bullet n) \equiv \bullet(m + n)$
+		\end{enumerate}
+	\end{izr}
+	
+	Za konec še premislimo obstoj Hackenbush pozicij z vrednostjo ulomka.
+	
+	Z $\alpha$ označimo Hackenbush pozicijo, ki je sestavljena iz navpične poti dolžine $2$, kjer je spodnja povezava zelena, zgornja pa modra. Hiter premislek pokaže, da je potem $\alpha + \alpha + \bullet(-1) \equiv \bullet 0$ (dovolj je, da vidimo, da je dana pozicija tipa $P$). Po tretji točki trditve \ref{trd:hackenbush} je potem $\alpha + \alpha \equiv \bullet 1$, kar nas pa motivira, da poziciji $\alpha$ določimo vrednost $\bullet(\frac{1}{2})$. Če z $\beta$ označimo Hackenbush pozicijo sestavljeno iz navpične poti dolžine $3$, v kateri je spodnja povezava zelena, preostali dve sta pa modri, potem z analizo pozicije $\beta + \beta + (-\alpha)$, ki je tipa $P$, vidimo, da je $\beta\equiv \bullet(\frac{1}{4})$.
+	
+	Na podlagi prejšnjega premisleka uvedemo naslednjo definicijo
+	
+	\begin{definicija}
+		Za poljuben $k\in\N$ definiramo Hackenbush pozicijo $\bullet(\frac{1}{2^k})$ kot pozicijo, ki je sestavljena iz navpične poti dolžine $k+1$ in v kateri je skrajno spodnja povezava zelena, ostalih $k$ pa je modrih.
+	\end{definicija}
+	
+	Za konec navedimo še en rezultat, ki bi nam prišel prav v nadaljni analizi igre.
+	
+	\begin{lem}
+		Za poljuben $k\in\N$ je $\bullet(\frac{1}{2^k})+\bullet(\frac{1}{2^k})\equiv \bullet(\frac{1}{2^{k-1}})$
+	\end{lem}
 \end{document}
