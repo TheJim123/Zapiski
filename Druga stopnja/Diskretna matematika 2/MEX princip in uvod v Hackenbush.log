@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.11)  12 JUN 2024 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.6.11)  13 JUN 2024 09:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -678,138 +678,14 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 /tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.st
-y
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen275
-\captionmargin=\dimen276
-\caption@leftmargin=\dimen277
-\caption@rightmargin=\dimen278
-\caption@width=\dimen279
-\caption@indent=\dimen280
-\caption@parindent=\dimen281
-\caption@hangindent=\dimen282
-Package caption Info: Standard document class detected.
-)
-\c@caption@flags=\count325
-\c@continuedfloat=\count326
-Package caption Info: float package is loaded.
-Package caption Info: subfigure package is loaded.
-Package caption Info: wrapfig package is loaded.
-)
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.s
-ty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen283
-\lightrulewidth=\dimen284
-\cmidrulewidth=\dimen285
-\belowrulesep=\dimen286
-\belowbottomsep=\dimen287
-\aboverulesep=\dimen288
-\abovetopsep=\dimen289
-\cmidrulesep=\dimen290
-\cmidrulekern=\dimen291
-\defaultaddspace=\dimen292
-\@cmidla=\count327
-\@cmidlb=\count328
-\@aboverulesep=\dimen293
-\@belowrulesep=\dimen294
-\@thisruleclass=\count329
-\@lastruleclass=\count330
-\@thisrulewidth=\dimen295
-)
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx.sty
-Package: siunitx 2024-05-06 v3.3.17 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count331
-\l__siunitx_number_exponent_fixed_int=\count332
-\l__siunitx_number_min_decimal_int=\count333
-\l__siunitx_number_min_integer_int=\count334
-\l__siunitx_number_round_precision_int=\count335
-\l__siunitx_number_lower_threshold_int=\count336
-\l__siunitx_number_upper_threshold_int=\count337
-\l__siunitx_number_group_first_int=\count338
-\l__siunitx_number_group_size_int=\count339
-\l__siunitx_number_group_minimum_int=\count340
-\l__siunitx_angle_tmp_dim=\dimen296
-\l__siunitx_angle_marker_box=\box70
-\l__siunitx_angle_unit_box=\box71
-\l__siunitx_compound_count_int=\count341
-
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/translations\transl
-ations.sty
-Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
- (CN)
-
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftex
-cmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infware
-rr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
-)
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.s
-ty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-))
-\l__siunitx_table_tmp_box=\box72
-\l__siunitx_table_tmp_dim=\dimen297
-\l__siunitx_table_column_width_dim=\dimen298
-\l__siunitx_table_integer_box=\box73
-\l__siunitx_table_decimal_box=\box74
-\l__siunitx_table_uncert_box=\box75
-\l__siunitx_table_before_box=\box76
-\l__siunitx_table_after_box=\box77
-\l__siunitx_table_before_dim=\dimen299
-\l__siunitx_table_carry_dim=\dimen300
-\l__siunitx_unit_tmp_int=\count342
-\l__siunitx_unit_position_int=\count343
-\l__siunitx_unit_total_int=\count344
-
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
-Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen301
-\ar@mcellbox=\box78
-\extrarowheight=\dimen302
-\NC@list=\toks47
-\extratabsurround=\skip69
-\backup@length=\skip70
-\ar@cellbox=\box79
-))
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.sty
-\UL@box=\box80
-\UL@hyphenbox=\box81
-\UL@skip=\skip71
-\UL@hook=\toks48
-\UL@height=\dimen303
-\UL@pe=\count345
-\UL@pixel=\dimen304
-\ULC@box=\box82
-Package: ulem 2019/11/18
-\ULdepth=\dimen305
-)
-(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
-Package: cancel 2013/04/12 v2.2 Cancel math terms
-)
-\c@izr=\count346
-\c@lem=\count347
-\c@trd=\count348
-\c@posl=\count349
-\c@defcount=\count350
-\c@opombe=\count351
-\c@primercount=\count352
-\c@zgledcount=\count353
+\c@izr=\count325
+\c@lem=\count326
+\c@trd=\count327
+\c@posl=\count328
+\c@defcount=\count329
+\c@opombe=\count330
+\c@primercount=\count331
+\c@zgledcount=\count332
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -841,17 +717,17 @@ LaTeX Font Info:    ... okay on input line 79.
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pd
 f.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count354
-\scratchdimen=\dimen306
-\scratchbox=\box83
-\nofMPsegments=\count355
-\nofMParguments=\count356
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count357
-\MPscratchDim=\dimen307
-\MPnumerator=\count358
-\makeMPintoPDFobject=\count359
-\everyMPtoPDFconversion=\toks50
+\scratchcounter=\count333
+\scratchdimen=\dimen275
+\scratchbox=\box70
+\nofMPsegments=\count334
+\nofMParguments=\count335
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen276
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
+\everyMPtoPDFconversion=\toks48
 )
 (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstop
 df-base.sty
@@ -863,10 +739,6 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 ys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
-Package translations Info: no dictionary file `translations-basic-dictionary-sl
-ovenian.trsl' found. on input line 79.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
 0.
 
@@ -928,22 +800,21 @@ Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
 
 
 [2]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 91.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 91.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 91.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-9.
+3.
  (C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 99.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 99.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 99.
 
-
-[3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
-nc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-math
-it.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
+[3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
+t.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-t
+s1.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
 mathsy.enc}]
 
 [4]
@@ -952,22 +823,20 @@ mathsy.enc}]
 
 [6]
 
-[7]
-
-[8] (MEX princip in uvod v Hackenbush.aux)
+[7] (MEX princip in uvod v Hackenbush.aux)
  ***********
 LaTeX2e <2024-06-01>
 L3 programming layer <2024-05-08>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22533 strings out of 473937
- 481407 string characters out of 5725482
- 1941893 words of memory out of 5000000
- 44965 multiletter control sequences out of 15000+600000
- 615378 words of font info for 85 fonts, out of 8000000 for 9000
+ 17184 strings out of 473937
+ 341145 string characters out of 5725482
+ 1940893 words of memory out of 5000000
+ 39660 multiletter control sequences out of 15000+600000
+ 615272 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,93p,926b,538s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,926b,276s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -984,10 +853,10 @@ TeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local/Programs
 rams/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/Uporabnik/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "MEX princip in uvod v Hackenbush.pdf" (8 pages, 273607 bytes
+Output written on "MEX princip in uvod v Hackenbush.pdf" (7 pages, 272431 bytes
 ).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
+ 118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

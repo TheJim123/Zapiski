@@ -20,11 +20,11 @@
 \usepackage{lipsum}
 \usepackage{wrapfig}
 \usepackage{tikz}
-\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
-\usepackage{booktabs}
-\usepackage{siunitx}
-\usepackage{ulem}
-\usepackage{cancel}
+%\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+%\usepackage{booktabs}
+%\usepackage{siunitx}
+%\usepackage{ulem}
+%\usepackage{cancel}
 %\usepackage{algorithm2e}
 %\usepackage{color, listings}
 %\usepackage{cleveref}
@@ -83,26 +83,10 @@
 	\tableofcontents
 	\newpage
 	\section{Uvod}
-	V tem delu bomo povzeli nekaj osnovnih lastnosti nepristranskih kombinatoričnih iger, pokazali, da je vsaka končna vsota pozicij poljubnih nepristranskih iger ekvivalentna neki poziciji v igri Nim, ter demonstrirali uporabo MEX principa pri določanju te ">vrednosti"<. Nato bomo premislili še lastnosti igre Nim, če v njej dopuščamo neskončne kupčke. Na koncu, bomo opisali pristransko igro Hackenbush in uvedli nekaj osnovnih pojmov za nadaljni študij pristranskih iger.
+	V tem delu bomo povzeli nekaj osnovnih lastnosti nepristranskih kombinatoričnih iger, pokazali, da je vsaka končna vsota pozicij poljubnih nepristranskih iger ekvivalentna neki poziciji v igri Nim, ter demonstrirali uporabo MEX principa pri določanju te ">vrednosti"<. Nato bomo premislili še lastnosti igre Nim, če v njej dopuščamo neskončne kupčke. Na koncu, bomo opisali pristransko igro Hackenbush in uvedli nekaj osnovnih pojmov za nadaljni študij pristranskih iger. Pri tem se bomo v glavnem sklicevali na vir \cite{bib:DeVoss}.
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	\section{Osnovni pojmi in rezultati}
 	Preden predstavimo glavne vsebine tega dela, se spomnimo nekaj pomembnih definicij in rezultatov.
-	\begin{definicija}
-		Kombinatorična igra je \pojem{normalna}, če v njej zmaga tisti igralec, ki je zadnji izvedel dopustno potezo (oz. izgubi tisti igralec, ki prvi ne more izvesti dopustne poteze). Če poleg tega za dano igro velja, da so množice dopustnih potez vsakega igralca v vsaki poziciji enake, pravimo, da je igra \pojem{nepristranska}, sicer pa, da je \pojem{pristranska}.
-	\end{definicija}
-	
-	Navedimo nekaj znanih nepristranskih iger, ki nas bodo zanimale.
-	
-	\begin{definicija}
-		\label{def:impartialgames}
-		\begin{itemize}
-			\item V igri \pojem{Reži} igralca Lea in Drago režeta mrežasto ploščo velikosti $m\times n$, ki je v skrajno spodnjem levem kvadratku pritrjena na stojalo. Ko je igralec na vrsti, izbere bodisi nek stolpec in ga s tem odreže (odstrani) skupaj z vsemi stolpci, ki so desno od njega, bodisi izbere neko vrstico in jo s tem odreže skupaj z vsemi vrsticami, ki so nad izbrano. Pri tem ne more izbrati stolpca oz. vrstice, ki vsebuje kvadratek, ki je pritrjen na stojalo. Zmaga tisti igralec, ki zadnji opravi dopusten rez.
-			
-			\item V igri \pojem{Pobiranje opek} igralca Lea in Drago pobirata opeke s kupa $k$-tih opek. Ko je na vrsti, igralec pobere eno ali pa dve opeki. Zmaga tisti, ki je zadnji pobral kako opeko.
-			
-			\item V igri \pojem{Nim} igralca Lea in Drago pobirata kamenčke s $k$-tih kupov. Ko je na vrsti, igralec izbere kup in z njega pobere poljubno število kamenčkov (najmanj enega, največ vse na kupu). Zmaga tisti igralec, ki je zadnji pobral kamenček.
-		\end{itemize}
-	\end{definicija}
 	\begin{definicija}
 		Naj bodo $a_1, \ldots, a_n$ poljubna nenegativna cela števila.
 		\begin{itemize}
@@ -263,9 +247,14 @@
 		Za poljuben $k\in\N$ definiramo Hackenbush pozicijo $\bullet(\frac{1}{2^k})$ kot pozicijo, ki je sestavljena iz navpične poti dolžine $k+1$ in v kateri je skrajno spodnja povezava zelena, ostalih $k$ pa je modrih.
 	\end{definicija}
 	
-	Za konec navedimo še en rezultat, ki bi nam prišel prav v nadaljni analizi igre.
+	Za konec navedimo še en rezultat, ki bi nam prišel prav v nadaljnem študiju igre.
 	
 	\begin{lem}
 		Za poljuben $k\in\N$ je $\bullet(\frac{1}{2^k})+\bullet(\frac{1}{2^k})\equiv \bullet(\frac{1}{2^{k-1}})$
 	\end{lem}
+	
+	\begin{thebibliography}{99}
+		\bibitem{bib:DeVoss} M.~DeVoss, D.~A.~Kent, \emph{Game theory: A playful introduction}, AMS, Providence-Rhode Island, 2016.
+		Island, 2016.
+	\end{thebibliography}
 \end{document}
