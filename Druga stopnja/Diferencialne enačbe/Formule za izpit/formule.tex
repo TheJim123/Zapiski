@@ -1,0 +1,170 @@
+\documentclass[a4paper, 8pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+%\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+%\usepackage{url}
+\usepackage{subfigure}
+%\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+%\usepackage{tikz}
+%\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+%\usepackage{booktabs}
+%\usepackage{siunitx}
+%\usepackage{cleveref}
+
+\newtheorem{izr}{Izrek}
+\newtheorem{lem}{Lema}
+\newtheorem{trd}{Trditev}
+\newtheorem{posl}{Posledica}[izr]
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{primercount}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\refstepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{primer}{\begin{flushleft}\refstepcounter{primercount}\textbf{Primer \arabic{primercount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\refstepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\refstepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\naslov}[1]{\textit{#1}}
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\Zp}{\mth{Z}^{+}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\Q}{\mth{Q}}
+\newcommand{\Qu}{\mth{Q}_u}
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\padex}[2]{\ensuremath{{#1}^{\underline{#2}}}}
+\newcommand{\rastx}[2]{\ensuremath{{#1}^{\bar{#2}}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+\title{\vspace{-8.5 cm}}
+%===============================================================================
+\begin{document}
+	\pagestyle{empty}
+	\maketitle
+	\begin{align*}
+		&\bullet y' = f(x, y):\\
+		&f(tx, ty)=f(x, y)~\forall t\in\R \Rightarrow u(x) = \frac{y}{x} ~\&~ y' = u'x + u\\
+		&\text{Bernoullijeva}~ y'(x) + p(x)y(x) = q(x)y^{\alpha}~;\alpha \neq 1 \Rightarrow \text{delimo z}~y^{\alpha}, z(x)=y^{1-\alpha}(x) ~\&~ z'(x)=y'(x)y^{-\alpha}(x)\\
+		&\text{Ricattijeva}~ y'(x)=a(x)y^2(x) + b(x)y(x) + c(x)~;\alpha \neq 1 \Rightarrow \text{najdi eno}~y_p ~\&~ y(x)=y_p(x) + u(x)\\
+		&\text{V splošnih enačbah $1.$ reda izrazi y', če lahko, sicer pa smiselno parametriziraj}. \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		&\bullet F(x, y, y', y'', \ldots, y^{(n)}) = 0: \\
+		& F(x, y', \ldots, y^{(n)}) = F(tx, ty, ty', \ldots, ty^{(n)}) \forall t\in\R;~\text{Uporabimo}~z(x) = \frac{y'(x)}{y(x)},~\text{rešimo za}~z(x) \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		& \bullet\text{Eksistenčna izreka}: \\
+		& \text{Lokalni}:(x_0, y_0)\in\R^2,~a, b>0, I= [x_0 - a, x_0 + a], J= [y_0 - b, y_0 + b].~\text{Če je}~\map{f}{I\times J}{\R}~\text{zvezna}~\& \\
+		&\exists M>0;~\forall y_1, y_2\in J \abs{f(x, y_1) - f(x, y_2)}< M\abs{y_1 - y_2},~\exists!~\text{rešitev}~ y'=f(x, y); y(x_0) = y_0~\text{na okolici}~x_0. \\
+		& \text{Globalni}:(x_0, y_0)\in(a, b)\times\R.~\text{Če je}~\map{f}{(a, b)\times\R}{\R}~\text{zvezna}~\&~\exists \map{k}{(a, b)}{\R};\int_{a}^{b} k(x)dx < \infty;~\&~ \\
+		&\forall y_1, y_2\in \R,~\forall x\in(a, b):\abs{f(x, y_1) - f(x, y_2)}< k(x)\abs{y_1 - y_2},~\exists!~\text{rešitev}~ y'=f(x, y); y(x_0) = y_0~\text{na}~(a, b). \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		& \bullet\text{Jordanova forma}: \\
+		& A \in M_{n\times n}, p(\lambda) = det(A - \lambda I)= (\lambda - \lambda_1)^{k_1}\ldots(\lambda - \lambda_s)^{k_s} \\
+		&\forall \lambda_i J_i \in M_{k_i\times k_i}~\text{št. celic}~=dim(Ker(A - \lambda_i I)).~\text{Če je} (A - \lambda_i I)^k = 0~\text{je največji blok v}~J_i~ k\times k. \\
+		& \text{Za}~ n \leq 3:\text{če je}~\lambda_i = a + ib,~\text{je}~J_i = \begin{bmatrix}
+			a & b \\
+			-b & a
+		\end{bmatrix},~\text{če je realna (za poljuben $n$) pa}~J_i = \begin{bmatrix}
+		\lambda_i & 1 & 0 & 0\\
+		0 & \ddots& \ddots & 0 \\
+		0 & 0 & \lambda_i & 1 \\
+		0 & 0 & 0 &\lambda_i\\
+		\end{bmatrix} \\
+		& \text{Lastni vektorji za}~\lambda_i: ~\text{Določi bazo za}~A - \lambda_i I,~\text{dopolni do baze}~(A-\lambda_i)^2~\text{itd. do}~ k. \\
+		&\text{vsi l. vektorji so stolpci matrike}~ P. ~A = PJP^{-1}\\
+		& e^{tJ} = diag(e^{tJ_1, \ldots, e^{tJ_s}}); e^{tJ_i} = e^{\lambda_it}\begin{bmatrix}
+			1 & t & \frac{t^2}{2} & \ldots \\
+			0 & 1 & t & \frac{t^2}{2} \ldots \\
+			0 & 0 & \ddots & \ddots\ldots \\
+			0 & 0 & 0 & 1\\
+		\end{bmatrix}~\text{če je}~\lambda_i\in\R~\text{in}~ e^{tJ_{a\pm ib}} = e^{at}\begin{bmatrix}
+		\cos(bt) & \sin(bt) \\
+		-\sin(bt) & \cos(bt)
+		\end{bmatrix} \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		&\bullet\text{Sistemi LDE s konstantnimi koeficienti}: \dot{\vec{x}}(t) = A\vec{x}(t) + \vec{f}(t)\\
+		& \text{Najprej naredimo Jordanov razcep}~A.~\vec{x}_h(t) = Pe^{tJ}P^{-1}\vec{c};~\vec{c}\in\R^n\\
+		& \vec{d}(t) = \int e^{-tJ}P^{-1}\vec{f}(t)dt;~\vec{x}_p(t)=Pe^{tJ}\vec{d}(t)~\&~\vec{x}(t) = \vec{x}_h(t) + \vec{x}_p(t)\\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		& \bullet\text{LDE drugega reda}: a(x)y''(x) + b(x)y'(x) + c(x)y(x) = d(x)\\
+		& \text{V H delu eno rešitev}~y_1~\text{uganemo, drugo lin. neodv. pa dobimo z}:~ \begin{pmatrix}
+			y_1(x) & y_2(x) \\
+			y'_1(x) & y'_2(x)
+		\end{pmatrix} = e^{-\int\frac{b(x)}{a(x)}dx}\\
+		& \text{V P delu uporabimo variacijo konstante}\\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		& \bullet\text{LDE višjega reda s konst. koef.}:~a_ny^{(n)}(x) + \ldots + a_1y'(x) + a_0y(x) = f(x)\\
+		& \text{H del z nastavkom}:~ y(x) = e^{\lambda x}~\text{dobimo karakteristični polinom z ničlami}~\lambda_1, \ldots, \lambda_n\\
+		& \text{Če je}~\lambda_i~k-\text{kratna \emph{realna} ničla k rešitvi prispeva člene}~ C_1e^{\lambda_i x} + C_2xe^{\lambda_i x} + \ldots + C_kx^{k-1}e^{\lambda_i x} \\
+		& \text{Če je}~\lambda_i = a\pm ib~k-\text{kratna \emph{kompleksna} ničla k rešitvi prispeva člene} \\ 
+		&e^{ax}(A_1\cos(bx) + A_2\sin(bx) + A_3x\cos(bx) + A_4x\sin(bx) + \ldots + A_{2k-1}x^{k-1}\cos(bx)+ A_{2k}x^{k-1}\sin(bx)) \\
+		& \text{Če je}~f(x)=P(x)~\text{polinom stopnje}~n: y_p(x) = R(x)x^r;~r~\text{je krat. ničle}~0~\text{v kara. polinomu}, stP = stR\\
+		& \text{Če je}~f(x)=P(x)e^{ax}~\text{je}~y_p(x) = R(x)x^re^{ax};~r~\text{je krat. ničle}~a~\text{v kara. polinomu}, stP = stR\\
+		& \text{Če je}~f(x)=(P_1(x)\cos(bx) + P_2(x)\sin(bx))e^{ax}~\text{je}~y_p(x) = e^{ax}x^r(R_1(x)\cos(bx) + R_2(x)\sin(bx)); \\
+		&r~\text{je krat. ničle}~a\pm ib~\text{v kara. polinomu}, st(R_1, R_2) = \max(stP_1, stP_2)\\
+		& \text{Sicer variacija konstante}\\
+	\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{align*}
+		& \bullet\text{LDE višjega reda s konst. koef.}:~a_nx^ny^{(n)}(x) + \ldots + a_1xy'(x) + a_0y(x) = f(x)\\
+		& \text{H del z nastavkom}:~ y(x) = x^{\lambda}~\text{dobimo karakteristični polinom z ničlami}~\lambda_1, \ldots, \lambda_n\\
+		& \text{Če je}~\lambda_i~k-\text{kratna \emph{realna} ničla k rešitvi prispeva člene}~ C_1x^{\lambda_i} + C_2\ln(x)x^{\lambda_i} + \ldots + C_k\ln(x)^{k-1}x^{\lambda_i} \\
+		& \text{Če je}~\lambda_i = a\pm ib~k-\text{kratna \emph{kompleksna} ničla k rešitvi prispeva člene} \\ 
+		&x^{a}(A_1\cos(b\ln(x)) + A_2\sin(b\ln(x)) + \ldots + C_{2k-1}\ln(x)^{k-1}\cos(b\ln(x))+ C_{2k}\ln(x)^{k-1}\sin(b\ln(x))) \\
+		& \text{Če je}~f(x)=P(\ln(x))x^{\alpha}~\text{je}~y_p(x) = Q(\ln(x))\ln(x)^kx^\alpha;~k~\text{je krat. ničle}~\alpha~\text{v kara. polinomu}, stP = stQ\\
+		& \text{Sicer variacija konstante} \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		&\bullet\text{Variacijski račun:}~ F(y) = \int_{a}^{b}\varphi(x, y(x), y'(x))dx;~\map{\varphi}{\R^3}{\R}~\&~\map{y}{[a, b]}{\R}, y(a) = A, y(b)= B \\
+		& \text{V}~F~\text{nastopajo vsi členi: Iščemo ekstremalo}~y~\text{preko} ~\varphi_y = \frac{\partial}{\partial x}(\varphi_{y'}).~\text{Da je ekstrem, preverimo posebej}. \\
+		& \text{Če imamo podan samo en robni pogoj, npr. $y(a)=A$}:~ \varphi_{y'}(b, y(b), y'(b)) = 0 \\
+		& \text{Če ni podan noben robni pogoj}:~\varphi_{y'}(a, y(a), y'(a)) = 0~\&~\varphi_{y'}(b, y(b), y'(b)) = 0 \\
+		& \text{Če je}:~\varphi(x, y')~\text{rešujemo}~\varphi_{y'} = C~\text{če je}:~\varphi(y, y')~\text{pa}~\varphi - y'\varphi_{y'} = C \\
+		& \text{Če imamo robna pogoja in še pogoj}:~\Phi(y) = \int_{a}^{b}\zeta(x, y(x), y'(x))dx = l\in\R~\text{rešujemo problem}\\
+		&G(y) = F(y) - \lambda\Phi(y)~\text{s pogoji}~y(a) = A, y(b) = B~\&~\Phi(y) = l\\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		&\bullet\text{DE v kompleksnem:}~ w''(z) + p(z)w'(z) + q(z)w(z) = 0 \\
+		&\text{$p$ in $q$ analitični v $z_0$ ju razvijemo po Taylorju in}: w(z)= \sum_{k = 0}^{\infty}c_k(z-z_0)^k,~\text{določimo lin. neodv. $w_1$ in $w_2$} \\
+		&\text{$z_0$ pol $p$ stopnje največ prve stopnje in za $q$ največ druge}:~ w(z)= z^\rho\sum_{k = 0}^{\infty}c_k(z-z_0)^k \\
+		&\text{$\rho_1, \rho_2$ določimo tako, da primerjamo člene (nizke potence). Če $\rho_1 - \rho_2 \notin \Z$}:~ w_1(z)= z^{\rho_1}\sum_{k = 0}^{\infty}c_k(z-z_0)^k \\
+		&\&~w_2(z)= z^{\rho_2}\sum_{k = 0}^{\infty}d_k(z-z_0)^k.~\text{Če $\rho_1 = \rho_2$}: w_1(z)= z^{\rho_1}\sum_{k = 0}^{\infty}c_k(z-z_0)^k. \\
+		&\text{Sicer za}~Re(\rho_1)\geq Re(\rho_2)~\text{uporabimo nastavka iz $1.$ in če $w_1$ in $w_2$ nista lin. neodv. za $w_2$ uporabimo}: \\
+		&w_2(z) = w_1(z)\ln(z) + z^{\rho_2}\sum_{k = 0}^{\infty}d_k(z-z_0)^k. ~\text{Rešitev je (v vsakem primeru)}~ w(z)=Aw_1(z) + Bw_2(z) \\ \hline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		&\bullet\text{Besselova DE}~ x^2w'' + xw' + (x^2 - n^2)w = 0 \\
+		&\text{Uporabimo nastavek}~ w(x)= x^m\sum_{k = 0}^{\infty}a_kx^k ~\text{in najprej določimo $m_1$ in $m_2$(kot pri kompleksnih DE)} \\
+		&\text{Če je $n\notin\No$ sta}~ J_n(x)=\sum_{i = 0}^{\infty}\frac{(-1)^i}{i!\Gamma(i+n+1)}(\frac{x}{2})^{2i+n}~\&~J_{(-n)}(x)=\sum_{i = 0}^{\infty}\frac{(-1)^i}{i!\Gamma(i-n+1)}(\frac{x}{2})^{2i-n}\\
+		&\text{linearno neodvisni rešitvi, in splošna rešitev je}:~ w(x) = AJ_n(x) + BJ_{(-n)}(x)\\
+		&\text{Če je pa $n\in\No$ pa vzamemo $w_1 =J_n$ in}~ w_2(x) = w_1(x)\ln(x) + \sum_{k = 0}^{\infty}a_kx^{k+m}~\text{ter uporabimo} \\
+		&\text{determinanto wronskega, da določimo $w_2$ (koef. $a_k$ ne računamo eksplicitno)}. \\
+		&\text{V tem primeru je splošna rešitev}:~ w(x)= AJ_n(x) + Bw_2(x) \\
+		&\text{Velja tudi:}~ J_n(x) = \frac{2(\frac{x}{2})^n}{\sqrt{\pi}\Gamma(n+\frac{1}{2})}\int_{0}^{\frac{\pi}{2}}\cos(x\sin(t))\cos^{2n}(t)dt
+	\end{align*}
+\end{document}
