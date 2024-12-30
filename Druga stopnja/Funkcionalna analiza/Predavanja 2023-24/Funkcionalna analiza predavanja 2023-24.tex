@@ -1,0 +1,167 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{leftidx}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[format=plain, font=small, labelfont=bf, textfont=it, justification=centerlast]{caption}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{ulem}
+
+\newtheorem{trditev}{Trditev}
+\newtheorem{izr}{Izrek}
+\newtheorem{nal}{Naloga}
+\newtheorem{posl}{Posledica}
+
+\newcounter{defcount}
+\newcounter{opombe}
+\newcounter{zgledcount}
+
+\newenvironment{opomba}{\begin{flushleft}\stepcounter{opombe}\textbf{Opomba \arabic{opombe}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{zgled}{\begin{flushleft}\stepcounter{zgledcount}\textbf{Zgled \arabic{zgledcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{definicija}{\begin{flushleft}\stepcounter{defcount}\textbf{Definicija \arabic{defcount}:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newenvironment{resitev}{\begin{flushleft}\textit{Rešitev:}}{\hfill\end{flushleft}}
+\setlength{\parindent}{0mm}
+
+\newcommand{\abs}[1]{\ensuremath{\lvert #1 \rvert}}
+\newcommand{\mth}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\R}{\mth{R}}
+\newcommand{\Z}{\mth{Z}}
+\newcommand{\N}{\mth{N}}
+\newcommand{\No}{\mth{N}_0}
+\newcommand{\C}{\mth{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Mu}{\mathcal{M}}
+
+\newcommand{\pojem}[1]{\emph{#1}}
+\newcommand{\con}{\ensuremath{\mathscr{C}}}
+\newcommand{\map}[3]{\ensuremath{{#1}: {#2} \rightarrow {#3}}}
+\newcommand{\pra}[3]{{#1}{\ast}({#2}) = {#3}}
+
+\newcommand{\norm}[1]{\abs{\abs{#1}}}
+\newcommand{\Sp}[2]{\ensuremath{\left<#1, #2\right>}}
+\newcommand{\Spp}[2]{\ensuremath{\left<\left<#1, #2\right>\right>}}
+\newcommand{\Sppp}[2]{\ensuremath{\left<\left<\left<#1, #2\right>\right>\right>}}
+
+\title{Funkcionalna analiza\\ Zapiski predavanj}
+\date{2023/24}
+%===============================================================================
+\begin{document}
+	\maketitle
+	\newpage
+	\begin{abstract}
+		\noindent Dokument vsebuje zapiske predavanj predmeta Funkcionalna Analiza v okviru študija prvega letnika magistrskega študija matematike na FNM.
+	\end{abstract}
+	\tableofcontents
+	\newpage
+	\section{Vektorski prostori}
+		Preden se lotimo glavne teme naloge bomo definirali in opisali nekaj osnovnih lastnosti Hilbertovih prostorov. 
+		
+		Spomnimo se najprej definicije vektorskih prostorov in linearne neodvisnosti.
+		
+		\begin{definicija}
+				\label{def:VektSpac}
+				Naj bo $F$ poljubno polje z nevtralnim elementom $0$ in enoto $1$. Neprazna množica $V$, skupaj z operacijama $\map{+}{V\times V}{V}$ in $\map{\cdot}{F\times V}{V}$ je \pojem{vektorski prostor nad $F$}, če velja: \begin{itemize}
+						\item $(V, +)$ je Abelova grupa
+						\item $(\alpha + \beta)\cdot x = \alpha\cdot x + \beta\cdot x;~\forall \alpha, \beta \in F~\&~\forall x\in V$
+						\item $\alpha\cdot(x+y) = \alpha\cdot x + \alpha\cdot y;~\forall \alpha\in F~\&~\forall x, y\in V$
+						\item $\alpha\cdot(\beta\cdot x) = (\alpha\beta)\cdot x;~\forall \alpha, \beta\in F~\&~\forall x\in V$
+						\item $1\cdot x = x;~\forall x\in V$
+					\end{itemize}
+			\end{definicija}
+		
+		\begin{definicija}
+				\label{def:LinNeodv}
+				Naj bo $n\in\N$ in naj bo $V$ poljuben vektorski prostor nad poljubnim poljem $F$. Pravimo, da so vektorji $x_1, x_2, \ldots, x_n \in V$ \pojem{linearno neodvisni}, če enakost $\alpha_1\cdot x_1 + \alpha_2\cdot x_2 + \ldots + \alpha_n\cdot x_n = 0 $ velja le za $\alpha_1 = \alpha_2 = \ldots = \alpha_n = 0$.
+				Če vektorji $x_1, x_2, \ldots, x_n$ niso linearno neodvisni, pravimo, da so \pojem{linearno odvisni}.
+				
+				Naj bo $M$ poljubna neprazna podmnožica vektorskega prostora $V$. Pravimo, da je $M$ \pojem{linearno neodvisna}, če je vsaka njena končna podmnožica linearno neodvisna.
+			\end{definicija}
+		
+		\begin{opomba}
+				\label{op:Polj}
+				V nadaljevanju bomo s $\F$ označili polje, ki je ali polje realnih števil $\R$, ali pa polje kompleksnih števil $\C$. Kadar bo pomembno, bomo natančno navedli, če je $\F = \R$~ali~$\F = \C$.
+			\end{opomba}
+		Sedaj se spomnimo definicij norme in skalarnega produkta, saj bosta v nadaljevanju ta pojma ključna.
+		\begin{definicija}
+				\label{def:Norm}
+				Naj bo $V$ vektorski prostor nad $\F$. Preslikavi $\map{\norm{.}}{V}{\R}$ pravimo \pojem{norma} na $V$, če velja: \begin{itemize}
+						\item $\norm{x} \geq 0;~\forall x\in V$
+						\item $\norm{x} = 0 \iff x = 0$
+						\item $\norm{\alpha\cdot x} = \abs{\alpha}\norm{x};~\forall \alpha\in\F~\&~\forall x\in V$
+						\item $\norm{x+y} \leq \norm{x}+\norm{y};~\forall x, y\in V$
+					\end{itemize}
+				Če je $\norm{.}$ norma na $V$, pravimo, da je $(V, +, \cdot, \norm{.})$ \pojem{normiran prostor} (nad $\F$).
+			\end{definicija}
+		
+		\begin{opomba}
+				\label{op:Norm1}
+				Naj bo $(V, +, \cdot, \norm{.})$ normiran prostor nad poljem $\F$. Enostavno je preveriti naslednje rezultate: \begin{itemize}
+						\item $\norm{0} = 0$
+						\item  $\norm{x_1 + x_2 + \ldots + x_n} \leq \norm{x_1} + \norm{x_2} + \ldots + \norm{x_n};~\forall x_1, x_2, \ldots, x_n\in V$
+						\item $\abs{\norm{x} - \norm{y}} \leq \norm{x-y};~\forall x, y\in V$
+					\end{itemize}
+			\end{opomba}
+		
+		\begin{opomba}
+				\label{op:Norm2}
+				Naj bo $(V, +, \cdot, \norm{.})$ normiran prostor nad poljem $\F$. Enostavno je preveriti, da je s predpisom $d(x, y) = \norm{x - y} ~\forall x, y \in V$ definirana metrika na $V$. Za to metriko pravimo, da je \pojem{porojena z normo} $\norm{.}$.
+			\end{opomba}
+
+		Dejstvo, da vsaka norma porodi metriko nas motivira, da obravnavamo konvergenco tudi v normiranih prostorih.
+		\begin{definicija}
+				\label{def:NormKonv}
+				Naj bo $(V, \norm{.})$ normiran prostor nad poljem $\F$. Naj bo $\bar{x} = \left(x_n\right)_{n\in\N}$ zaporedje s členi iz $V$.
+				\begin{itemize}
+						\item Pravimo, da je zaporedje $\bar{x}$ \pojem{konvergentno}, če obstaja tak $x\in V$, da za vsak $\varepsilon > 0$ obstaja tak $n_0\in \N$, da za vsak $n\in \N$ velja: $n\geq n_0 \Rightarrow \norm{x_n - x} < \varepsilon$. V tem primeru pravimo, da je $x$ \pojem{limita zaporedja} $\left(x_n\right)_{n\in\N}$ in pišemo $\lim_{n\to\infty}x_n = x$.
+						\item Pravimo, da je zaporedje $\bar{x}$ \pojem{Cauchyjevo}, če za vsak $\varepsilon >0$ obstaja tak $n_0\in\N$, da za poljubna $m, n \in \N$ velja: $m, n \geq n_0 \Rightarrow \norm{x_m - x_n} < \varepsilon$.
+						\item Naj bo $\bar{s}$ zaporedje podano s predpisom $s_n = \sum_{k = 1}^{n}x_k;~\forall n\in\N$. Pravimo, da je vrsta $\sum_{k = 1}^{\infty}x_k$ \pojem{konvergentna}, če je konvergentno zaporedje $\bar{s}$. Če je $s$ limita zaporedja $\bar{s}$, tedaj pravimo, da je $s$ \pojem{vsota vrste} $\sum_{k = 1}^{\infty}x_k$ in pišemo $s = \sum_{k = 1}^{\infty}x_k$.
+						\item Pravimo, da je vrsta $\sum_{k = 1}^{\infty}x_k$ \pojem{absolutno konvergentna}, če je vrsta $\sum_{k = 1}^{\infty}\norm{x_k}$ konvergentna.
+					\end{itemize} 
+			\end{definicija}
+		Naslednja trditev nam pove, da za limite v normiranih prostorih veljajo analogi nekaterih rezultatov, ki so nam znani že iz obravnave realnih zaporedij.
+		\begin{trditev}
+				\label{trd:Normlim}
+				Naj bo $(V, \norm{.})$ normiran prostor nad $\F$. Naj bosta $\left(x_n\right)_{n\in\N}$ in $\left(y_n\right)_{n\in\N}$ poljubni konvergentni zaporedji s členi iz $V$ in z limitama $x$ ter $y$. Naj bo $\left(\alpha_n\right)_{n\in\N}$ poljubno konvergentno zaporedje s členi iz $\F$ z limito $\alpha$. Tedaj velja: \begin{enumerate}[i)]
+						\item $\lim_{n\to\infty}(x_n + y_n) = x + y$
+						\item $\lim_{n\to\infty}\norm{x_n} = \norm{\lim_{n\to\infty}x_n}=\norm{x}$
+						\item $\lim_{n\to\infty}(\alpha_n\cdot x_n) = \alpha\cdot x$
+					\end{enumerate}
+			\end{trditev}
+		
+		\begin{proof}
+				\begin{enumerate}[i)]
+						\item Naj bo $\varepsilon > 0$ poljuben. Ker sta zaporedji $\left(x_n\right)_{n\in\N}$ in $\left(y_n\right)_{n\in\N}$ konvergentni z limitama $x$ in $y$, obstajata taka $n_1, n_2\in\N$, da vse $n\in\N$, ki so večji ali enaki $n_1$, velja $\norm{x_n - x} < \frac{\varepsilon}{2}$ in za vse $n\in\N$, ki so večji ali enaki $n_2$ velja $\norm{y_n - y} < \frac{\varepsilon}{2}$. Naj bo $n_0 = \max\{n_1, n_2\}$. Tedaj je $\norm{x_n + y_n - (x + y)} = \norm{(x_n - x) + (y_n - y)} \leq \norm{x_n - x} + \norm{y_n - y} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$ za vse $n\in\N$, ki so večji ali enaki $n_0$. Sledi, da je zaporedje $\left(x_n + y_n\right)_{n\in\N}$ konvergentno z limito $x + y$.
+						\item Najprej opazimo, da je zaporedje $\left(\norm{x_n - x}\right)$ realno konvergentno zaporedje z limito $0$, saj je zaporedje $\left(x_n\right)$ konvergentno z limito $x$. Po tretji točki iz opombe \ref{op:Norm1} za vsak $n\in\N$ velja $0 \leq \abs{\norm{x_n} - \norm{x}} \leq \norm{x_n - x}$. Po pravilu o sendviču zato sklepamo, da je $\lim_{n\to\infty}\abs{\norm{x_n} - \norm{x}} = 0$. Po znanem rezultatu iz Analize $1$ potem velja, da je tudi $\lim_{n\to\infty}(\norm{x_n} - \norm{x}) = 0$. Sledi, da je $\lim_{n\to\infty}\norm{x_n} - \norm{x} = 0$ oziroma $\lim_{n\to\infty}\norm{x_n} = \norm{x}$.
+						\item Ponovno upoštevamo, da je $\norm{x_n - x}$ konvergentno realno zaporedje z limito $0$, ter na enak način vidimo, da je $\abs{\alpha_n - \alpha}$ konvergentno realno zaporedje z limito $0$. Dodatno vidimo, da za vsak $n\in\N$ velja: $$0 \leq \norm{\alpha_n\cdot x_n - \alpha\cdot x} \leq \norm{\alpha_n\cdot x_n - \alpha\cdot x_n + \alpha\cdot x_n - \alpha\cdot x}$$
+						Skrajno desno normo sedaj po trikotniškem pravilu ocenimo navzgor z $$\norm{\alpha_n\cdot x_n - \alpha\cdot x_n} + \norm{\alpha\cdot x_n - \alpha\cdot x}=\abs{\alpha_n - \alpha}\norm{x_n} + \abs{\alpha}\norm{x_n - x}$$ Velja torej ocena: \begin{equation}
+								\label{eq:Normlim3}
+								0 \leq \norm{\alpha_n\cdot x_n - \alpha\cdot x} \leq \abs{\alpha_n - \alpha}\norm{x_n} + \abs{\alpha}\norm{x_n - x}
+							\end{equation}
+						Sedaj opazimo, upoštevajoč prejšnjo točko, da je $\abs{\alpha_n - \alpha}\norm{x_n}$ produkt dveh konvergentnih realnih zaporedij in velja: $$\lim_{n\to\infty}\abs{\alpha_n - \alpha}\norm{x_n} = \lim_{n\to\infty}\abs{\alpha_n - \alpha} \cdot \lim_{n\to\infty}\norm{x_n} = 0\cdot\norm{x} = 0$$
+						Dodatno vidimo, da je $\lim_{n\to\infty}\abs{\alpha}\norm{x_n - x} = \abs{\alpha}\lim_{n\to\infty}\norm{x_n - x} = \abs{\alpha}\cdot 0 = 0$. Potem sledi, da je zaporedje $\left(\abs{\alpha_n - \alpha}\norm{x_n} + \abs{\alpha}\norm{x_n - x}\right)_{n\in\N}$ realno konvergentno zaporedje z limito $0$. Po pravilu o sendviču, upoštevajoč oceno \eqref{eq:Normlim3}, sklepamo, da je potem $\lim_{n\to\infty}\norm{\alpha_n\cdot x_n - \alpha\cdot x} = 0$, od tod pa sledi, da za vsak $\varepsilon > 0$ obstaja $n_0\in\N$, da za vsak $n\in\N$, ki je večji ali enak $n_0$, velja $\norm{(\alpha_n\cdot x_n - \alpha\cdot x) - 0}=\norm{\alpha_n\cdot x_n - \alpha\cdot x} < \varepsilon$. Po definiciji konvergence zaporedja potem sledi, da je $\lim_{n\to\infty}(\alpha_n\cdot x_n) = \alpha\cdot x$.
+					\end{enumerate}
+			\end{proof}
+\end{document}

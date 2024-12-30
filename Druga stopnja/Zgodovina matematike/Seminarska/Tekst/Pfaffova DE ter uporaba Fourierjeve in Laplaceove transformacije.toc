@@ -1,0 +1,25 @@
+\babel@toc {slovene}{}\relax 
+\contentsline {section}{\numberline {1}Uvod}{3}{}%
+\contentsline {section}{\numberline {2}Pfaffova diferencialna enačba}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Osnovne definicije in rezultati}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Metode reševanja}{7}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}Metode za eksaktne enačbe}{8}{}%
+\contentsline {paragraph}{Metoda ostrega pogleda}{8}{}%
+\contentsline {paragraph}{Reševanje sistema PDE prvega reda}{8}{}%
+\contentsline {paragraph}{Integracija potencialnega polja}{8}{}%
+\contentsline {paragraph}{Ločevanje spremenljivk}{9}{}%
+\contentsline {subsubsection}{\numberline {2.2.2}Metode za integrabilne enačbe, ki niso nujno eksaktne}{9}{}%
+\contentsline {paragraph}{Enačbe z ločljivo spremenljivko}{9}{}%
+\contentsline {paragraph}{Homogene enačbe}{10}{}%
+\contentsline {paragraph}{Natanijeva metoda}{11}{}%
+\contentsline {paragraph}{Mayerjeva metoda}{12}{}%
+\contentsline {paragraph}{Bertrandova metoda}{13}{}%
+\contentsline {paragraph}{Kvazi-homogene enačbe}{15}{}%
+\contentsline {section}{\numberline {3}Fourierjeva transformacija}{18}{}%
+\contentsline {subsection}{\numberline {3.1}Osnovne definicije in rezultati}{18}{}%
+\contentsline {subsection}{\numberline {3.2}Metoda uporabe}{31}{}%
+\contentsline {subsection}{\numberline {3.3}Primeri uporabe}{32}{}%
+\contentsline {section}{\numberline {4}Laplaceova transformacija}{37}{}%
+\contentsline {subsection}{\numberline {4.1}Osnovne definicije in rezultati}{37}{}%
+\contentsline {subsection}{\numberline {4.2}Metoda uporabe}{44}{}%
+\contentsline {subsection}{\numberline {4.3}Primeri uporabe}{44}{}%
