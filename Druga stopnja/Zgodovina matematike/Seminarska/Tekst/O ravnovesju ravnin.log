@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  30 DEC 2024 19:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  3 JAN 2025 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -896,20 +896,13 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 {C:/Users/Uporabnik/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/
 Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-(O ravnovesju ravnin.toc)
-\tf@toc=\write4
-\openout4 = `"O ravnovesju ravnin.toc"'.
-
-
-
-[2]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 95.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 95.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 95.
-<Paralelogram.jpg, id=16, 442.65375pt x 225.84375pt>
+<Paralelogram.jpg, id=10, 442.65375pt x 225.84375pt>
 File: Paralelogram.jpg Graphic file (type jpg)
 <use Paralelogram.jpg>
 Package pdftex.def Info: Paralelogram.jpg  used on input line 103.
@@ -920,35 +913,62 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-[3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
-c}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
+[2{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
 t.enc}]
+<Parabol.jpg, id=19, 194.22563pt x 192.72pt>
+File: Parabol.jpg Graphic file (type jpg)
+<use Parabol.jpg>
+Package pdftex.def Info: Parabol.jpg  used on input line 117.
+(pdftex.def)             Requested size: 145.66885pt x 144.53963pt.
 
-[4 <./Paralelogram.jpg>] (O ravnovesju ravnin.aux)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+[3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-maths
+y.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-r
+m.enc} <./Paralelogram.jpg>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+26.
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
+nc} <./Parabol.jpg>]
+
+[5] (O ravnovesju ravnin.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22304 strings out of 473898
- 477101 string characters out of 5724591
- 1936960 words of memory out of 5000000
- 44794 multiletter control sequences out of 15000+600000
- 606371 words of font info for 81 fonts, out of 8000000 for 9000
+ 22350 strings out of 473898
+ 478053 string characters out of 5724591
+ 1938960 words of memory out of 5000000
+ 44834 multiletter control sequences out of 15000+600000
+ 616992 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,93p,775b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,1351b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/lm/lmri10.pfb>
-Output written on "O ravnovesju ravnin.pdf" (4 pages, 207875 bytes).
+lm/lmbx9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmmi10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/lm/lmr10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/lm/lmr12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/lm/lmr17.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/lm/lmri9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
+Output written on "O ravnovesju ravnin.pdf" (5 pages, 306305 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
+ 94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
