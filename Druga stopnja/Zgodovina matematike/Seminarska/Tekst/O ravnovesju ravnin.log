@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  3 JAN 2025 17:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  18 JAN 2025 17:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -913,9 +913,10 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-[2{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
+[2{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
+c}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
 t.enc}]
-<Parabol.jpg, id=19, 194.22563pt x 192.72pt>
+<Parabol.jpg, id=20, 194.22563pt x 192.72pt>
 File: Parabol.jpg Graphic file (type jpg)
 <use Parabol.jpg>
 Package pdftex.def Info: Parabol.jpg  used on input line 117.
@@ -927,8 +928,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [3{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-maths
-y.enc}{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-r
-m.enc} <./Paralelogram.jpg>]
+y.enc} <./Paralelogram.jpg>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 26.
 
@@ -938,6 +938,30 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 [4{C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.e
 nc} <./Parabol.jpg>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+35.
+
+(C:\Users\Uporabnik\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 1152) in paragraph at lines 135--136
+\T1/lmr/m/it/10 (com-plete tran-sla-tion)\T1/lmr/m/n/10 , v: Vi-gnet-tes of an-
+ci-ent ma-the-ma-tics, [ogled
+ []
+
+
+Underfull \hbox (badness 3219) in paragraph at lines 135--136
+\T1/lmr/m/n/10 18. 1. 2025], do-sto-pno na $\T1/lmtt/m/n/10 https : / / web . c
+alstatela . edu / faculty /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+\T1/lmtt/m/n/10 hmendel / Ancient % 20Mathematics / Archimedes / De % 20Planoru
+m % 20 %
+ []
+
+
 
 [5] (O ravnovesju ravnin.aux)
  ***********
@@ -946,13 +970,13 @@ L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22350 strings out of 473898
- 478053 string characters out of 5724591
+ 22395 strings out of 473898
+ 478800 string characters out of 5724591
  1938960 words of memory out of 5000000
- 44834 multiletter control sequences out of 15000+600000
- 616992 words of font info for 85 fonts, out of 8000000 for 9000
+ 44875 multiletter control sequences out of 15000+600000
+ 617311 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,93p,1351b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,1344b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -965,10 +989,11 @@ ts/type1/public/lm/lmr7.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/lm/lmri10.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/lm/lmri9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on "O ravnovesju ravnin.pdf" (5 pages, 306305 bytes).
+ms/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on "O ravnovesju ravnin.pdf" (5 pages, 333889 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
+ 99 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
