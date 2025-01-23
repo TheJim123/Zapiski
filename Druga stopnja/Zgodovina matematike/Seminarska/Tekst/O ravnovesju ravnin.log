@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  18 JAN 2025 17:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  23 JAN 2025 13:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -976,7 +976,7 @@ Here is how much of TeX's memory you used:
  44875 multiletter control sequences out of 15000+600000
  617311 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,93p,1344b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,1343b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
 0.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
 mbx12.pfb><C:/Users/Uporabnik/AppData/Local/Programs/MiKTeX/fonts/type1/public/
@@ -991,7 +991,7 @@ eX/fonts/type1/public/lm/lmri9.pfb><C:/Users/Uporabnik/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Uporabnik/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Uporabnik/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on "O ravnovesju ravnin.pdf" (5 pages, 333889 bytes).
+Output written on "O ravnovesju ravnin.pdf" (5 pages, 333885 bytes).
 PDF statistics:
  99 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
