@@ -1,0 +1,329 @@
+//                     SINGULAR                                 /  Development
+// A Computer Algebra System for Polynomial Computations       /   version 4.4.1
+//                                                           0<
+// by: W. Decker, G.-M. Greuel, G. Pfister, H. Schoenemann     \   Jan 2025
+// FB Mathematik der Universitaet, D-67653 Kaiserslautern        \
+// Auf Wiedersehen.
+
+ LIB "primdec.lib"; // knjižnica za dekompozicijo
+ LIB "solve.lib"; // knjižnica za računanje 0-dim raznoterosti
+
+short = 0;
+timer = 0;
+
+system("--ticks-per-sec", 1000); // Poskrbi, da se "timer" izpiše v milisekundah
+// int t = timer;
+
+ring q1 = 0, (x1, x2, x3, x4), lp; 
+
+ring q2 = 0, (x1, x2, x3, x4), Dp; 
+
+ring q3 = 0, (x1, x2, x3, x4), dp; 
+
+"1. naloga:";
+
+setring q1;
+
+// Polinomi v q1
+
+poly A = 11;
+poly B = 24;
+
+poly f= (5*A*x2^2)/96 + (145*A*x2)/48 + (A*x3^2)/2 + (31*A*x3*x4);
+
+poly f1= -8*A^2*x1^2 + 12*A*x1^4 - 8*A^4*x2^2 - 16*A^3*B*x2^2 - 8*A^2*B^2*x2^2 + 12*A^3*x1^2*x2^2 + 24*A^2*B*x1^2*x2^2 + 12*A*B^2*x1^2*x2^2 + 
+ 9*A*x1^2*x3 - 8*A*B*x1^2*x3 + 12*B*x1^4*x3 + 9*A^3*x2^2*x3 + 18*A^2*B*x2^2*x3 - 8*A^3*B*x2^2*x3 + 9*A*B^2*x2^2*x3 - 
+ 16*A^2*B^2*x2^2*x3 - 8*A*B^3*x2^2*x3 + 12*A^2*B*x1^2*x2^2*x3 + 24*A*B^2*x1^2*x2^2*x3 + 12*B^3*x1^2*x2^2*x3 + 9*B*x1^2*x3^2 + 
+ 9*A^2*B*x2^2*x3^2 + 18*A*B^2*x2^2*x3^2 + 9*B^3*x2^2*x3^2;
+
+poly f2=4*A^2*x1^3 + 2*A^2*x1^2*x2 + 4*A^4*x1*x2^2 + 8*A^3*B*x1*x2^2 + 4*A^2*B^2*x1*x2^2 + 2*A^4*x2^3 + 4*A^3*B*x2^3 + 2*A^2*B^2*x2^3 + 
+ 2*A*B*x1^2*x3 + 4*A*B*x1^3*x3 + 2*A*B*x1^2*x2*x3 + 2*A^3*B*x2^2*x3 + 4*A^2*B^2*x2^2*x3 + 2*A*B^3*x2^2*x3 + 4*A^3*B*x1*x2^2*x3 + 
+ 8*A^2*B^2*x1*x2^2*x3 + 4*A*B^3*x1*x2^2*x3 + 2*A^3*B*x2^3*x3 + 4*A^2*B^2*x2^3*x3 + 2*A*B^3*x2^3*x3 + 2*B^2*x1^2*x3^2 + 
+ 2*A^2*B^2*x2^2*x3^2 + 4*A*B^3*x2^2*x3^2 + 2*B^4*x2^2*x3^2 + 3*A*x1^2*x4 + 3*A^3*x2^2*x4 + 6*A^2*B*x2^2*x4 + 3*A*B^2*x2^2*x4 + 
+ 3*B*x1^2*x3*x4 + 3*A^2*B*x2^2*x3*x4 + 6*A*B^2*x2^2*x3*x4 + 3*B^3*x2^2*x3*x4;
+
+poly f3=(-25*A^2*B^2*x1^2)/24 + (7*A^2*B*x1^3)/6 - (25*A^4*B^2*x2^2)/24 - (25*A^3*B^3*x2^2)/12 - (25*A^2*B^4*x2^2)/24 + (7*A^4*B*x1*x2^2)/6 + 
+ (7*A^3*B^2*x1*x2^2)/3 + (7*A^2*B^3*x1*x2^2)/6 + 64*A*x1^2*x3 + (5*A^3*x1^2*x3)/4 - (25*A*B^3*x1^2*x3)/24 + A*B*x1^3*x3 + 
+ (7*A*B^2*x1^3*x3)/6 + 64*A^3*x2^2*x3 + (5*A^5*x2^2*x3)/4 + 128*A^2*B*x2^2*x3 + (5*A^4*B*x2^2*x3)/2 + 64*A*B^2*x2^2*x3 + 
+ (5*A^3*B^2*x2^2*x3)/4 - (25*A^3*B^3*x2^2*x3)/24 - (25*A^2*B^4*x2^2*x3)/12 - (25*A*B^5*x2^2*x3)/24 + A^3*B*x1*x2^2*x3 + 
+ 2*A^2*B^2*x1*x2^2*x3 + (7*A^3*B^2*x1*x2^2*x3)/6 + A*B^3*x1*x2^2*x3 + (7*A^2*B^3*x1*x2^2*x3)/3 + (7*A*B^4*x1*x2^2*x3)/6 + 
+ 64*B*x1^2*x3^2 + (5*A^2*B*x1^2*x3^2)/4 + B^2*x1^3*x3^2 + 64*A^2*B*x2^2*x3^2 + (5*A^4*B*x2^2*x3^2)/4 + 128*A*B^2*x2^2*x3^2 + 
+ (5*A^3*B^2*x2^2*x3^2)/2 + 64*B^3*x2^2*x3^2 + (5*A^2*B^3*x2^2*x3^2)/4 + A^2*B^2*x1*x2^2*x3^2 + 2*A*B^3*x1*x2^2*x3^2 + 
+ B^4*x1*x2^2*x3^2 + 56*A*x1^2*x4 + (53*A*B^2*x1^2*x4)/24 + 56*A^3*x2^2*x4 + 112*A^2*B*x2^2*x4 + 56*A*B^2*x2^2*x4 + 
+ (53*A^3*B^2*x2^2*x4)/24 + (53*A^2*B^3*x2^2*x4)/12 + (53*A*B^4*x2^2*x4)/24 + 56*B*x1^2*x3*x4 + (53*B^3*x1^2*x3*x4)/24 + 
+ 56*A^2*B*x2^2*x3*x4 + 112*A*B^2*x2^2*x3*x4 + 56*B^3*x2^2*x3*x4 + (53*A^2*B^3*x2^2*x3*x4)/24 + (53*A*B^4*x2^2*x3*x4)/12 + 
+ (53*B^5*x2^2*x3*x4)/24;
+
+poly f4=A^4*B*x1^2 + (3*A^4*x1^3)/4 + A^6*B*x2^2 + 2*A^5*B^2*x2^2 + A^4*B^3*x2^2 + (3*A^6*x1*x2^2)/4 + (3*A^5*B*x1*x2^2)/2 + 
+ (3*A^4*B^2*x1*x2^2)/4 + A^3*B^2*x1^2*x3 + (3*A^3*B*x1^3*x3)/4 + A^5*B^2*x2^2*x3 + 2*A^4*B^3*x2^2*x3 + A^3*B^4*x2^2*x3 + 
+ (3*A^5*B*x1*x2^2*x3)/4 + (3*A^4*B^2*x1*x2^2*x3)/2 + (3*A^3*B^3*x1*x2^2*x3)/4 + (9375*A*x1^2*x4)/32 + (903*A*x1^2*x2*x4)/16 + 
+ (9375*A^3*x2^2*x4)/32 + (9375*A^2*B*x2^2*x4)/16 + (9375*A*B^2*x2^2*x4)/32 + (39*A*x1^2*x2^2*x4)/64 + (903*A^3*x2^3*x4)/16 + 
+ (903*A^2*B*x2^3*x4)/8 + (903*A*B^2*x2^3*x4)/16 + (39*A^3*x2^4*x4)/64 + (39*A^2*B*x2^4*x4)/32 + (39*A*B^2*x2^4*x4)/64 + 
+ (9375*B*x1^2*x3*x4)/32 + (903*B*x1^2*x2*x3*x4)/16 + (9375*A^2*B*x2^2*x3*x4)/32 + (9375*A*B^2*x2^2*x3*x4)/16 + 
+ (9375*B^3*x2^2*x3*x4)/32 + (39*B*x1^2*x2^2*x3*x4)/64 + (903*A^2*B*x2^3*x3*x4)/16 + (903*A*B^2*x2^3*x3*x4)/8 + 
+ (903*B^3*x2^3*x3*x4)/16 + (39*A^2*B*x2^4*x3*x4)/64 + (39*A*B^2*x2^4*x3*x4)/32 + (39*B^3*x2^4*x3*x4)/64 + (147*A*x1^2*x4^3)/256 + 
+ (147*A^3*x2^2*x4^3)/256 + (147*A^2*B*x2^2*x4^3)/128 + (147*A*B^2*x2^2*x4^3)/256 + (147*B*x1^2*x3*x4^3)/256 + 
+ (147*A^2*B*x2^2*x3*x4^3)/256 + (147*A*B^2*x2^2*x3*x4^3)/128 + (147*B^3*x2^2*x3*x4^3)/256;
+
+int t = timer;
+ideal i = f1, f2, f3, f4;
+// Izračunamo Grobnerjevo bazo v q1
+ ideal G1 = groebner(i);
+"Baza v ureditvi Lex:";
+G1;
+"Izračunana v času:",timer-t,"[ms] ";
+setring q2;
+
+//Polinomi v q2
+poly A = 11;
+poly B = 24;
+
+poly f= (5*A*x2^2)/96 + (145*A*x2)/48 + (A*x3^2)/2 + (31*A*x3*x4);
+
+poly f1= -8*A^2*x1^2 + 12*A*x1^4 - 8*A^4*x2^2 - 16*A^3*B*x2^2 - 8*A^2*B^2*x2^2 + 12*A^3*x1^2*x2^2 + 24*A^2*B*x1^2*x2^2 + 12*A*B^2*x1^2*x2^2 + 
+ 9*A*x1^2*x3 - 8*A*B*x1^2*x3 + 12*B*x1^4*x3 + 9*A^3*x2^2*x3 + 18*A^2*B*x2^2*x3 - 8*A^3*B*x2^2*x3 + 9*A*B^2*x2^2*x3 - 
+ 16*A^2*B^2*x2^2*x3 - 8*A*B^3*x2^2*x3 + 12*A^2*B*x1^2*x2^2*x3 + 24*A*B^2*x1^2*x2^2*x3 + 12*B^3*x1^2*x2^2*x3 + 9*B*x1^2*x3^2 + 
+ 9*A^2*B*x2^2*x3^2 + 18*A*B^2*x2^2*x3^2 + 9*B^3*x2^2*x3^2;
+
+poly f2=4*A^2*x1^3 + 2*A^2*x1^2*x2 + 4*A^4*x1*x2^2 + 8*A^3*B*x1*x2^2 + 4*A^2*B^2*x1*x2^2 + 2*A^4*x2^3 + 4*A^3*B*x2^3 + 2*A^2*B^2*x2^3 + 
+ 2*A*B*x1^2*x3 + 4*A*B*x1^3*x3 + 2*A*B*x1^2*x2*x3 + 2*A^3*B*x2^2*x3 + 4*A^2*B^2*x2^2*x3 + 2*A*B^3*x2^2*x3 + 4*A^3*B*x1*x2^2*x3 + 
+ 8*A^2*B^2*x1*x2^2*x3 + 4*A*B^3*x1*x2^2*x3 + 2*A^3*B*x2^3*x3 + 4*A^2*B^2*x2^3*x3 + 2*A*B^3*x2^3*x3 + 2*B^2*x1^2*x3^2 + 
+ 2*A^2*B^2*x2^2*x3^2 + 4*A*B^3*x2^2*x3^2 + 2*B^4*x2^2*x3^2 + 3*A*x1^2*x4 + 3*A^3*x2^2*x4 + 6*A^2*B*x2^2*x4 + 3*A*B^2*x2^2*x4 + 
+ 3*B*x1^2*x3*x4 + 3*A^2*B*x2^2*x3*x4 + 6*A*B^2*x2^2*x3*x4 + 3*B^3*x2^2*x3*x4;
+
+poly f3=(-25*A^2*B^2*x1^2)/24 + (7*A^2*B*x1^3)/6 - (25*A^4*B^2*x2^2)/24 - (25*A^3*B^3*x2^2)/12 - (25*A^2*B^4*x2^2)/24 + (7*A^4*B*x1*x2^2)/6 + 
+ (7*A^3*B^2*x1*x2^2)/3 + (7*A^2*B^3*x1*x2^2)/6 + 64*A*x1^2*x3 + (5*A^3*x1^2*x3)/4 - (25*A*B^3*x1^2*x3)/24 + A*B*x1^3*x3 + 
+ (7*A*B^2*x1^3*x3)/6 + 64*A^3*x2^2*x3 + (5*A^5*x2^2*x3)/4 + 128*A^2*B*x2^2*x3 + (5*A^4*B*x2^2*x3)/2 + 64*A*B^2*x2^2*x3 + 
+ (5*A^3*B^2*x2^2*x3)/4 - (25*A^3*B^3*x2^2*x3)/24 - (25*A^2*B^4*x2^2*x3)/12 - (25*A*B^5*x2^2*x3)/24 + A^3*B*x1*x2^2*x3 + 
+ 2*A^2*B^2*x1*x2^2*x3 + (7*A^3*B^2*x1*x2^2*x3)/6 + A*B^3*x1*x2^2*x3 + (7*A^2*B^3*x1*x2^2*x3)/3 + (7*A*B^4*x1*x2^2*x3)/6 + 
+ 64*B*x1^2*x3^2 + (5*A^2*B*x1^2*x3^2)/4 + B^2*x1^3*x3^2 + 64*A^2*B*x2^2*x3^2 + (5*A^4*B*x2^2*x3^2)/4 + 128*A*B^2*x2^2*x3^2 + 
+ (5*A^3*B^2*x2^2*x3^2)/2 + 64*B^3*x2^2*x3^2 + (5*A^2*B^3*x2^2*x3^2)/4 + A^2*B^2*x1*x2^2*x3^2 + 2*A*B^3*x1*x2^2*x3^2 + 
+ B^4*x1*x2^2*x3^2 + 56*A*x1^2*x4 + (53*A*B^2*x1^2*x4)/24 + 56*A^3*x2^2*x4 + 112*A^2*B*x2^2*x4 + 56*A*B^2*x2^2*x4 + 
+ (53*A^3*B^2*x2^2*x4)/24 + (53*A^2*B^3*x2^2*x4)/12 + (53*A*B^4*x2^2*x4)/24 + 56*B*x1^2*x3*x4 + (53*B^3*x1^2*x3*x4)/24 + 
+ 56*A^2*B*x2^2*x3*x4 + 112*A*B^2*x2^2*x3*x4 + 56*B^3*x2^2*x3*x4 + (53*A^2*B^3*x2^2*x3*x4)/24 + (53*A*B^4*x2^2*x3*x4)/12 + 
+ (53*B^5*x2^2*x3*x4)/24;
+
+poly f4=A^4*B*x1^2 + (3*A^4*x1^3)/4 + A^6*B*x2^2 + 2*A^5*B^2*x2^2 + A^4*B^3*x2^2 + (3*A^6*x1*x2^2)/4 + (3*A^5*B*x1*x2^2)/2 + 
+ (3*A^4*B^2*x1*x2^2)/4 + A^3*B^2*x1^2*x3 + (3*A^3*B*x1^3*x3)/4 + A^5*B^2*x2^2*x3 + 2*A^4*B^3*x2^2*x3 + A^3*B^4*x2^2*x3 + 
+ (3*A^5*B*x1*x2^2*x3)/4 + (3*A^4*B^2*x1*x2^2*x3)/2 + (3*A^3*B^3*x1*x2^2*x3)/4 + (9375*A*x1^2*x4)/32 + (903*A*x1^2*x2*x4)/16 + 
+ (9375*A^3*x2^2*x4)/32 + (9375*A^2*B*x2^2*x4)/16 + (9375*A*B^2*x2^2*x4)/32 + (39*A*x1^2*x2^2*x4)/64 + (903*A^3*x2^3*x4)/16 + 
+ (903*A^2*B*x2^3*x4)/8 + (903*A*B^2*x2^3*x4)/16 + (39*A^3*x2^4*x4)/64 + (39*A^2*B*x2^4*x4)/32 + (39*A*B^2*x2^4*x4)/64 + 
+ (9375*B*x1^2*x3*x4)/32 + (903*B*x1^2*x2*x3*x4)/16 + (9375*A^2*B*x2^2*x3*x4)/32 + (9375*A*B^2*x2^2*x3*x4)/16 + 
+ (9375*B^3*x2^2*x3*x4)/32 + (39*B*x1^2*x2^2*x3*x4)/64 + (903*A^2*B*x2^3*x3*x4)/16 + (903*A*B^2*x2^3*x3*x4)/8 + 
+ (903*B^3*x2^3*x3*x4)/16 + (39*A^2*B*x2^4*x3*x4)/64 + (39*A*B^2*x2^4*x3*x4)/32 + (39*B^3*x2^4*x3*x4)/64 + (147*A*x1^2*x4^3)/256 + 
+ (147*A^3*x2^2*x4^3)/256 + (147*A^2*B*x2^2*x4^3)/128 + (147*A*B^2*x2^2*x4^3)/256 + (147*B*x1^2*x3*x4^3)/256 + 
+ (147*A^2*B*x2^2*x3*x4^3)/256 + (147*A*B^2*x2^2*x3*x4^3)/128 + (147*B^3*x2^2*x3*x4^3)/256;
+
+ideal i = f1, f2, f3, f4;
+// Izračunamo Grobnerjevo bazo v q2
+ ideal G2 = groebner(i);
+"Baza v ureditvi DegLex:";
+G2;
+"Izračunana v času:",timer-t,"[ms] ";
+
+setring q3;
+
+//Polinomi v q3
+
+poly A = 11;
+poly B = 24;
+
+poly f= (5*A*x2^2)/96 + (145*A*x2)/48 + (A*x3^2)/2 + (31*A*x3*x4);
+
+poly f1= -8*A^2*x1^2 + 12*A*x1^4 - 8*A^4*x2^2 - 16*A^3*B*x2^2 - 8*A^2*B^2*x2^2 + 12*A^3*x1^2*x2^2 + 24*A^2*B*x1^2*x2^2 + 12*A*B^2*x1^2*x2^2 + 
+ 9*A*x1^2*x3 - 8*A*B*x1^2*x3 + 12*B*x1^4*x3 + 9*A^3*x2^2*x3 + 18*A^2*B*x2^2*x3 - 8*A^3*B*x2^2*x3 + 9*A*B^2*x2^2*x3 - 
+ 16*A^2*B^2*x2^2*x3 - 8*A*B^3*x2^2*x3 + 12*A^2*B*x1^2*x2^2*x3 + 24*A*B^2*x1^2*x2^2*x3 + 12*B^3*x1^2*x2^2*x3 + 9*B*x1^2*x3^2 + 
+ 9*A^2*B*x2^2*x3^2 + 18*A*B^2*x2^2*x3^2 + 9*B^3*x2^2*x3^2;
+
+poly f2=4*A^2*x1^3 + 2*A^2*x1^2*x2 + 4*A^4*x1*x2^2 + 8*A^3*B*x1*x2^2 + 4*A^2*B^2*x1*x2^2 + 2*A^4*x2^3 + 4*A^3*B*x2^3 + 2*A^2*B^2*x2^3 + 
+ 2*A*B*x1^2*x3 + 4*A*B*x1^3*x3 + 2*A*B*x1^2*x2*x3 + 2*A^3*B*x2^2*x3 + 4*A^2*B^2*x2^2*x3 + 2*A*B^3*x2^2*x3 + 4*A^3*B*x1*x2^2*x3 + 
+ 8*A^2*B^2*x1*x2^2*x3 + 4*A*B^3*x1*x2^2*x3 + 2*A^3*B*x2^3*x3 + 4*A^2*B^2*x2^3*x3 + 2*A*B^3*x2^3*x3 + 2*B^2*x1^2*x3^2 + 
+ 2*A^2*B^2*x2^2*x3^2 + 4*A*B^3*x2^2*x3^2 + 2*B^4*x2^2*x3^2 + 3*A*x1^2*x4 + 3*A^3*x2^2*x4 + 6*A^2*B*x2^2*x4 + 3*A*B^2*x2^2*x4 + 
+ 3*B*x1^2*x3*x4 + 3*A^2*B*x2^2*x3*x4 + 6*A*B^2*x2^2*x3*x4 + 3*B^3*x2^2*x3*x4;
+
+poly f3=(-25*A^2*B^2*x1^2)/24 + (7*A^2*B*x1^3)/6 - (25*A^4*B^2*x2^2)/24 - (25*A^3*B^3*x2^2)/12 - (25*A^2*B^4*x2^2)/24 + (7*A^4*B*x1*x2^2)/6 + 
+ (7*A^3*B^2*x1*x2^2)/3 + (7*A^2*B^3*x1*x2^2)/6 + 64*A*x1^2*x3 + (5*A^3*x1^2*x3)/4 - (25*A*B^3*x1^2*x3)/24 + A*B*x1^3*x3 + 
+ (7*A*B^2*x1^3*x3)/6 + 64*A^3*x2^2*x3 + (5*A^5*x2^2*x3)/4 + 128*A^2*B*x2^2*x3 + (5*A^4*B*x2^2*x3)/2 + 64*A*B^2*x2^2*x3 + 
+ (5*A^3*B^2*x2^2*x3)/4 - (25*A^3*B^3*x2^2*x3)/24 - (25*A^2*B^4*x2^2*x3)/12 - (25*A*B^5*x2^2*x3)/24 + A^3*B*x1*x2^2*x3 + 
+ 2*A^2*B^2*x1*x2^2*x3 + (7*A^3*B^2*x1*x2^2*x3)/6 + A*B^3*x1*x2^2*x3 + (7*A^2*B^3*x1*x2^2*x3)/3 + (7*A*B^4*x1*x2^2*x3)/6 + 
+ 64*B*x1^2*x3^2 + (5*A^2*B*x1^2*x3^2)/4 + B^2*x1^3*x3^2 + 64*A^2*B*x2^2*x3^2 + (5*A^4*B*x2^2*x3^2)/4 + 128*A*B^2*x2^2*x3^2 + 
+ (5*A^3*B^2*x2^2*x3^2)/2 + 64*B^3*x2^2*x3^2 + (5*A^2*B^3*x2^2*x3^2)/4 + A^2*B^2*x1*x2^2*x3^2 + 2*A*B^3*x1*x2^2*x3^2 + 
+ B^4*x1*x2^2*x3^2 + 56*A*x1^2*x4 + (53*A*B^2*x1^2*x4)/24 + 56*A^3*x2^2*x4 + 112*A^2*B*x2^2*x4 + 56*A*B^2*x2^2*x4 + 
+ (53*A^3*B^2*x2^2*x4)/24 + (53*A^2*B^3*x2^2*x4)/12 + (53*A*B^4*x2^2*x4)/24 + 56*B*x1^2*x3*x4 + (53*B^3*x1^2*x3*x4)/24 + 
+ 56*A^2*B*x2^2*x3*x4 + 112*A*B^2*x2^2*x3*x4 + 56*B^3*x2^2*x3*x4 + (53*A^2*B^3*x2^2*x3*x4)/24 + (53*A*B^4*x2^2*x3*x4)/12 + 
+ (53*B^5*x2^2*x3*x4)/24;
+
+poly f4=A^4*B*x1^2 + (3*A^4*x1^3)/4 + A^6*B*x2^2 + 2*A^5*B^2*x2^2 + A^4*B^3*x2^2 + (3*A^6*x1*x2^2)/4 + (3*A^5*B*x1*x2^2)/2 + 
+ (3*A^4*B^2*x1*x2^2)/4 + A^3*B^2*x1^2*x3 + (3*A^3*B*x1^3*x3)/4 + A^5*B^2*x2^2*x3 + 2*A^4*B^3*x2^2*x3 + A^3*B^4*x2^2*x3 + 
+ (3*A^5*B*x1*x2^2*x3)/4 + (3*A^4*B^2*x1*x2^2*x3)/2 + (3*A^3*B^3*x1*x2^2*x3)/4 + (9375*A*x1^2*x4)/32 + (903*A*x1^2*x2*x4)/16 + 
+ (9375*A^3*x2^2*x4)/32 + (9375*A^2*B*x2^2*x4)/16 + (9375*A*B^2*x2^2*x4)/32 + (39*A*x1^2*x2^2*x4)/64 + (903*A^3*x2^3*x4)/16 + 
+ (903*A^2*B*x2^3*x4)/8 + (903*A*B^2*x2^3*x4)/16 + (39*A^3*x2^4*x4)/64 + (39*A^2*B*x2^4*x4)/32 + (39*A*B^2*x2^4*x4)/64 + 
+ (9375*B*x1^2*x3*x4)/32 + (903*B*x1^2*x2*x3*x4)/16 + (9375*A^2*B*x2^2*x3*x4)/32 + (9375*A*B^2*x2^2*x3*x4)/16 + 
+ (9375*B^3*x2^2*x3*x4)/32 + (39*B*x1^2*x2^2*x3*x4)/64 + (903*A^2*B*x2^3*x3*x4)/16 + (903*A*B^2*x2^3*x3*x4)/8 + 
+ (903*B^3*x2^3*x3*x4)/16 + (39*A^2*B*x2^4*x3*x4)/64 + (39*A*B^2*x2^4*x3*x4)/32 + (39*B^3*x2^4*x3*x4)/64 + (147*A*x1^2*x4^3)/256 + 
+ (147*A^3*x2^2*x4^3)/256 + (147*A^2*B*x2^2*x4^3)/128 + (147*A*B^2*x2^2*x4^3)/256 + (147*B*x1^2*x3*x4^3)/256 + 
+ (147*A^2*B*x2^2*x3*x4^3)/256 + (147*A*B^2*x2^2*x3*x4^3)/128 + (147*B^3*x2^2*x3*x4^3)/256;
+
+ideal i = f1, f2, f3, f4;
+
+// Izračunamo Grobnerjevo bazo v q3
+ ideal G3 = groebner(i);
+"Baza v ureditvi DegRevLex:";
+G3;
+"Izračunana v času:",timer-t,"[ms] ";
+
+// Dekompozicija raznoterosti ideala
+"2. naloga";
+
+setring q1;
+
+// Ponovno določimo polinome za v q1
+
+poly A = 11;
+poly B = 24;
+
+poly f= (5*A*x2^2)/96 + (145*A*x2)/48 + (A*x3^2)/2 + (31*A*x3*x4);
+
+poly f1= -8*A^2*x1^2 + 12*A*x1^4 - 8*A^4*x2^2 - 16*A^3*B*x2^2 - 8*A^2*B^2*x2^2 + 12*A^3*x1^2*x2^2 + 24*A^2*B*x1^2*x2^2 + 12*A*B^2*x1^2*x2^2 + 
+ 9*A*x1^2*x3 - 8*A*B*x1^2*x3 + 12*B*x1^4*x3 + 9*A^3*x2^2*x3 + 18*A^2*B*x2^2*x3 - 8*A^3*B*x2^2*x3 + 9*A*B^2*x2^2*x3 - 
+ 16*A^2*B^2*x2^2*x3 - 8*A*B^3*x2^2*x3 + 12*A^2*B*x1^2*x2^2*x3 + 24*A*B^2*x1^2*x2^2*x3 + 12*B^3*x1^2*x2^2*x3 + 9*B*x1^2*x3^2 + 
+ 9*A^2*B*x2^2*x3^2 + 18*A*B^2*x2^2*x3^2 + 9*B^3*x2^2*x3^2;
+
+poly f2=4*A^2*x1^3 + 2*A^2*x1^2*x2 + 4*A^4*x1*x2^2 + 8*A^3*B*x1*x2^2 + 4*A^2*B^2*x1*x2^2 + 2*A^4*x2^3 + 4*A^3*B*x2^3 + 2*A^2*B^2*x2^3 + 
+ 2*A*B*x1^2*x3 + 4*A*B*x1^3*x3 + 2*A*B*x1^2*x2*x3 + 2*A^3*B*x2^2*x3 + 4*A^2*B^2*x2^2*x3 + 2*A*B^3*x2^2*x3 + 4*A^3*B*x1*x2^2*x3 + 
+ 8*A^2*B^2*x1*x2^2*x3 + 4*A*B^3*x1*x2^2*x3 + 2*A^3*B*x2^3*x3 + 4*A^2*B^2*x2^3*x3 + 2*A*B^3*x2^3*x3 + 2*B^2*x1^2*x3^2 + 
+ 2*A^2*B^2*x2^2*x3^2 + 4*A*B^3*x2^2*x3^2 + 2*B^4*x2^2*x3^2 + 3*A*x1^2*x4 + 3*A^3*x2^2*x4 + 6*A^2*B*x2^2*x4 + 3*A*B^2*x2^2*x4 + 
+ 3*B*x1^2*x3*x4 + 3*A^2*B*x2^2*x3*x4 + 6*A*B^2*x2^2*x3*x4 + 3*B^3*x2^2*x3*x4;
+
+poly f3=(-25*A^2*B^2*x1^2)/24 + (7*A^2*B*x1^3)/6 - (25*A^4*B^2*x2^2)/24 - (25*A^3*B^3*x2^2)/12 - (25*A^2*B^4*x2^2)/24 + (7*A^4*B*x1*x2^2)/6 + 
+ (7*A^3*B^2*x1*x2^2)/3 + (7*A^2*B^3*x1*x2^2)/6 + 64*A*x1^2*x3 + (5*A^3*x1^2*x3)/4 - (25*A*B^3*x1^2*x3)/24 + A*B*x1^3*x3 + 
+ (7*A*B^2*x1^3*x3)/6 + 64*A^3*x2^2*x3 + (5*A^5*x2^2*x3)/4 + 128*A^2*B*x2^2*x3 + (5*A^4*B*x2^2*x3)/2 + 64*A*B^2*x2^2*x3 + 
+ (5*A^3*B^2*x2^2*x3)/4 - (25*A^3*B^3*x2^2*x3)/24 - (25*A^2*B^4*x2^2*x3)/12 - (25*A*B^5*x2^2*x3)/24 + A^3*B*x1*x2^2*x3 + 
+ 2*A^2*B^2*x1*x2^2*x3 + (7*A^3*B^2*x1*x2^2*x3)/6 + A*B^3*x1*x2^2*x3 + (7*A^2*B^3*x1*x2^2*x3)/3 + (7*A*B^4*x1*x2^2*x3)/6 + 
+ 64*B*x1^2*x3^2 + (5*A^2*B*x1^2*x3^2)/4 + B^2*x1^3*x3^2 + 64*A^2*B*x2^2*x3^2 + (5*A^4*B*x2^2*x3^2)/4 + 128*A*B^2*x2^2*x3^2 + 
+ (5*A^3*B^2*x2^2*x3^2)/2 + 64*B^3*x2^2*x3^2 + (5*A^2*B^3*x2^2*x3^2)/4 + A^2*B^2*x1*x2^2*x3^2 + 2*A*B^3*x1*x2^2*x3^2 + 
+ B^4*x1*x2^2*x3^2 + 56*A*x1^2*x4 + (53*A*B^2*x1^2*x4)/24 + 56*A^3*x2^2*x4 + 112*A^2*B*x2^2*x4 + 56*A*B^2*x2^2*x4 + 
+ (53*A^3*B^2*x2^2*x4)/24 + (53*A^2*B^3*x2^2*x4)/12 + (53*A*B^4*x2^2*x4)/24 + 56*B*x1^2*x3*x4 + (53*B^3*x1^2*x3*x4)/24 + 
+ 56*A^2*B*x2^2*x3*x4 + 112*A*B^2*x2^2*x3*x4 + 56*B^3*x2^2*x3*x4 + (53*A^2*B^3*x2^2*x3*x4)/24 + (53*A*B^4*x2^2*x3*x4)/12 + 
+ (53*B^5*x2^2*x3*x4)/24;
+
+poly f4=A^4*B*x1^2 + (3*A^4*x1^3)/4 + A^6*B*x2^2 + 2*A^5*B^2*x2^2 + A^4*B^3*x2^2 + (3*A^6*x1*x2^2)/4 + (3*A^5*B*x1*x2^2)/2 + 
+ (3*A^4*B^2*x1*x2^2)/4 + A^3*B^2*x1^2*x3 + (3*A^3*B*x1^3*x3)/4 + A^5*B^2*x2^2*x3 + 2*A^4*B^3*x2^2*x3 + A^3*B^4*x2^2*x3 + 
+ (3*A^5*B*x1*x2^2*x3)/4 + (3*A^4*B^2*x1*x2^2*x3)/2 + (3*A^3*B^3*x1*x2^2*x3)/4 + (9375*A*x1^2*x4)/32 + (903*A*x1^2*x2*x4)/16 + 
+ (9375*A^3*x2^2*x4)/32 + (9375*A^2*B*x2^2*x4)/16 + (9375*A*B^2*x2^2*x4)/32 + (39*A*x1^2*x2^2*x4)/64 + (903*A^3*x2^3*x4)/16 + 
+ (903*A^2*B*x2^3*x4)/8 + (903*A*B^2*x2^3*x4)/16 + (39*A^3*x2^4*x4)/64 + (39*A^2*B*x2^4*x4)/32 + (39*A*B^2*x2^4*x4)/64 + 
+ (9375*B*x1^2*x3*x4)/32 + (903*B*x1^2*x2*x3*x4)/16 + (9375*A^2*B*x2^2*x3*x4)/32 + (9375*A*B^2*x2^2*x3*x4)/16 + 
+ (9375*B^3*x2^2*x3*x4)/32 + (39*B*x1^2*x2^2*x3*x4)/64 + (903*A^2*B*x2^3*x3*x4)/16 + (903*A*B^2*x2^3*x3*x4)/8 + 
+ (903*B^3*x2^3*x3*x4)/16 + (39*A^2*B*x2^4*x3*x4)/64 + (39*A*B^2*x2^4*x3*x4)/32 + (39*B^3*x2^4*x3*x4)/64 + (147*A*x1^2*x4^3)/256 + 
+ (147*A^3*x2^2*x4^3)/256 + (147*A^2*B*x2^2*x4^3)/128 + (147*A*B^2*x2^2*x4^3)/256 + (147*B*x1^2*x3*x4^3)/256 + 
+ (147*A^2*B*x2^2*x3*x4^3)/256 + (147*A*B^2*x2^2*x3*x4^3)/128 + (147*B^3*x2^2*x3*x4^3)/256;
+
+// Določimo minimalen razcep raznoterosti
+"Dekompozicija:";
+list D = minAssGTZ(i);
+D;
+"Rešitve so:";
+def D1 = solve(D[1]);
+
+setring D1;
+list Dk = SOL;
+"Prva komponenta je ena sama točka:";
+Dk[1];
+setring q1;
+
+"Nad QQ in RR so tri komponente, nad CC pa število ireducibilnih komponent naraste na 11!";
+
+// Primarna dekompozicija ideala
+"3. naloga";
+
+list P = primdecGTZE(G1);
+"Primarna dekompozicija ideala i:";
+P;
+
+// določanje 0-dim komponent in parametrizacija ostalih nad RR
+"4. naloga";
+
+"0-dimenzionalna komponenta:";
+setring D1;
+Dk[1];
+
+setring q1;
+
+"Nad RR ima prva komponenta parametrizacijo {(x1, x2, -11/24, x4); x1, x2, x4 \in RR}, druga pa parametrizacijo {(0, 0, x3, x4); x3, x4 \in RR}";
+
+// Ali je f v i?
+"5. naloga";
+
+def r = reduce(f, G1);
+if (r != 0) {"Polinom f ni element ideala i!";} else {"Polinom f je element ideala i!";};
+
+// Kvocientni ideal
+"6. naloga";
+
+ideal k = x1^2 + (A+B)^2 *x2^2;
+ideal Q = quotient(i, k);
+list Qr = minAssGTZE(Q);
+Qr;
+
+"Število komponent se zmanjša! Bolj natančno, dekompozicija raznoterosti pokaže, da je raznoterost od kvocientnega ideala enaka raznoterosti ideala i, brez komponente, ki ima nad RR parametrizacijo {(0, 0, x3, x4); x3, x4 \in RR}!";
+
+// Enakost idealov
+"7. naloga";
+
+ideal h = f, f4; 
+ideal j = f1, f2, f3;
+// Mogoče bi bilo manj zmedeno, če bi preprosto preveril, ali se da (Groebnerjevo?) bazo enega reducirat na bazo drugega...
+ideal Bh = groebner(h);
+ideal Bj = groebner(j);
+
+int E = 1;
+for (int v = 1; v<=size(Bh); v=v+1) // Preverimo, če je vsak element Groebnerjeve baze ideala h vsebovan v j
+{
+	if (reduce(Bh[v], Bj) != 0 and E != 0) 
+	{
+		E = 0;
+	} 
+}
+
+if (E == 1) { // Če je h vsebovan v j, preverimo še obratno inkluzijo
+
+	for (int v = 1; v<=size(Bj); v=v+1) // Preverimo, če je vsak element Groebnerjeve baze ideala j vsebovan v h
+	{
+		if (reduce(Bj[v], Bh) != 0 and E != 0) 
+		{
+			E = 0;
+		} 
+	}
+
+}
+
+if (E == 0){
+	"Ideala h in j nista enaka!";
+}
+else{
+	"Ideala h in j sta enaka!";
+}
+
+// Vsota in presek idealov.
+"8. naloga";
+
+ideal s = sum(h, j);
+ideal Bs = groebner(s);
+
+ideal u = intersect(h, j);
+ideal Bu = groebner(u);
+
+"Vsota idealov:";
+s;
+list sr = minAssGTZE(s);
+sr;
+"Presek idealov:";
+u;
+
+// Izpis dekompozicije traja zelo dolgo - več kot 20 minut.
+list ur = minAssGTZE(u);
+ur;
+
+// solve(ur[1]);
+
+// solve(ur[2]);
