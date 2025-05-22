@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[slovene]{babel}
 \usepackage{csquotes}
+\usepackage{float}
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{leftidx}
@@ -72,7 +73,7 @@
 	\thispagestyle{empty}
 	\newpage
 	\section{Uvod}
-		Ta naloga je razdeljena na dva dela. V prvem delu obravnavamo razna vprašanja v povezavi s podanimi polinomi $f_1, f_2, f_3, f_4$ in $f$ v spremenljivkah $x_1, x_2, x_3$ in $x_4$ s pomočjo programa Singular. Vsa koda, ki smo jo pri tem uporabili, je zbrana v datoteki ">\emph{polinomi 1.txt}"<, izpis programa pa je shranjen v datoteki ">\emph{VseVEnem.txt}"<. V drugem delu obravnavamo mehaniko amortizerja preko pripadajoče navadne diferencialne enačbe $2.$ reda s pomočjo programa MATLAB. Vsa koda, ki smo jo pri tem uporabili, je zbrana v datoteki ">\emph{amortizer 2.m}"<.
+		Ta naloga je razdeljena na dva dela. V prvem delu obravnavamo razna vprašanja v povezavi s podanimi polinomi $f_1, f_2, f_3, f_4$ in $f$ v spremenljivkah $x_1, x_2, x_3$ in $x_4$ s pomočjo programa Singular. Vsa koda, ki smo jo pri tem uporabili, je zbrana v datoteki ">\emph{polinomi 1.txt}"<, izpis programa pa je shranjen v datoteki ">\emph{VseVEnem.txt}"<. V drugem delu obravnavamo mehaniko amortizerja preko pripadajoče navadne diferencialne enačbe $2.$ reda s pomočjo programa MATLAB. Vsa koda, ki smo jo pri tem uporabili, je zbrana v datoteki ">\emph{amortizer2.m}"<.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Prvi del}
 		Na začetku določimo konstanti $A$ in $B$ v predpisu polinomov. V tem primeru je $A = 11$ in $B=24$, v skladu z danimi navodili. Tukaj omenimo še, da kadar naloga eksplicitno ne poda polja, v katerem rešujemo problem, kot privzeto vzamemo polje racionalnih števil in kot privzeto urejenost polinomov vzamemo leksikografsko ureditev. Definirajmo sedaj še polinomski ideal $I = <f_1, f_2, f_3, f_4 >$.
@@ -145,7 +146,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section{Drugi del}
 	\setcounter{vprcount}{0}
-		Podan imamo amortizer v katerem s $K$ označimo koeficient vzmeti, s $\alpha$ viskoznost tekočine ter z $m$ maso avtomobila. Z $x(t)$ označimo oddaljenost dna avtomobila od začetne mirovne lege. Dodatno postavimo začetna pogoja $x(0) = 0$ in $\dot{x}(0)=0$. Ko upoštevamo Newtonov $2.$ zakon, dobimo enačbo $$m\overset{..}{x} = -\alpha\dot{x} - Kx,$$ oziroma $$\overset{..}{x} +\frac{\alpha}{m}\dot{x} + \frac{K}{m}x = 0.$$ Sedaj vpeljemo oznaki $2k = \frac{\alpha}{m}$ in $\omega^2 = \frac{K}{m}$ ter tako dobimo končno obliko enačbe amortizerja: \begin{equation}
+		Podan imamo amortizer v katerem s $K$ označimo koeficient vzmeti, s $\alpha$ viskoznost tekočine ter z $m$ maso avtomobila. Z $x(t)$ označimo oddaljenost dna avtomobila od začetne mirovne lege. Ko upoštevamo Newtonov $2.$ zakon, dobimo enačbo $$m\overset{..}{x} = -\alpha\dot{x} - Kx,$$ oziroma $$\overset{..}{x} +\frac{\alpha}{m}\dot{x} + \frac{K}{m}x = 0.$$ Sedaj vpeljemo oznaki $2k = \frac{\alpha}{m}$ in $\omega^2 = \frac{K}{m}$ ter tako dobimo končno obliko enačbe amortizerja: \begin{equation}
 			\label{eq:amort}
 		\overset{..}{x} +2k\dot{x} + \omega^2x = 0.
 		\end{equation}
@@ -194,17 +195,44 @@
 		\end{Vpr}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\begin{Rešitev}
-			S pomočjo programa MATLAB narišemo graf rešitve in fazni portret za vse tri primere iz prejšnje naloge.
-			\begin{enumerate}[a)]
-				\item 
-				\item 
-				\item
-			\end{enumerate}
+			S pomočjo programa MATLAB narišemo graf rešitev in fazni portret za vse tri primere iz prejšnje naloge. Na vsakem grafu bo narisan šop rešitev v odvisnosti od začetnega pogoja. V tem primeru so začetni pogoji vsi elementi mreže $\{-3, -2, -1, 0, 1, 2, 3\}\times\{-3, -2, -1, 0, 1, 2, 3\}$.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.5]{Rešitev1.png}
+				\caption{Graf rešitve $x(t)$ v primeru dveh realnih lastnih vrednosti ($k=2, \omega=1$).}
+							
+				\includegraphics[scale=0.5]{Fazni1.png}
+				\caption{Fazni portret sistema v primeru dveh realnih lastnih vrednosti ($k=2, \omega=1$).}
+			\end{figure}
+			
+			%\pagebreak
+			
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{Rešitev2.png}
+				\caption{Graf rešitve $x(t)$ v primeru ene realne lastne vrednosti ($k=2, \omega=2$).}
+			
+				\includegraphics[scale=0.5]{Fazni2.png}
+				\caption{Fazni portret sistema v primeru ene realne lastne vrednosti ($k=2, \omega=2$).}
+			\end{figure}
+			
+			%\pagebreak
+				
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{Rešitev3.png}
+				\caption{Graf rešitve $x(t)$ v primeru dveh kompleksnih lastnih vrednosti ($k=1, \omega=2$).}
+				
+				\includegraphics[scale=0.5]{Fazni3.png}
+				\caption{Fazni portret sistema v primeru dveh kompleksnih lastnih vrednosti ($k=1, \omega=2$).}
+			\end{figure}
 		\end{Rešitev}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 		\begin{Vpr}
 			Katera izbira parametrov je najbolj primerna za pravilno delovanje amortizerja?
 		\end{Vpr}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\begin{Rešitev}
+			Glede na fazni portret rešitve je najbolj primerna izbira parametrov $k$ in $\omega$, v kateri je $k<\omega$, torej tista, v kateri ima sistem dve kompleksni lastni vrednosti.
+		\end{Rešitev}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
